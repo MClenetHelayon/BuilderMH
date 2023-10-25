@@ -95,7 +95,6 @@ flutter:
     - database/mhrs/
     - database/mhrs/armor/
     - database/mhrs/weapon/
-    - database/mhwi/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

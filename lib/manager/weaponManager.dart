@@ -4,9 +4,15 @@ import 'package:builder_mhrs/manager/local/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/local/saTypeFiole.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../object/Arme.dart';
+import '../object/weapon/Arc.dart';
+import '../object/weapon/Arme.dart';
 import '../object/Stuff.dart';
-import '../object/ITranchant.dart';
+import '../object/weapon/tranchant/CornedeChasse.dart';
+import '../object/weapon/tranchant/Insectoglaive.dart';
+import '../object/weapon/tranchant/LameDouble.dart';
+import '../object/weapon/tranchant/Lancecanon.dart';
+import '../object/weapon/tranchant/MorphoHache.dart';
+import '../object/weapon/tranchant/VoltoHache.dart';
 import 'imgManager.dart';
 import 'joyauManager.dart';
 import 'local/glTypeCanon.dart';
@@ -185,10 +191,6 @@ Widget isDualBlade(Arme weapon, BuildContext context) {
   }
 
   return vretour;
-}
-
-Widget AmmoFusar(List<dynamic> mun, String nom) {
-  return Container();
 }
 
 Widget StatKinsect(Stuff s) {

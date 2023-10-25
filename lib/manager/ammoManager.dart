@@ -2,11 +2,11 @@ import 'package:builder_mhrs/manager/skill/ammo/qteAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reculAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reloadAmmoManager.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
-import 'package:builder_mhrs/object/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../object/Stuff.dart';
+import '../object/weapon/Arme.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
@@ -17,9 +17,9 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
   return Column(children: [
     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       cadreAmmoValue(120, Text(AppLocalizations.of(context)!.name)),
-      cadreAmmoValue(20, Text(AppLocalizations.of(context)!.qte)),
-      cadreAmmoValue(75, Text(AppLocalizations.of(context)!.recul)),
-      cadreAmmoValue(85, Text(AppLocalizations.of(context)!.recharge)),
+      cadreAmmoValue(30, Text(AppLocalizations.of(context)!.qte)),
+      cadreAmmoValue(50, Text(AppLocalizations.of(context)!.recul)),
+      cadreAmmoValue(105, Text(AppLocalizations.of(context)!.recharge)),
       Row(children: [
         logoMun(1, 'images/arme/mun/footstep.png', 15),
         logoMun(1, 'images/arme/mun/greenCircle.png', 15),
@@ -27,6 +27,7 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
         logoMun(1, 'images/arme/mun/upOrange.png', 15)
       ])
     ]),
+    const Divider(color: Colors.black),
     if (w.normal1.isNotEmpty)
       rowAmmo(
           w.normal1,
@@ -309,7 +310,7 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.tranquil.isNotEmpty)
       rowAmmo(
-          w.tranquil,
+          w.tranquil[0],
           AppLocalizations.of(context)!.tranquil,
           getMaxMun1(maxMun),
           getReculG2(w.recul, reculB, context),

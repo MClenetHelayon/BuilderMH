@@ -1,8 +1,4 @@
-import 'package:builder_mhrs/manager/local/cbTypeFiole.dart';
-import 'package:builder_mhrs/manager/local/fusard/getRecul.dart';
-import 'package:builder_mhrs/object/Arme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/material.dart';
 
 import '../manager/AmmoManager.dart';
@@ -15,18 +11,28 @@ import '../manager/local/fusard/getRechargement.dart';
 import '../manager/local/fusard/getTirSpe.dart';
 import '../manager/local/glTypeCanon.dart';
 import '../manager/local/saTypeFiole.dart';
+import '../manager/local/cbTypeFiole.dart';
+import '../manager/local/fusard/getRecul.dart';
 import '../manager/sharpManager.dart';
 import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
 import '../manager/textManager.dart';
 import '../manager/weaponManager.dart';
 import '../object/Armure.dart';
-import '../object/ITranchant.dart';
 import '../object/Joyau.dart';
 import '../object/Kinsect.dart';
 import '../object/Screen.dart';
 import '../object/Talent.dart';
 import '../object/Talisman.dart';
+import '../object/weapon/Arc.dart';
+import '../object/weapon/Arme.dart';
+import '../object/Stuff.dart';
+import '../object/weapon/tranchant/CornedeChasse.dart';
+import '../object/weapon/tranchant/Insectoglaive.dart';
+import '../object/weapon/tranchant/LameDouble.dart';
+import '../object/weapon/tranchant/Lancecanon.dart';
+import '../object/weapon/tranchant/MorphoHache.dart';
+import '../object/weapon/tranchant/VoltoHache.dart';
 
 Widget buildCard(Screen screen) {
   Stuff s = screen.stuff;

@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -52,8 +53,8 @@ class _HomepageState extends State<Homepage> {
     switch (currentPage) {
       case DrawerSections.equipement:
         container =
-            expImg.buildCard(screen)
-            //BuilderPage()
+            //expImg.buildCard(screen)
+            BuilderPage()
             ;
         break;
       case DrawerSections.parametres:
@@ -106,19 +107,19 @@ class _HomepageState extends State<Homepage> {
               final bytes = await controller.captureFromWidget(
                 Material(child: expImg.buildCard(screen)),
                 pixelRatio: 3.0, // Facteur de mise à l'échelle de la capture
-                targetSize: Size(1100, 750), // Dimensions souhaitées de l'image
+                targetSize: s.weapon is Fusarbalete ? Size(1350, 800) : Size(1100, 750), // Dimensions souhaitées de l'image
               );
               setState(() => this.bytes = bytes);
 
               //downloadImageWeb(bytes);
-              //downloadImageWindows(bytes);
-              await downloadImageAndroid(bytes);
+              downloadImageWindows(bytes);
+              /*await downloadImageAndroid(bytes);
               Navigator.of(context).pop();
               Fluttertoast.showToast(
                 msg: "L'image a été téléchargé !",
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.CENTER,
-              );
+              );*/
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),
