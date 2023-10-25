@@ -1,0 +1,222 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Fracturateur",
+            "en": "Fracturing Falter"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 5,
+        "element": 31,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            4
+        ],
+        "slotCalam": 1,
+        "rouge": 170,
+        "orange": 30,
+        "jaune": 30,
+        "vert": 10,
+        "bleu": 30,
+        "blanc": 40,
+        "violet": 40,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 0,
+        "valueFiole": 0
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Rosenprion",
+            "en": "Rosenprion"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 1,
+        "element": 35,
+        "affinite": 20,
+        "def": 0,
+        "slots": [
+            1
+        ],
+        "slotCalam": 2,
+        "rouge": 80,
+        "orange": 60,
+        "jaune": 10,
+        "vert": 130,
+        "bleu": 30,
+        "blanc": 20,
+        "violet": 20,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 1,
+        "valueFiole": 0
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Reconquista",
+            "en": "Reconqueress"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 30,
+        "slots": [
+            1,
+            1,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 20,
+        "orange": 60,
+        "jaune": 60,
+        "vert": 60,
+        "bleu": 80,
+        "blanc": 70,
+        "violet": 0,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 4,
+        "valueFiole": 36
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Hache Avidya",
+            "en": "Avidya Axe"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 300,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 40,
+        "def": 0,
+        "slots": [
+            2
+        ],
+        "slotCalam": 1,
+        "rouge": 30,
+        "orange": 50,
+        "jaune": 100,
+        "vert": 90,
+        "bleu": 70,
+        "blanc": 20,
+        "violet": 40,
+        "tranchantSVBoost": [],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 2,
+        "valueFiole": 20
+    },
+    {
+        "id": 4,
+        "name": {
+            "fr": "Hache de l'Ordre Royal+",
+            "en": "Royal Order's Axe+"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 310,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 10,
+        "def": 50,
+        "slots": [
+            2,
+            1
+        ],
+        "slotCalam": 2,
+        "rouge": 10,
+        "orange": 10,
+        "jaune": 10,
+        "vert": 10,
+        "bleu": 130,
+        "blanc": 30,
+        "violet": 50,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 3,
+        "valueFiole": 15
+    },
+    {
+        "id": 5,
+        "name": {
+            "fr": "Hache Florissante",
+            "en": "Full Bloom Axe"
+        },
+        "rarete": 10,
+        "categorie": "SA",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 70,
+        "orange": 90,
+        "jaune": 70,
+        "vert": 30,
+        "bleu": 20,
+        "blanc": 70,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 5,
+        "valueFiole": 23
+    }
+]

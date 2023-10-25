@@ -1,0 +1,165 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Rugissement Tigrex+",
+            "en": "Tigrex Roar+"
+        },
+        "rarete": 10,
+        "categorie": "HH",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 0,
+        "element": 0,
+        "affinite": -20,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 2,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 120,
+        "vert": 120,
+        "bleu": 30,
+        "blanc": 20,
+        "violet": 30,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "musique": [
+            9,
+            0,
+            21
+        ]
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Résonance Harmonique",
+            "en": "Harmonic Resonance"
+        },
+        "rarete": 10,
+        "categorie": "HH",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 4,
+        "element": 25,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            1,
+            1
+        ],
+        "slotCalam": 2,
+        "rouge": 10,
+        "orange": 10,
+        "jaune": 30,
+        "vert": 40,
+        "bleu": 40,
+        "blanc": 30,
+        "violet": 40,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "musique": [
+            17,
+            22,
+            15
+        ]
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Echo Droth",
+            "en": "Echoing Droth Roar+"
+        },
+        "rarete": 10,
+        "categorie": "HH",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 2,
+        "element": 50,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2,
+            1,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 30,
+        "orange": 50,
+        "jaune": 70,
+        "vert": 80,
+        "bleu": 60,
+        "blanc": 60,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "musique": [
+            12,
+            1,
+            21
+        ]
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Ocarina de Génie",
+            "en": "Genie's Ocarina"
+        },
+        "rarete": 10,
+        "categorie": "HH",
+        "niveau": "maitre",
+        "attaque": 310,
+        "idElement": 6,
+        "element": 50,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2,
+            1,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 140,
+        "orange": 30,
+        "jaune": 50,
+        "vert": 50,
+        "bleu": 40,
+        "blanc": 30,
+        "violet": 10,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "musique": [
+            10,
+            24,
+            17
+        ]
+    }
+]

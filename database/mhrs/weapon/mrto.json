@@ -1,0 +1,111 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Gornir",
+            "en": "Gornir"
+        },
+        "rarete": 10,
+        "categorie": "MRTO",
+        "niveau": "maitre",
+        "attaque": 350,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            4,
+            2,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 50,
+        "orange": 40,
+        "jaune": 100,
+        "vert": 80,
+        "bleu": 80,
+        "blanc": 0,
+        "violet": 0,
+        "tranchantSVBoost": [
+            5,
+            5,
+            5,
+            6,
+            6
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Marteau du Souffleur",
+            "en": "Blower's Hammer"
+        },
+        "rarete": 10,
+        "categorie": "MRTO",
+        "niveau": "maitre",
+        "attaque": 310,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 20,
+        "def": 0,
+        "slots": [
+            3,
+            2
+        ],
+        "slotCalam": 2,
+        "rouge": 30,
+        "orange": 50,
+        "jaune": 50,
+        "vert": 80,
+        "bleu": 80,
+        "blanc": 60,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Mort Obscura",
+            "en": "Dark Morte"
+        },
+        "rarete": 10,
+        "categorie": "MRTO",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 5,
+        "element": 52,
+        "affinite": 0,
+        "def": 20,
+        "slots": [
+            2,
+            2
+        ],
+        "slotCalam": 3,
+        "rouge": 120,
+        "orange": 20,
+        "jaune": 20,
+        "vert": 70,
+        "bleu": 40,
+        "blanc": 80,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

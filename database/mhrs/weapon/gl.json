@@ -1,0 +1,75 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Eboulement Abyssal",
+            "en": "Abyssal Rockslide"
+        },
+        "rarete": 10,
+        "categorie": "GL",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 5,
+        "element": 15,
+        "affinite": -25,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 40,
+        "bleu": 50,
+        "blanc": 50,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeCanon": 2,
+        "niveauCanon": 8
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Beau Lancecanon Kamura",
+            "en": "Fine Kamura Gunlance"
+        },
+        "rarete": 10,
+        "categorie": "GL",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            4,
+            2
+        ],
+        "slotCalam": 2,
+        "rouge": 10,
+        "orange": 50,
+        "jaune": 60,
+        "vert": 60,
+        "bleu": 70,
+        "blanc": 70,
+        "violet": 30,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeCanon": 1,
+        "niveauCanon": 7
+    }
+]

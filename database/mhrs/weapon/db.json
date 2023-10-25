@@ -1,0 +1,109 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Gorgoth Binaire",
+            "en": "Binary Gorgoth"
+        },
+        "rarete": 10,
+        "categorie": "DB",
+        "niveau": "maitre",
+        "attaque": 350,
+        "idElement1": 0,
+        "element1": 0,
+        "idElement2": 0,
+        "element2": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            4,
+            2,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 50,
+        "orange": 40,
+        "jaune": 100,
+        "vert": 80,
+        "vertBoost": 0,
+        "bleu": 80,
+        "bleuBoost": 3,
+        "blanc": 0,
+        "blancBoost": 2,
+        "violet": 0,
+        "violetBoost": 0,
+        "tranchantSVBoost": [
+            5,
+            5,
+            5,
+            6,
+            6
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Astres Abyssaux",
+            "en": "Abyssal Celestials"
+        },
+        "rarete": 10,
+        "categorie": "DB",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement1": 5,
+        "element1": 13,
+        "idElement2": 0,
+        "element2": 0,
+        "affinite": -25,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 20,
+        "bleu": 50,
+        "blanc": 50,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Machine Antique DB",
+            "en": "Antique Machina DB"
+        },
+        "rarete": 10,
+        "categorie": "DB",
+        "niveau": "maitre",
+        "attaque": 310,
+        "idElement1": 6,
+        "element1": 25,
+        "idElement2": 9,
+        "element2": 25,
+        "affinite": 0,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 100,
+        "orange": 100,
+        "jaune": 80,
+        "vert": 20,
+        "bleu": 30,
+        "blanc": 30,
+        "violet": 40,
+        "tranchantSVBoost": [],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

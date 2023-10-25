@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1000,
+        "name": "Démon Baulo",
+        "rarete": 10,
+        "categorie": "maitre",
+        "def": 126,
+        "defF": 0,
+        "defW": 3,
+        "defT": -2,
+        "defI": 3,
+        "defD": -5,
+        "slots": [
+            3,
+            2
+        ],
+        "talents": [
+            {
+                "talentId": 94,
+                "level": 1
+            },
+            {
+                "talentId": 143,
+                "level": 1
+            },
+            {
+                "talentId": 142,
+                "level": 1
+            }
+        ]
+    }
+]

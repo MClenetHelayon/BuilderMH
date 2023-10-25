@@ -1,0 +1,72 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Rayon Lumineux Abyssal",
+            "en": "Abyssal Sunburst"
+        },
+        "rarete": 10,
+        "categorie": "SNS",
+        "niveau": "maitre",
+        "attaque": 350,
+        "idElement": 5,
+        "element": 18,
+        "affinite": -25,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 50,
+        "bleu": 50,
+        "blanc": 50,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Sabre de Maître Ninja",
+            "en": "Ninja Master Sword"
+        },
+        "rarete": 10,
+        "categorie": "SNS",
+        "niveau": "maitre",
+        "attaque": 300,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 100,
+        "def": 0,
+        "slots": [
+            1,
+            1,
+            1
+        ],
+        "slotCalam": 1,
+        "rouge": 10,
+        "orange": 20,
+        "jaune": 30,
+        "vert": 190,
+        "bleu": 100,
+        "blanc": 0,
+        "violet": 0,
+        "tranchantSVBoost": [
+            5,
+            5,
+            5,
+            5,
+            5
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

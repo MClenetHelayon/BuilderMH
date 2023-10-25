@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+
+class InfoPage extends StatelessWidget {
+  const InfoPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: const Center(
+        child: Text("Info page"),
+      ),
+    );
+  }
+}

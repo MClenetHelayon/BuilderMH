@@ -1,0 +1,69 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Faux Avidya",
+            "en": "Avidya Scythe"
+        },
+        "rarete": 10,
+        "categorie": "IG",
+        "niveau": "maitre",
+        "attaque": 300,
+        "idElement": 0,
+        "element": 0,
+        "eveille": false,
+        "affinite": 40,
+        "def": 0,
+        "slots": [
+            2
+        ],
+        "slotCalam": 1,
+        "rouge": 40,
+        "orange": 30,
+        "jaune": 110,
+        "vert": 80,
+        "bleu": 70,
+        "blanc": 30,
+        "violet": 40,
+        "tranchantSVBoost": [],
+        "talentId": null,
+        "talentsCalam": [],
+        "niveauKinsect": 14
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Aile Souple Pourpre",
+            "en": "Crimson Springwing"
+        },
+        "rarete": 10,
+        "categorie": "IG",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 5,
+        "element": 50,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2
+        ],
+        "slotCalam": 2,
+        "rouge": 60,
+        "orange": 0,
+        "jaune": 0,
+        "vert": 0,
+        "bleu": 0,
+        "blanc": 140,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "niveauKinsect": 13
+    }
+]

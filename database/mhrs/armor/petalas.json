@@ -1,0 +1,86 @@
+[
+    {
+        "name": {
+            "fr": "Chasseur III",
+            "en": "Hunting III"
+        },
+        "uVie": 70,
+        "gVie": 8,
+        "uStam": 70,
+        "gStam": 8,
+        "uAtt": 13,
+        "gAtt": 2,
+        "uDef": 30,
+        "gDef": 3
+    },
+    {
+        "name": {
+            "fr": "Force III",
+            "en": "Strength III"
+        },
+        "uVie": 100,
+        "gVie": 9,
+        "uStam": 90,
+        "gStam": 9,
+        "uAtt": 10,
+        "gAtt": 2,
+        "uDef": 15,
+        "gDef": 2
+    },
+    {
+        "name": {
+            "fr": "Courage III",
+            "en": "Fortitude III"
+        },
+        "uVie": 50,
+        "gVie": 8,
+        "uStam": 100,
+        "gStam": 10,
+        "uAtt": 8,
+        "gAtt": 1,
+        "uDef": 40,
+        "gDef": 4
+    },
+    {
+        "name": {
+            "fr": "Démon III",
+            "en": "Demon III"
+        },
+        "uVie": 50,
+        "gVie": 5,
+        "uStam": 90,
+        "gStam": 9,
+        "uAtt": 20,
+        "gAtt": 4,
+        "uDef": 20,
+        "gDef": 2
+    },
+    {
+        "name": {
+            "fr": "Absolue",
+            "en": "Absolute"
+        },
+        "uVie": 100,
+        "gVie": 10,
+        "uStam": 70,
+        "gStam": 10,
+        "uAtt": 15,
+        "gAtt": 2,
+        "uDef": 50,
+        "gDef": 5
+    },
+    {
+        "name": {
+            "fr": "Outre-Monde",
+            "en": "Underworld"
+        },
+        "uVie": 70,
+        "gVie": 10,
+        "uStam": 100,
+        "gStam": 10,
+        "uAtt": 15,
+        "gAtt": 2,
+        "uDef": 50,
+        "gDef": 5
+    }
+]

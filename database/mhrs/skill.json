@@ -1,0 +1,902 @@
+[
+    {
+        "id": 0,
+        "name": {"fr":"Abandon","en": "Dereliction"},
+        "levelMax": 3,
+        "talisman": false
+    },
+    {
+        "id": 1,
+        "name": {"fr":"Acier Trempé","en": "Protective Polish"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 2,
+        "name": {"fr":"Acrobate","en": "Jump Master"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 3,
+        "name": {"fr":"Affutage Rapide","en": "Speed Sharpening"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 4,
+        "name": {"fr":"Alignement Vent","en": "Wind Alignment"},
+        "levelMax": 5,
+        "talisman": false
+    },
+    {
+        "id": 5,
+        "name": {"fr":"Alignement Tonnerre","en": "Thunder Alignment"},
+        "levelMax": 5,
+        "talisman": false
+    },
+    {
+        "id": 6,
+        "name": {"fr":"Âme de la Tempete","en": "Stormsoul"},
+        "levelMax": 5,
+        "talisman": false
+    },
+    {
+        "id": 7,
+        "name": {"fr":"Anti-Chocs","en": "Shock Absorber"},
+        "levelMax": 1,
+        "talisman": false
+    },
+    {
+        "id": 8,
+        "name": {"fr":"Anti-Explosion","en": "Blast Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 9,
+        "name": {"fr":"Anti-Fange","en": "Muck Resistance"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 10,
+        "name": {"fr":"Antigel","en": "Ice Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 11,
+        "name": {"fr":"Antiparalysie","en": ""},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 12,
+        "name": {"fr":"Appel Spectroiseau","en": "Spiritbird's Call"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 13,
+        "name": {"fr":"Athlète","en": "Constitution"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 14,
+        "name": {"fr":"Attaque Furtive","en": "Sneak Attack"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 15,
+        "name": {"fr":"Balistique","en": "Balistic"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 16,
+        "name": {"fr":"Batto-Justu","en": "Punishing Draw"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 17,
+        "name": {"fr":"Bastion","en": "Defense Boost"},
+        "levelMax": 7,
+        "talisman": true
+    },
+    {
+        "id": 18,
+        "name": {"fr":"Bénédiction","en": "Divine Blessing"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 19,
+        "name": {"fr":"Bénédiction Cham","en": "Chameleos Blessing"},
+        "levelMax": 4,
+        "talisman": true
+    },
+    {
+        "id": 20,
+        "name": {"fr":"Bénédiction Kushala","en": "Kushala Blessing"},
+        "levelMax": 4,
+        "talisman": true
+    },
+    {
+        "id": 21,
+        "name": {"fr":"Bénédiction Teostra","en": "Teostra Blessing"},
+        "levelMax": 4,
+        "talisman": true
+    },
+    {
+        "id": 22,
+        "name": {"fr":"Berserk","en": "Berserk"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 23,
+        "name": {"fr":"Berserker","en": "Critical Boost"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 24,
+        "name": {"fr":"Blizzard","en": "Ice Attack"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 25,
+        "name": {"fr":"Bombardier","en": ""},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 26,
+        "name": {"fr":"Bonus d'Accumulation","en": "Buildup Boost"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 27,
+        "name": {"fr":"Botaniste","en": "Botanist"},
+        "levelMax": 4,
+        "talisman": true
+    },
+    {
+        "id": 28,
+        "name": {"fr":"Bouchon d'Oreilles","en": "Earplug"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 29,
+        "name": {"fr":"BOUM !","en": "Artillery"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 30,
+        "name": {"fr":"Cape Feu de l'Enfer","en": "Hellfire Cloak"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 31,
+        "name": {"fr":"Cape du Vent","en": "Wind Mantle"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 32,
+        "name": {"fr":"Carnacier","en": "Speed Eating"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 33,
+        "name": {"fr":"Catalys. d'Afflict.","en": "Status Trigger"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 34,
+        "name": {"fr":"Cercle de Vie","en": "Recovery Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 35,
+        "name": {"fr":"Chance","en": "Luck"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 36,
+        "name": {"fr":"Chimiste","en": "Item Prolonger"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 37,
+        "name": {"fr":"Cogneur","en": "Slugger"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 38,
+        "name": {"fr":"Concentration","en": "Focus"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 39,
+        "name": {"fr":"Contre-Attaque","en": "Counter Strike"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 40,
+        "name": {"fr":"Convertion de Dragon","en": "Dragon Conversion"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 41,
+        "name": {"fr":"Cotte des flammes Infernales","en": "Mail of Hellfire"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 42,
+        "name": {"fr":"Corps et Âme","en": "Maximum Might"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 43,
+        "name": {"fr":"Courage","en": "Guts"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 44,
+        "name": {"fr":"Crâne d'Acier","en": "Stun Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 45,
+        "name": {"fr":"Cœur audacieux","en": "Intrepid Heart"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 46,
+        "name": {"fr":"Cœur de dragon","en": "Dragonheart"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 47,
+        "name": {"fr":"Destructeur","en": "Partbreaker"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 48,
+        "name": {"fr":"Destruction Massive","en": "Blast Attack"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 49,
+        "name": {"fr":"Défiance","en": "Defiance"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 50,
+        "name": {"fr":"Dégainage Eclair","en": "Critical Draw"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 51,
+        "name": {"fr":"Diversion","en": "Diversion"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 52,
+        "name": {"fr":"Dompteur de Filoptères","en": "Wirebug Whisperer"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 53,
+        "name": {"fr":"Ebullition","en": "Bubbly Dance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 54,
+        "name": {"fr":"Envoyé des Cieux","en": "Heaven-Sent"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 55,
+        "name": {"fr":"Esprit Indomptable","en": ""},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 56,
+        "name": {"fr":"Etanchéité","en": "Water Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 57,
+        "name": {"fr":"Eveil de Sang","en": "Blood Awakening"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 58,
+        "name": {"fr":"Expert en Dépeçage","en": "Carving Pro"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 59,
+        "name": {"fr":"Faibl. Elément.","en": "Element Exploit"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 60,
+        "name": {"fr":"Feu du Ciel","en": "Thunder Attack"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 61,
+        "name": {"fr":"Force Latente","en": "Latent Power"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 62,
+        "name": {"fr":"Garde Offensive","en": "Offensive Guard"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 63,
+        "name": {"fr":"Géologiste","en": "Geologist"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 64,
+        "name": {"fr":"Grenaille +","en": "Spread Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 65,
+        "name": {"fr":"Grimpeur","en": "Wall Runner"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 66,
+        "name": {"fr":"Grimpeur (Boost)","en": "Wall Runner (Boost)"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 67,
+        "name": {"fr":"Halo de Guérison","en": "Recovery Speed"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 68,
+        "name": {"fr":"Héroisme","en": "Heroics"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 69,
+        "name": {"fr":"Ignifuge","en": "Fire Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 70,
+        "name": {"fr":"Incursion","en": "Foray"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 71,
+        "name": {"fr":"Insomnie","en": "Sleep Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 72,
+        "name": {"fr":"Inspiration","en": ""},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 73,
+        "name": {"fr":"Invulnérabilité","en": "Evade Window"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 74,
+        "name": {"fr":"Jamais Vaincu","en": "Fortify"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 75,
+        "name": {"fr":"La Nuit porte Conseil","en": "Sleep Attack"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 76,
+        "name": {"fr":"Lamécaille Affutée","en": "Bladescale Hone"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 77,
+        "name": {"fr":"Lutte","en": "Strife"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 78,
+        "name": {"fr":"Machine de Guerre","en": "Attack Boost"},
+        "levelMax": 7,
+        "talisman": true
+    },
+    {
+        "id": 79,
+        "name": {"fr":"Maelstrom","en": "Water Attack"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 80,
+        "name": {"fr":"Maestro","en": "Horn Maestro"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 81,
+        "name": {"fr":"Main de Maître","en": "Master's Touch"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 82,
+        "name": {"fr":"Maître Archer","en": "Mighty Bow"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 83,
+        "name": {"fr":"Maître Capture","en": "Capture Master"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 84,
+        "name": {"fr":"Maître Cavalier","en": "Master Mounter"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 85,
+        "name": {"fr":"Maître de la Charge","en": "Charge Master"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 86,
+        "name": {"fr":"Maître Dépeceur","en": ""},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 87,
+        "name": {"fr":"Maître d'Armes","en": "Critical Eye"},
+        "levelMax": 7,
+        "talisman": true
+    },
+    {
+        "id": 88,
+        "name": {"fr":"Mante Poudre","en": "Powder Mantle"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 89,
+        "name": {"fr":"Matraquage","en": "Bludgeoner"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 90,
+        "name": {"fr":"Marathonien","en": "Marathon Runner"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 91,
+        "name": {"fr":"Max de Munitions","en": "Ammo Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 92,
+        "name": {"fr":"Métabolisme","en": "Stamina Surge"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 93,
+        "name": {"fr":"Métallurgie (P)","en": "Grinder (S)"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 94,
+        "name": {"fr":"Mise à Mort","en": "Weakness Exploit"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 95,
+        "name": {"fr":"Morphose Rapide","en": "Rapid Morph"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 96,
+        "name": {"fr":"Mort-aux-Rats","en": "Poison Attack"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 97,
+        "name": {"fr":"Mycologue Extrême","en": "Mushroomancer"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 98,
+        "name": {"fr":"Nerfs d'Acier","en": "Flinch Free"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 99,
+        "name": {"fr":"Neutralisation","en": "Paralysis Attack"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 100,
+        "name": {"fr":"Normale/Rapide +","en": "Normal/Rapid Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 101,
+        "name": {"fr":"Nuée de Givre","en": "Frostcraft"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 102,
+        "name": {"fr":"Orage","en": "Furious"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 103,
+        "name": {"fr":"Œil de l'esprit","en": "Mind's Eye"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 104,
+        "name": {"fr":"Paladin","en": "Guard"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 105,
+        "name": {"fr":"Paratonnerre","en": "Thunder Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 106,
+        "name": {"fr":"Pare-Vent","en": "Windproof"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 107,
+        "name": {"fr":"Perfomance Optimale","en": "Peak Performance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 108,
+        "name": {"fr":"Perforant +","en": "Pierce Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 109,
+        "name": {"fr":"Pique-Assiette","en": "Free Meal"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 110,
+        "name": {"fr":"Pourfendeur de Dragon","en": "Dragon Attack"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 111,
+        "name": {"fr":"Poussée d'Adrénaline","en": "Adrenaline Rush"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 112,
+        "name": {"fr":"Puissance Absolue","en": "Power Prolonger"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 113,
+        "name": {"fr":"Pyromane","en": "Fire Attack"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 114,
+        "name": {"fr":"Rage Elémentaire","en": "Critical Element"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 115,
+        "name": {"fr":"Recharge Chargée","en": "Load Shell"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 116,
+        "name": {"fr":"Recul Réduit","en": "Recoil Down"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 117,
+        "name": {"fr":"Redirection","en": "Redirection"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 118,
+        "name": {"fr":"Réglage","en": "Tune-Up"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 119,
+        "name": {"fr":"Rengainage Eclair","en": "Quick Sheathe"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 120,
+        "name": {"fr":"Rituel de Sang","en": "Blood Rite"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 121,
+        "name": {"fr":"Roi de la Glisse","en": "Affinity Slider"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 122,
+        "name": {"fr":"Salve Mortelle","en": "Special Ammo Boost"},
+        "levelMax": 2,
+        "talisman": true
+    },
+    {
+        "id": 123,
+        "name": {"fr":"Samouraï","en": "Razor Sharp"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 124,
+        "name": {"fr":"Saut de la Foi","en": "Leap of Faith"},
+        "levelMax": 1,
+        "talisman": true
+    },
+    {
+        "id": 125,
+        "name": {"fr":"Savoir-Faire","en": "Handicraft"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 126,
+        "name": {"fr":"Sismologie","en": "Tremor Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 127,
+        "name": {"fr":"Sniper","en": "Steadiness"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 128,
+        "name": {"fr":"Soif de Sang","en": "Bloodlust"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 129,
+        "name": {"fr":"Soif de Sang Frénét.","en": "Frienzied Bloodlust"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 130,
+        "name": {"fr":"Souffle Rapide","en": "Quick Breath"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 131,
+        "name": {"fr":"Spartiate","en": "Hunger Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 132,
+        "name": {"fr":"Témérité","en": "Agitator"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 133,
+        "name": {"fr":"Tir Parcimonieux","en": "Spare Shot"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 134,
+        "name": {"fr":"Tir Super Rapide","en": "Rapid Fire Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 135,
+        "name": {"fr":"Totem Elémentaire","en": "Blight Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 136,
+        "name": {"fr":"Toxicologie","en": "Poison Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 137,
+        "name": {"fr":"Trompe-la-Mort","en": "Evade Extender"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 138,
+        "name": {"fr":"Ultra Garde","en": "Guard Up"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 139,
+        "name": {"fr":"Un Pour Tous","en": "Wide Range"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 140,
+        "name": {"fr":"Union","en": "Coalescence"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 141,
+        "name": {"fr":"Vaillance","en": "Embolden"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 142,
+        "name": {"fr":"Vendetta","en": "Burst"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 143,
+        "name": {"fr":"Vengeance","en": "Resentement"},
+        "levelMax": 5,
+        "talisman": true
+    },
+    {
+        "id": 144,
+        "name": {"fr":"Vitesse de rechargement","en": "Reload Speed"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 145,
+        "name": {"fr":"Vol d'Endurance","en": "Stamina Thief"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 146,
+        "name": {"fr":"Aura Draconien","en": "Dragon Resistance"},
+        "levelMax": 3,
+        "talisman": true
+    },
+    {
+        "id": 147,
+        "name": {"fr":"Boost Lien de Soie","en": "Silkbind Up"},
+        "levelMax": 1,
+        "talisman": false
+    },
+    {
+        "id": 148,
+        "name": {"fr":"Régéneration Malzeno","en": "Malzeno's Recovery"},
+        "levelMax": 1,
+        "talisman": false
+    },
+    {
+        "id": 149,
+        "name": {"fr":"Boost Nuée de Givre","en": "Frostcraft Up"},
+        "levelMax": 1,
+        "talisman": false
+    }
+]

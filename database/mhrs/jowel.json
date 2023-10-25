@@ -1,0 +1,128 @@
+[
+    {
+        "id": 0,
+        "name": "----------------",
+        "taille": 0,
+        "talentId": null,
+        "level": 0
+    },
+    {
+        "id": 1,
+        "name": "Joyau Economie+",
+        "taille": 4,
+        "talentId": 133,
+        "level": 2
+    },
+    {
+        "id": 2,
+        "name": "Joyau Sanguinaire+",
+        "taille": 4,
+        "talentId": 120,
+        "level": 2
+    },
+    {
+        "id": 3,
+        "name": "Joyau Attaque+",
+        "taille": 4,
+        "talentId": 78,
+        "level": 2
+    },
+    {
+        "id": 4,
+        "name": "Joyau Catalyseur+",
+        "taille": 4,
+        "talentId": 33,
+        "level": 2
+    },
+    {
+        "id": 5,
+        "name": "Joyau Vaillance+",
+        "taille": 4,
+        "talentId": 141,
+        "level": 2
+    },
+    {
+        "id": 6,
+        "name": "Joyau Soif de Sang+",
+        "taille": 4,
+        "talentId": 128,
+        "level": 1
+    },
+    {
+        "id": 7,
+        "name": "Joyau Armurier",
+        "taille": 4,
+        "talentId": 91,
+        "level": 2
+    },
+    {
+        "id": 8,
+        "name": "Joyau Témérité+",
+        "taille": 4,
+        "talentId": 132,
+        "level": 2
+    },
+    {
+        "id": 9,
+        "name": "Joyau Lamécaille+",
+        "taille": 4,
+        "talentId": 76,
+        "level": 2
+    },
+    {
+        "id": 10,
+        "name": "Joyau Chaîne+",
+        "taille": 4,
+        "talentId": 142,
+        "level": 2
+    },
+    {
+        "id": 11,
+        "name": "Joyau Héroïsme+",
+        "taille": 4,
+        "talentId": 68,
+        "level": 2
+    },
+    {
+        "id": 12,
+        "name": "Joyau Contre-Attaque+",
+        "taille": 4,
+        "talentId": 39,
+        "level": 2
+    },
+    {
+        "id": 13,
+        "name": "Joyau Incursion+",
+        "taille": 4,
+        "talentId": 70,
+        "level": 2
+    },
+    {
+        "id": 14,
+        "name": "Joyau Sournois+",
+        "taille": 4,
+        "talentId": 14,
+        "level": 2
+    },
+    {
+        "id": 15,
+        "name": "Joyau Artisanat",
+        "taille": 3,
+        "talentId": 125,
+        "level": 1
+    },
+    {
+        "id": 16,
+        "name": "Joyau Maîtrise",
+        "taille": 2,
+        "talentId": 81,
+        "level": 1
+    },
+    {
+        "id": 17,
+        "name": "Joyau Volonté",
+        "taille": 1,
+        "talentId": 44,
+        "level": 1
+    }
+]

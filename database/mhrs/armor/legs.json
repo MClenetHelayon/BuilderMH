@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1000,
+        "name": "Démon Sceros",
+        "rarete": 10,
+        "categorie": "maitre",
+        "def": 126,
+        "defF": 0,
+        "defW": 3,
+        "defT": -2,
+        "defI": 3,
+        "defD": -5,
+        "slots": [
+            3,
+            2,
+            2
+        ],
+        "talents": [
+            {
+                "talentId": 0,
+                "level": 1
+            },
+            {
+                "talentId": 143,
+                "level": 1
+            }
+        ]
+    }
+]

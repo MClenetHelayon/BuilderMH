@@ -1,0 +1,76 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Eruption Abyssale",
+            "en": "Abyssal Eruption"
+        },
+        "rarete": 10,
+        "categorie": "GS",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 5,
+        "element": 29,
+        "affinite": -15,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 40,
+        "vertBoost": 0,
+        "bleu": 50,
+        "bleuBoost": 0,
+        "blanc": 50,
+        "blancBoost": 0,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Toghrul-Beg de Daora",
+            "en": "Daora's Tughril Beg"
+        },
+        "rarete": 10,
+        "categorie": "GS",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 4,
+        "element": 62,
+        "affinite": 10,
+        "def": 0,
+        "slots": [
+            2
+        ],
+        "slotCalam": 3,
+        "rouge": 60,
+        "orange": 120,
+        "jaune": 70,
+        "vert": 40,
+        "vertBoost": 0,
+        "bleu": 20,
+        "bleuBoost": 0,
+        "blanc": 40,
+        "blancBoost": 0,
+        "violet": 0,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Stalactite Abyssal",
+            "en": "Abyssal Icicle"
+        },
+        "rarete": 10,
+        "categorie": "LNC",
+        "niveau": "maitre",
+        "attaque": 350,
+        "idElement": 5,
+        "element": 15,
+        "affinite": -20,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 40,
+        "bleu": 50,
+        "blanc": 50,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Parfum raffiné",
+            "en": "Elegant Fragrance"
+        },
+        "rarete": 10,
+        "categorie": "LNC",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 8,
+        "element": 22,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            3,
+            2,
+            1
+        ],
+        "slotCalam": 2,
+        "rouge": 40,
+        "orange": 70,
+        "jaune": 80,
+        "vert": 80,
+        "bleu": 50,
+        "blanc": 30,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

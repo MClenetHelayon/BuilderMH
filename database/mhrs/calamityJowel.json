@@ -1,0 +1,410 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "----------------",
+            "en": "----------------"
+        },
+        "taille": 0,
+        "talentName": {
+            "fr": "",
+            "en": ""
+        }
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Brutal",
+            "en": "Brutal"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Coup Brutal",
+            "en": "Brutal Strike"
+        }
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Elem",
+            "en": "Elembane"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Faibl. élément.",
+            "en": "Element Exploit"
+        }
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Avantage Déf",
+            "en": "Defense Edge"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Broyeur défense",
+            "en": "Defense Grinder I"
+        }
+    },
+    {
+        "id": 4,
+        "name": {
+            "fr": "Maîtrise Déf",
+            "en": "Defense Master"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Broyeur défense II",
+            "en": "Defense Grinder II"
+        }
+    },
+    {
+        "id": 5,
+        "name": {
+            "fr": "Fulminant",
+            "en": "Raging"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Mode Diablotin",
+            "en": "Hellion Mode"
+        }
+    },
+    {
+        "id": 6,
+        "name": {
+            "fr": "Portée Volume",
+            "en": "Doot Range"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Volume Maximal",
+            "en": "Maximum Volume"
+        }
+    },
+    {
+        "id": 7,
+        "name": {
+            "fr": "Substitution",
+            "en": "Switcher"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Bonus Change. Fiole",
+            "en": "Phial Switch Boost"
+        }
+    },
+    {
+        "id": 8,
+        "name": {
+            "fr": "Arc",
+            "en": "Arc"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Tir Barrage Prolongé",
+            "en": "Lasting Arc Shot"
+        }
+    },
+    {
+        "id": 9,
+        "name": {
+            "fr": "Wyrm",
+            "en": "Wyrmstake"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Bonus Wyvernator",
+            "en": "Wyrmstake Boost"
+        }
+    },
+    {
+        "id": 10,
+        "name": {
+            "fr": "Anti-Dragon",
+            "en": "Anti-Dragon"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Faiblesse Wyvernes",
+            "en": "Wyvern Exploit"
+        }
+    },
+    {
+        "id": 11,
+        "name": {
+            "fr": "Anti-Aérien",
+            "en": "Anti-Aerial"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Esp. Anti-Aériennes",
+            "en": "Anti-Aerial Species"
+        }
+    },
+    {
+        "id": 12,
+        "name": {
+            "fr": "Anti-Aquatique",
+            "en": "Anti-Aquatic"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Esp. Anti-Aquatiques",
+            "en": "Anti-Aquatic Species"
+        }
+    },
+    {
+        "id": 13,
+        "name": {
+            "fr": "Petits Monstres",
+            "en": "Small Monster"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Faibl. Petits Monstres",
+            "en": "Small Monster Exploit"
+        }
+    },
+    {
+        "id": 14,
+        "name": {
+            "fr": "Fléau-Feu",
+            "en": "Fireblight"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Faibl. Fléau-Feu",
+            "en": "Fireblight Exploit"
+        }
+    },
+    {
+        "id": 15,
+        "name": {
+            "fr": "Fléau-Eau",
+            "en": "Waterblight"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Faibl. Fléau-Eau",
+            "en": "Waterblight Exploit"
+        }
+    },
+    {
+        "id": 16,
+        "name": {
+            "fr": "Fléau-Foudre",
+            "en": "Thunderblight"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Faibl. Fléau-Foudre",
+            "en": "Thunderblight Exploit"
+        }
+    },
+    {
+        "id": 17,
+        "name": {
+            "fr": "Fléau-Glace",
+            "en": "Iceblight"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Faibl. Fléau-Glace",
+            "en": "Iceblight Exploit"
+        }
+    },
+    {
+        "id": 18,
+        "name": {
+            "fr": "Âme Magna",
+            "en": "Magna Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Magnamalo",
+            "en": "Magnamanlo Soul"
+        }
+    },
+    {
+        "id": 19,
+        "name": {
+            "fr": "Âme Valstrax",
+            "en": "Valstrax Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Valstrax",
+            "en": "Valstrax Soul"
+        }
+    },
+    {
+        "id": 20,
+        "name": {
+            "fr": "Âme Chameleos",
+            "en": "Chameleos Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Chameleos",
+            "en": "Chameleos Soul"
+        }
+    },
+    {
+        "id": 21,
+        "name": {
+            "fr": "Âme Daora",
+            "en": "Daora Soul"
+        },
+        "taille": 3,
+        "talentName": {
+            "fr": "Âme Daora",
+            "en": "Kushala Daora Soul"
+        }
+    },
+    {
+        "id": 22,
+        "name": {
+            "fr": "Âme Teostra",
+            "en": "Teostra Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Teostra",
+            "en": "Teostra Soul"
+        }
+    },
+    {
+        "id": 23,
+        "name": {
+            "fr": "Âme Ibushi",
+            "en": "Ibushi Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Ibushi",
+            "en": "Ibushi Soul"
+        }
+    },
+    {
+        "id": 24,
+        "name": {
+            "fr": "Âme Narwa",
+            "en": "Narwa Soul"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Âme Narwa",
+            "en": "Narwa Soul"
+        }
+    },
+    {
+        "id": 25,
+        "name": {
+            "fr": "Esprit",
+            "en": "Rally"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Esprit Pilpoil",
+            "en": "Buddy Rally"
+        }
+    },
+    {
+        "id": 26,
+        "name": {
+            "fr": "Spectroiseau",
+            "en": "Spiribird"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Bonus Spectroiseau",
+            "en": "Spiribird Doubled"
+        }
+    },
+    {
+        "id": 27,
+        "name": {
+            "fr": "Exploit à Croc",
+            "en": "Fanged Exploit"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Exploit à Croc",
+            "en": "Fanged Exploit"
+        }
+    },
+    {
+        "id": 28,
+        "name": {
+            "fr": "Filoptère",
+            "en": "Wirebug"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Dresseur Filoptère",
+            "en": "Wirebug Wrangler"
+        }
+    },
+    {
+        "id": 29,
+        "name": {
+            "fr": "Croissance",
+            "en": "Growth"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Auto-Amélioration",
+            "en": "Self-Improvement"
+        }
+    },
+    {
+        "id": 30,
+        "name": {
+            "fr": "Paralysie",
+            "en": "Stun"
+        },
+        "taille": 1,
+        "talentName": {
+            "fr": "Surcharge",
+            "en": "Charge Up"
+        }
+    },
+    {
+        "id": 31,
+        "name": {
+            "fr": "Rage Dém",
+            "en": "Demon Rage"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Rage Démoniaque",
+            "en": "Demon Rage"
+        }
+    },
+    {
+        "id": 32,
+        "name": {
+            "fr": "Surcharge",
+            "en": "Supercharge"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Surcharge Kinsecte",
+            "en": "Kinsecte Supercharge"
+        }
+    },
+    {
+        "id": 33,
+        "name": {
+            "fr": "Coup Déf",
+            "en": "Guardbash"
+        },
+        "taille": 2,
+        "talentName": {
+            "fr": "Coup Défensif",
+            "en": "Guard Bash"
+        }
+    }
+]

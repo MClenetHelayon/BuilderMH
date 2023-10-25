@@ -1,0 +1,138 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Kuzunoha Pur",
+            "en": "Pure Bow Kuzunoha"
+        },
+        "rarete": 10,
+        "categorie": "ARC",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 1,
+        "element": 11,
+        "affinite": 10,
+        "def": 0,
+        "slots": [
+            2,
+            2,
+            2
+        ],
+        "slotCalam": 1,
+        "talentId": null,
+        "talentsCalam": [],
+        "typeMun1": [
+            2,
+            3
+        ],
+        "typeMun2": [
+            2,
+            4
+        ],
+        "typeMun3": [
+            2,
+            5
+        ],
+        "typeMun4": [
+            2,
+            5
+        ],
+        "barrage": 0,
+        "combat": 1,
+        "force": 1,
+        "poison": 0,
+        "para": 0,
+        "sleep": 0,
+        "explo": 0,
+        "faiblesse": 1
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Crachat & Venin",
+            "en": "Spith & Venom"
+        },
+        "rarete": 10,
+        "categorie": "ARC",
+        "niveau": "maitre",
+        "attaque": 360,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            1,
+            1
+        ],
+        "slotCalam": 1,
+        "talentId": null,
+        "talentsCalam": [],
+        "typeMun1": [
+            0,
+            2
+        ],
+        "typeMun2": [
+            2,
+            3
+        ],
+        "typeMun3": [
+            2,
+            4
+        ],
+        "typeMun4": [
+            2,
+            5
+        ],
+        "barrage": 0,
+        "combat": 1,
+        "force": 1,
+        "poison": 2,
+        "para": 0,
+        "sleep": 2,
+        "explo": 0,
+        "faiblesse": 0
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Hypérion",
+            "en": "Hyperion"
+        },
+        "rarete": 10,
+        "categorie": "ARC",
+        "niveau": "maitre",
+        "attaque": 300,
+        "idElement": 1,
+        "element": 49,
+        "affinite": 35,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 2,
+        "talentId": null,
+        "talentsCalam": [],
+        "typeMun1": [
+            1,
+            3
+        ],
+        "typeMun2": [
+            2,
+            3
+        ],
+        "typeMun3": [
+            2,
+            4
+        ],
+        "typeMun4": [
+            2,
+            5
+        ],
+        "barrage": 1,
+        "combat": 1,
+        "force": 1,
+        "poison": 0,
+        "para": 0,
+        "sleep": 0,
+        "explo": 0,
+        "faiblesse": 0
+    }
+]

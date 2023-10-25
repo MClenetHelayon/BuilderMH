@@ -1,0 +1,1003 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Tireur d'argent",
+            "en": "Silver Shooter"
+        },
+        "rarete": 10,
+        "categorie": "LBG",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            4,
+            4,
+            4
+        ],
+        "slotCalam": 3,
+        "talentId": null,
+        "talentsCalam": [],
+        "bombFrag": false,
+        "recul": 4,
+        "deviation": [
+            3,
+            2
+        ],
+        "recharge": 3,
+        "norm": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [],
+            []
+        ],
+        "perfo": [
+            [],
+            [
+                6,
+                1,
+                1,
+                0,
+                1
+            ],
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ]
+        ],
+        "grenaille": [
+            [],
+            [],
+            []
+        ],
+        "shrapnel": [
+            [],
+            [],
+            []
+        ],
+        "antib": [
+            [],
+            [
+                2,
+                1,
+                1,
+                0,
+                0
+            ],
+            []
+        ],
+        "frag": [
+            [],
+            []
+        ],
+        "poison": [
+            [],
+            []
+        ],
+        "para": [
+            [],
+            []
+        ],
+        "sleep": [
+            [],
+            []
+        ],
+        "fatigue": [
+            [],
+            []
+        ],
+        "soin": [
+            [],
+            []
+        ],
+        "demon": [],
+        "pierre": [],
+        "feu": [],
+        "pFeu": [],
+        "eau": [],
+        "pEau": [],
+        "foudre": [],
+        "pFoudre": [],
+        "glace": [],
+        "pGlace": [],
+        "dragon": [
+            2,
+            1,
+            1,
+            0,
+            1
+        ],
+        "pDragon": [
+            2,
+            1,
+            1,
+            0,
+            1
+        ],
+        "tranch": [
+            2,
+            1,
+            1,
+            0,
+            1
+        ],
+        "tranquil": [
+            2,
+            1,
+            1,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Arbalète de l'Ordre Royal+",
+            "en": "Royal Order's Crossbow+"
+        },
+        "rarete": 10,
+        "categorie": "LBG",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 10,
+        "def": 50,
+        "slots": [
+            2
+        ],
+        "slotCalam": 2,
+        "talentId": null,
+        "talentsCalam": [],
+        "bombFrag": false,
+        "recul": 3,
+        "deviation": [
+            0,
+            0
+        ],
+        "recharge": 5,
+        "norm": [
+            [
+                6,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                6,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "perfo": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "grenaille": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "shrapnel": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                4,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "antib": [
+            [
+                3,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
+            []
+        ],
+        "frag": [
+            [],
+            []
+        ],
+        "poison": [
+            [],
+            []
+        ],
+        "para": [
+            [
+                4,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "sleep": [
+            [],
+            []
+        ],
+        "fatigue": [
+            [],
+            []
+        ],
+        "soin": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                3,
+                1,
+                1,
+                0,
+                0
+            ]
+        ],
+        "demon": [
+            [
+                2,
+                1,
+                1,
+                0,
+                0
+            ]
+        ],
+        "pierre": [
+            [
+                2,
+                1,
+                1,
+                0,
+                0
+            ]
+        ],
+        "feu": [
+            [
+                4,
+                1,
+                0,
+                0,
+                1
+            ]
+        ],
+        "pFeu": [],
+        "eau": [
+            [
+                5,
+                1,
+                0,
+                0,
+                1
+            ]
+        ],
+        "pEau": [],
+        "foudre": [
+            [
+                5,
+                1,
+                0,
+                0,
+                1
+            ]
+        ],
+        "pFoudre": [],
+        "glace": [
+            [
+                5,
+                1,
+                0,
+                0,
+                1
+            ]
+        ],
+        "pGlace": [],
+        "dragon": [],
+        "pDragon": [],
+        "tranch": [],
+        "tranquil": [
+            [
+                2,
+                1,
+                1,
+                0,
+                0
+            ]
+        ]
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Ombre Incessante",
+            "en": "Ceaseless Shadow"
+        },
+        "rarete": 10,
+        "categorie": "LBG",
+        "niveau": "maitre",
+        "attaque": 310,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 35,
+        "def": 0,
+        "slots": [
+            2,
+            1,
+            1
+        ],
+        "slotCalam": 2,
+        "talentId": null,
+        "talentsCalam": [],
+        "bombFrag": true,
+        "recul": 4,
+        "deviation": [
+            0,
+            0
+        ],
+        "recharge": 6,
+        "norm": [
+            [
+                7,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            []
+        ],
+        "perfo": [
+            [
+                5,
+                0,
+                0,
+                0,
+                1
+            ],
+            [
+                6,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                5,
+                0,
+                1,
+                0,
+                0
+            ]
+        ],
+        "grenaille": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                5,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                4,
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "shrapnel": [
+            [
+                5,
+                1,
+                1,
+                0,
+                0
+            ],
+            [],
+            []
+        ],
+        "antib": [
+            [],
+            [],
+            []
+        ],
+        "frag": [
+            [
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            []
+        ],
+        "poison": [
+            [
+                4,
+                1,
+                1,
+                0,
+                0
+            ],
+            []
+        ],
+        "para": [
+            [],
+            [
+                3,
+                0,
+                1,
+                0,
+                0
+            ]
+        ],
+        "sleep": [
+            [],
+            []
+        ],
+        "fatigue": [
+            [
+                4,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                0,
+                0,
+                0
+            ]
+        ],
+        "soin": [
+            [
+                3,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                1,
+                1,
+                1,
+                1,
+                0
+            ]
+        ],
+        "demon": [
+            2,
+            1,
+            0,
+            0,
+            0
+        ],
+        "pierre": [],
+        "feu": [
+            5,
+            1,
+            1,
+            0,
+            0
+        ],
+        "pFeu": [
+            2,
+            1,
+            0,
+            0,
+            1
+        ],
+        "eau": [],
+        "pEau": [],
+        "foudre": [],
+        "pFoudre": [],
+        "glace": [],
+        "pGlace": [],
+        "dragon": [],
+        "pDragon": [],
+        "tranch": [
+            2,
+            0,
+            0,
+            0,
+            0
+        ],
+        "tranquil": [
+            2,
+            1,
+            1,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Luci Da Lavater",
+            "en": "Luci Da Lavater"
+        },
+        "rarete": 10,
+        "categorie": "LBG",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2,
+            1
+        ],
+        "slotCalam": 2,
+        "talentId": null,
+        "talentsCalam": [],
+        "bombFrag": true,
+        "recul": 5,
+        "deviation": [
+            3,
+            2
+        ],
+        "recharge": 1,
+        "norm": [
+            [
+                6,
+                1,
+                1,
+                0,
+                0
+            ],
+            [
+                3,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                3,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "perfo": [
+            [],
+            [],
+            []
+        ],
+        "grenaille": [
+            [],
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "shrapnel": [
+            [],
+            [],
+            []
+        ],
+        "antib": [
+            [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            [
+                2,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                1,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "frag": [
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "poison": [
+            [],
+            []
+        ],
+        "para": [
+            [],
+            []
+        ],
+        "sleep": [
+            [],
+            []
+        ],
+        "fatigue": [
+            [
+                3,
+                1,
+                0,
+                0,
+                0
+            ],
+            [
+                1,
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "soin": [
+            [],
+            []
+        ],
+        "demon": [
+            2,
+            1,
+            1,
+            0,
+            0
+        ],
+        "pierre": [],
+        "feu": [],
+        "pFeu": [],
+        "eau": [],
+        "pEau": [],
+        "foudre": [],
+        "pFoudre": [],
+        "glace": [],
+        "pGlace": [],
+        "dragon": [],
+        "pDragon": [],
+        "tranch": [],
+        "tranquil": [
+            2,
+            1,
+            1,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 4,
+        "name": {
+            "fr": "Arbalète flamme bleue",
+            "en": "Blue Blaze Bolt"
+        },
+        "rarete": 10,
+        "categorie": "LBG",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            3,
+            1
+        ],
+        "slotCalam": 2,
+        "talentId": null,
+        "talentsCalam": [],
+        "bombFrag": true,
+        "recul": 2,
+        "deviation": [
+            1,
+            1
+        ],
+        "recharge": 7,
+        "norm": [
+            [
+                9,
+                1,
+                0,
+                0,
+                0
+            ],
+            [],
+            [
+                7,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "perfo": [
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ],
+            [],
+            [
+                7,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "grenaille": [
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ],
+            [],
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "shrapnel": [
+            [
+                5,
+                1,
+                0,
+                0,
+                0
+            ],
+            [],
+            [
+                6,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "antib": [
+            [
+                2,
+                1,
+                0,
+                0,
+                0
+            ],
+            [],
+            [
+                1,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "frag": [
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                2,
+                0,
+                0,
+                0,
+                0
+            ]
+        ],
+        "poison": [
+            [],
+            []
+        ],
+        "para": [
+            [],
+            []
+        ],
+        "sleep": [
+            [],
+            []
+        ],
+        "fatigue": [
+            [
+                4,
+                1,
+                0,
+                0,
+                1
+            ],
+            [
+                3,
+                1,
+                0,
+                0,
+                0
+            ]
+        ],
+        "soin": [
+            [],
+            []
+        ],
+        "demon": [
+            3,
+            1,
+            0,
+            0,
+            0
+        ],
+        "pierre": [],
+        "feu": [
+            3,
+            1,
+            0,
+            0,
+            0
+        ],
+        "pFeu": [],
+        "eau": [],
+        "pEau": [],
+        "foudre": [],
+        "pFoudre": [],
+        "glace": [
+            2,
+            1,
+            0,
+            0,
+            0
+        ],
+        "pGlace": [],
+        "dragon": [],
+        "pDragon": [
+            3,
+            1,
+            0,
+            0,
+            0
+        ],
+        "tranch": [
+            4,
+            1,
+            0,
+            0,
+            0
+        ],
+        "tranquil": [
+            2,
+            1,
+            0,
+            0,
+            0
+        ]
+    }
+]

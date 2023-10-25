@@ -1,0 +1,70 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Eclair Abyssale",
+            "en": "Abyssal Flicker"
+        },
+        "rarete": 10,
+        "categorie": "LS",
+        "niveau": "maitre",
+        "attaque": 340,
+        "idElement": 5,
+        "element": 19,
+        "affinite": -25,
+        "def": 0,
+        "slots": [],
+        "slotCalam": 3,
+        "rouge": 40,
+        "orange": 40,
+        "jaune": 40,
+        "vert": 40,
+        "bleu": 50,
+        "blanc": 50,
+        "violet": 80,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Faucille du Tueur",
+            "en": "Killer's Sickle"
+        },
+        "rarete": 10,
+        "categorie": "LS",
+        "niveau": "maitre",
+        "attaque": 300,
+        "idElement": 2,
+        "element": 18,
+        "affinite": 0,
+        "def": 0,
+        "slots": [
+            2
+        ],
+        "slotCalam": 2,
+        "rouge": 50,
+        "orange": 60,
+        "jaune": 50,
+        "vert": 60,
+        "bleu": 70,
+        "blanc": 30,
+        "violet": 30,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": []
+    }
+]

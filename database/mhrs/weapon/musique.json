@@ -1,0 +1,177 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Attaque +",
+            "en": "Attack Up"
+        }
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Defense +",
+            "en": "Defense Up"
+        }
+    },
+    {
+        "id": 2,
+        "name": {
+            "fr": "Affinité +",
+            "en": "Affinity Up"
+        }
+    },
+    {
+        "id": 3,
+        "name": {
+            "fr": "Récupération vie (P)",
+            "en": "Health Recovery (S)"
+        }
+    },
+    {
+        "id": 4,
+        "name": {
+            "fr": "Récup. vie (P)/Antidote",
+            "en": "Health Recovery (S) + Antidote"
+        }
+    },
+    {
+        "id": 5,
+        "name": {
+            "fr": "Récupération vie (G)",
+            "en": "Health Recovery (L)"
+        }
+    },
+    {
+        "id": 6,
+        "name": {
+            "fr": "Anti-Etourdissement",
+            "en": "Stun Negated"
+        }
+    },
+    {
+        "id": 7,
+        "name": {
+            "fr": "Protection Divine",
+            "en": "Divine Protection"
+        }
+    },
+    {
+        "id": 8,
+        "name": {
+            "fr": "Régénération Tranchant",
+            "en": "Sharpness Regeneration"
+        }
+    },
+    {
+        "id": 9,
+        "name": {
+            "fr": "Protection Ouïe (P)",
+            "en": "Earplugs (S)"
+        }
+    },
+    {
+        "id": 10,
+        "name": {
+            "fr": "Protection Ouïe (G)",
+            "en": "Earplugs (L)"
+        }
+    },
+    {
+        "id": 11,
+        "name": {
+            "fr": "Réduc. Perte de Tranchant",
+            "en": "Sharpness Loss Reduced"
+        }
+    },
+    {
+        "id": 12,
+        "name": {
+            "fr": "Anti-Fléau",
+            "en": "Blight Negated"
+        }
+    },
+    {
+        "id": 13,
+        "name": {
+            "fr": "Réduc. Consom Endurance",
+            "en": "Stamina Use Reduced"
+        }
+    },
+    {
+        "id": 14,
+        "name": {
+            "fr": "Anti-Chutes",
+            "en": "Knockbacks Negated"
+        }
+    },
+    {
+        "id": 15,
+        "name": {
+            "fr": "Prolongation Tranchant",
+            "en": "Sharpness Extension"
+        }
+    },
+    {
+        "id": 16,
+        "name": {
+            "fr": "Bonus Attaque + Défense",
+            "en": "Attack and Defense Up"
+        }
+    },
+    {
+        "id": 17,
+        "name": {
+            "fr": "Bonus Attaque élémentaire",
+            "en": "Elemental Attack Boost"
+        }
+    },
+    {
+        "id": 18,
+        "name": {
+            "fr": "Dégâts Environ. Annulés",
+            "en": "Environment Damage"
+        }
+    },
+    {
+        "id": 19,
+        "name": {
+            "fr": "Anti-Séisme",
+            "en": "Tremors Negated"
+        }
+    },
+    {
+        "id": 20,
+        "name": {
+            "fr": "Barrière Sonique",
+            "en": "Sonic Barrier"
+        }
+    },
+    {
+        "id": 21,
+        "name": {
+            "fr": "Onde Sonique",
+            "en": "Sonic Wave"
+        }
+    },
+    {
+        "id": 22,
+        "name": {
+            "fr": "Récupération endurance +",
+            "en": "Stamina Recovery Up"
+        }
+    },
+    {
+        "id": 23,
+        "name": {
+            "fr": "Régénération de Vie",
+            "en": "Health Regeneration"
+        }
+    },
+    {
+        "id": 24,
+        "name": {
+            "fr": "Immunité à Bourrasque",
+            "en": "Wind Pressure Negated"
+        }
+    }
+]

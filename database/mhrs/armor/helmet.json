@@ -1,0 +1,49 @@
+[
+    {
+        "id": 0,
+        "name": "Aelucanth S / Rhopessa S",
+        "rarete": 6,
+        "categorie": "expert",
+        "def": 62,
+        "defF": -2,
+        "defW": 0,
+        "defT": 3,
+        "defI": -2,
+        "defD": 2,
+        "slots": [
+            1
+        ],
+        "talents": [
+            {
+                "talentId": 114,
+                "level": 2
+            }
+        ]
+    },
+    {
+        "id": 1000,
+        "name": "Démon Cerato",
+        "rarete": 10,
+        "categorie": "maitre",
+        "def": 126,
+        "defF": 0,
+        "defW": 3,
+        "defT": -2,
+        "defI": 3,
+        "defD": -5,
+        "slots": [
+            4,
+            2
+        ],
+        "talents": [
+            {
+                "talentId": 143,
+                "level": 2
+            },
+            {
+                "talentId": 94,
+                "level": 1
+            }
+        ]
+    }
+]

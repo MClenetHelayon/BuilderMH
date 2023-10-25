@@ -1,0 +1,9 @@
+rapid. min
+tres lent
+lent
+moyen -
+moyen
+moyen +
+rapide
+tres rapide
+rapid. max

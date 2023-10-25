@@ -1,0 +1,81 @@
+[
+    {
+        "id": 0,
+        "name": {
+            "fr": "Trancheur Draquila+",
+            "en": "Draquila Reaver+"
+        },
+        "rarete": 10,
+        "categorie": "CB",
+        "niveau": "maitre",
+        "attaque": 330,
+        "idElement": 5,
+        "element": 55,
+        "affinite": -5,
+        "def": 0,
+        "slots": [
+            2,
+            1,
+            1
+        ],
+        "slotCalam": 3,
+        "rouge": 180,
+        "orange": 10,
+        "jaune": 40,
+        "vert": 60,
+        "bleu": 30,
+        "blanc": 30,
+        "violet": 0,
+        "tranchantSVBoost": [
+            6,
+            6,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 1
+    },
+    {
+        "id": 1,
+        "name": {
+            "fr": "Hallebarde de l'Ordre Royal+",
+            "en": "Royal Order's Battleaxe+"
+        },
+        "rarete": 10,
+        "categorie": "CB",
+        "niveau": "maitre",
+        "attaque": 320,
+        "idElement": 0,
+        "element": 0,
+        "affinite": 10,
+        "def": 50,
+        "slots": [
+            2,
+            1
+        ],
+        "slotCalam": 2,
+        "rouge": 10,
+        "orange": 10,
+        "jaune": 10,
+        "vert": 10,
+        "vertBoost": 0,
+        "bleu": 130,
+        "bleuBoost": 0,
+        "blanc": 30,
+        "blancBoost": 0,
+        "violet": 50,
+        "violetBoost": 5,
+        "tranchantSVBoost": [
+            7,
+            7,
+            7,
+            7,
+            7
+        ],
+        "talentId": null,
+        "talentsCalam": [],
+        "typeFiole": 0
+    }
+]
