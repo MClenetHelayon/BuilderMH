@@ -1,4 +1,3 @@
-import '../Musique.dart';
 import '../Joyau.dart';
 import '../Talent.dart';
 
@@ -88,7 +87,7 @@ class Tranchant extends Arme {
 }
 
 class Fusarbalete extends Arme {
-  final int recul, rechargement, sensDeviation, puissanceDeviation;
+  final int recul, rechargement, sensDeviation, puissanceDeviation,mod;
   final bool bombFrag;
   final List<dynamic> normal1,
       normal2,
@@ -149,6 +148,7 @@ class Fusarbalete extends Arme {
       required this.sensDeviation,
       required this.puissanceDeviation,
       required this.bombFrag,
+      required this.mod,
       required this.normal1,
       required this.normal2,
       required this.normal3,

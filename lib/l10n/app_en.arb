@@ -95,6 +95,8 @@
   "vfRecharge": "Very Fast",
   "ftRecharge": "Fastest",
   "lbgTirSpe": "Wyvernblast",
+  "hbgTirSpe1": "Wyvernsnipe",
+  "hbgTirSpe2": "Wyvernheart",
   "mun": "Ammo",
   "qte": "Qty",
   "normal": "Normal",
@@ -121,5 +123,11 @@
   "dragon": "Dragon",
   "pDragon": "Piercing Dragon",
   "tranch": "Slicing",
-  "tranquil": "Tranq"
+  "tranquil": "Tranq",
+  "wyvern": "Wyvern",
+  "mod": "Mods",
+  "modBouclier": "Shield",
+  "modCanonPower": "Power Barrel",
+  "modCanonLong": "Long Barrel",
+  "modSilencieux": "Silenced"
 }

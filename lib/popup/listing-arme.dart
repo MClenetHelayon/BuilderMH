@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:builder_mhrs/manager/local/fusard/getRechargement.dart';
-import 'package:builder_mhrs/manager/local/fusard/getRecul.dart';
+import 'package:builder_mhrs/manager/local/fusarb/getRechargement.dart';
+import 'package:builder_mhrs/manager/local/fusarb/getRecul.dart';
+import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
@@ -9,7 +10,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import '../manager/local/arc/typeTir.dart';
 import '../manager/local/cbTypeFiole.dart';
-import '../manager/local/fusard/getDeviation.dart';
+import '../manager/local/fusarb/getDeviation.dart';
 import '../manager/local/glTypeCanon.dart';
 import '../manager/local/saTypeFiole.dart';
 import '../manager/sharpManager.dart';
@@ -58,7 +59,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
       cbCheck = false,
       igCheck = false,
       arcCheck = false,
-      lbgCheck = false;
+      lbgCheck = false,
+      hbgCheck = false;
 
   @override
   void initState() {
@@ -122,6 +124,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
     return await rootBundle.loadString('database/mhrs/weapon/lbg.json');
   }
 
+  Future<String> loadHBGData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/hbg.json');
+  }
+
   Future<String> loadSkillData() async {
     return await rootBundle.loadString('database/mhrs/skill.json');
   }
@@ -158,6 +164,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
     List<dynamic> jsonResponseARC = json.decode(jsonTextARC);
     String jsonTextLBG = await loadLBGData();
     List<dynamic> jsonResponseLBG = json.decode(jsonTextLBG);
+    String jsonTextHBG = await loadHBGData();
+    List<dynamic> jsonResponseHBG = json.decode(jsonTextHBG);
     setState(() {
       lweapons += jsonResponseGS
           .map((weapons) => GrandeEpee.fromJson(weapons, skillList, local))
@@ -202,6 +210,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lweapons += jsonResponseLBG
           .map(
               (weapons) => FusarbaleteLeger.fromJson(weapons, skillList, local))
+          .toList();
+      lweapons += jsonResponseHBG
+          .map(
+              (weapons) => FusarbaleteLourd.fromJson(weapons, skillList, local))
           .toList();
     });
   }
@@ -268,6 +280,11 @@ class _ListViewScreenState extends State<ListViewScreen> {
           .whereType<FusarbaleteLeger>()
           .forEach(filteredCategWeapons.add);
     }
+    if (hbgCheck) {
+      filteredWeapons
+          .whereType<FusarbaleteLourd>()
+          .forEach(filteredCategWeapons.add);
+    }
     return filteredCategWeapons;
   }
 
@@ -322,319 +339,35 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              gsCheck = !gsCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/GreatSword.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: gsCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              lsCheck = !lsCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/LongSword.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: lsCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              snsCheck = !snsCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/SwordNShield.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(2),
-                                              color: snsCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              dbCheck = !dbCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/DualBlades.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: dbCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              mrtoCheck = !mrtoCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/Hammer.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: mrtoCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              hhCheck = !hhCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/HuntingHorn.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: hhCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              lbgCheck = !lbgCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/LightBowGun.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: lbgCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
+                                  checkbox(
+                                      "images/arme/GreatSword.png", gsCheck),
+                                  checkbox(
+                                      "images/arme/LongSword.png", lsCheck),
+                                  checkbox(
+                                      "images/arme/SwordNShield.png", snsCheck),
+                                  checkbox(
+                                      "images/arme/DualBlades.png", dbCheck),
+                                  checkbox("images/arme/Hammer.png", mrtoCheck),
+                                  checkbox(
+                                      "images/arme/HuntingHorn.png", hhCheck),
+                                  checkbox(
+                                      "images/arme/LightBowGun.png", lbgCheck),
                                 ]),
                             Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              lncCheck = !lncCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/Lance.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: lncCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              glCheck = !glCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 30,
-                                            height: 30,
-                                            decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                image: AssetImage(
-                                                    "images/arme/Gunlance.png"),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              color: glCheck
-                                                  ? const Color.fromARGB(
-                                                      148, 207, 25, 25)
-                                                  : Colors.transparent,
-                                            ),
-                                          ))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              saCheck = !saCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      "images/arme/SwitchAxe.png"),
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                color: saCheck
-                                                    ? const Color.fromARGB(
-                                                        148, 207, 25, 25)
-                                                    : Colors.transparent,
-                                              )))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              cbCheck = !cbCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      "images/arme/ChargeBlade.png"),
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                color: cbCheck
-                                                    ? const Color.fromARGB(
-                                                        148, 207, 25, 25)
-                                                    : Colors.transparent,
-                                              )))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              igCheck = !igCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      "images/arme/InsectGlaive.png"),
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                color: igCheck
-                                                    ? const Color.fromARGB(
-                                                        148, 207, 25, 25)
-                                                    : Colors.transparent,
-                                              )))),
-                                  Card(
-                                      color: Colors.grey,
-                                      child: GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              arcCheck = !arcCheck;
-                                            });
-                                          },
-                                          child: Container(
-                                              width: 30,
-                                              height: 30,
-                                              decoration: BoxDecoration(
-                                                image: const DecorationImage(
-                                                  image: AssetImage(
-                                                      "images/arme/Bow.png"),
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                color: arcCheck
-                                                    ? const Color.fromARGB(
-                                                        148, 207, 25, 25)
-                                                    : Colors.transparent,
-                                              )))),
+                                  checkbox("images/arme/Lance.png", lncCheck),
+                                  checkbox("images/arme/Gunlance.png", glCheck),
+                                  checkbox(
+                                      "images/arme/SwitchAxe.png", saCheck),
+                                  checkbox(
+                                      "images/arme/ChargeBlade.png", cbCheck),
+                                  checkbox(
+                                      "images/arme/InsectGlaive.png", igCheck),
+                                  checkbox("images/arme/Bow.png", arcCheck),
+                                  checkbox(
+                                      "images/arme/HeavyBowGun.png", hbgCheck),
                                 ])
                           ])
                     ])
@@ -1067,8 +800,48 @@ class _ListViewScreenState extends State<ListViewScreen> {
       case 'LBG':
         img = 'images/arme/LightBowGun.png';
         break;
+      case 'HBG':
+        img = 'images/arme/HeavyBowGun.png';
+        break;
     }
     return AssetImage(img);
+  }
+
+  Widget checkbox(String img, bool check) {
+    return Card(
+        color: Colors.grey,
+        child: GestureDetector(
+            onTap: () {
+              setState(() {
+                gsCheck = false;
+                lsCheck = false;
+                snsCheck = false;
+                dbCheck = false;
+                mrtoCheck = false;
+                hhCheck = false;
+                lncCheck = false;
+                glCheck = false;
+                saCheck = false;
+                cbCheck = false;
+                igCheck = false;
+                arcCheck = false;
+                lbgCheck = false;
+                hbgCheck = false;
+                check = !check;
+              });
+            },
+            child: Container(
+                width: 30,
+                height: 30,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(img),
+                  ),
+                  borderRadius: BorderRadius.circular(5),
+                  color: check
+                      ? const Color.fromARGB(148, 207, 25, 25)
+                      : Colors.transparent,
+                ))));
   }
 
   Widget statOff(String image, int value) {

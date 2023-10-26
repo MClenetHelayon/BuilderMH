@@ -2,18 +2,21 @@ import 'package:builder_mhrs/manager/skill/ammo/qteAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reculAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reloadAmmoManager.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../object/Stuff.dart';
 import '../object/weapon/Arme.dart';
+import '../object/weapon/fusarbalete/FusarbaleteLeger.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
   int maxMun = s.getTalentById(91);
   int reculB = s.getTalentById(116);
   int reloadB = s.getTalentById(144);
-  if (s.getTalentById(118) != 0) reloadB += 1;
+  if (s.getTalentById(118) != 0 && w.mod == 0) reloadB += 1;
+  if (w is FusarbaleteLeger && w.mod == 1) reculB += 1;
   return Column(children: [
     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       cadreAmmoValue(120, Text(AppLocalizations.of(context)!.name)),
@@ -147,6 +150,14 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getMaxMun3(maxMun),
           getReculFrag2(w.recul, reculB, context),
           getReloadFrag2PDrag(w.rechargement, reloadB, context)),
+    if (w is FusarbaleteLourd)
+      if (w.frag3.isNotEmpty)
+        rowAmmo(
+            w.frag3,
+            '${AppLocalizations.of(context)!.frag} III',
+            getMaxMun3(maxMun),
+            getReculFrag2(w.recul, reculB, context),
+            getReloadFrag2PDrag(w.rechargement, reloadB, context)),
     if (w.poison1.isNotEmpty)
       rowAmmo(
           w.poison1,
@@ -308,6 +319,14 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getMaxMun2(maxMun),
           getReculG4(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
+    if (w is FusarbaleteLourd)
+      if (w.wyvern.isNotEmpty)
+        rowAmmo(
+            w.wyvern,
+            AppLocalizations.of(context)!.wyvern,
+            0,
+            AppLocalizations.of(context)!.wyvern,
+            getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.tranquil.isNotEmpty)
       rowAmmo(
           w.tranquil[0],

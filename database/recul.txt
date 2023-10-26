@@ -1,7 +1,0 @@
-tres eleve
-eleve
-normal
-faible 1
-faible 2
-tres faible
-taille min

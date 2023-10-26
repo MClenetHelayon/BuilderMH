@@ -2,17 +2,18 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../manager/AmmoManager.dart';
+import '../manager/local/fusarb/getMod.dart';
 import '../manager/skill/calculManager.dart';
 import '../manager/imgManager.dart' as img;
 import '../manager/imgManager.dart';
 import '../manager/local/arc/typeTir.dart';
-import '../manager/local/fusard/getDeviation.dart';
-import '../manager/local/fusard/getRechargement.dart';
-import '../manager/local/fusard/getTirSpe.dart';
+import '../manager/local/fusarb/getDeviation.dart';
+import '../manager/local/fusarb/getRechargement.dart';
+import '../manager/local/fusarb/getTirSpe.dart';
 import '../manager/local/glTypeCanon.dart';
 import '../manager/local/saTypeFiole.dart';
 import '../manager/local/cbTypeFiole.dart';
-import '../manager/local/fusard/getRecul.dart';
+import '../manager/local/fusarb/getRecul.dart';
 import '../manager/sharpManager.dart';
 import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
@@ -729,10 +730,12 @@ gSpeArme(Arme w, BuildContext context) {
   } else if (w is Fusarbalete) {
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
+      Text(
+          "${AppLocalizations.of(context)!.mod} : ${getMod(w.mod, w, context)}"),
       Text(getTirSpe(w, context)),
       Text(w.sensDeviation != 0
-          ? '${AppLocalizations.of(context)!.devia} :  ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
-          : '${AppLocalizations.of(context)!.devia} :  ${getDeviation(w.sensDeviation, context)}'),
+          ? '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
+          : '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)}'),
       Text(
           '${AppLocalizations.of(context)!.recul} ${getRecul(w.recul, context)}'),
       Text(
