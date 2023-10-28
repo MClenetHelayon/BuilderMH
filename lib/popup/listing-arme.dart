@@ -768,7 +768,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           borderRadius: BorderRadius.circular(5),
           color: check
               ? const Color.fromARGB(148, 207, 25, 25)
-              : Colors.transparent,
+              : Colors.transparent
         ));
   }
 
