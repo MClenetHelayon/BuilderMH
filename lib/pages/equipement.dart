@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -554,7 +555,7 @@ class _BuilderPageState extends State<BuilderPage> {
         },
         iconSize: 60,
         icon: Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               right: 10.0,
             ),
             child: Image.asset(

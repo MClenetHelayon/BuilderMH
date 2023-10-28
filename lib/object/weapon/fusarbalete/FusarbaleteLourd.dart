@@ -115,7 +115,7 @@ class FusarbaleteLourd extends Fusarbalete {
         antib3: json['antib'][2],
         frag1: json['frag'][0],
         frag2: json['frag'][1],
-        frag3: json['frag3'],
+        frag3: json['frag'][2],
         poison1: json['poison'][0],
         poison2: json['poison'][1],
         sleep1: json['sleep'][0],
