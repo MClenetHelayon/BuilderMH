@@ -2,24 +2,27 @@ import 'package:builder_mhrs/manager/skill/ammo/qteAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reculAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reloadAmmoManager.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
-import 'package:builder_mhrs/object/Arme.dart';
+import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../object/Stuff.dart';
+import '../object/weapon/Arme.dart';
+import '../object/weapon/fusarbalete/FusarbaleteLeger.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
   int maxMun = s.getTalentById(91);
   int reculB = s.getTalentById(116);
   int reloadB = s.getTalentById(144);
-  if (s.getTalentById(118) != 0) reloadB += 1;
+  if (s.getTalentById(118) != 0 && w.mod == 0) reloadB += 1;
+  if (w is FusarbaleteLeger && w.mod == 1) reculB += 1;
   return Column(children: [
     Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       cadreAmmoValue(120, Text(AppLocalizations.of(context)!.name)),
-      cadreAmmoValue(20, Text(AppLocalizations.of(context)!.qte)),
-      cadreAmmoValue(75, Text(AppLocalizations.of(context)!.recul)),
-      cadreAmmoValue(85, Text(AppLocalizations.of(context)!.recharge)),
+      cadreAmmoValue(30, Text(AppLocalizations.of(context)!.qte)),
+      cadreAmmoValue(50, Text(AppLocalizations.of(context)!.recul)),
+      cadreAmmoValue(105, Text(AppLocalizations.of(context)!.recharge)),
       Row(children: [
         logoMun(1, 'images/arme/mun/footstep.png', 15),
         logoMun(1, 'images/arme/mun/greenCircle.png', 15),
@@ -27,6 +30,7 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
         logoMun(1, 'images/arme/mun/upOrange.png', 15)
       ])
     ]),
+    const Divider(color: Colors.black),
     if (w.normal1.isNotEmpty)
       rowAmmo(
           w.normal1,
@@ -146,6 +150,14 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getMaxMun3(maxMun),
           getReculFrag2(w.recul, reculB, context),
           getReloadFrag2PDrag(w.rechargement, reloadB, context)),
+    if (w is FusarbaleteLourd)
+      if (w.frag3.isNotEmpty)
+        rowAmmo(
+            w.frag3,
+            '${AppLocalizations.of(context)!.frag} III',
+            getMaxMun3(maxMun),
+            getReculFrag2(w.recul, reculB, context),
+            getReloadFrag2PDrag(w.rechargement, reloadB, context)),
     if (w.poison1.isNotEmpty)
       rowAmmo(
           w.poison1,
@@ -218,70 +230,70 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.demon.isNotEmpty)
       rowAmmo(
-          w.demon[0],
+          w.demon,
           AppLocalizations.of(context)!.demon,
           getMaxMun3(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.pierre.isNotEmpty)
       rowAmmo(
-          w.pierre[0],
+          w.pierre,
           AppLocalizations.of(context)!.pierre,
           getMaxMun3(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.feu.isNotEmpty)
       rowAmmo(
-          w.feu[0],
+          w.feu,
           AppLocalizations.of(context)!.feu,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pFeu.isNotEmpty)
       rowAmmo(
-          w.pFeu[0],
+          w.pFeu,
           AppLocalizations.of(context)!.pFeu,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.eau.isNotEmpty)
       rowAmmo(
-          w.eau[0],
+          w.eau,
           AppLocalizations.of(context)!.eau,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pEau.isNotEmpty)
       rowAmmo(
-          w.pEau[0],
+          w.pEau,
           AppLocalizations.of(context)!.pEau,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.foudre.isNotEmpty)
       rowAmmo(
-          w.foudre[0],
+          w.foudre,
           AppLocalizations.of(context)!.foudre,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pFoudre.isNotEmpty)
       rowAmmo(
-          w.pFoudre[0],
+          w.pFoudre,
           AppLocalizations.of(context)!.pFoudre,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.glace.isNotEmpty)
       rowAmmo(
-          w.glace[0],
+          w.glace,
           AppLocalizations.of(context)!.glace,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pGlace.isNotEmpty)
       rowAmmo(
-          w.pGlace[0],
+          w.pGlace,
           AppLocalizations.of(context)!.pGlace,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
@@ -307,6 +319,14 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getMaxMun2(maxMun),
           getReculG4(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
+    if (w is FusarbaleteLourd)
+      if (w.wyvern.isNotEmpty)
+        rowAmmo(
+            w.wyvern,
+            AppLocalizations.of(context)!.wyvern,
+            0,
+            AppLocalizations.of(context)!.wyvern,
+            getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.tranquil.isNotEmpty)
       rowAmmo(
           w.tranquil,

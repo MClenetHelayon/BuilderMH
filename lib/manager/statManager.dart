@@ -1,10 +1,9 @@
 import 'package:builder_mhrs/manager/weaponManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
-import 'package:builder_mhrs/object/ITranchant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../object/Arme.dart';
 import '../object/Stuff.dart';
+import '../object/weapon/Arme.dart';
 import 'skill/calculManager.dart';
 import 'imgManager.dart';
 import 'skill/affiniteManager.dart';

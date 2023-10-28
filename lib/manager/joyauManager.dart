@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../object/Arme.dart';
+import '../object/weapon/Arme.dart';
 import '../object/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Stuff.dart';

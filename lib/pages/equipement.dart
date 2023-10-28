@@ -15,16 +15,18 @@ import '../manager/sharpManager.dart';
 import '../manager/statManager.dart';
 import '../manager/textManager.dart';
 import '../manager/weaponManager.dart';
+import '../object/weapon/Arc.dart';
+import '../object/weapon/tranchant/CornedeChasse.dart';
+import '../object/weapon/tranchant/Insectoglaive.dart';
 import '../provider/app_state.dart';
 
 import '../object/Stuff.dart';
-import '../object/Arme.dart';
+import '../object/weapon/Arme.dart';
 import '../object/Armure.dart';
 import '../object/Florelet.dart';
 import '../object/Joyau.dart';
 import '../object/JoyauCalam.dart';
 import '../object/Talisman.dart';
-import '../object/ITranchant.dart';
 import '../object/Kinsect.dart';
 
 class BuilderPage extends StatefulWidget {

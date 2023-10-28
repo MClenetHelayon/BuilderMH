@@ -108,6 +108,9 @@ String arme(String categorie) {
     case 'LBG':
       img = 'images/arme/LightBowGun.png';
       break;
+    case 'HBG':
+      img = 'images/arme/HeavyBowGun.png';
+      break;
   }
   return img;
 }

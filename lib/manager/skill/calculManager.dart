@@ -1,5 +1,6 @@
+
 import '../../object/Stuff.dart';
-import '../../object/ITranchant.dart';
+import '../../object/weapon/Arme.dart';
 import 'affiniteManager.dart' as aff;
 import 'brutManager.dart' as att;
 import 'defenseManager.dart' as def;

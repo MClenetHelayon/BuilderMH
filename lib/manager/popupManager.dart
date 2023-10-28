@@ -10,7 +10,7 @@ import '../popup/listing-calamJowel.dart' as ListJoyauxCalam;
 import '../popup/listing-arme.dart' as ListArme;
 import '../popup/listing-charm.dart' as ListCharm;
 import '../popup/listing-kinsect.dart' as ListKinsect;
-import '../object/Arme.dart';
+import '../object/weapon/Arme.dart';
 import '../object/Armure.dart';
 import '../object/Florelet.dart';
 import '../object/Joyau.dart';

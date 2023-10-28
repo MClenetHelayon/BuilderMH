@@ -94,7 +94,9 @@
   "fRecharge": "Rapide",
   "vfRecharge": "Très Rapide",
   "ftRecharge": "Rapid. Max",
-  "lbgTirSpe": "Wyvernblast",
+  "lbgTirSpe": "Souffle-du-Dragon",
+  "hbgTirSpe1": "Oeil-du-Dragon",
+  "hbgTirSpe2": "Courroux-du-Dragon",
   "mun": "Munition",
   "qte": "Qte",
   "normal": "Normal",
@@ -121,5 +123,11 @@
   "dragon": "Dragon",
   "pDragon": "Perfo. Dragon",
   "tranch": "Tranchante",
-  "tranquil": "Tranquillisant"
+  "tranquil": "Tranquillisant",
+  "wyvern": "Wyvern",
+  "mod": "Mods",
+  "modBouclier": "Bouclier",
+  "modCanonPower": "Canon Puissant",
+  "modCanonLong": "Canon Long",
+  "modSilencieux": "Silenceux"
 }
