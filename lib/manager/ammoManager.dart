@@ -230,70 +230,70 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.demon.isNotEmpty)
       rowAmmo(
-          w.demon[0],
+          w.demon,
           AppLocalizations.of(context)!.demon,
           getMaxMun3(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.pierre.isNotEmpty)
       rowAmmo(
-          w.pierre[0],
+          w.pierre,
           AppLocalizations.of(context)!.pierre,
           getMaxMun3(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.feu.isNotEmpty)
       rowAmmo(
-          w.feu[0],
+          w.feu,
           AppLocalizations.of(context)!.feu,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pFeu.isNotEmpty)
       rowAmmo(
-          w.pFeu[0],
+          w.pFeu,
           AppLocalizations.of(context)!.pFeu,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.eau.isNotEmpty)
       rowAmmo(
-          w.eau[0],
+          w.eau,
           AppLocalizations.of(context)!.eau,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pEau.isNotEmpty)
       rowAmmo(
-          w.pEau[0],
+          w.pEau,
           AppLocalizations.of(context)!.pEau,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.foudre.isNotEmpty)
       rowAmmo(
-          w.foudre[0],
+          w.foudre,
           AppLocalizations.of(context)!.foudre,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pFoudre.isNotEmpty)
       rowAmmo(
-          w.pFoudre[0],
+          w.pFoudre,
           AppLocalizations.of(context)!.pFoudre,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
           getReloadP2P3Sh3StkH2PElem(w.rechargement, reloadB, context)),
     if (w.glace.isNotEmpty)
       rowAmmo(
-          w.glace[0],
+          w.glace,
           AppLocalizations.of(context)!.glace,
           getMaxMun2(maxMun),
           getReculG1(w.recul, reculB, context),
           getReloadN3G2Elem(w.rechargement, reloadB, context)),
     if (w.pGlace.isNotEmpty)
       rowAmmo(
-          w.pGlace[0],
+          w.pGlace,
           AppLocalizations.of(context)!.pGlace,
           getMaxMun2(maxMun),
           getReculG2(w.recul, reculB, context),
@@ -329,7 +329,7 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
             getReloadStk2TrchLg2DemPier(w.rechargement, reloadB, context)),
     if (w.tranquil.isNotEmpty)
       rowAmmo(
-          w.tranquil[0],
+          w.tranquil,
           AppLocalizations.of(context)!.tranquil,
           getMaxMun1(maxMun),
           getReculG2(w.recul, reculB, context),
