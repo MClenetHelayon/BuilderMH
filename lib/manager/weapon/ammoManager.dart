@@ -6,9 +6,9 @@ import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../object/Stuff.dart';
-import '../object/weapon/Arme.dart';
-import '../object/weapon/fusarbalete/FusarbaleteLeger.dart';
+import '../../object/Stuff.dart';
+import '../../object/weapon/Arme.dart';
+import '../../object/weapon/fusarbalete/FusarbaleteLeger.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
@@ -161,42 +161,42 @@ getPrintImgAmmo(Stuff s, BuildContext context) {
     if (w.poison1.isNotEmpty)
       rowAmmo(
           w.poison1,
-          '${AppLocalizations.of(context)!.mPoison} I',
+          '${AppLocalizations.of(context)!.poison} I',
           getMaxMun2(maxMun),
           getReculG5(w.recul, reculB, context),
           getReloadToxiLetarg(w.rechargement, reloadB, context)),
     if (w.poison2.isNotEmpty)
       rowAmmo(
           w.poison2,
-          '${AppLocalizations.of(context)!.mPoison} II',
+          '${AppLocalizations.of(context)!.poison} II',
           getMaxMun3(maxMun),
           getReculG6(w.recul, reculB, context),
           getReloadStk3FrgDragAffli2(w.rechargement, reloadB, context)),
     if (w.para1.isNotEmpty)
       rowAmmo(
           w.para1,
-          '${AppLocalizations.of(context)!.mPara} I',
+          '${AppLocalizations.of(context)!.para} I',
           getMaxMun3(maxMun),
           getReculG5(w.recul, reculB, context),
           getReloadParaSomm(w.rechargement, reloadB, context)),
     if (w.para2.isNotEmpty)
       rowAmmo(
           w.para2,
-          '${AppLocalizations.of(context)!.mPara} II',
+          '${AppLocalizations.of(context)!.para} II',
           getMaxMun3(maxMun),
           getReculG6(w.recul, reculB, context),
           getReloadStk3FrgDragAffli2(w.rechargement, reloadB, context)),
     if (w.sleep1.isNotEmpty)
       rowAmmo(
           w.sleep1,
-          '${AppLocalizations.of(context)!.mSleep} I',
+          '${AppLocalizations.of(context)!.sleep} I',
           getMaxMun3(maxMun),
           getReculG5(w.recul, reculB, context),
           getReloadParaSomm(w.rechargement, reloadB, context)),
     if (w.sleep2.isNotEmpty)
       rowAmmo(
           w.sleep2,
-          '${AppLocalizations.of(context)!.mSleep} II',
+          '${AppLocalizations.of(context)!.sleep} II',
           getMaxMun3(maxMun),
           getReculG6(w.recul, reculB, context),
           getReloadStk3FrgDragAffli2(w.rechargement, reloadB, context)),
@@ -368,4 +368,101 @@ Widget logoMun(int i, String img, double hw) {
         ),
       ),
       child: vretour);
+}
+
+Widget blockMunListing(Fusarbalete w, BuildContext context) {
+  int n1 = munExists(w.normal1),
+      n2 = munExists(w.normal2),
+      n3 = munExists(w.normal3),
+      p1 = munExists(w.perfo1),
+      p2 = munExists(w.perfo2),
+      p3 = munExists(w.perfo3),
+      g1 = munExists(w.grenaille1),
+      g2 = munExists(w.grenaille2),
+      g3 = munExists(w.grenaille3),
+      sh1 = munExists(w.shrapnel1),
+      sh2 = munExists(w.shrapnel2),
+      sh3 = munExists(w.shrapnel3),
+      ab1 = munExists(w.antib1),
+      ab2 = munExists(w.antib2),
+      ab3 = munExists(w.antib3),
+      fg1 = munExists(w.frag1),
+      fg2 = munExists(w.frag2),
+      ps1 = munExists(w.poison1),
+      ps2 = munExists(w.poison2),
+      pr1 = munExists(w.para1),
+      pr2 = munExists(w.para2),
+      sl1 = munExists(w.sleep1),
+      sl2 = munExists(w.sleep2),
+      fat1 = munExists(w.fatigue1),
+      fat2 = munExists(w.fatigue2),
+      sn1 = munExists(w.soin1),
+      sn2 = munExists(w.soin2),
+      dem = munExists(w.demon),
+      amr = munExists(w.pierre),
+      feu = munExists(w.feu),
+      pfeu = munExists(w.pFeu),
+      eau = munExists(w.eau),
+      peau = munExists(w.pEau),
+      fdr = munExists(w.foudre),
+      pfdr = munExists(w.pFoudre),
+      gla = munExists(w.glace),
+      pgla = munExists(w.pGlace),
+      dra = munExists(w.dragon),
+      pdra = munExists(w.pDragon),
+      sli = munExists(w.tranch),
+      trnq = munExists(w.tranquil),
+      fg3 = 0,
+      wyv = 0;
+  if (w is FusarbaleteLourd) {
+    fg3 = munExists(w.frag3);
+    wyv = munExists(w.wyvern);
+  }
+  return Container(margin: const EdgeInsets.only(bottom: 5),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    Column(children: [
+      Text("${AppLocalizations.of(context)!.abrNrm} $n1 $n2 $n3"),
+      Text("${AppLocalizations.of(context)!.abrPer} $p1 $p2 $p3"),
+      Text("${AppLocalizations.of(context)!.abrSpr} $g1 $g2 $g3"),
+      Text("${AppLocalizations.of(context)!.abrShr} $sh1 $sh2 $sh3"),
+      Text("${AppLocalizations.of(context)!.abrSti} $ab1 $ab2 $ab3"),
+      if (w is FusarbaleteLourd)
+        Text("${AppLocalizations.of(context)!.abrClu} $fg1 $fg2 $fg3"),
+    ]),
+    Column(children: [
+      Text("${AppLocalizations.of(context)!.abrFeu} $feu $pfeu"),
+      Text("${AppLocalizations.of(context)!.abrEau} $eau $peau"),
+      Text("${AppLocalizations.of(context)!.abrFoudre} $fdr $pfdr"),
+      Text("${AppLocalizations.of(context)!.abrGlace} $gla $pgla"),
+      Text("${AppLocalizations.of(context)!.abrDragon} $dra $pdra"),
+    ]),
+    Column(children: [
+      if (w is FusarbaleteLeger)
+        Text("${AppLocalizations.of(context)!.abrClu} $fg1 $fg2"),
+      Text("${AppLocalizations.of(context)!.abrPoi} $ps1 $ps2"),
+      Text("${AppLocalizations.of(context)!.abrPar} $pr1 $pr2"),
+      Text("${AppLocalizations.of(context)!.abrSle} $sl1 $sl2"),
+      Text("${AppLocalizations.of(context)!.abrExh} $fat1 $fat2"),
+      if (w is FusarbaleteLourd)
+        Text("${AppLocalizations.of(context)!.abrRec} $sn1 $sn2"),
+    ]),
+    Column(children: [
+      if (w is FusarbaleteLeger)
+        Text("${AppLocalizations.of(context)!.abrRec} $sn1 $sn2"),
+      Text("${AppLocalizations.of(context)!.abrDem} $dem"),
+      Text("${AppLocalizations.of(context)!.abrAmr} $amr"),
+      Text("${AppLocalizations.of(context)!.abrSli} $sli"),
+      if (w is FusarbaleteLourd)
+        Text("${AppLocalizations.of(context)!.abrWyv} $wyv"),
+      Text("${AppLocalizations.of(context)!.abrTra} $trnq"),
+    ])
+  ]));
+}
+
+int munExists(List<dynamic> a) {
+  int vretour = 0;
+  if (a.isNotEmpty) {
+    vretour = a[0];
+  }
+  return vretour;
 }

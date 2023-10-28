@@ -1,12 +1,11 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-import '../manager/AmmoManager.dart';
+import '../manager/weapon/AmmoManager.dart';
 import '../manager/local/fusarb/getMod.dart';
 import '../manager/skill/calculManager.dart';
 import '../manager/imgManager.dart' as img;
 import '../manager/imgManager.dart';
-import '../manager/local/arc/typeTir.dart';
 import '../manager/local/fusarb/getDeviation.dart';
 import '../manager/local/fusarb/getRechargement.dart';
 import '../manager/local/fusarb/getTirSpe.dart';
@@ -18,7 +17,7 @@ import '../manager/sharpManager.dart';
 import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
 import '../manager/textManager.dart';
-import '../manager/weaponManager.dart';
+import '../manager/weapon/bowManager.dart';
 import '../object/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Kinsect.dart';
@@ -666,31 +665,17 @@ gArc(Stuff s, BuildContext context) {
     title(AppLocalizations.of(context)!.arc),
     Container(
         margin: const EdgeInsets.all(5),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("${AppLocalizations.of(context)!.barrage} : ${bow.barrage}")
-        ])),
+        child: tBarrage(bow, context)),
     Container(
         margin: const EdgeInsets.all(5),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text("${AppLocalizations.of(context)!.chargeShot} :"),
-          Text('${getTypeTir(bow.typeMun1, context)} ${bow.lvlTypeMun1}'),
-          Text('${getTypeTir(bow.typeMun2, context)} ${bow.lvlTypeMun2}'),
-          Text('${getTypeTir(bow.typeMun3, context)} ${bow.lvlTypeMun3}'),
-          Text('${getTypeTir(bow.typeMun4, context)} ${bow.lvlTypeMun4}',
-              style: TextStyle(
-                  color: s.getTalentById(82) == 0 ? Colors.grey : Colors.black))
-        ])),
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [typeShoot(bow, context, s.getTalentById(82))])),
     Container(
         margin: const EdgeInsets.all(5),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Text("${AppLocalizations.of(context)!.fiole} :"),
-          fiole(bow.combat, AppLocalizations.of(context)!.combat, context),
-          fiole(bow.force, AppLocalizations.of(context)!.force, context),
-          fiole(bow.poison, AppLocalizations.of(context)!.poison, context),
-          fiole(bow.para, AppLocalizations.of(context)!.para, context),
-          fiole(bow.sleep, AppLocalizations.of(context)!.sleep, context),
-          fiole(bow.explo, AppLocalizations.of(context)!.explo, context),
-          fiole(bow.fatigue, AppLocalizations.of(context)!.faiblesse, context),
+          coating(bow, context)
         ]))
   ]);
 }

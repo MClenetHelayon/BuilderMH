@@ -1,10 +1,8 @@
-import 'package:builder_mhrs/manager/local/arc/typeBarrage.dart';
-import 'package:builder_mhrs/manager/local/arc/typeTir.dart';
 import 'package:builder_mhrs/manager/local/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/local/saTypeFiole.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../object/weapon/Arc.dart';
+
 import '../object/weapon/Arme.dart';
 import '../object/Stuff.dart';
 import '../object/weapon/tranchant/CornedeChasse.dart';
@@ -74,64 +72,6 @@ Widget joyau(
           ]))
     ])
   ]));
-}
-
-Widget arc(Arc bow, Stuff s, BuildContext context) {
-  return Container(
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-    Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      Container(
-        margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-        child: Column(children: [
-          Text("${AppLocalizations.of(context)!.barrage} :"),
-          Text(getTypeBarrage(bow.barrage, context)),
-        ]),
-      ),
-      Container(
-        margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-        child: Column(children: [
-          Text("${AppLocalizations.of(context)!.chargeShot} :"),
-          Text('${getTypeTir(bow.typeMun1, context)} ${bow.lvlTypeMun1}'),
-          Text('${getTypeTir(bow.typeMun2, context)} ${bow.lvlTypeMun2}'),
-          Text('${getTypeTir(bow.typeMun3, context)} ${bow.lvlTypeMun3}'),
-          Text('${getTypeTir(bow.typeMun4, context)} ${bow.lvlTypeMun4}',
-              style: TextStyle(
-                  color: s.getTalentById(82) == 0 ? Colors.grey : Colors.blue))
-        ]),
-      )
-    ]),
-    Container(
-        margin: const EdgeInsets.only(bottom: 10.0),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 5.0),
-              child: Text("${AppLocalizations.of(context)!.fiole} :")),
-          fiole(bow.combat, AppLocalizations.of(context)!.combat, context),
-          fiole(bow.force, AppLocalizations.of(context)!.force, context),
-          fiole(bow.poison, AppLocalizations.of(context)!.poison, context),
-          fiole(bow.para, AppLocalizations.of(context)!.para, context),
-          fiole(bow.sleep, AppLocalizations.of(context)!.sleep, context),
-          fiole(bow.explo, AppLocalizations.of(context)!.explo, context),
-          fiole(bow.fatigue, AppLocalizations.of(context)!.faiblesse, context),
-        ]))
-  ]));
-}
-
-Widget fiole(int fiole, String nom, BuildContext context) {
-  if (fiole != 0) {
-    if (fiole == 2) {
-      return Text("$nom +");
-    } else {
-      return Text(nom);
-    }
-  } else {
-    return Text(
-      nom,
-      style: const TextStyle(
-        color: Colors.grey,
-      ),
-    );
-  }
 }
 
 Widget corne(CorneDeChasse horn, BuildContext context) {

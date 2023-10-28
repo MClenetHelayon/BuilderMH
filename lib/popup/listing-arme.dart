@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/imgManager.dart';
 import 'package:builder_mhrs/manager/local/fusarb/getRechargement.dart';
 import 'package:builder_mhrs/manager/local/fusarb/getRecul.dart';
+import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
+import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-import '../manager/local/arc/typeTir.dart';
+import '../manager/local/arc/getTypeBarrage.dart';
 import '../manager/local/cbTypeFiole.dart';
 import '../manager/local/fusarb/getDeviation.dart';
 import '../manager/local/glTypeCanon.dart';
@@ -291,9 +294,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: Colors.black,
+        child: Column(children: [
           Card(
               color: Colors.grey,
               margin: const EdgeInsets.all(5),
@@ -339,35 +341,179 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  checkbox(
-                                      "images/arme/GreatSword.png", gsCheck),
-                                  checkbox(
-                                      "images/arme/LongSword.png", lsCheck),
-                                  checkbox(
-                                      "images/arme/SwordNShield.png", snsCheck),
-                                  checkbox(
-                                      "images/arme/DualBlades.png", dbCheck),
-                                  checkbox("images/arme/Hammer.png", mrtoCheck),
-                                  checkbox(
-                                      "images/arme/HuntingHorn.png", hhCheck),
-                                  checkbox(
-                                      "images/arme/LightBowGun.png", lbgCheck),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              gsCheck = !gsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/GreatSword.png",
+                                              gsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lsCheck = !lsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/LongSword.png",
+                                              lsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              snsCheck = !snsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/SwordNShield.png",
+                                              snsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              dbCheck = !dbCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/DualBlades.png",
+                                              dbCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              mrtoCheck = !mrtoCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Hammer.png",
+                                              mrtoCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              hhCheck = !hhCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/HuntingHorn.png",
+                                              hhCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lncCheck = !lncCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Lance.png",
+                                              lncCheck))),
                                 ]),
                             Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  checkbox("images/arme/Lance.png", lncCheck),
-                                  checkbox("images/arme/Gunlance.png", glCheck),
-                                  checkbox(
-                                      "images/arme/SwitchAxe.png", saCheck),
-                                  checkbox(
-                                      "images/arme/ChargeBlade.png", cbCheck),
-                                  checkbox(
-                                      "images/arme/InsectGlaive.png", igCheck),
-                                  checkbox("images/arme/Bow.png", arcCheck),
-                                  checkbox(
-                                      "images/arme/HeavyBowGun.png", hbgCheck),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              glCheck = !glCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Gunlance.png",
+                                              glCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              saCheck = !saCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/SwitchAxe.png",
+                                              saCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              cbCheck = !cbCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/ChargeBlade.png",
+                                              cbCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              igCheck = !igCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/InsectGlaive.png",
+                                              igCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              arcCheck = !arcCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Bow.png",
+                                              arcCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lbgCheck = !lbgCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/LightBowGun.png",
+                                              lbgCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              hbgCheck = !hbgCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/HeavyBowGun.png",
+                                              hbgCheck))),
                                 ])
                           ])
                     ])
@@ -382,303 +528,194 @@ class _ListViewScreenState extends State<ListViewScreen> {
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10),
                           child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 255, 255, 255)),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(weapon);
-                            },
-                            child: ListTile(
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    weapon.name,
-                                  ),
-                                ],
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<
+                                        Color>(
+                                    const Color.fromARGB(255, 255, 255, 255)),
                               ),
-                              leading: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                        height: 22,
-                                        width: 22,
-                                        margin: const EdgeInsets.only(
-                                            right: 8, bottom: 2),
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                          image: imgArme(weapon.categorie),
-                                        ))),
-                                    Text('R${weapon.rarete}'),
-                                  ]),
-                              subtitle: Column(
-                                children: [
-                                  weapon is LameDouble
-                                      ? Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                              statOff(
-                                                  "images/elementaire/Attaque.webp",
-                                                  weapon.attaque),
-                                              statOff(
-                                                  "images/elementaire/Affinite.webp",
-                                                  weapon.affinite),
-                                              weapon.idElement2 != 0
-                                                  ? statDoubleElem(
-                                                      imgElement(
-                                                          weapon.idElement),
-                                                      weapon.element,
-                                                      imgElement(
-                                                          weapon.idElement2),
-                                                      weapon.element2)
-                                                  : weapon.idElement != 0
-                                                      ? statElem(
-                                                          imgElement(
-                                                              weapon.idElement),
-                                                          weapon.element)
-                                                      : Container(),
-                                              statOff(
-                                                  "images/elementaire/Defense.png",
-                                                  weapon.defense),
-                                            ])
-                                      : Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                              statOff(
-                                                  "images/elementaire/Attaque.webp",
-                                                  weapon.attaque),
-                                              statOff(
-                                                  "images/elementaire/Affinite.webp",
-                                                  weapon.affinite),
-                                              if (weapon.idElement != 0)
-                                                statElem(
-                                                    imgElement(
-                                                        weapon.idElement),
-                                                    weapon.element),
-                                              statOff(
-                                                  "images/elementaire/Defense.png",
-                                                  weapon.defense),
-                                            ]),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Column(children: [
-                                        const Text("Joyau"),
-                                        weapon.slots.isEmpty
-                                            ? const Text('- / - / -')
-                                            : Row(
-                                                children: [
-                                                  for (int i = 0; i < 3; i++)
-                                                    Container(
-                                                      margin:
-                                                          const EdgeInsets.only(
-                                                              right: 8),
-                                                      child: Text(
-                                                        weapon.slots.length > i
-                                                            ? i != 2 ||
-                                                                    weapon.slots
-                                                                            .length >
-                                                                        i + 1
-                                                                ? '${weapon.slots[i].toString()} /'
-                                                                : weapon
-                                                                    .slots[i]
-                                                                    .toString()
-                                                            : i != 2
-                                                                ? '- /'
-                                                                : '-',
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                      ]),
-                                    ],
-                                  ),
-                                  Row(
+                              onPressed: () {
+                                Navigator.of(context).pop(weapon);
+                              },
+                              child: ListTile(
+                                  title: Center(
+                                      child: Text(
+                                    weapon.name,
+                                  )),
+                                  leading: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        Column(children: [
-                                          if (weapon.slotCalamite != 0)
-                                            Text(
-                                                "Calamité : ${weapon.slotCalamite}")
-                                        ])
+                                        Container(
+                                            height: 22,
+                                            width: 22,
+                                            margin: const EdgeInsets.only(
+                                                right: 8, bottom: 2),
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(arme(
+                                                        weapon.categorie))))),
+                                        Text('R${weapon.rarete}'),
                                       ]),
-                                  if (weapon is Tranchant)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          sharpStat(weapon as Tranchant),
-                                        ]),
-                                  if (weapon is CorneDeChasse)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            const Text("Musique :"),
-                                            Text(weapon.musique[0].name),
-                                            Text('${weapon.musique[1].name}'),
-                                            Text('${weapon.musique[2].name}'),
-                                          ])
-                                        ]),
-                                  if (weapon is Lancecanon)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            Text(
-                                                '${getTypeCanon(weapon.typeCanon, context)} ${weapon.niveauCanon}'),
-                                          ])
-                                        ]),
-                                  if (weapon is MorphoHache)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            weapon.valueFiole != 0
-                                                ? Text(
-                                                    '${getSaFiole(weapon.typeFiole, context)} ${weapon.valueFiole}')
-                                                : Text(getSaFiole(
-                                                    weapon.typeFiole, context))
-                                          ])
-                                        ]),
-                                  if (weapon is VoltoHache)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            Text(getCbFiole(
-                                                weapon.typeFiole, context))
-                                          ])
-                                        ]),
-                                  if (weapon is Insectoglaive)
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            Text(
-                                                '${AppLocalizations.of(context)!.kinsectLvl} : ${weapon.niveauKinsect}'),
-                                          ])
-                                        ]),
-                                  if (weapon is FusarbaleteLeger)
-                                    Column(children: [
+                                  subtitle: Column(children: [
+                                    Center(
+                                        child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                          statOff(
+                                              "images/elementaire/Attaque.webp",
+                                              weapon.attaque),
+                                          statOff(
+                                              "images/elementaire/Affinite.webp",
+                                              weapon.affinite),
+                                          if (weapon is LameDouble &&
+                                              weapon.idElement2 != 0)
+                                            statDoubleElem(
+                                                element(weapon.idElement),
+                                                weapon.element,
+                                                element(weapon.idElement2),
+                                                weapon.element2)
+                                          else if (weapon.idElement != 0)
+                                            statElem(element(weapon.idElement),
+                                                weapon.element),
+                                          statOff(
+                                              "images/elementaire/Defense.png",
+                                              weapon.defense)
+                                        ])),
+                                    Center(
+                                        child: Column(children: [
+                                      Text(
+                                          AppLocalizations.of(context)!.joyaux),
+                                      printSlotJowel(weapon)
+                                    ])),
+                                    Center(
+                                        child: Column(children: [
+                                      if (weapon.slotCalamite != 0)
+                                        Text(
+                                            "${AppLocalizations.of(context)!.calam} : ${weapon.slotCalamite}")
+                                    ])),
+                                    if (weapon is Tranchant)
+                                      Center(
+                                        child: sharpStat(weapon),
+                                      ),
+                                    if (weapon is CorneDeChasse)
                                       Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text(getRecul(
-                                                weapon.recul, context)),
-                                            Text(weapon.puissanceDeviation != 0
-                                                ? '${getDeviation(weapon.sensDeviation, context)} ${getValueDeviation(weapon.puissanceDeviation, context)}'
-                                                : getDeviation(
-                                                    weapon.sensDeviation,
-                                                    context)),
-                                            Text(getRechargement(
-                                                weapon.rechargement, context))
-                                          ]),
-                                      if (weapon.normal1.isNotEmpty)
-                                        Text("normal"),
-                                      if (weapon.normal2.isNotEmpty)
-                                        Text("normal 2"),
-                                      if (weapon.normal3.isNotEmpty)
-                                        Text("normal 3"),
-                                      if (weapon.perfo1.isNotEmpty)
-                                        Text("perforant"),
-                                      if (weapon.perfo2.isNotEmpty)
-                                        Text("perforant 2"),
-                                      if (weapon.perfo3.isNotEmpty)
-                                        Text("perforant 3"),
-                                      if (weapon.grenaille1.isNotEmpty)
-                                        Text("grenaille"),
-                                      if (weapon.grenaille2.isNotEmpty)
-                                        Text("grenaille 2"),
-                                      if (weapon.grenaille3.isNotEmpty)
-                                        Text("grenaille 3"),
-                                      if (weapon.shrapnel1.isNotEmpty)
-                                        Text("shrapnel"),
-                                      if (weapon.shrapnel2.isNotEmpty)
-                                        Text("shrapnel 2"),
-                                      if (weapon.shrapnel3.isNotEmpty)
-                                        Text("shrapnel 3"),
-                                      if (weapon.antib1.isNotEmpty)
-                                        Text("antib"),
-                                      if (weapon.antib2.isNotEmpty)
-                                        Text("antib 2"),
-                                      if (weapon.antib3.isNotEmpty)
-                                        Text("antib 3"),
-                                      if (weapon.frag1.isNotEmpty) Text("frag"),
-                                      if (weapon.frag2.isNotEmpty)
-                                        Text("frag 2"),
-                                      if (weapon.poison1.isNotEmpty)
-                                        Text("poison"),
-                                      if (weapon.poison2.isNotEmpty)
-                                        Text("poison 2"),
-                                    ]),
-                                  if (weapon is Arc)
-                                    Column(
-                                      children: [
-                                        Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Column(children: [
-                                                Text(
-                                                    "${AppLocalizations.of(context)!.barrage} : ${weapon.barrage} "),
-                                              ])
-                                            ]),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.center,
                                           children: [
                                             Column(children: [
                                               Text(
-                                                  '${getTypeTir(weapon.typeMun1, context)} ${weapon.lvlTypeMun1}'),
-                                              Text(
-                                                  '${getTypeTir(weapon.typeMun2, context)} ${weapon.lvlTypeMun2}'),
-                                              Text(
-                                                  '${getTypeTir(weapon.typeMun3, context)} ${weapon.lvlTypeMun3}'),
-                                              Text(
-                                                  '${getTypeTir(weapon.typeMun4, context)} ${weapon.lvlTypeMun4}')
-                                            ]),
-                                            Column(children: [
-                                              if (weapon.combat == 1)
-                                                Text("Combat"),
-                                              if (weapon.force == 1)
-                                                Text("Force"),
-                                              if (weapon.poison == 1)
-                                                Text("Poison"),
-                                              if (weapon.poison == 2)
-                                                Text("Poison+"),
-                                              if (weapon.para == 1)
-                                                Text("Paralysie"),
-                                              if (weapon.para == 2)
-                                                Text("Paralysie+"),
-                                              if (weapon.sleep == 1)
-                                                Text("Sommeil"),
-                                              if (weapon.sleep == 2)
-                                                Text("Sommeil+"),
-                                              if (weapon.explo == 1)
-                                                Text("Explosion"),
-                                              if (weapon.explo == 2)
-                                                Text("Explosion+"),
-                                              if (weapon.fatigue == 1)
-                                                Text("Faiblesse"),
-                                              if (weapon.fatigue == 2)
-                                                Text("Faiblesse+"),
+                                                  "${AppLocalizations.of(context)!.music} :"),
+                                              Text(weapon.musique[0].name),
+                                              Text('${weapon.musique[1].name}'),
+                                              Text('${weapon.musique[2].name}'),
                                             ])
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  /*if (weapon.talent.id != -1)
+                                          ]),
+                                    if (weapon is Lancecanon)
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(
+                                                  '${getTypeCanon(weapon.typeCanon, context)} ${weapon.niveauCanon}'),
+                                            ])
+                                          ]),
+                                    if (weapon is MorphoHache)
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              weapon.valueFiole != 0
+                                                  ? Text(
+                                                      '${getSaFiole(weapon.typeFiole, context)} ${weapon.valueFiole}')
+                                                  : Text(getSaFiole(
+                                                      weapon.typeFiole,
+                                                      context))
+                                            ])
+                                          ]),
+                                    if (weapon is VoltoHache)
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(getCbFiole(
+                                                  weapon.typeFiole, context))
+                                            ])
+                                          ]),
+                                    if (weapon is Insectoglaive)
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(
+                                                  '${AppLocalizations.of(context)!.kinsectLvl} : ${weapon.niveauKinsect}'),
+                                            ])
+                                          ]),
+                                    if (weapon is Fusarbalete)
+                                      Column(
+                                          children: [
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .center,
+                                                children: [
+                                                  Column(children: [
+                                                    Text(
+                                                        "${AppLocalizations.of(context)!.recul} : ${getRecul(
+                                                        weapon.recul, context)}"),
+                                                   /* Text(getRecul(
+                                                        weapon.recul, context))*/
+                                                  ]),
+                                                  Column(children: [
+                                                    Text(
+                                                        "${AppLocalizations.of(context)!.devia} :"),
+                                                    Text(weapon.puissanceDeviation !=
+                                                            0
+                                                        ? '${getDeviation(weapon.sensDeviation, context)} ${getValueDeviation(weapon.puissanceDeviation, context)}'
+                                                        : getDeviation(
+                                                            weapon
+                                                                .sensDeviation,
+                                                            context))
+                                                  ]),
+                                                  Column(children: [
+                                                    /*Text(
+                                                    "${AppLocalizations.of(context)!.recharge} :"),*/
+                                                    Text(getRechargement(
+                                                        weapon.rechargement,
+                                                        context))
+                                                  ])
+                                                ]),
+                                            Text(AppLocalizations.of(context)!
+                                                .mun),
+                                            blockMunListing(weapon, context)
+                                          ]),
+                                    if (weapon is Arc)
+                                      Column(
+                                        children: [
+                                          Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Column(children: [
+                                                  Text(
+                                                      "${AppLocalizations.of(context)!.barrage} : ${getTypeBarrage(weapon.barrage, context)} "),
+                                                ])
+                                              ]),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              typeShootListing(weapon, context),
+                                              coatingListing(weapon, context)
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    /*if (weapon.talent.id != -1)
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -691,10 +728,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                           ])
                                       ],
                                     )*/
-                                ],
-                              ),
-                            ),
-                          ));
+                                  ]))));
                     } else {
                       return Card(
                           margin: const EdgeInsets.only(
@@ -720,128 +754,44 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               )));
                     }
                   }))
-        ],
-      ),
-    );
+        ]));
   }
 
-  String imgElement(int id) {
-    String img = '---';
-    switch (id) {
-      case 1:
-        img = 'images/elementaire/Feu.webp';
-        break;
-      case 2:
-        img = 'images/elementaire/Eau.webp';
-        break;
-      case 3:
-        img = 'images/elementaire/Foudre.webp';
-        break;
-      case 4:
-        img = 'images/elementaire/Glace.webp';
-        break;
-      case 5:
-        img = 'images/elementaire/Dragon.webp';
-        break;
-      case 6:
-        img = 'images/elementaire/Poison.png';
-        break;
-      case 7:
-        img = 'images/elementaire/Para.png';
-        break;
-      case 8:
-        img = 'images/elementaire/Sleep.png';
-        break;
-      case 9:
-        img = 'images/elementaire/Explo.png';
+  Widget checkboxArme(String img, bool check) {
+    return Container(
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(img),
+          ),
+          borderRadius: BorderRadius.circular(5),
+          color: check
+              ? const Color.fromARGB(148, 207, 25, 25)
+              : Colors.transparent,
+        ));
+  }
+
+  Widget printSlotJowel(Arme weapon) {
+    Widget vretour = const Text('- / - / -');
+    if (weapon.slots.isNotEmpty) {
+      Row(children: [
+        for (int i = 0; i < 3; i++)
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: Text(
+              weapon.slots.length > i
+                  ? i != 2 || weapon.slots.length > i + 1
+                      ? '${weapon.slots[i].toString()} /'
+                      : weapon.slots[i].toString()
+                  : i != 2
+                      ? '- /'
+                      : '-',
+            ),
+          ),
+      ]);
     }
-    return img;
-  }
-
-  AssetImage imgArme(String categorie) {
-    String img = 'images/logoBuildCard.png';
-    switch (categorie) {
-      case 'GS':
-        img = 'images/arme/GreatSword.png';
-        break;
-      case 'LS':
-        img = 'images/arme/LongSword.png';
-        break;
-      case 'SNS':
-        img = 'images/arme/SwordNShield.png';
-        break;
-      case 'DB':
-        img = 'images/arme/DualBlades.png';
-        break;
-      case 'MRTO':
-        img = 'images/arme/Hammer.png';
-        break;
-      case 'HH':
-        img = 'images/arme/HuntingHorn.png';
-        break;
-      case 'LNC':
-        img = 'images/arme/Lance.png';
-        break;
-      case 'GL':
-        img = 'images/arme/Gunlance.png';
-        break;
-      case 'SA':
-        img = 'images/arme/SwitchAxe.png';
-        break;
-      case 'CB':
-        img = 'images/arme/ChargeBlade.png';
-        break;
-      case 'IG':
-        img = 'images/arme/InsectGlaive.png';
-        break;
-      case 'ARC':
-        img = 'images/arme/Bow.png';
-        break;
-      case 'LBG':
-        img = 'images/arme/LightBowGun.png';
-        break;
-      case 'HBG':
-        img = 'images/arme/HeavyBowGun.png';
-        break;
-    }
-    return AssetImage(img);
-  }
-
-  Widget checkbox(String img, bool check) {
-    return Card(
-        color: Colors.grey,
-        child: GestureDetector(
-            onTap: () {
-              setState(() {
-                gsCheck = false;
-                lsCheck = false;
-                snsCheck = false;
-                dbCheck = false;
-                mrtoCheck = false;
-                hhCheck = false;
-                lncCheck = false;
-                glCheck = false;
-                saCheck = false;
-                cbCheck = false;
-                igCheck = false;
-                arcCheck = false;
-                lbgCheck = false;
-                hbgCheck = false;
-                check = !check;
-              });
-            },
-            child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(img),
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                  color: check
-                      ? const Color.fromARGB(148, 207, 25, 25)
-                      : Colors.transparent,
-                ))));
+    return vretour;
   }
 
   Widget statOff(String image, int value) {
@@ -876,5 +826,22 @@ class _ListViewScreenState extends State<ListViewScreen> {
         Text(value2.toString()),
       ],
     );
+  }
+
+  resetBoolean() {
+    gsCheck = false;
+    lsCheck = false;
+    snsCheck = false;
+    dbCheck = false;
+    mrtoCheck = false;
+    hhCheck = false;
+    lncCheck = false;
+    glCheck = false;
+    saCheck = false;
+    cbCheck = false;
+    igCheck = false;
+    arcCheck = false;
+    lbgCheck = false;
+    hbgCheck = false;
   }
 }
