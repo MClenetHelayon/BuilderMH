@@ -759,8 +759,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
   Widget checkboxArme(String img, bool check) {
     return Container(
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(img),
