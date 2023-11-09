@@ -1,5 +1,5 @@
-import 'package:builder_mhrs/manager/local/cbTypeFiole.dart';
-import 'package:builder_mhrs/manager/local/saTypeFiole.dart';
+import 'package:builder_mhrs/manager/local/arme/cbTypeFiole.dart';
+import 'package:builder_mhrs/manager/local/arme/saTypeFiole.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -13,7 +13,7 @@ import '../object/weapon/tranchant/MorphoHache.dart';
 import '../object/weapon/tranchant/VoltoHache.dart';
 import 'imgManager.dart';
 import 'joyauManager.dart';
-import 'local/glTypeCanon.dart';
+import 'local/arme/glTypeCanon.dart';
 import 'sharpManager.dart';
 import 'statManager.dart';
 import 'textManager.dart';

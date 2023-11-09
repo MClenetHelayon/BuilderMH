@@ -31,6 +31,39 @@ String element(int id) {
   return img;
 }
 
+String elementWtName(String id) {
+  String img = 'images/logoBuildCard.png';
+  switch (id) {
+    case 'fire':
+      img = 'images/elementaire/Feu.webp';
+      break;
+    case 'water':
+      img = 'images/elementaire/Eau.webp';
+      break;
+    case 'thunder':
+      img = 'images/elementaire/Foudre.webp';
+      break;
+    case 'ice':
+      img = 'images/elementaire/Glace.webp';
+      break;
+    case 'dragon':
+      img = 'images/elementaire/Dragon.webp';
+      break;
+    case 'poison':
+      img = 'images/elementaire/Poison.png';
+      break;
+    case 'para':
+      img = 'images/elementaire/Para.png';
+      break;
+    case 'sleep':
+      img = 'images/elementaire/Sleep.png';
+      break;
+    case 'explo':
+      img = 'images/elementaire/Explo.png';
+  }
+  return img;
+}
+
 String slot(int slot) {
   String img = 'images/logoBuildCard.png';
   switch (slot) {

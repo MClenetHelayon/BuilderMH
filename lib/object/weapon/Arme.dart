@@ -34,7 +34,7 @@ class Arme {
       name: "-----------------------",
       rarete: 1,
       categorie: "GS",
-      niveau: "novice",
+      niveau: "none",
       talent: Talent.getBase(),
       attaque: 0,
       affinite: 0,
