@@ -2,7 +2,8 @@ import '../Arme.dart';
 
 class Marteau extends Tranchant {
   Marteau(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -38,6 +39,7 @@ class Marteau extends Tranchant {
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
 
     return Marteau(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

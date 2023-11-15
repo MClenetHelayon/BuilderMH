@@ -3,7 +3,8 @@ import '../Arme.dart';
 class Insectoglaive extends Tranchant {
   final int niveauKinsect;
   Insectoglaive(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -40,6 +41,7 @@ class Insectoglaive extends Tranchant {
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
 
     return Insectoglaive(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

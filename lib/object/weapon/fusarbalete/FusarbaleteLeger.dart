@@ -2,7 +2,8 @@ import '../Arme.dart';
 
 class FusarbaleteLeger extends Fusarbalete {
   FusarbaleteLeger(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -74,6 +75,7 @@ class FusarbaleteLeger extends Fusarbalete {
     });
 
     return FusarbaleteLeger(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

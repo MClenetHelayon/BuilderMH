@@ -2,7 +2,8 @@ import '../Arme.dart';
 
 class EpeeBouclier extends Tranchant {
   EpeeBouclier(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -38,6 +39,7 @@ class EpeeBouclier extends Tranchant {
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
 
     return EpeeBouclier(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

@@ -3,7 +3,8 @@ import '../Arme.dart';
 class LameDouble extends Tranchant {
   final int idElement2, element2;
   LameDouble(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -41,6 +42,7 @@ class LameDouble extends Tranchant {
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
 
     return LameDouble(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

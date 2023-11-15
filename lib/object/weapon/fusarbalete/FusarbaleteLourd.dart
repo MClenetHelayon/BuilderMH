@@ -4,7 +4,8 @@ class FusarbaleteLourd extends Fusarbalete {
   final int tirSpe;
   final List<dynamic> frag3, wyvern;
   FusarbaleteLourd(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -79,6 +80,7 @@ class FusarbaleteLourd extends Fusarbalete {
     });
 
     return FusarbaleteLourd(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

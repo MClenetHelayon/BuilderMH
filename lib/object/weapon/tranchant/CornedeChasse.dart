@@ -4,7 +4,8 @@ import '../Arme.dart';
 class CorneDeChasse extends Tranchant {
   final List<Musique> musique;
   CorneDeChasse(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -51,6 +52,7 @@ class CorneDeChasse extends Tranchant {
     });
 
     return CorneDeChasse(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

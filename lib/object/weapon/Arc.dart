@@ -19,7 +19,8 @@ class Arc extends Arme {
       barrage;
 
   Arc(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -63,6 +64,7 @@ class Arc extends Arme {
       }
     });
     return Arc(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

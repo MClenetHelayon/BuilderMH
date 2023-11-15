@@ -2,7 +2,8 @@ import '../Arme.dart';
 
 class GrandeEpee extends Tranchant {
   GrandeEpee(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -38,6 +39,7 @@ class GrandeEpee extends Tranchant {
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
 
     return GrandeEpee(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],
