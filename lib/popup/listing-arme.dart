@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/filter/getCheckbox.dart';
+import 'package:builder_mhrs/manager/filter/getCombobox.dart';
+import 'package:builder_mhrs/manager/filter/logicWeapon.dart';
 import 'package:builder_mhrs/manager/imgManager.dart';
 import 'package:builder_mhrs/manager/local/arme/fusarb/getRechargement.dart';
 import 'package:builder_mhrs/manager/local/arme/fusarb/getRecul.dart';
-import 'package:builder_mhrs/manager/local/getElem.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/weapon/bowManager.dart';
@@ -11,8 +13,7 @@ import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:flutter/services.dart'
-    show FilteringTextInputFormatter, TextInputFormatter, rootBundle;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:accordion/accordion.dart';
 import '../manager/local/arme/arc/getTypeBarrage.dart';
@@ -71,13 +72,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lbgCheck = false,
       hbgCheck = false,
       isExpanded = false,
-      filterElemEnabled = false;
-  String cbxElem = "all";
-  TextEditingController tc = TextEditingController(),
-      tcElem = TextEditingController(),
-      tcAtt = TextEditingController(),
-      tcAffi = TextEditingController(),
-      tcDef = TextEditingController();
+      affNeg = true;
+  String cbxElem = "all", cbxCalam = "all", cbxSharp = "r";
+  TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
@@ -85,10 +82,6 @@ class _ListViewScreenState extends State<ListViewScreen> {
     loadWeapons();
     loadPreChoice();
     lFilteredWeapons = lweapons;
-    tcElem.text = 0.toString();
-    tcAtt.text = 0.toString();
-    tcAffi.text = 0.toString();
-    tcDef.text = 0.toString();
   }
 
   Future<void> loadWeapons() async {
@@ -336,83 +329,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
     });
   }
 
-  void vElemFilter(String i) {
-    int v = int.parse(i);
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) =>
-            (weapons.element >= v && cbxElem != "all") ||
-            weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void attFilter(int i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.attaque >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void affiFilter(double i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.affinite >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void defFilter(int i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.defense >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void elemFilter(String id) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-    if (id == "all") {
-      filteredWeapons = lFilteredWeapons;
-      filterElemEnabled = false;
-      tcElem.text = 0.toString();
-    } else {
-      filteredWeapons = lFilteredWeapons
-          .where((weapons) =>
-              weapons.idElement == convertStringElemToIdElem(id) ||
-              weapons.niveau == "none")
-          .toList();
-      filterElemEnabled = true;
-    }
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    List<Arme> lArme =
+        getLWeapons(lFilteredWeapons, cbxElem, cbxCalam, cbxSharp, affNeg);
     return Card(
         color: Colors.black,
         child: Column(children: [
@@ -429,10 +349,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   onChanged: (query) => searchFilter(query))),
           Expanded(
               child: ListView.builder(
-                  itemCount: lFilteredWeapons.length,
+                  itemCount: lArme.length,
                   itemBuilder: (context, index) {
-                    Arme weapon = lFilteredWeapons[index];
-                    if (index != 0) {
+                    Arme weapon = lArme[index];
+                    if (weapon.id != 9999) {
                       return Card(
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10),
@@ -448,7 +368,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               child: ListTile(
                                   minLeadingWidth: 30,
                                   horizontalTitleGap: 5,
-                                  title: Center(child: Text(weapon.name)),
+                                  title: Center(
+                                      child: Text(weapon.name,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold))),
                                   subtitle: Column(children: [
                                     Center(
                                         child: Row(
@@ -680,69 +603,51 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   contentVerticalPadding: 10,
                   contentBackgroundColor: Colors.grey,
                   contentBorderColor: Colors.grey,
-                  /*leftIcon:
-                    const Icon(Icons.text_fields_rounded, color: Colors.white),*/
                   header: Text(AppLocalizations.of(context)!.moreFilters,
                       style: const TextStyle(fontWeight: FontWeight.bold)),
                   content: Column(children: [
-                    Row(children: [
-                      const Text('att'),
-                      const Text('affi'),
-                      const Text('def'),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text(AppLocalizations.of(context)!.affNeg),
+                      const SizedBox(width: 10),
+                      checkboxRank("✓", affNeg, () {
+                        setState(() {
+                          affNeg = !affNeg;
+                        });
+                      })
                     ]),
-                    Row(children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text(AppLocalizations.of(context)!.catElem),
-                      SizedBox(width: 10),
-                      filterComboElem(),
+                      const SizedBox(width: 10),
+                      filterComboElem(cbxElem, context, (String? newValue) {
+                        setState(() {
+                          cbxElem = newValue!;
+                        });
+                      })
                     ]),
-                    Row(children: [
-                      Text(AppLocalizations.of(context)!.elem),
-                      SizedBox(width: 10),
-                      filterStats(tcElem),
-                    ])
+                    if (!arcCheck && !lbgCheck && !hbgCheck)
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(AppLocalizations.of(context)!.sharp),
+                            const SizedBox(width: 10),
+                            filterComboSharp(cbxSharp, context,
+                                (String? newValue) {
+                              setState(() {
+                                cbxSharp = newValue!;
+                              });
+                            })
+                          ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text(AppLocalizations.of(context)!.calam),
+                      const SizedBox(width: 10),
+                      filterComboCalam(cbxCalam, context, (String? newValue) {
+                        setState(() {
+                          cbxCalam = newValue!;
+                        });
+                      })
+                    ]),
                   ]))
             ]));
-  }
-
-  Widget filterStats(TextEditingController tc) {
-    return SizedBox(
-        width: 30,
-        child: TextField(
-            controller: tc,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            enabled: filterElemEnabled,
-            onChanged: (i) => vElemFilter(i)));
-  }
-
-  Widget filterComboElem() {
-    return DropdownButton<String>(
-      value: cbxElem,
-      onChanged: (String? newValue) {
-        setState(() {
-          cbxElem = newValue!;
-          elemFilter(cbxElem);
-        });
-      },
-      items: <String>[
-        'all',
-        'none',
-        'fire',
-        'water',
-        'thunder',
-        'ice',
-        'dragon',
-        'poison',
-        'para',
-        'sleep',
-        'explo'
-      ].map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-            value: value, child: getElemForCombo(value, context));
-      }).toList(),
-    );
   }
 
   //Widget gérant l'affichage des filtres
@@ -864,28 +769,6 @@ class _ListViewScreenState extends State<ListViewScreen> {
         getFilteredWeapons(); //réactualiser les donnée générale
       });
     };
-  }
-
-  Widget printSlotJowel(Arme weapon) {
-    Widget vretour = const Text('- / - / -');
-    if (weapon.slots.isNotEmpty) {
-      Row(children: [
-        for (int i = 0; i < 3; i++)
-          Container(
-            margin: const EdgeInsets.only(right: 8),
-            child: Text(
-              weapon.slots.length > i
-                  ? i != 2 || weapon.slots.length > i + 1
-                      ? '${weapon.slots[i].toString()} /'
-                      : weapon.slots[i].toString()
-                  : i != 2
-                      ? '- /'
-                      : '-',
-            ),
-          ),
-      ]);
-    }
-    return vretour;
   }
 
   //fonction qui a pour but de reinitialisé toutes les checkbox lié au rang de chasseur

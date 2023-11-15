@@ -24,7 +24,8 @@ class Stuff {
   late JoyauxCalam joyauxCalam;
   late Florelet florelet;
   late Kinsect kinsect;
-  int nbSavoirFaire = 0, affinite = 0;
+  num affinite = 0;
+  int nbSavoirFaire = 0;
   double critBoost = 1.25, critElem = 1, sharpRaw = 0.5, sharpElem = 0.25;
 
   Stuff(this.helmet, this.torso, this.gant, this.boucle, this.pied, this.charm,
@@ -58,7 +59,7 @@ class Stuff {
   setFlorelet(Florelet value) => florelet = value;
   setKinsect(Kinsect value) => kinsect = value;
   setNbSavoirFaire(int value) => nbSavoirFaire = value;
-  setAffinite(int value) => affinite = value;
+  setAffinite(num value) => affinite = value;
   setCritBoost(double value) => critBoost = value;
   setSharpRaw(double value) => sharpRaw = value;
   setSharpElem(double value) => sharpElem = value;

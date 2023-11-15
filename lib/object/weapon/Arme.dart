@@ -3,14 +3,8 @@ import '../Talent.dart';
 
 class Arme {
   final String name, categorie, niveau;
-  final int id,
-      rarete,
-      attaque,
-      affinite,
-      defense,
-      idElement,
-      element,
-      slotCalamite;
+  final int id, rarete, attaque, defense, idElement, element, slotCalamite;
+  final num affinite;
   final List<int> slots;
   final Talent? talent;
 

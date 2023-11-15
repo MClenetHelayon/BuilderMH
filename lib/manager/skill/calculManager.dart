@@ -26,8 +26,8 @@ int sharp(Stuff s, int idColor) {
   return vretour;
 }
 
-int affinite(Stuff s) {
-  int vretour = s.weapon.affinite;
+num affinite(Stuff s) {
+  num vretour = s.weapon.affinite;
   if (s.getTalentById(87) != 0) {
     vretour += aff.getMaitre(s.getTalentById(87));
   }
