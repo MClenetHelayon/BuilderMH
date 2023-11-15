@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -54,8 +55,7 @@ class _HomepageState extends State<Homepage> {
       case DrawerSections.equipement:
         container =
             //expImg.buildCard(screen)
-            BuilderPage()
-            ;
+            BuilderPage();
         break;
       case DrawerSections.parametres:
         container = SettingsPage(
@@ -73,7 +73,7 @@ class _HomepageState extends State<Homepage> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 50, 50, 5),
+        backgroundColor: getFifth(),
       ),
       body: container,
       drawer: Drawer(
@@ -91,9 +91,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget DrawerList() {
     return Container(
-        padding: const EdgeInsets.only(
-          top: 15,
-        ),
+        padding: const EdgeInsets.only(top: 15),
         child: Column(children: [
           MenuItem(1, AppLocalizations.of(context)!.set, Icons.home,
               currentPage == DrawerSections.equipement ? true : false),
@@ -107,7 +105,9 @@ class _HomepageState extends State<Homepage> {
               final bytes = await controller.captureFromWidget(
                 Material(child: expImg.buildCard(screen)),
                 pixelRatio: 3.0, // Facteur de mise à l'échelle de la capture
-                targetSize: s.weapon is Fusarbalete ? Size(1350, 800) : Size(1100, 750), // Dimensions souhaitées de l'image
+                targetSize: s.weapon is Fusarbalete
+                    ? const Size(1350, 800)
+                    : const Size(1100, 750), // Dimensions souhaitées de l'image
               );
               setState(() => this.bytes = bytes);
 
@@ -124,7 +124,7 @@ class _HomepageState extends State<Homepage> {
             child: Container(
               padding: const EdgeInsets.all(10.0),
               color: currentPage == DrawerSections.exporter
-                  ? Colors.grey
+                  ? getThird()
                   : Colors.transparent,
               child: Row(
                 children: [
@@ -157,7 +157,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget MenuItem(int id, String title, IconData icon, bool isActive) {
     return Material(
-        color: isActive ? Colors.grey : Colors.transparent,
+        color: isActive ? getThird() : Colors.transparent,
         child: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -187,7 +187,7 @@ class _HomepageState extends State<Homepage> {
                 Expanded(
                     child: Text(
                   title,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style:  TextStyle(color: getSecondary(), fontSize: 16)
                 )),
               ])),
         ));

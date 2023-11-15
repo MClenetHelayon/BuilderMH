@@ -72,7 +72,7 @@ Widget printStat(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 15, width: 15),
     const SizedBox(width: 3),
-    Text(stat),
+    Text(stat, style: TextStyle(color: getFourth())),
   ]);
 }
 

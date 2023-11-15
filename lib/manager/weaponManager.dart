@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/local/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/local/arme/saTypeFiole.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,10 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    weapon.name,
+                    weapon.name,style: TextStyle(
+                      color: getFifth(),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ))
             ]),
             statOff(weapon, context),
@@ -38,7 +42,7 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        sharpStat(weapon as Tranchant),
+                        sharpStat(weapon),
                       ])),
             if (weapon is Lancecanon) lancecanon(weapon, context),
             if (weapon is MorphoHache) morpho(weapon, context),
@@ -122,7 +126,7 @@ Widget insecto(Insectoglaive insect, BuildContext context) {
 
 Widget isDualBlade(Arme weapon, BuildContext context) {
   Widget vretour = Text(AppLocalizations.of(context)!.none,
-      style: const TextStyle(color: Colors.blue));
+      style: TextStyle(color: getFourth()));
   if (weapon is LameDouble && weapon.idElement2 != 0) {
     vretour = printDoubleElem(element(weapon.idElement), weapon.element,
         element(weapon.idElement2), weapon.element2);

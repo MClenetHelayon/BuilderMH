@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
@@ -96,11 +97,10 @@ class _BuilderPageState extends State<BuilderPage> {
     s = stuffProvider.stuff!;
     s.getListTalents();
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: getSecondary(),
       body: Column(children: [
         RecapStat(context),
         Expanded(
-            //flex: 2,
             child: SingleChildScrollView(
                 child: Column(children: [
           Padding(
@@ -128,10 +128,10 @@ class _BuilderPageState extends State<BuilderPage> {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-            color: Colors.deepOrange,
+            color: getFifth(),
             child: Column(children: [
               Card(
-                  color: Colors.black,
+                  color: getPrimary(),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -139,7 +139,7 @@ class _BuilderPageState extends State<BuilderPage> {
                             margin: const EdgeInsets.only(left: 8.0),
                             child: title(AppLocalizations.of(context)!.stat)),
                         IconButton(
-                            icon: const Icon(Icons.close, color: Colors.white),
+                            icon: Icon(Icons.close, color: getFourth()),
                             onPressed: () {
                               setState(() {
                                 openGStat = !openGStat;
@@ -173,11 +173,11 @@ class _BuilderPageState extends State<BuilderPage> {
 
   Widget Weapon(BuildContext context) {
     return Card(
-        color: Colors.black,
+        color: getPrimary(),
         child: Column(children: [
           TextButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                backgroundColor: MaterialStateProperty.all<Color>(getPrimary())
               ),
               onPressed: () async {
                 var value = await pop.arme(context, s);
@@ -209,7 +209,7 @@ class _BuilderPageState extends State<BuilderPage> {
                             icon(0, false),
                             if (openWeapon)
                               Text(
-                                  "${AppLocalizations.of(context)!.rarete} ${s.weapon.rarete}"),
+                                  "${AppLocalizations.of(context)!.rarete} ${s.weapon.rarete}",style: const TextStyle(color: Colors.white),),
                           ])),
                   valueWeapon(s.weapon, context)
                 ]),

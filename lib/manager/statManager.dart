@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/weaponManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/material.dart';
@@ -200,7 +201,7 @@ Widget statOff(Arme weapon, BuildContext context) {
     Image.asset("images/elementaire/Affinite.webp", height: 16, width: 16),
     const SizedBox(width: 5),
     Text("${weapon.affinite.toString()}%",
-        style: const TextStyle(color: Colors.blue)),
+        style:  TextStyle(color: getFourth())),
   ]);
   Widget elem = isDualBlade(weapon, context);
   return Row(
