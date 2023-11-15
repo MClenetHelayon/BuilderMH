@@ -52,7 +52,6 @@ dependencies:
   file_saver: ^0.2.8
   fluttertoast: ^8.0.9
   devicelocale: ^0.7.0
-  accordion: ^2.6.0
 
 flutter_gen:
   outputs:
@@ -96,6 +95,7 @@ flutter:
     - database/mhrs/
     - database/mhrs/armor/
     - database/mhrs/weapon/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

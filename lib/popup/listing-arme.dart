@@ -1,25 +1,21 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:builder_mhrs/manager/imgManager.dart';
-import 'package:builder_mhrs/manager/local/arme/fusarb/getRechargement.dart';
-import 'package:builder_mhrs/manager/local/arme/fusarb/getRecul.dart';
-import 'package:builder_mhrs/manager/local/getElem.dart';
-import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:builder_mhrs/manager/local/fusarb/getRechargement.dart';
+import 'package:builder_mhrs/manager/local/fusarb/getRecul.dart';
 import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:flutter/services.dart'
-    show FilteringTextInputFormatter, TextInputFormatter, rootBundle;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-import 'package:accordion/accordion.dart';
-import '../manager/local/arme/arc/getTypeBarrage.dart';
-import '../manager/local/arme/cbTypeFiole.dart';
-import '../manager/local/arme/fusarb/getDeviation.dart';
-import '../manager/local/arme/glTypeCanon.dart';
-import '../manager/local/arme/saTypeFiole.dart';
+import '../manager/local/arc/getTypeBarrage.dart';
+import '../manager/local/cbTypeFiole.dart';
+import '../manager/local/fusarb/getDeviation.dart';
+import '../manager/local/glTypeCanon.dart';
+import '../manager/local/saTypeFiole.dart';
 import '../manager/sharpManager.dart';
 import '../object/Musique.dart';
 import '../object/weapon/Arc.dart';
@@ -39,7 +35,6 @@ import '../object/weapon/tranchant/GrandeEpee.dart';
 class ListViewScreen extends StatefulWidget {
   final Stuff s;
   final BuildContext context;
-
   const ListViewScreen(
     this.s,
     this.context, {
@@ -52,10 +47,9 @@ class ListViewScreen extends StatefulWidget {
 
 class _ListViewScreenState extends State<ListViewScreen> {
   List<Arme> lweapons = [];
-  List<Arme> lFilteredWeapons = [];
   List<Musique> lmusic = [];
-  bool rcCheck = false,
-      rmCheck = false,
+  bool showExpertWeapons = true,
+      showMaitreWeapons = true,
       gsCheck = false,
       lsCheck = false,
       snsCheck = false,
@@ -69,77 +63,111 @@ class _ListViewScreenState extends State<ListViewScreen> {
       igCheck = false,
       arcCheck = false,
       lbgCheck = false,
-      hbgCheck = false,
-      isExpanded = false,
-      filterElemEnabled = false;
-  String cbxElem = "all";
-  TextEditingController tc = TextEditingController(),
-      tcElem = TextEditingController(),
-      tcAtt = TextEditingController(),
-      tcAffi = TextEditingController(),
-      tcDef = TextEditingController();
+      hbgCheck = false;
 
   @override
   void initState() {
     super.initState();
     loadWeapons();
-    loadPreChoice();
-    lFilteredWeapons = lweapons;
-    tcElem.text = 0.toString();
-    tcAtt.text = 0.toString();
-    tcAffi.text = 0.toString();
-    tcDef.text = 0.toString();
+  }
+
+  Future<String> loadGSData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/gs.json');
+  }
+
+  Future<String> loadLSData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/ls.json');
+  }
+
+  Future<String> loadSNSData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/sns.json');
+  }
+
+  Future<String> loadDBData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/db.json');
+  }
+
+  Future<String> loadMRTOData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/mrto.json');
+  }
+
+  Future<String> loadHHData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/hh.json');
+  }
+
+  Future<String> loadMusicData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/musique.json');
+  }
+
+  Future<String> loadLNCData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/lnc.json');
+  }
+
+  Future<String> loadGLData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/gl.json');
+  }
+
+  Future<String> loadSAData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/sa.json');
+  }
+
+  Future<String> loadCBData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/cb.json');
+  }
+
+  Future<String> loadIGData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/ig.json');
+  }
+
+  Future<String> loadARCData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/arc.json');
+  }
+
+  Future<String> loadLBGData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/lbg.json');
+  }
+
+  Future<String> loadHBGData() async {
+    return await rootBundle.loadString('database/mhrs/weapon/hbg.json');
+  }
+
+  Future<String> loadSkillData() async {
+    return await rootBundle.loadString('database/mhrs/skill.json');
   }
 
   Future<void> loadWeapons() async {
     String local = Localizations.localeOf(widget.context).languageCode;
-    String skillJsonText =
-        await rootBundle.loadString('database/mhrs/skill.json');
+    String skillJsonText = await loadSkillData();
     List<dynamic> skillList = json.decode(skillJsonText);
-    String jsonTextGS =
-        await rootBundle.loadString('database/mhrs/weapon/gs.json');
+    String jsonTextGS = await loadGSData();
     List<dynamic> jsonResponseGS = json.decode(jsonTextGS);
-    String jsonTextLS =
-        await rootBundle.loadString('database/mhrs/weapon/ls.json');
+    String jsonTextLS = await loadLSData();
     List<dynamic> jsonResponseLS = json.decode(jsonTextLS);
-    String jsonTextSNS =
-        await rootBundle.loadString('database/mhrs/weapon/sns.json');
+    String jsonTextSNS = await loadSNSData();
     List<dynamic> jsonResponseSNS = json.decode(jsonTextSNS);
-    String jsonTextDB =
-        await rootBundle.loadString('database/mhrs/weapon/db.json');
+    String jsonTextDB = await loadDBData();
     List<dynamic> jsonResponseDB = json.decode(jsonTextDB);
-    String jsonTextMRTO =
-        await rootBundle.loadString('database/mhrs/weapon/mrto.json');
+    String jsonTextMRTO = await loadMRTOData();
     List<dynamic> jsonResponseMRTO = json.decode(jsonTextMRTO);
-    String jsonTextHH =
-        await rootBundle.loadString('database/mhrs/weapon/hh.json');
+    String jsonTextHH = await loadHHData();
     List<dynamic> jsonResponseHH = json.decode(jsonTextHH);
-    String jsonTextMusic =
-        await rootBundle.loadString('database/mhrs/weapon/musique.json');
+    String jsonTextMusic = await loadMusicData();
     List<dynamic> jsonResponseMusic = json.decode(jsonTextMusic);
-    String jsonTextLNC =
-        await rootBundle.loadString('database/mhrs/weapon/lnc.json');
+    String jsonTextLNC = await loadLNCData();
     List<dynamic> jsonResponseLNC = json.decode(jsonTextLNC);
-    String jsonTextGL =
-        await rootBundle.loadString('database/mhrs/weapon/gl.json');
+    String jsonTextGL = await loadGLData();
     List<dynamic> jsonResponseGL = json.decode(jsonTextGL);
-    String jsonTextSA =
-        await rootBundle.loadString('database/mhrs/weapon/sa.json');
+    String jsonTextSA = await loadSAData();
     List<dynamic> jsonResponseSA = json.decode(jsonTextSA);
-    String jsonTextCB =
-        await rootBundle.loadString('database/mhrs/weapon/cb.json');
+    String jsonTextCB = await loadCBData();
     List<dynamic> jsonResponseCB = json.decode(jsonTextCB);
-    String jsonTextIG =
-        await rootBundle.loadString('database/mhrs/weapon/ig.json');
+    String jsonTextIG = await loadIGData();
     List<dynamic> jsonResponseIG = json.decode(jsonTextIG);
-    String jsonTextARC =
-        await rootBundle.loadString('database/mhrs/weapon/arc.json');
+    String jsonTextARC = await loadARCData();
     List<dynamic> jsonResponseARC = json.decode(jsonTextARC);
-    String jsonTextLBG =
-        await rootBundle.loadString('database/mhrs/weapon/lbg.json');
+    String jsonTextLBG = await loadLBGData();
     List<dynamic> jsonResponseLBG = json.decode(jsonTextLBG);
-    String jsonTextHBG =
-        await rootBundle.loadString('database/mhrs/weapon/hbg.json');
+    String jsonTextHBG = await loadHBGData();
     List<dynamic> jsonResponseHBG = json.decode(jsonTextHBG);
     setState(() {
       lweapons += jsonResponseGS
@@ -190,74 +218,18 @@ class _ListViewScreenState extends State<ListViewScreen> {
           .map(
               (weapons) => FusarbaleteLourd.fromJson(weapons, skillList, local))
           .toList();
-      getFilteredWeapons();
     });
   }
 
-  Future<void> loadPreChoice() async {
-    switch (widget.s.weapon.categorie) {
-      case 'GS':
-        gsCheck = true;
-        break;
-      case 'LS':
-        lsCheck = true;
-        break;
-      case 'SNS':
-        snsCheck = true;
-        break;
-      case 'DB':
-        dbCheck = true;
-        break;
-      case 'MRTO':
-        mrtoCheck = true;
-        break;
-      case 'HH':
-        hhCheck = true;
-        break;
-      case 'LNC':
-        lncCheck = true;
-        break;
-      case 'GL':
-        glCheck = true;
-        break;
-      case 'SA':
-        saCheck = true;
-        break;
-      case 'CB':
-        cbCheck = true;
-        break;
-      case 'IG':
-        igCheck = true;
-        break;
-      case 'ARC':
-        arcCheck = true;
-        break;
-      case 'LBG':
-        lbgCheck = true;
-        break;
-      case 'HBG':
-        hbgCheck = true;
-        break;
-    }
-    switch (widget.s.weapon.niveau) {
-      case 'expert':
-        rcCheck = true;
-        break;
-      case 'maitre':
-        rmCheck = true;
-        break;
-    }
-  }
-
-  void getFilteredWeapons() {
+  List<Arme> getFilteredWeapons() {
     List<Arme> filteredWeapons = [];
     List<Arme> filteredCategWeapons = [];
     filteredCategWeapons.add(Arme.getBase());
-    if (rcCheck) {
+    if (showExpertWeapons) {
       filteredWeapons.addAll(
           lweapons.where((weapons) => weapons.niveau == 'expert').toList());
     }
-    if (rmCheck) {
+    if (showMaitreWeapons) {
       filteredWeapons.addAll(
           lweapons.where((weapons) => weapons.niveau == 'maitre').toList());
     }
@@ -316,99 +288,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           .whereType<FusarbaleteLourd>()
           .forEach(filteredCategWeapons.add);
     }
-    lFilteredWeapons = filteredCategWeapons;
-  }
-
-  void searchFilter(String keyword) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-    if (keyword.isEmpty || keyword == '') {
-      filteredWeapons = lFilteredWeapons;
-    } else {
-      filteredWeapons = lFilteredWeapons
-          .where((weapons) =>
-              weapons.name.toLowerCase().contains(keyword.toLowerCase()) ||
-              weapons.niveau == "none")
-          .toList();
-    }
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void vElemFilter(String i) {
-    int v = int.parse(i);
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) =>
-            (weapons.element >= v && cbxElem != "all") ||
-            weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void attFilter(int i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.attaque >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void affiFilter(double i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.affinite >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void defFilter(int i) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-
-    filteredWeapons = lFilteredWeapons
-        .where((weapons) => weapons.defense >= i || weapons.niveau == "none")
-        .toList();
-
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
-  }
-
-  void elemFilter(String id) {
-    getFilteredWeapons();
-    List<Arme> filteredWeapons = [];
-    if (id == "all") {
-      filteredWeapons = lFilteredWeapons;
-      filterElemEnabled = false;
-      tcElem.text = 0.toString();
-    } else {
-      filteredWeapons = lFilteredWeapons
-          .where((weapons) =>
-              weapons.idElement == convertStringElemToIdElem(id) ||
-              weapons.niveau == "none")
-          .toList();
-      filterElemEnabled = true;
-    }
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
+    return filteredCategWeapons;
   }
 
   @override
@@ -416,22 +296,233 @@ class _ListViewScreenState extends State<ListViewScreen> {
     return Card(
         color: Colors.black,
         child: Column(children: [
-          filterRankWeapon(),
-          filterAccordeon(),
           Card(
               color: Colors.grey,
-              margin: const EdgeInsets.all(2),
-              child: TextField(
-                  controller: tc,
-                  decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.search,
-                      prefixIcon: const Icon(Icons.search)),
-                  onChanged: (query) => searchFilter(query))),
+              margin: const EdgeInsets.all(5),
+              child: Column(children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Card(
+                          child: SizedBox(
+                        width: 100, // Définissez une largeur appropriée ici
+                        child: CheckboxListTile(
+                          title: const Text('RC'),
+                          value: showExpertWeapons,
+                          onChanged: (checked) {
+                            setState(() {
+                              showExpertWeapons = checked ?? false;
+                            });
+                          },
+                        ),
+                      )),
+                      Card(
+                        child: SizedBox(
+                          width: 100, // Définissez une largeur appropriée ici
+                          child: CheckboxListTile(
+                            title: const Text('RM'),
+                            value: showMaitreWeapons,
+                            onChanged: (checked) {
+                              setState(() {
+                                showMaitreWeapons = checked ?? false;
+                              });
+                            },
+                          ),
+                        ),
+                      )
+                    ]),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              gsCheck = !gsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/GreatSword.png",
+                                              gsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lsCheck = !lsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/LongSword.png",
+                                              lsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              snsCheck = !snsCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/SwordNShield.png",
+                                              snsCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              dbCheck = !dbCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/DualBlades.png",
+                                              dbCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              mrtoCheck = !mrtoCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Hammer.png",
+                                              mrtoCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              hhCheck = !hhCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/HuntingHorn.png",
+                                              hhCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lncCheck = !lncCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Lance.png",
+                                              lncCheck))),
+                                ]),
+                            Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              glCheck = !glCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Gunlance.png",
+                                              glCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              saCheck = !saCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/SwitchAxe.png",
+                                              saCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              cbCheck = !cbCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/ChargeBlade.png",
+                                              cbCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              igCheck = !igCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/InsectGlaive.png",
+                                              igCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              arcCheck = !arcCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/Bow.png",
+                                              arcCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              lbgCheck = !lbgCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/LightBowGun.png",
+                                              lbgCheck))),
+                                  Card(
+                                      color: Colors.grey,
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              resetBoolean();
+                                              hbgCheck = !hbgCheck;
+                                            });
+                                          },
+                                          child: checkboxArme(
+                                              "images/arme/HeavyBowGun.png",
+                                              hbgCheck))),
+                                ])
+                          ])
+                    ])
+              ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: lFilteredWeapons.length,
+                  itemCount: getFilteredWeapons().length,
                   itemBuilder: (context, index) {
-                    Arme weapon = lFilteredWeapons[index];
+                    Arme weapon = getFilteredWeapons()[index];
                     if (index != 0) {
                       return Card(
                           margin: const EdgeInsets.only(
@@ -446,135 +537,138 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 Navigator.of(context).pop(weapon);
                               },
                               child: ListTile(
-                                  minLeadingWidth: 30,
-                                  horizontalTitleGap: 5,
-                                  title: Center(child: Text(weapon.name)),
+                                  title: Center(
+                                      child: Text(
+                                    weapon.name,
+                                  )),
+                                  leading: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                            height: 22,
+                                            width: 22,
+                                            margin: const EdgeInsets.only(
+                                                right: 8, bottom: 2),
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: AssetImage(arme(
+                                                        weapon.categorie))))),
+                                        Text('R${weapon.rarete}'),
+                                      ]),
                                   subtitle: Column(children: [
                                     Center(
                                         child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
-                                          Text('R${weapon.rarete}'),
-                                          printStat(
+                                          statOff(
                                               "images/elementaire/Attaque.webp",
-                                              weapon.attaque.toString()),
-                                          printStat(
+                                              weapon.attaque),
+                                          statOff(
                                               "images/elementaire/Affinite.webp",
-                                              weapon.affinite.toString()),
+                                              weapon.affinite),
                                           if (weapon is LameDouble &&
                                               weapon.idElement2 != 0)
-                                            printDoubleElem(
+                                            statDoubleElem(
                                                 element(weapon.idElement),
                                                 weapon.element,
                                                 element(weapon.idElement2),
                                                 weapon.element2)
                                           else if (weapon.idElement != 0)
-                                            printStat(element(weapon.idElement),
-                                                weapon.element.toString()),
-                                          printStat(
+                                            statElem(element(weapon.idElement),
+                                                weapon.element),
+                                          statOff(
                                               "images/elementaire/Defense.png",
-                                              weapon.defense.toString())
+                                              weapon.defense)
                                         ])),
                                     Center(
-                                      child: Row(
+                                        child: Column(children: [
+                                      Text(
+                                          AppLocalizations.of(context)!.joyaux),
+                                      printSlotJowel(weapon)
+                                    ])),
+                                    Center(
+                                        child: Column(children: [
+                                      if (weapon.slotCalamite != 0)
+                                        Text(
+                                            "${AppLocalizations.of(context)!.calam} : ${weapon.slotCalamite}")
+                                    ])),
+                                    if (weapon is Tranchant)
+                                      Center(
+                                        child: sharpStat(weapon),
+                                      ),
+                                    if (weapon is CorneDeChasse)
+                                      Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.center,
                                           children: [
                                             Column(children: [
-                                              Text(AppLocalizations.of(context)!
-                                                  .joyaux),
-                                              printSlotJowel(weapon)
-                                            ]),
-                                            if (weapon is Tranchant)
-                                              Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Container(
-                                                        margin: const EdgeInsets
-                                                            .only(top: 5),
-                                                        child:
-                                                            sharpStat(weapon)),
-                                                  ]),
-                                            if (weapon is Fusarbalete ||
-                                                weapon is Arc)
-                                              Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 5),
-                                                  child: Column(children: [
-                                                    if (weapon.slotCalamite !=
-                                                        0)
-                                                      Text(
-                                                          "${AppLocalizations.of(context)!.calam} : ${weapon.slotCalamite}")
-                                                  ])),
-                                          ]),
-                                    ),
-                                    if (!(weapon is Fusarbalete ||
-                                        weapon is Arc))
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Column(children: [
-                                            if (weapon.slotCalamite != 0)
                                               Text(
-                                                  "${AppLocalizations.of(context)!.calam} : ${weapon.slotCalamite}")
-                                          ])),
-                                    if (weapon is CorneDeChasse)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Column(children: [
-                                            Text(
-                                                "${AppLocalizations.of(context)!.music} :"),
-                                            Text(weapon.musique[0].name),
-                                            Text(weapon.musique[1].name),
-                                            Text(weapon.musique[2].name),
-                                          ])),
+                                                  "${AppLocalizations.of(context)!.music} :"),
+                                              Text(weapon.musique[0].name),
+                                              Text('${weapon.musique[1].name}'),
+                                              Text('${weapon.musique[2].name}'),
+                                            ])
+                                          ]),
                                     if (weapon is Lancecanon)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Column(children: [
-                                            Text(
-                                                '${getTypeCanon(weapon.typeCanon, context)} ${weapon.niveauCanon}'),
-                                          ])),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(
+                                                  '${getTypeCanon(weapon.typeCanon, context)} ${weapon.niveauCanon}'),
+                                            ])
+                                          ]),
                                     if (weapon is MorphoHache)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: weapon.valueFiole != 0
-                                              ? Text(
-                                                  '${getSaFiole(weapon.typeFiole, context)} ${weapon.valueFiole}')
-                                              : Text(getSaFiole(
-                                                  weapon.typeFiole, context))),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              weapon.valueFiole != 0
+                                                  ? Text(
+                                                      '${getSaFiole(weapon.typeFiole, context)} ${weapon.valueFiole}')
+                                                  : Text(getSaFiole(
+                                                      weapon.typeFiole,
+                                                      context))
+                                            ])
+                                          ]),
                                     if (weapon is VoltoHache)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Text(getCbFiole(
-                                              weapon.typeFiole, context))),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(getCbFiole(
+                                                  weapon.typeFiole, context))
+                                            ])
+                                          ]),
                                     if (weapon is Insectoglaive)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Text(
-                                              '${AppLocalizations.of(context)!.kinsectLvl} : ${weapon.niveauKinsect}')),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(children: [
+                                              Text(
+                                                  '${AppLocalizations.of(context)!.kinsectLvl} : ${weapon.niveauKinsect}'),
+                                            ])
+                                          ]),
                                     if (weapon is Fusarbalete)
-                                      Container(
-                                          margin: const EdgeInsets.only(top: 5),
-                                          child: Column(children: [
+                                      Column(
+                                          children: [
                                             Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
-                                                        .spaceAround,
+                                                        .center,
                                                 children: [
                                                   Column(children: [
                                                     Text(
-                                                        "${AppLocalizations.of(context)!.recul} :"),
-                                                    Text(getRecul(
-                                                        weapon.recul, context))
-                                                  ]),
-                                                  Column(children: [
-                                                    Text(
-                                                        "${AppLocalizations.of(context)!.recharge} :"),
-                                                    Text(getRechargement(
-                                                        weapon.rechargement,
-                                                        context))
+                                                        "${AppLocalizations.of(context)!.recul} : ${getRecul(
+                                                        weapon.recul, context)}"),
+                                                   /* Text(getRecul(
+                                                        weapon.recul, context))*/
                                                   ]),
                                                   Column(children: [
                                                     Text(
@@ -586,16 +680,19 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                                             weapon
                                                                 .sensDeviation,
                                                             context))
+                                                  ]),
+                                                  Column(children: [
+                                                    /*Text(
+                                                    "${AppLocalizations.of(context)!.recharge} :"),*/
+                                                    Text(getRechargement(
+                                                        weapon.rechargement,
+                                                        context))
                                                   ])
                                                 ]),
-                                            Container(
-                                                margin: const EdgeInsets.only(
-                                                    top: 5),
-                                                child: Text(AppLocalizations.of(
-                                                        context)!
-                                                    .mun)),
+                                            Text(AppLocalizations.of(context)!
+                                                .mun),
                                             blockMunListing(weapon, context)
-                                          ])),
+                                          ]),
                                     if (weapon is Arc)
                                       Column(
                                         children: [
@@ -636,234 +733,43 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       return Card(
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10),
-                          child: SizedBox(
-                              height: 35,
-                              child: TextButton(
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<
-                                          Color>(
-                                      const Color.fromARGB(255, 255, 255, 255)),
+                          child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<
+                                        Color>(
+                                    const Color.fromARGB(255, 255, 255, 255)),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop(weapon);
+                              },
+                              child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      weapon.name,
+                                    ),
+                                  ],
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pop(weapon);
-                                },
-                                child: Center(child: black(weapon.name)),
                               )));
                     }
                   }))
         ]));
   }
 
-  Widget filterAccordeon() {
-    return Card(
-        margin: const EdgeInsets.all(2),
-        color: Colors.grey,
-        child: Accordion(
-            paddingListTop: 0,
-            paddingListBottom: 0,
-            paddingListHorizontal: 0,
-            headerBackgroundColor: Colors.grey,
-            headerBorderWidth: 0,
-            headerBorderColorOpened: Colors.grey,
-            headerBackgroundColorOpened: Colors.grey,
-            contentBackgroundColor: Colors.grey,
-            contentBorderColor: Colors.grey,
-            contentBorderWidth: 0,
-            scaleWhenAnimating: true,
-            openAndCloseAnimation: true,
-            headerPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            children: [
-              AccordionSection(
-                  isOpen: isExpanded,
-                  onOpenSection: () => setState(() => isExpanded = true),
-                  contentVerticalPadding: 10,
-                  contentBackgroundColor: Colors.grey,
-                  contentBorderColor: Colors.grey,
-                  /*leftIcon:
-                    const Icon(Icons.text_fields_rounded, color: Colors.white),*/
-                  header: Text(AppLocalizations.of(context)!.moreFilters,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  content: Column(children: [
-                    Row(children: [
-                      const Text('att'),
-                      const Text('affi'),
-                      const Text('def'),
-                    ]),
-                    Row(children: [
-                      Text(AppLocalizations.of(context)!.catElem),
-                      SizedBox(width: 10),
-                      filterComboElem(),
-                    ]),
-                    Row(children: [
-                      Text(AppLocalizations.of(context)!.elem),
-                      SizedBox(width: 10),
-                      filterStats(tcElem),
-                    ])
-                  ]))
-            ]));
-  }
-
-  Widget filterStats(TextEditingController tc) {
-    return SizedBox(
-        width: 30,
-        child: TextField(
-            controller: tc,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            enabled: filterElemEnabled,
-            onChanged: (i) => vElemFilter(i)));
-  }
-
-  Widget filterComboElem() {
-    return DropdownButton<String>(
-      value: cbxElem,
-      onChanged: (String? newValue) {
-        setState(() {
-          cbxElem = newValue!;
-          elemFilter(cbxElem);
-        });
-      },
-      items: <String>[
-        'all',
-        'none',
-        'fire',
-        'water',
-        'thunder',
-        'ice',
-        'dragon',
-        'poison',
-        'para',
-        'sleep',
-        'explo'
-      ].map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-            value: value, child: getElemForCombo(value, context));
-      }).toList(),
-    );
-  }
-
-  //Widget gérant l'affichage des filtres
-  Widget filterRankWeapon() {
-    return Card(
-        color: Colors.grey,
-        margin: const EdgeInsets.all(2),
-        child: Container(
-            margin: const EdgeInsets.only(bottom: 5),
-            child: Column(children: [
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                checkboxRank("RC", rcCheck, () {
-                  setState(() {
-                    resetRankChoice();
-                    rcCheck = !rcCheck;
-                    getFilteredWeapons();
-                  });
-                }),
-                checkboxRank("RM", rmCheck, () {
-                  setState(() {
-                    resetRankChoice();
-                    rmCheck = !rmCheck;
-                    getFilteredWeapons();
-                  });
-                })
-              ]),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        checkboxArme(
-                            "images/arme/GreatSword.png",
-                            gsCheck,
-                            updateCheckbox(
-                                gsCheck, (bool check) => gsCheck = check)),
-                        checkboxArme(
-                            "images/arme/LongSword.png",
-                            lsCheck,
-                            updateCheckbox(
-                                lsCheck, (bool check) => lsCheck = check)),
-                        checkboxArme(
-                            "images/arme/SwordNShield.png",
-                            snsCheck,
-                            updateCheckbox(
-                                snsCheck, (bool check) => snsCheck = check)),
-                        checkboxArme(
-                            "images/arme/DualBlades.png",
-                            dbCheck,
-                            updateCheckbox(
-                                dbCheck, (bool check) => dbCheck = check)),
-                        checkboxArme(
-                            "images/arme/Hammer.png",
-                            mrtoCheck,
-                            updateCheckbox(
-                                mrtoCheck, (bool check) => mrtoCheck = check)),
-                        checkboxArme(
-                            "images/arme/HuntingHorn.png",
-                            hhCheck,
-                            updateCheckbox(
-                                hhCheck, (bool check) => hhCheck = check)),
-                        checkboxArme(
-                            "images/arme/Lance.png",
-                            lncCheck,
-                            updateCheckbox(
-                                lncCheck, (bool check) => lncCheck = check)),
-                      ]),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        checkboxArme(
-                            "images/arme/Gunlance.png",
-                            glCheck,
-                            updateCheckbox(
-                                glCheck, (bool check) => glCheck = check)),
-                        checkboxArme(
-                            "images/arme/SwitchAxe.png",
-                            saCheck,
-                            updateCheckbox(
-                                saCheck, (bool check) => saCheck = check)),
-                        checkboxArme(
-                            "images/arme/ChargeBlade.png",
-                            cbCheck,
-                            updateCheckbox(
-                                cbCheck, (bool check) => cbCheck = check)),
-                        checkboxArme(
-                            "images/arme/InsectGlaive.png",
-                            igCheck,
-                            updateCheckbox(
-                                igCheck, (bool check) => igCheck = check)),
-                        checkboxArme(
-                            "images/arme/Bow.png",
-                            arcCheck,
-                            updateCheckbox(
-                                arcCheck, (bool check) => arcCheck = check)),
-                        checkboxArme(
-                            "images/arme/LightBowgun.png",
-                            lbgCheck,
-                            updateCheckbox(
-                                lbgCheck, (bool check) => lbgCheck = check)),
-                        checkboxArme(
-                            "images/arme/HeavyBowgun.png",
-                            hbgCheck,
-                            updateCheckbox(
-                                hbgCheck, (bool check) => hbgCheck = check)),
-                      ])
-                ])
-              ])
-            ])));
-  }
-
-  //fonction permettant l'actualisation des données lorsque l'on change de séléction d'arme
-  Function(bool) updateCheckbox(bool currentCheck, Function(bool) callback) {
-    return (bool newCheck) {
-      setState(() {
-        resetWeaponChoice(); //reinitialiser
-        tc.text = ""; //vider le champ de recherche
-        callback(newCheck); //mettre a jour les checkbox
-        getFilteredWeapons(); //réactualiser les donnée générale
-      });
-    };
+  Widget checkboxArme(String img, bool check) {
+    return Container(
+        width: 25,
+        height: 25,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(img),
+          ),
+          borderRadius: BorderRadius.circular(5),
+          color: check
+              ? const Color.fromARGB(148, 207, 25, 25)
+              : Colors.transparent,
+        ));
   }
 
   Widget printSlotJowel(Arme weapon) {
@@ -888,14 +794,41 @@ class _ListViewScreenState extends State<ListViewScreen> {
     return vretour;
   }
 
-  //fonction qui a pour but de reinitialisé toutes les checkbox lié au rang de chasseur
-  void resetRankChoice() {
-    rcCheck = false;
-    rmCheck = false;
+  Widget statOff(String image, int value) {
+    return Row(
+      children: [
+        Image.asset(image, height: 16, width: 16),
+        const SizedBox(width: 5),
+        Text(value.toString()),
+      ],
+    );
   }
 
-  //fonction qui a pour but de reinitialisé toutes les checkbox lié au arme
-  void resetWeaponChoice() {
+  Widget statElem(String image, int value) {
+    return Row(
+      children: [
+        Image.asset(image, height: 16, width: 16),
+        const SizedBox(width: 5),
+        Text("$value"),
+      ],
+    );
+  }
+
+  Widget statDoubleElem(String image, int value, String image2, int value2) {
+    return Row(
+      children: [
+        Image.asset(image, height: 16, width: 16),
+        const SizedBox(width: 5),
+        Text(value.toString()),
+        const Text("/"),
+        Image.asset(image2, height: 16, width: 16),
+        const SizedBox(width: 5),
+        Text(value2.toString()),
+      ],
+    );
+  }
+
+  resetBoolean() {
     gsCheck = false;
     lsCheck = false;
     snsCheck = false;
