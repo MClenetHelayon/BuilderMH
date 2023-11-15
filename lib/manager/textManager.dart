@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,8 @@ Container title(String t) {
   return Container(
       margin: const EdgeInsets.only(top: 5),
       child: Text(t,
-          style: const TextStyle(
-            color: Colors.blue,
+          style: TextStyle(
+            color: getFifth(),
             fontWeight: FontWeight.bold,
           )));
 }
@@ -24,15 +25,15 @@ Text blue(String t) {
 
 Text black(String t) {
   return Text(t,
-      style: const TextStyle(
-        color: Colors.black,
+      style: TextStyle(
+        color: getSecondary(),
       ));
 }
 
 Text white(String t) {
   return Text(t,
-      style: const TextStyle(
-        color: Colors.white,
+      style: TextStyle(
+        color: getFourth(),
       ));
 }
 
@@ -45,7 +46,7 @@ Text switchColor(String t, int max, num value) {
 Container gDefSimply(String img, int value) {
   return Container(
       margin: const EdgeInsets.only(right: 5),
-      child: printStat(img, value.toString()));
+      child: printStatBlack(img, value.toString()));
 }
 
 Widget jowel(int leSlot, String nom) {
@@ -53,25 +54,33 @@ Widget jowel(int leSlot, String nom) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 22, width: 22),
     const SizedBox(width: 10),
-    Text(nom, style: const TextStyle(color: Colors.blue)),
+    white(nom),
   ]);
 }
 
-Widget printDoubleElem(String image, int value, String image2, int value2) {
-  return Row(
-    children: [
-      printStat(image, value.toString()),
-      const Text("/", style: TextStyle(color: Colors.blue)),
-      printStat(image2, value2.toString())
-    ],
-  );
+Widget printDoubleElemBlack(
+    String image, int value, String image2, int value2) {
+  return Row(children: [
+    printStatBlack(image, value.toString()),
+    black("/"),
+    printStatBlack(image2, value2.toString())
+  ]);
 }
 
-Widget printStat(String img, String stat) {
+Widget printDoubleElemWhite(
+    String image, int value, String image2, int value2) {
+  return Row(children: [
+    printStatWhite(image, value.toString()),
+    white("/"),
+    printStatWhite(image2, value2.toString())
+  ]);
+}
+
+Widget printStatBlack(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 15, width: 15),
     const SizedBox(width: 3),
-    Text(stat),
+    black(stat),
   ]);
 }
 
@@ -79,10 +88,7 @@ Widget printStatWhite(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 15, width: 15),
     const SizedBox(width: 3),
-    Text(
-      stat,
-      style: const TextStyle(color: Colors.white),
-    ),
+    white(stat),
   ]);
 }
 
@@ -91,8 +97,7 @@ Widget listTranchant(Stuff s) {
 
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Text(
-        "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}",
-        style: const TextStyle(color: Colors.blue)),
+        "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}")
   ]);
 }
 
@@ -129,4 +134,12 @@ Widget printSlotJowel(Arme weapon) {
     ]);
   }
   return vretour;
+}
+
+Widget verticalDivider() {
+  return Container(
+    height: 50.0,
+    color: getThird(), // Couleur du séparateur
+    width: 1.0, // Épaisseur du séparateur
+  );
 }

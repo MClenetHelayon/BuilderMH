@@ -18,7 +18,7 @@ Widget partFlor(int vie, int stam, int att, int def, String titre) {
   return Column(children: [
     Container(
         margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-        child: Text(titre)),
+        child: white(titre)),
     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       statFlor("images/elementaire/Vie.png", vie),
       statFlor("images/elementaire/Stam.png", stam),
@@ -31,6 +31,6 @@ Widget partFlor(int vie, int stam, int att, int def, String titre) {
 Widget statFlor(String img, int stat) {
   return Container(
     margin: const EdgeInsets.only(left: 10.0),
-    child: printStat(img, stat.toString()),
+    child: printStatWhite(img, stat.toString()),
   );
 }

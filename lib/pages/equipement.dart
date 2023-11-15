@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
@@ -96,11 +97,10 @@ class _BuilderPageState extends State<BuilderPage> {
     s = stuffProvider.stuff!;
     s.getListTalents();
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: getSecondary(),
       body: Column(children: [
         RecapStat(context),
         Expanded(
-            //flex: 2,
             child: SingleChildScrollView(
                 child: Column(children: [
           Padding(
@@ -128,10 +128,10 @@ class _BuilderPageState extends State<BuilderPage> {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
-            color: Colors.deepOrange,
+            color: getFifth(),
             child: Column(children: [
               Card(
-                  color: Colors.black,
+                  color: getPrimary(),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -139,7 +139,7 @@ class _BuilderPageState extends State<BuilderPage> {
                             margin: const EdgeInsets.only(left: 8.0),
                             child: title(AppLocalizations.of(context)!.stat)),
                         IconButton(
-                            icon: const Icon(Icons.close, color: Colors.white),
+                            icon: Icon(Icons.close, color: getFourth()),
                             onPressed: () {
                               setState(() {
                                 openGStat = !openGStat;
@@ -173,12 +173,12 @@ class _BuilderPageState extends State<BuilderPage> {
 
   Widget Weapon(BuildContext context) {
     return Card(
-        color: Colors.black,
+        color: getPrimary(),
         child: Column(children: [
           TextButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
-              ),
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(getPrimary())),
               onPressed: () async {
                 var value = await pop.arme(context, s);
                 if (value == null || value == s.weapon) return;
@@ -209,7 +209,9 @@ class _BuilderPageState extends State<BuilderPage> {
                             icon(0, false),
                             if (openWeapon)
                               Text(
-                                  "${AppLocalizations.of(context)!.rarete} ${s.weapon.rarete}"),
+                                "${AppLocalizations.of(context)!.rarete} ${s.weapon.rarete}",
+                                style: const TextStyle(color: Colors.white),
+                              ),
                           ])),
                   valueWeapon(s.weapon, context)
                 ]),
@@ -222,13 +224,13 @@ class _BuilderPageState extends State<BuilderPage> {
                             child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Text("Transcendance"),
+                            white("Transcendance"),
                             Card(
                                 child: TextButton(
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        Colors.black),
+                                        getPrimary()),
                               ),
                               onPressed:
                                   () {} /*async {
@@ -237,7 +239,7 @@ class _BuilderPageState extends State<BuilderPage> {
           setState(() => this.weapon = value);
         }*/
                               ,
-                              child: const Text("-/-/-/-/-/-"),
+                              child: white("-/-/-/-/-/-"),
                             ))
                           ],
                         )),
@@ -246,7 +248,7 @@ class _BuilderPageState extends State<BuilderPage> {
                             margin: const EdgeInsets.all(10.0),
                             child: s.weapon.slotCalamite != 0
                                 ? Column(children: [
-                                    Text(AppLocalizations.of(context)!
+                                    white(AppLocalizations.of(context)!
                                         .calamJowel),
                                     CalamJowel(s.weapon.slotCalamite,
                                         s.weapon.categorie, context)
@@ -272,7 +274,7 @@ class _BuilderPageState extends State<BuilderPage> {
               child: TextButton(
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
+                        MaterialStateProperty.all<Color>(getPrimary()),
                   ),
                   onPressed: () async {
                     var value = await pop.kinsect(
@@ -318,7 +320,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.flor(context);
@@ -337,7 +339,10 @@ class _BuilderPageState extends State<BuilderPage> {
                     margin: const EdgeInsets.all(10.0),
                     child: Column(children: [
                       Container(
-                        child: Text(s.florelet.name),
+                        child: Text(s.florelet.name,
+                            style: TextStyle(
+                                color: getFifth(),
+                                fontWeight: FontWeight.bold)),
                       ),
                       if (openPetalas) flor(s.florelet, context)
                     ]))
@@ -350,10 +355,9 @@ class _BuilderPageState extends State<BuilderPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(5.0),
         ),
-        color: Colors.black,
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.charm(context);
@@ -375,7 +379,10 @@ class _BuilderPageState extends State<BuilderPage> {
                       children: [
                         Container(
                             margin: const EdgeInsets.only(bottom: 20.0),
-                            child: Text(AppLocalizations.of(context)!.tali)),
+                            child: Text(AppLocalizations.of(context)!.tali,
+                                style: TextStyle(
+                                    color: getFifth(),
+                                    fontWeight: FontWeight.bold))),
                         if (openCharm)
                           Table(columnWidths: const <int, TableColumnWidth>{
                             0: FlexColumnWidth(),
@@ -396,7 +403,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
       child: TextButton(
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
           ),
           onPressed: () async {
             var value = await pop.calamJoyau(context, slot, categ);
@@ -410,7 +417,7 @@ class _BuilderPageState extends State<BuilderPage> {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Image.asset(slotCalam(slot), height: 22, width: 22),
             const SizedBox(width: 5),
-            Text(s.joyauxCalam.id != 0 && s.joyauxCalam.id != 9999
+            white(s.joyauxCalam.id != 0 && s.joyauxCalam.id != 9999
                 ? "${s.joyauxCalam.name} [${s.joyauxCalam.slot}]"
                 : s.joyauxCalam.name),
           ])),
@@ -421,7 +428,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.armor(context, 0);
@@ -447,7 +454,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.armor(context, 1);
@@ -473,7 +480,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.armor(context, 2);
@@ -500,7 +507,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.armor(context, 3);
@@ -526,7 +533,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
             onPressed: () async {
               var value = await pop.armor(context, 4);

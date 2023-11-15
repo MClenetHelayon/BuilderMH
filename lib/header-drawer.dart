@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class HeaderDrawer extends StatefulWidget {
@@ -11,7 +12,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color.fromARGB(255, 50, 50, 50),
+      color: getSecondary(),
       width: double.infinity,
       height: 200,
       padding: const EdgeInsets.only(top: 20.0, left: 20.0),
@@ -28,8 +29,8 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
               ),
             ),
             const SizedBox(height: 10,),
-            const Text("Builder MHRS",style: TextStyle(color: Colors.white,fontSize: 20),),
-            Text(AppLocalizations.of(context)!.creator,style: const TextStyle(color: Colors.grey,fontSize: 20),),
+             Text("Builder MHRS",style: TextStyle(color: getFourth(),fontSize: 20),),
+            Text(AppLocalizations.of(context)!.creator,style:  TextStyle(color: getThird(),fontSize: 20),),
           ]
       ),
     );

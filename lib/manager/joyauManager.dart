@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter/material.dart';
 import '../object/weapon/Arme.dart';
 import '../object/Armure.dart';
@@ -103,7 +104,7 @@ class _JoyauWidgetState extends State<JoyauWidget> {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+        backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
       ),
       onPressed: () async {
         var value = await joyau(context, widget.slot);

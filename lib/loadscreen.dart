@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -44,13 +45,13 @@ class _LoadScreen extends State<LoadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        color: getSecondary(),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset('images/logo.png',
                 height: 200, width: 200), // Remplacez par votre image
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             LinearProgressIndicator(value: _progress), // Barre de chargement
           ],
         ),

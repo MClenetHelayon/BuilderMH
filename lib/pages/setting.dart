@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -39,20 +40,20 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: getPrimary(),
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.param),
+        backgroundColor: getSecondary(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Langue',
               style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+                  fontSize: 20, fontWeight: FontWeight.bold, color: getFifth()),
             ),
             const SizedBox(height: 16),
             Consumer<AppState>(
@@ -72,19 +73,22 @@ class _SettingsPageState extends State<SettingsPage> {
                         children: [
                           Image.asset('images/drapeau/${option['code']}.jpg',
                               width: 50, height: 50),
-                          SizedBox(width: 8),
-                          Text(option['name']),
+                          const SizedBox(width: 8),
+                          Text(
+                            option['name'],
+                            style: TextStyle(color: getFourth()),
+                          ),
                         ],
                       ),
                     );
                   }).toList(),
                   decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 12,
-                    ),
-                  ),
+                      border: OutlineInputBorder(),
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 12,
+                      )),
+                  dropdownColor: getPrimary(),
                 );
               },
             )

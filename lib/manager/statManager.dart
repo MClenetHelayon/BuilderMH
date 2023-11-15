@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/weaponManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/material.dart';
@@ -191,16 +192,16 @@ Widget gSimplyCard(int i, Stuff s, BuildContext context) {
 }
 
 Widget statOff(Arme weapon, BuildContext context) {
-  Widget attaque =
-      printStat("images/elementaire/Attaque.webp", weapon.attaque.toString());
-  Widget defense =
-      printStat("images/elementaire/Defense.png", weapon.defense.toString());
+  Widget attaque = printStatWhite(
+      "images/elementaire/Attaque.webp", weapon.attaque.toString());
+  Widget defense = printStatWhite(
+      "images/elementaire/Defense.png", weapon.defense.toString());
   Widget affinite =
       Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
     Image.asset("images/elementaire/Affinite.webp", height: 16, width: 16),
     const SizedBox(width: 5),
     Text("${weapon.affinite.toString()}%",
-        style: const TextStyle(color: Colors.blue)),
+        style: TextStyle(color: getFourth())),
   ]);
   Widget elem = isDualBlade(weapon, context);
   return Row(
@@ -212,12 +213,13 @@ Widget statDef(Armure armor) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      printStat("images/elementaire/Defense.png", armor.defense.toString()),
-      printStat("images/elementaire/Feu.webp", armor.feu.toString()),
-      printStat("images/elementaire/Eau.webp", armor.eau.toString()),
-      printStat("images/elementaire/Foudre.webp", armor.foudre.toString()),
-      printStat("images/elementaire/Glace.webp", armor.glace.toString()),
-      printStat("images/elementaire/Dragon.webp", armor.dragon.toString())
+      printStatWhite(
+          "images/elementaire/Defense.png", armor.defense.toString()),
+      printStatWhite("images/elementaire/Feu.webp", armor.feu.toString()),
+      printStatWhite("images/elementaire/Eau.webp", armor.eau.toString()),
+      printStatWhite("images/elementaire/Foudre.webp", armor.foudre.toString()),
+      printStatWhite("images/elementaire/Glace.webp", armor.glace.toString()),
+      printStatWhite("images/elementaire/Dragon.webp", armor.dragon.toString())
     ],
   );
 }

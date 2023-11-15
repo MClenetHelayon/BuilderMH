@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
@@ -14,7 +15,7 @@ Widget armorTopInfo(Armure armure) {
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
               margin: const EdgeInsets.only(bottom: 20.0),
-              child: Text(armure.name))
+              child: title(armure.name))
         ]),
         statDef(armure),
       ]));
@@ -23,13 +24,13 @@ Widget armorTopInfo(Armure armure) {
 TableRow armorRarityTalent(Armure armure, BuildContext context) {
   return TableRow(children: [
     Container(
-      child: Text("${AppLocalizations.of(context)!.rarete} ${armure.rarete}"),
+      child: white("${AppLocalizations.of(context)!.rarete} ${armure.rarete}"),
     ),
     Container(
         margin: const EdgeInsets.only(top: 10.0, bottom: 3),
         child: Column(
           children: [
-            Text(AppLocalizations.of(context)!.talent),
+            white(AppLocalizations.of(context)!.talent),
             talentIfHere(armure),
           ],
         ))
@@ -46,7 +47,7 @@ TableRow armorSlot(
           Column(children: [
             Container(
                 margin: const EdgeInsets.only(bottom: 10.0),
-                child: Text(armure.slots.length == 0
+                child: white(armure.slots.length == 0
                     ? AppLocalizations.of(context)!.nJoyau
                     : AppLocalizations.of(context)!.joyaux)),
             Container(child: joyau)
@@ -135,7 +136,7 @@ Widget TalisJoyau(
   return Column(children: [
     Container(
         margin: const EdgeInsets.only(bottom: 10.0),
-        child: Text(s.charm.slots.length == 0
+        child: white(s.charm.slots.length == 0
             ? AppLocalizations.of(context)!.nJoyau
             : AppLocalizations.of(context)!.joyaux)),
     Container(
@@ -157,7 +158,7 @@ Widget TalisTalent(Talisman charm, BuildContext context) {
   return Column(children: [
     Container(
         margin: EdgeInsets.only(bottom: 10.0),
-        child: Text(charm.talents.length == 0
+        child: white(charm.talents.length == 0
             ? AppLocalizations.of(context)!.nTalent
             : AppLocalizations.of(context)!.talents)),
     Column(children: [

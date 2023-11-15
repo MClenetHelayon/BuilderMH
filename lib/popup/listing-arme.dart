@@ -380,23 +380,23 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                           Text('R${weapon.rarete}'),
-                                          printStat(
+                                          printStatBlack(
                                               "images/elementaire/Attaque.webp",
                                               weapon.attaque.toString()),
-                                          printStat(
+                                          printStatBlack(
                                               "images/elementaire/Affinite.webp",
                                               weapon.affinite.toString()),
                                           if (weapon is LameDouble &&
                                               weapon.idElement2 != 0)
-                                            printDoubleElem(
+                                            printDoubleElemBlack(
                                                 element(weapon.idElement),
                                                 weapon.element,
                                                 element(weapon.idElement2),
                                                 weapon.element2)
                                           else if (weapon.idElement != 0)
-                                            printStat(element(weapon.idElement),
+                                            printStatBlack(element(weapon.idElement),
                                                 weapon.element.toString()),
-                                          printStat(
+                                          printStatBlack(
                                               "images/elementaire/Defense.png",
                                               weapon.defense.toString())
                                         ])),
