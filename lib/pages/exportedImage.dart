@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -43,10 +44,10 @@ Widget buildCard(Screen screen) {
   return Container(
       width: screen.width,
       height: screen.height,
-      color: Colors.orange,
+      color: getPrimary(),
       child: Row(children: [
         Container(
-            color: Colors.grey,
+            color: getSecondary(),
             width:
                 s.weapon is Fusarbalete ? screen.width / 6 : screen.width / 5,
             height: screen.height,
@@ -82,7 +83,9 @@ Widget buildCard(Screen screen) {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                   gDef(s, screen.context),
+                  verticalDivider(),
                   gOff(s, screen.context),
+                  verticalDivider(),
                   gSpeArme(s.weapon, screen.context),
                 ])),
           Weapon(screen),
@@ -96,7 +99,7 @@ Widget buildCard(Screen screen) {
         ])),
         if (s.weapon is! Fusarbalete)
           Container(
-              color: Colors.grey,
+              color: getSecondary(),
               width:
                   s.weapon is Fusarbalete ? screen.width / 6 : screen.width / 5,
               height: screen.height,
@@ -118,7 +121,7 @@ Widget buildCard(Screen screen) {
               ])),
         if (s.weapon is Fusarbalete)
           Container(
-              color: Colors.grey,
+              color: getSecondary(),
               width: screen.width / 3.25,
               height: screen.height,
               child: Column(children: [
@@ -137,16 +140,16 @@ Widget Weapon(Screen screen) {
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(
-              color: const Color.fromARGB(255, 82, 82, 82),
-              child: icon(0, false, s)),
+          Card(color: getSecondary(), child: icon(0, false, s)),
         ]),
         Expanded(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
               margin: const EdgeInsets.only(top: 5),
-              child: Text(s.weapon.name)),
+              child: Text(s.weapon.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: getFifth()))),
           exportArmeStat(s.weapon),
         ])),
         Row(children: [
@@ -155,7 +158,7 @@ Widget Weapon(Screen screen) {
           Container(
               margin: const EdgeInsets.only(right: 5),
               child: Column(children: [
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 if (s.weapon.slots.isEmpty) Container(),
                 if (s.weapon.slots.length >= 1)
                   exportJowel(s.weapon.slots[0], j, 0, screen),
@@ -192,14 +195,16 @@ Widget Armor(int i, Armure a, Screen screen) {
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(
-              color: const Color.fromARGB(255, 82, 82, 82),
-              child: icon(i, true, s)),
+          Card(color: getSecondary(), child: icon(i, true, s)),
         ]),
         Expanded(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(margin: const EdgeInsets.only(top: 5), child: Text(a.name)),
+          Container(
+              margin: const EdgeInsets.only(top: 5),
+              child: Text(a.name,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: getFifth()))),
           exportTalent(a.talent)
         ])),
         Container(
@@ -241,15 +246,15 @@ Widget Charm(Screen screen) {
   return Card(
       color: Colors.white,
       child: Row(children: [
-        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Card(
-              color: const Color.fromARGB(255, 82, 82, 82),
-              child: icon(7, true, s))
-        ]),
+        Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Card(color: getSecondary(), child: icon(7, true, s))]),
         Expanded(
             child: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(AppLocalizations.of(screen.context)!.tali),
+            Text(AppLocalizations.of(screen.context)!.tali,
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: getFifth())),
             if (s.charm.talents.isEmpty) Container(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (s.charm.talents.length >= 1)
@@ -283,14 +288,16 @@ Widget Flor(Screen screen) {
         Flexible(
             flex: 1,
             child: Column(children: [
-              Card(
-                  color: const Color.fromARGB(255, 82, 82, 82),
-                  child: icon(6, true, s)),
+              Card(color: getSecondary(), child: icon(6, true, s)),
             ])),
         Flexible(
             flex: 3,
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Flexible(flex: 1, child: Text(s.florelet.name)),
+              Flexible(
+                  flex: 1,
+                  child: Text(s.florelet.name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: getFifth()))),
               Flexible(flex: 2, child: Container()),
               Flexible(
                   flex: 0,
@@ -369,7 +376,7 @@ Widget exportTalent(List<Talent> t) {
 Container talent(String s) {
   return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 82, 82, 82),
+        color: getSecondary(),
         borderRadius: BorderRadius.circular(5),
       ),
       margin: const EdgeInsets.only(right: 5.0, bottom: 5.0),
@@ -408,7 +415,7 @@ Widget exportCalam(int slotCalamite, Screen screen) {
 
   return Card(
       margin: const EdgeInsets.only(bottom: 3.0, right: 2),
-      color: const Color.fromARGB(255, 80, 80, 80),
+      color: getSecondary(),
       child: Container(
           padding: const EdgeInsets.only(left: 2, right: 5, top: 1),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -434,7 +441,7 @@ Widget exportJowel(int slot, List<Joyaux> j, int id, Screen screen) {
 
   return Card(
       margin: const EdgeInsets.only(bottom: 3.0),
-      color: const Color.fromARGB(255, 80, 80, 80),
+      color: getSecondary(),
       child: Container(
           padding: const EdgeInsets.only(left: 2, right: 5, top: 1),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -447,7 +454,7 @@ Widget exportJowel(int slot, List<Joyaux> j, int id, Screen screen) {
 Container printValueImg(String img, String t) {
   return Container(
     decoration: BoxDecoration(
-      color: const Color.fromARGB(255, 82, 82, 82),
+      color: getSecondary(),
       borderRadius: BorderRadius.circular(5),
     ),
     width: 60,
@@ -552,7 +559,7 @@ Widget gSharp(Stuff s, BuildContext context) {
         margin: const EdgeInsets.all(5),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
-              color: const Color.fromARGB(255, 45, 45, 45),
+              color: getSecondary(),
               child: IntrinsicWidth(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -594,7 +601,7 @@ gKinsect(Stuff s, BuildContext context) {
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Card(
-              color: const Color.fromARGB(255, 82, 82, 82),
+              color: getSecondary(),
               child: IconButton(
                   onPressed: () {},
                   iconSize: 20,
@@ -663,9 +670,7 @@ gArc(Stuff s, BuildContext context) {
   Arc bow = s.weapon as Arc;
   return Column(children: [
     title(AppLocalizations.of(context)!.arc),
-    Container(
-        margin: const EdgeInsets.all(5),
-        child: tBarrage(bow, context)),
+    Container(margin: const EdgeInsets.all(5), child: tBarrage(bow, context)),
     Container(
         margin: const EdgeInsets.all(5),
         child: Column(

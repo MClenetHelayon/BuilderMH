@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:flutter/material.dart';
 
@@ -9,8 +10,8 @@ Container title(String t) {
   return Container(
       margin: const EdgeInsets.only(top: 5),
       child: Text(t,
-          style: const TextStyle(
-            color: Colors.blue,
+          style: TextStyle(
+            color: getFifth(),
             fontWeight: FontWeight.bold,
           )));
 }
@@ -24,15 +25,15 @@ Text blue(String t) {
 
 Text black(String t) {
   return Text(t,
-      style: const TextStyle(
-        color: Colors.black,
+      style: TextStyle(
+        color: getSecondary(),
       ));
 }
 
 Text white(String t) {
   return Text(t,
-      style: const TextStyle(
-        color: Colors.white,
+      style: TextStyle(
+        color: getFourth(),
       ));
 }
 
@@ -91,8 +92,7 @@ Widget listTranchant(Stuff s) {
 
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Text(
-        "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}",
-        style: const TextStyle(color: Colors.blue)),
+        "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}")
   ]);
 }
 
@@ -129,4 +129,12 @@ Widget printSlotJowel(Arme weapon) {
     ]);
   }
   return vretour;
+}
+
+Widget verticalDivider() {
+  return Container(
+    height: 50.0,
+    color: getThird(), // Couleur du séparateur
+    width: 1.0, // Épaisseur du séparateur
+  );
 }
