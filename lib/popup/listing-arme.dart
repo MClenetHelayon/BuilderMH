@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/filter/getCombobox.dart';
 import 'package:builder_mhrs/manager/filter/logicWeapon.dart';
@@ -334,12 +335,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
     List<Arme> lArme =
         getLWeapons(lFilteredWeapons, cbxElem, cbxCalam, cbxSharp, affNeg);
     return Card(
-        color: Colors.black,
+        color: getSecondary(),
         child: Column(children: [
           filterRankWeapon(),
           filterAccordeon(),
           Card(
-              color: Colors.grey,
+              color: getThird(),
               margin: const EdgeInsets.all(2),
               child: TextField(
                   controller: tc,
@@ -358,9 +359,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               top: 5, left: 10, right: 10),
                           child: TextButton(
                               style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<
-                                        Color>(
-                                    const Color.fromARGB(255, 255, 255, 255)),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        getFourth()),
                               ),
                               onPressed: () {
                                 Navigator.of(context).pop(weapon);
@@ -580,17 +581,17 @@ class _ListViewScreenState extends State<ListViewScreen> {
   Widget filterAccordeon() {
     return Card(
         margin: const EdgeInsets.all(2),
-        color: Colors.grey,
+        color: getThird(),
         child: Accordion(
             paddingListTop: 0,
             paddingListBottom: 0,
             paddingListHorizontal: 0,
-            headerBackgroundColor: Colors.grey,
+            headerBackgroundColor: getThird(),
             headerBorderWidth: 0,
-            headerBorderColorOpened: Colors.grey,
-            headerBackgroundColorOpened: Colors.grey,
-            contentBackgroundColor: Colors.grey,
-            contentBorderColor: Colors.grey,
+            headerBorderColorOpened: getThird(),
+            headerBackgroundColorOpened: getThird(),
+            contentBackgroundColor: getThird(),
+            contentBorderColor: getThird(),
             contentBorderWidth: 0,
             scaleWhenAnimating: true,
             openAndCloseAnimation: true,
@@ -601,8 +602,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   isOpen: isExpanded,
                   onOpenSection: () => setState(() => isExpanded = true),
                   contentVerticalPadding: 10,
-                  contentBackgroundColor: Colors.grey,
-                  contentBorderColor: Colors.grey,
+                  contentBackgroundColor: getThird(),
+                  contentBorderColor: getThird(),
                   header: Text(AppLocalizations.of(context)!.moreFilters,
                       style: const TextStyle(fontWeight: FontWeight.bold)),
                   content: Column(children: [
@@ -653,7 +654,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   //Widget gérant l'affichage des filtres
   Widget filterRankWeapon() {
     return Card(
-        color: Colors.grey,
+        color: getThird(),
         margin: const EdgeInsets.all(2),
         child: Container(
             margin: const EdgeInsets.only(bottom: 5),

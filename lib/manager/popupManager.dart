@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../popup/listing-casque.dart' as ListCasque;
@@ -141,23 +142,24 @@ Future<Arme?> arme(BuildContext context, Stuff s) {
       context: context,
       builder: (context) {
         return AlertDialog(
-            insetPadding: EdgeInsets.all(10),
-            contentPadding: EdgeInsets.only(left: 10, right: 10),
+            insetPadding: const EdgeInsets.all(10),
+            contentPadding: const EdgeInsets.only(left: 10, right: 10),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             title: Row(
               children: [
                 Text(AppLocalizations.of(context)!.arme,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, color: getFourth())),
                 const Spacer(),
                 CloseButton(
-                  color: Colors.red,
+                  color: getFifth(),
                   onPressed: () {
                     close(context);
                   },
                 ),
               ],
             ),
-            backgroundColor: const Color.fromARGB(255, 170, 170, 170),
+            backgroundColor: getPrimary(),
             content: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
