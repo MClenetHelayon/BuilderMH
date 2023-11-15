@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../imgManager.dart';
 import '../textManager.dart';
+import '../filter/getCombobox.dart';
 
 String getElemName(String id, BuildContext context) {
   String vretour = '';
@@ -43,17 +44,18 @@ String getElemName(String id, BuildContext context) {
   }
   return vretour;
 }
+
 int convertStringElemToIdElem(String id) {
   int vretour = 0;
   switch (id) {
     case 'none':
-      vretour =0;
+      vretour = 0;
       break;
     case 'fire':
       vretour = 1;
       break;
     case 'water':
-      vretour =2;
+      vretour = 2;
       break;
     case 'thunder':
       vretour = 3;
@@ -79,6 +81,7 @@ int convertStringElemToIdElem(String id) {
   }
   return vretour;
 }
+
 Widget getElemForCombo(String id, BuildContext context) {
   Widget vretour = const Text('');
   if (id == "all") {
@@ -88,7 +91,7 @@ Widget getElemForCombo(String id, BuildContext context) {
     vretour = black(AppLocalizations.of(context)!.none);
   }
   if (id != "all" && id != "none") {
-    vretour = printStatCombo(elementWtName(id), getElemName(id, context));
+    vretour = statComboElem(elementWtName(id), getElemName(id, context));
   }
   return vretour;
 }

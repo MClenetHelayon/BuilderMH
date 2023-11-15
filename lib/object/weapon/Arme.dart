@@ -3,18 +3,14 @@ import '../Talent.dart';
 
 class Arme {
   final String name, categorie, niveau;
-  final int rarete,
-      attaque,
-      affinite,
-      defense,
-      idElement,
-      element,
-      slotCalamite;
+  final int id, rarete, attaque, defense, idElement, element, slotCalamite;
+  final num affinite;
   final List<int> slots;
   final Talent? talent;
 
   static List<Joyaux> listJoyaux = [];
   Arme({
+    required this.id,
     required this.name,
     required this.rarete,
     required this.categorie,
@@ -31,6 +27,7 @@ class Arme {
 
   static getBase() {
     return Arme(
+      id: 9999,
       name: "-----------------------",
       rarete: 1,
       categorie: "GS",
@@ -64,7 +61,8 @@ class Tranchant extends Arme {
   List<int> sharpBoost;
   int rouge, orange, jaune, vert, bleu, blanc, violet;
   Tranchant(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -87,7 +85,7 @@ class Tranchant extends Arme {
 }
 
 class Fusarbalete extends Arme {
-  final int recul, rechargement, sensDeviation, puissanceDeviation,mod;
+  final int recul, rechargement, sensDeviation, puissanceDeviation, mod;
   final bool bombFrag;
   final List<dynamic> normal1,
       normal2,
@@ -131,7 +129,8 @@ class Fusarbalete extends Arme {
       tranch,
       tranquil;
   Fusarbalete(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,

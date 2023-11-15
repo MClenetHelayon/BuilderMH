@@ -3,7 +3,8 @@ import '../Arme.dart';
 class MorphoHache extends Tranchant {
   final int typeFiole, valueFiole;
   MorphoHache(
-      {required super.name,
+      {required super.id,
+      required super.name,
       required super.rarete,
       required super.categorie,
       required super.niveau,
@@ -40,6 +41,7 @@ class MorphoHache extends Tranchant {
     var listSharpBoost = json['tranchantSVBoost'] as List<dynamic>;
     List<int> lSharpBoost = List<int>.from(listSharpBoost);
     return MorphoHache(
+        id: json['id'],
         name: localizedNames,
         rarete: json['rarete'],
         categorie: json['categorie'],

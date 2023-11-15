@@ -2,6 +2,7 @@ import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:flutter/material.dart';
 
 import '../object/Stuff.dart';
+import '../object/weapon/Arme.dart';
 import 'imgManager.dart';
 
 Container title(String t) {
@@ -35,7 +36,7 @@ Text white(String t) {
       ));
 }
 
-Text switchColor(String t, int max, int value) {
+Text switchColor(String t, int max, num value) {
   return Text(t,
       style: TextStyle(
           color: value <= max && value > 0 ? Colors.black : Colors.red));
@@ -64,14 +65,6 @@ Widget printDoubleElem(String image, int value, String image2, int value2) {
       printStat(image2, value2.toString())
     ],
   );
-}
-
-Widget printStatCombo(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-    Image.asset(img, height: 18, width: 18),
-    const SizedBox(width: 3),
-    Text(stat),
-  ]);
 }
 
 Widget printStat(String img, String stat) {
@@ -116,38 +109,24 @@ Widget cadreAmmoValue(double w, Widget value) {
       child: value);
 }
 
-Widget checkboxArme(String img, bool check, Function(bool) onTapAction) {
-  return Card(
-      color: const Color.fromARGB(255, 190, 190, 190),
-      child: GestureDetector(
-          onTap: () => onTapAction(!check),
-          child: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(img),
-                  ),
-                  borderRadius: BorderRadius.circular(5),
-                  color: check
-                      ? const Color.fromARGB(148, 207, 25, 25)
-                      : Colors.transparent))));
-}
-
-Widget checkboxRank(String txt, bool check, Function onTapAction) {
-  return Card(
-      color: const Color.fromARGB(255, 190, 190, 190),
-      child: GestureDetector(
-          onTap: () => onTapAction(),
-          child: Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: check
-                      ? const Color.fromARGB(148, 207, 25, 25)
-                      : Colors.transparent),
-              child: Center(
-                  child: Text(txt,
-                      style: const TextStyle(fontWeight: FontWeight.bold))))));
+Widget printSlotJowel(Arme weapon) {
+  Widget vretour = const Text('- / - / -');
+  if (weapon.slots.isNotEmpty) {
+    Row(children: [
+      for (int i = 0; i < 3; i++)
+        Container(
+          margin: const EdgeInsets.only(right: 8),
+          child: Text(
+            weapon.slots.length > i
+                ? i != 2 || weapon.slots.length > i + 1
+                    ? '${weapon.slots[i].toString()} /'
+                    : weapon.slots[i].toString()
+                : i != 2
+                    ? '- /'
+                    : '-',
+          ),
+        ),
+    ]);
+  }
+  return vretour;
 }

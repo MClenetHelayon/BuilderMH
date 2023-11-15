@@ -19,6 +19,7 @@
   "e": "Élément",
   "a": "Affliction",
   "aff": "Affinité",
+  "affNeg": "Affinité Négative",
   "petalAtt": "Florelet Att.",
   "critMultip": "Multip. Crit.",
   "elemCritMultip": "Multip. Crit. Elem.",
@@ -163,5 +164,12 @@
   "modBouclier": "Bouclier",
   "modCanonPower": "Canon Puissant",
   "modCanonLong": "Canon Long",
-  "modSilencieux": "Silenceux"
+  "modSilencieux": "Silenceux",
+  "sharpR": "Rouge",
+  "sharpO": "Orange",
+  "sharpJ": "Jaune",
+  "sharpV": "Vert",
+  "sharpB": "Bleu",
+  "sharpBc": "Blanc",
+  "sharpVl": "Violet"
 }

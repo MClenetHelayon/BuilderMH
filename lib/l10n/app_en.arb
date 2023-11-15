@@ -19,6 +19,7 @@
   "e": "Element",
   "a": "Status",
   "aff": "Affinity",
+  "affNeg": "Negative Affinity",
   "petalAtt": "Petalas Attack",
   "critMultip": "Raw Crit Mod",
   "elemCritMultip": "Elem Crit Mod",
@@ -163,5 +164,12 @@
   "modBouclier": "Shield",
   "modCanonPower": "Power Barrel",
   "modCanonLong": "Long Barrel",
-  "modSilencieux": "Silenced"
+  "modSilencieux": "Silenced",
+  "sharpR": "Red",
+  "sharpO": "Orange",
+  "sharpJ": "Yellow",
+  "sharpV": "Green",
+  "sharpB": "Blue",
+  "sharpBc": "White",
+  "sharpVl": "Purple"
 }
