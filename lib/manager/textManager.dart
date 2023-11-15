@@ -46,7 +46,7 @@ Text switchColor(String t, int max, num value) {
 Container gDefSimply(String img, int value) {
   return Container(
       margin: const EdgeInsets.only(right: 5),
-      child: printStat(img, value.toString()));
+      child: printStatBlack(img, value.toString()));
 }
 
 Widget jowel(int leSlot, String nom) {
@@ -54,25 +54,33 @@ Widget jowel(int leSlot, String nom) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 22, width: 22),
     const SizedBox(width: 10),
-    Text(nom, style: const TextStyle(color: Colors.blue)),
+    white(nom),
   ]);
 }
 
-Widget printDoubleElem(String image, int value, String image2, int value2) {
-  return Row(
-    children: [
-      printStat(image, value.toString()),
-      const Text("/", style: TextStyle(color: Colors.blue)),
-      printStat(image2, value2.toString())
-    ],
-  );
+Widget printDoubleElemBlack(
+    String image, int value, String image2, int value2) {
+  return Row(children: [
+    printStatBlack(image, value.toString()),
+    black("/"),
+    printStatBlack(image2, value2.toString())
+  ]);
 }
 
-Widget printStat(String img, String stat) {
+Widget printDoubleElemWhite(
+    String image, int value, String image2, int value2) {
+  return Row(children: [
+    printStatWhite(image, value.toString()),
+    white("/"),
+    printStatWhite(image2, value2.toString())
+  ]);
+}
+
+Widget printStatBlack(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 15, width: 15),
     const SizedBox(width: 3),
-    Text(stat, style: TextStyle(color: getFourth())),
+    black(stat),
   ]);
 }
 
@@ -80,10 +88,7 @@ Widget printStatWhite(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 15, width: 15),
     const SizedBox(width: 3),
-    Text(
-      stat,
-      style: const TextStyle(color: Colors.white),
-    ),
+    white(stat),
   ]);
 }
 

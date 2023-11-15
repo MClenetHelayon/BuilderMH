@@ -613,17 +613,17 @@ gKinsect(Stuff s, BuildContext context) {
         ]),
         Text(k.name),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          printStat(
+          printStatBlack(
             "images/elementaire/AttKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][0]
                 .toString(),
           ),
-          printStat(
+          printStatBlack(
             "images/elementaire/VitKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][1]
                 .toString(),
           ),
-          printStat(
+          printStatBlack(
             "images/elementaire/HealKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][2]
                 .toString(),

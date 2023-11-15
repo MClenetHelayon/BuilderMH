@@ -55,7 +55,8 @@ class _HomepageState extends State<Homepage> {
       case DrawerSections.equipement:
         container =
             //expImg.buildCard(screen)
-            BuilderPage();
+            BuilderPage()
+            ;
         break;
       case DrawerSections.parametres:
         container = SettingsPage(

@@ -58,7 +58,7 @@ Widget joyau(
     Column(children: [
       Container(
           margin: const EdgeInsets.only(bottom: 10.0),
-          child: Text(s.weapon.slots.length == 0
+          child: white(s.weapon.slots.length == 0
               ? AppLocalizations.of(context)!.nJoyau
               : AppLocalizations.of(context)!.joyaux)),
       Container(
@@ -86,9 +86,9 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
           Container(
               margin: const EdgeInsets.only(bottom: 10.0, top: 5.0),
               child: Text(AppLocalizations.of(context)!.music)),
-          printStat(musique(0), horn.musique[0].name),
-          printStat(musique(1), horn.musique[1].name),
-          printStat(musique(2), horn.musique[2].name),
+          printStatBlack(musique(0), horn.musique[0].name),
+          printStatBlack(musique(1), horn.musique[1].name),
+          printStatBlack(musique(2), horn.musique[2].name),
         ])
       ]));
 }
@@ -128,10 +128,10 @@ Widget isDualBlade(Arme weapon, BuildContext context) {
   Widget vretour = Text(AppLocalizations.of(context)!.none,
       style: TextStyle(color: getFourth()));
   if (weapon is LameDouble && weapon.idElement2 != 0) {
-    vretour = printDoubleElem(element(weapon.idElement), weapon.element,
+    vretour = printDoubleElemWhite(element(weapon.idElement), weapon.element,
         element(weapon.idElement2), weapon.element2);
   } else if (weapon.idElement != 0) {
-    vretour = printStat(element(weapon.idElement), weapon.element.toString());
+    vretour = printStatBlack(element(weapon.idElement), weapon.element.toString());
   }
 
   return vretour;
@@ -152,7 +152,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStat(
+                  child: printStatBlack(
                     "images/elementaire/AttKinsect.png",
                     s
                         .kinsect
@@ -163,7 +163,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStat(
+                  child: printStatBlack(
                     "images/elementaire/VitKinsect.png",
                     s
                         .kinsect
@@ -174,7 +174,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStat(
+                  child: printStatBlack(
                     "images/elementaire/HealKinsect.png",
                     s
                         .kinsect

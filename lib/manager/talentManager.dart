@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:flutter/material.dart';
 
 talentIfHere(var value) {
@@ -62,6 +63,6 @@ Widget talent(String nom) {
       child: Row(children: [
         Image.asset('images/joyau/skill.webp', height: 22, width: 22),
         const SizedBox(width: 5),
-        Text(nom, style: const TextStyle(color: Colors.blue)),
+        white(nom),
       ]));
 }
