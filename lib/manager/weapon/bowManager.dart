@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/manager/local/arc/getTypeBarrage.dart';
-import 'package:builder_mhrs/manager/local/arc/getTypeTir.dart';
+import 'package:builder_mhrs/manager/local/arme/arc/getTypeBarrage.dart';
+import 'package:builder_mhrs/manager/local/arme/arc/getTypeTir.dart';
 import 'package:builder_mhrs/object/weapon/Arc.dart';
 
 Widget arc(Arc bow, Stuff s, BuildContext context) {

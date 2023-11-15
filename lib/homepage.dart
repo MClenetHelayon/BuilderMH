@@ -112,14 +112,14 @@ class _HomepageState extends State<Homepage> {
               setState(() => this.bytes = bytes);
 
               //downloadImageWeb(bytes);
-              downloadImageWindows(bytes);
-              /*await downloadImageAndroid(bytes);
+              //downloadImageWindows(bytes);
+              await downloadImageAndroid(bytes);
               Navigator.of(context).pop();
               Fluttertoast.showToast(
                 msg: "L'image a été téléchargé !",
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.CENTER,
-              );*/
+              );
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),

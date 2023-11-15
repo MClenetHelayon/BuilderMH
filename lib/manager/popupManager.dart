@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../popup/listing-casque.dart' as ListCasque;
 import '../popup/listing-bras.dart' as ListBras;
 import '../popup/listing-plastron.dart' as ListPlastron;
@@ -140,25 +141,28 @@ Future<Arme?> arme(BuildContext context, Stuff s) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Row(
-            children: [
-              const Text("Arme"),
-              const Spacer(),
-              CloseButton(
-                color: Colors.red,
-                onPressed: () {
-                  close(context);
-                },
-              ),
-            ],
-          ),
-          backgroundColor: const Color.fromARGB(255, 170, 170, 170),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height,
-            child: ListArme.ListViewScreen(s,context),
-          ),
-        );
+            insetPadding: EdgeInsets.all(10),
+            contentPadding: EdgeInsets.only(left: 10, right: 10),
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            title: Row(
+              children: [
+                Text(AppLocalizations.of(context)!.arme,
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                const Spacer(),
+                CloseButton(
+                  color: Colors.red,
+                  onPressed: () {
+                    close(context);
+                  },
+                ),
+              ],
+            ),
+            backgroundColor: const Color.fromARGB(255, 170, 170, 170),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: ListArme.ListViewScreen(s, context),
+            ));
       });
 }
 
