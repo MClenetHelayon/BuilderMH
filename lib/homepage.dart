@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -21,6 +22,7 @@ import 'pages/info.dart';
 import 'pages/exportedImage.dart' as expImg;
 import 'provider/app_state.dart';
 import 'provider/stuff_state.dart';
+import 'stat-drawer.dart';
 
 class App extends StatelessWidget {
   @override
@@ -54,9 +56,8 @@ class _HomepageState extends State<Homepage> {
     switch (currentPage) {
       case DrawerSections.equipement:
         container =
-            //expImg.buildCard(screen)
-            BuilderPage()
-            ;
+            //expImg.buildCard(screen);
+            BuilderPage();
         break;
       case DrawerSections.parametres:
         container = SettingsPage(
@@ -73,21 +74,26 @@ class _HomepageState extends State<Homepage> {
         container = const BuilderPage();
     }
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: getFifth(),
-      ),
-      body: container,
-      drawer: Drawer(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const HeaderDrawer(),
-              DrawerList(),
-            ],
-          ),
-        ),
-      ),
-    );
+        appBar: AppBar(backgroundColor: getFifth(), actions: [
+          Builder(
+              builder: (context) => IconButton(
+                  iconSize: 80,
+                  icon: white((AppLocalizations.of(context)!.stat)),
+                  onPressed: () {
+                    Scaffold.of(context).openEndDrawer();
+                  }))
+        ]),
+        body: container,
+        drawer: Drawer(
+            child: SingleChildScrollView(
+                child: Column(children: [
+          const HeaderDrawer(),
+          DrawerList(),
+        ]))),
+        endDrawer: Drawer(
+            backgroundColor: getSecondary(),
+            child: const SingleChildScrollView(
+                child: Column(children: [StatDrawer()]))));
   }
 
   Widget DrawerList() {
@@ -113,14 +119,14 @@ class _HomepageState extends State<Homepage> {
               setState(() => this.bytes = bytes);
 
               //downloadImageWeb(bytes);
-              //downloadImageWindows(bytes);
-              await downloadImageAndroid(bytes);
+              downloadImageWindows(bytes);
+              /*await downloadImageAndroid(bytes);
               Navigator.of(context).pop();
               Fluttertoast.showToast(
                 msg: "L'image a été téléchargé !",
                 toastLength: Toast.LENGTH_SHORT,
                 gravity: ToastGravity.CENTER,
-              );
+              );*/
             },
             child: Container(
               padding: const EdgeInsets.all(10.0),
@@ -186,10 +192,8 @@ class _HomepageState extends State<Homepage> {
                   color: Colors.black,
                 )),
                 Expanded(
-                    child: Text(
-                  title,
-                  style:  TextStyle(color: getSecondary(), fontSize: 16)
-                )),
+                    child: Text(title,
+                        style: TextStyle(color: getSecondary(), fontSize: 16))),
               ])),
         ));
   }

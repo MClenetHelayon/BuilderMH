@@ -1,3 +1,5 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
@@ -34,19 +36,21 @@ Widget arc(Arc bow, Stuff s, BuildContext context) {
 
 Column tBarrage(Arc bow, BuildContext context) {
   return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Text("${AppLocalizations.of(context)!.barrage} : ${bow.barrage}")
+    white(
+        "${AppLocalizations.of(context)!.barrage} : ${getTypeBarrage(bow.barrage, context)}"),
   ]);
 }
 
 Column typeShoot(Arc bow, BuildContext context, int skill) {
   return Column(children: [
-    Text('${getTypeTir(bow.typeMun1, context)} ${bow.lvlTypeMun1}'),
-    Text('${getTypeTir(bow.typeMun2, context)} ${bow.lvlTypeMun2}'),
-    Text('${getTypeTir(bow.typeMun3, context)} ${bow.lvlTypeMun3}'),
+    white('${getTypeTir(bow.typeMun1, context)} ${bow.lvlTypeMun1}'),
+    white('${getTypeTir(bow.typeMun2, context)} ${bow.lvlTypeMun2}'),
+    white('${getTypeTir(bow.typeMun3, context)} ${bow.lvlTypeMun3}'),
     Text('${getTypeTir(bow.typeMun4, context)} ${bow.lvlTypeMun4}',
-        style: TextStyle(color: skill == 0 ? Colors.grey : Colors.blue))
+        style: TextStyle(color: skill == 0 ? Colors.grey : getFourth()))
   ]);
 }
+
 Column typeShootListing(Arc bow, BuildContext context) {
   return Column(children: [
     Text('${getTypeTir(bow.typeMun1, context)} ${bow.lvlTypeMun1}'),
@@ -55,6 +59,7 @@ Column typeShootListing(Arc bow, BuildContext context) {
     Text('${getTypeTir(bow.typeMun4, context)} ${bow.lvlTypeMun4}')
   ]);
 }
+
 Column coating(Arc bow, BuildContext context) {
   return Column(children: [
     if (bow.combat != 0)
@@ -90,5 +95,5 @@ Widget fiole(int fiole, String nom) {
   if (fiole == 2) {
     vretour = "$nom +";
   }
-  return Text(vretour);
+  return white(vretour);
 }

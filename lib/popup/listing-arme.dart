@@ -681,37 +681,37 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         checkboxArme(
-                            "images/arme/GreatSword.png",
+                            arme("GS"),
                             gsCheck,
                             updateCheckbox(
                                 gsCheck, (bool check) => gsCheck = check)),
                         checkboxArme(
-                            "images/arme/LongSword.png",
+                            arme("LS"),
                             lsCheck,
                             updateCheckbox(
                                 lsCheck, (bool check) => lsCheck = check)),
                         checkboxArme(
-                            "images/arme/SwordNShield.png",
+                            arme("SNS"),
                             snsCheck,
                             updateCheckbox(
                                 snsCheck, (bool check) => snsCheck = check)),
                         checkboxArme(
-                            "images/arme/DualBlades.png",
+                            arme("DB"),
                             dbCheck,
                             updateCheckbox(
                                 dbCheck, (bool check) => dbCheck = check)),
                         checkboxArme(
-                            "images/arme/Hammer.png",
+                            arme("MRTO"),
                             mrtoCheck,
                             updateCheckbox(
                                 mrtoCheck, (bool check) => mrtoCheck = check)),
                         checkboxArme(
-                            "images/arme/HuntingHorn.png",
+                            arme("HH"),
                             hhCheck,
                             updateCheckbox(
                                 hhCheck, (bool check) => hhCheck = check)),
                         checkboxArme(
-                            "images/arme/Lance.png",
+                            arme("LNC"),
                             lncCheck,
                             updateCheckbox(
                                 lncCheck, (bool check) => lncCheck = check)),
@@ -720,37 +720,37 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         checkboxArme(
-                            "images/arme/Gunlance.png",
+                            arme("GL"),
                             glCheck,
                             updateCheckbox(
                                 glCheck, (bool check) => glCheck = check)),
                         checkboxArme(
-                            "images/arme/SwitchAxe.png",
+                            arme("SA"),
                             saCheck,
                             updateCheckbox(
                                 saCheck, (bool check) => saCheck = check)),
                         checkboxArme(
-                            "images/arme/ChargeBlade.png",
+                            arme("CB"),
                             cbCheck,
                             updateCheckbox(
                                 cbCheck, (bool check) => cbCheck = check)),
                         checkboxArme(
-                            "images/arme/InsectGlaive.png",
+                            arme("IG"),
                             igCheck,
                             updateCheckbox(
                                 igCheck, (bool check) => igCheck = check)),
                         checkboxArme(
-                            "images/arme/Bow.png",
+                            arme("ARC"),
                             arcCheck,
                             updateCheckbox(
                                 arcCheck, (bool check) => arcCheck = check)),
                         checkboxArme(
-                            "images/arme/LightBowgun.png",
+                            arme("LBG"),
                             lbgCheck,
                             updateCheckbox(
                                 lbgCheck, (bool check) => lbgCheck = check)),
                         checkboxArme(
-                            "images/arme/HeavyBowgun.png",
+                            arme("HBG"),
                             hbgCheck,
                             updateCheckbox(
                                 hbgCheck, (bool check) => hbgCheck = check)),
