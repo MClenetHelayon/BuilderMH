@@ -99,7 +99,6 @@ class _BuilderPageState extends State<BuilderPage> {
     return Scaffold(
       backgroundColor: getSecondary(),
       body: Column(children: [
-        RecapStat(context),
         Expanded(
             child: SingleChildScrollView(
                 child: Column(children: [
@@ -122,53 +121,6 @@ class _BuilderPageState extends State<BuilderPage> {
         ])))
       ]),
     );
-  }
-
-  Widget RecapStat(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-            color: getFifth(),
-            child: Column(children: [
-              Card(
-                  color: getPrimary(),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: const EdgeInsets.only(left: 8.0),
-                            child: title(AppLocalizations.of(context)!.stat)),
-                        IconButton(
-                            icon: Icon(Icons.close, color: getFourth()),
-                            onPressed: () {
-                              setState(() {
-                                openGStat = !openGStat;
-                                openSkill = !openGStat;
-                              });
-                            })
-                      ])),
-              if (openGStat) g(s, context),
-              Card(
-                  color: Colors.black,
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                            margin: const EdgeInsets.only(left: 8.0),
-                            child:
-                                title(AppLocalizations.of(context)!.talents)),
-                        IconButton(
-                            icon: const Icon(Icons.close, color: Colors.white),
-                            onPressed: () {
-                              setState(() {
-                                openSkill = !openSkill;
-                              });
-                            })
-                      ])),
-              if (openSkill && s.weapon.niveau == "maitre")
-                calamJowel(s, context),
-              if (openSkill) recapTalent(s, context),
-            ])));
   }
 
   Widget Weapon(BuildContext context) {
@@ -220,8 +172,7 @@ class _BuilderPageState extends State<BuilderPage> {
                     Container(),
                     Column(children: [
                       if (s.weapon.niveau == "maitre")
-                        Container(
-                            child: Column(
+                        Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             white("Transcendance"),
@@ -242,7 +193,7 @@ class _BuilderPageState extends State<BuilderPage> {
                               child: white("-/-/-/-/-/-"),
                             ))
                           ],
-                        )),
+                        ),
                       if (s.weapon.niveau == "maitre")
                         Container(
                             margin: const EdgeInsets.all(10.0),
@@ -257,7 +208,6 @@ class _BuilderPageState extends State<BuilderPage> {
                       joyau(s.weapon, s, _reloadMainPage, context),
                       if (s.weapon is CorneDeChasse)
                         corne(s.weapon as CorneDeChasse, context),
-                      if (s.weapon is Arc) arc((s.weapon as Arc), s, context),
                     ]),
                   ]),
               ])),
@@ -266,54 +216,47 @@ class _BuilderPageState extends State<BuilderPage> {
 
   Widget Insect(BuildContext context) {
     return Card(
-        color: Colors.black,
-        margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-        child: Column(children: [
-          title(AppLocalizations.of(context)!.insect),
-          Card(
-              child: TextButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(getPrimary()),
-                  ),
-                  onPressed: () async {
-                    var value = await pop.kinsect(
-                        context, (s.weapon as Insectoglaive).niveauKinsect);
-                    if (value == null || value == s.kinsect) return;
-                    setState(() {
-                      s.kinsect = value;
-                    });
-                  },
-                  child: Table(columnWidths: const <int, TableColumnWidth>{
-                    0: FixedColumnWidth(50),
-                    1: FlexColumnWidth(),
-                  }, children: [
-                    TableRow(children: [
-                      Container(
-                          margin: const EdgeInsets.only(right: 10.0, top: 5.0),
-                          height: 40,
-                          width: 40,
-                          child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  openKinsect = !openKinsect;
-                                });
-                              },
-                              icon: Image.asset(
-                                'images/arme/kinsect.png',
-                                height: 100,
-                                width: 100,
-                              ))),
-                      StatKinsect(s)
-                    ]),
-                    TableRow(children: [
-                      Container(),
-                      Container(
-                          child: Column(
-                              children: [Row(children: []), Row(children: [])]))
-                    ])
-                  ])))
-        ]));
+        child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+            ),
+            onPressed: () async {
+              var value = await pop.kinsect(
+                  context, (s.weapon as Insectoglaive).niveauKinsect);
+              if (value == null || value == s.kinsect) return;
+              setState(() {
+                s.kinsect = value;
+              });
+            },
+            child: Table(columnWidths: const <int, TableColumnWidth>{
+              0: FixedColumnWidth(50),
+              1: FlexColumnWidth(),
+            }, children: [
+              TableRow(children: [
+                Container(
+                    margin: const EdgeInsets.only(right: 10.0, top: 5.0),
+                    height: 40,
+                    width: 40,
+                    child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            openKinsect = !openKinsect;
+                          });
+                        },
+                        icon: Image.asset(
+                          'images/arme/kinsect.png',
+                          height: 100,
+                          width: 100,
+                        ))),
+                StatKinsect(s)
+              ]),
+              TableRow(children: [
+                Container(),
+                Container(
+                    child: Column(
+                        children: [Row(children: []), Row(children: [])]))
+              ])
+            ])));
   }
 
   Widget Flor(BuildContext context) {

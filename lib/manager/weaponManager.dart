@@ -29,7 +29,8 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
                   child: Text(
-                    weapon.name,style: TextStyle(
+                    weapon.name,
+                    style: TextStyle(
                       color: getFifth(),
                       fontWeight: FontWeight.bold,
                     ),
@@ -86,9 +87,9 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
           Container(
               margin: const EdgeInsets.only(bottom: 10.0, top: 5.0),
               child: Text(AppLocalizations.of(context)!.music)),
-          printStatBlack(musique(0), horn.musique[0].name),
-          printStatBlack(musique(1), horn.musique[1].name),
-          printStatBlack(musique(2), horn.musique[2].name),
+          printStatWhite(musique(0), horn.musique[0].name),
+          printStatWhite(musique(1), horn.musique[1].name),
+          printStatWhite(musique(2), horn.musique[2].name),
         ])
       ]));
 }
@@ -125,13 +126,13 @@ Widget insecto(Insectoglaive insect, BuildContext context) {
 }
 
 Widget isDualBlade(Arme weapon, BuildContext context) {
-  Widget vretour = Text(AppLocalizations.of(context)!.none,
-      style: TextStyle(color: getFourth()));
+  Widget vretour = white(AppLocalizations.of(context)!.none);
   if (weapon is LameDouble && weapon.idElement2 != 0) {
     vretour = printDoubleElemWhite(element(weapon.idElement), weapon.element,
         element(weapon.idElement2), weapon.element2);
   } else if (weapon.idElement != 0) {
-    vretour = printStatBlack(element(weapon.idElement), weapon.element.toString());
+    vretour =
+        printStatWhite(element(weapon.idElement), weapon.element.toString());
   }
 
   return vretour;
@@ -145,9 +146,7 @@ Widget StatKinsect(Stuff s) {
         child: Column(children: [
           Container(
               margin: const EdgeInsets.only(bottom: 10.0),
-              child: title(
-                s.kinsect.name,
-              )),
+              child: title(s.kinsect.name)),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             if (s.kinsect.id != 9999)
               Container(

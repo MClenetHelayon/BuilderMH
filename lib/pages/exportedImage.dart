@@ -584,7 +584,7 @@ Widget gSharp(Stuff s, BuildContext context) {
                   ],
                 ),
               )),
-          listTranchant(s),
+          black(listTranchant(s)),
           Text("${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
           Text("${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
         ])),

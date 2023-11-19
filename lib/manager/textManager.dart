@@ -40,13 +40,13 @@ Text white(String t) {
 Text switchColor(String t, int max, num value) {
   return Text(t,
       style: TextStyle(
-          color: value <= max && value > 0 ? Colors.black : Colors.red));
+          color: value <= max && value > 0 ? getFourth() : Colors.red));
 }
 
 Container gDefSimply(String img, int value) {
   return Container(
       margin: const EdgeInsets.only(right: 5),
-      child: printStatBlack(img, value.toString()));
+      child: printStatWhite(img, value.toString()));
 }
 
 Widget jowel(int leSlot, String nom) {
@@ -92,24 +92,30 @@ Widget printStatWhite(String img, String stat) {
   ]);
 }
 
-Widget listTranchant(Stuff s) {
+String listTranchant(Stuff s) {
   List<int> allSharp = allIntSharp(s);
-
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Text(
-        "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}")
-  ]);
+  return "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}";
 }
 
-Widget cadreAmmoValue(double w, Widget value) {
+Widget cadreAmmoValueImg(double w, Widget value) {
   return Container(
       width: w,
-      padding: EdgeInsets.all(2),
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black, // Couleur de la bordure
           width: 1.0, // Épaisseur de la bordure
         ),
+      ),
+      child: value);
+}
+
+Widget cadreAmmoValueStat(double w, Widget value) {
+  return Container(
+      width: w,
+      margin: const EdgeInsets.all(3),
+     // padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
       ),
       child: value);
 }
@@ -140,6 +146,14 @@ Widget verticalDivider() {
   return Container(
     height: 50.0,
     color: getThird(), // Couleur du séparateur
+    width: 1.0, // Épaisseur du séparateur
+  );
+}
+
+Widget verticalDividerBlack() {
+  return Container(
+    height: 50.0,
+    color: Colors.black, // Couleur du séparateur
     width: 1.0, // Épaisseur du séparateur
   );
 }

@@ -1,6 +1,7 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'data/dataloader.dart';
@@ -13,7 +14,7 @@ class LoadScreen extends StatefulWidget {
 
 class _LoadScreen extends State<LoadScreen> {
   double _progress =
-  0.0; // Pourcentage de progression de la barre de chargement
+      0.0; // Pourcentage de progression de la barre de chargement
   @override
   void initState() {
     super.initState();
@@ -25,7 +26,8 @@ class _LoadScreen extends State<LoadScreen> {
     if (stuffProvider.stuff == null) {
       await loadArmorData(context);
     }
-
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.bottom]);
     for (int i = 0; i <= 100; i++) {
       await Future.delayed(const Duration(milliseconds: 10));
       setState(() {

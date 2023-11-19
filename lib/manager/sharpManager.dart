@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../object/weapon/Arme.dart';
@@ -43,7 +44,7 @@ Widget sharpG(Stuff s, BuildContext context) {
       margin: const EdgeInsets.all(5),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
-            color: const Color.fromARGB(255, 45, 45, 45),
+            color: getSecondary(),
             child: IntrinsicWidth(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -68,12 +69,9 @@ Widget sharpG(Stuff s, BuildContext context) {
                 ],
               ),
             )),
-        listTranchant(s),
-        const Divider(
-          color: Colors.black,
-        ),
-        blue("${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
-        blue("${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
+        white(listTranchant(s)),
+        white("${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
+        white("${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
       ]));
 }
 

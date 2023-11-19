@@ -50,9 +50,14 @@ String getReculSoin(int lvl, int t, BuildContext context) {
   return vretour;
 }
 
-String getReculG4(int lvl, int t, BuildContext context) {
+String getReculG4(int lvl, int t, BuildContext context, bool img) {
   lvl += t;
-  String vretour = AppLocalizations.of(context)!.vhRecul;
+  String vretour = "";
+  if (img) {
+    vretour = AppLocalizations.of(context)!.vhRecul;
+  } else {
+    vretour = AppLocalizations.of(context)!.abrVhRecul;
+  }
   if (lvl >= 5) {
     vretour = AppLocalizations.of(context)!.hRecul;
   }
@@ -65,9 +70,14 @@ String getReculG4(int lvl, int t, BuildContext context) {
   return vretour;
 }
 
-String getReculFrag2(int lvl, int t, BuildContext context) {
+String getReculFrag2(int lvl, int t, BuildContext context, bool img) {
   lvl += t;
-  String vretour = AppLocalizations.of(context)!.vhRecul;
+  String vretour = "";
+  if (img) {
+    vretour = AppLocalizations.of(context)!.vhRecul;
+  } else {
+    vretour = AppLocalizations.of(context)!.abrVhRecul;
+  }
   if (lvl >= 4) {
     vretour = AppLocalizations.of(context)!.hRecul;
   }
@@ -77,9 +87,14 @@ String getReculFrag2(int lvl, int t, BuildContext context) {
   return vretour;
 }
 
-String getReculG5(int lvl, int t, BuildContext context) {
+String getReculG5(int lvl, int t, BuildContext context, bool img) {
   lvl += t;
-  String vretour = AppLocalizations.of(context)!.vhRecul;
+  String vretour = "";
+  if (img) {
+    vretour = AppLocalizations.of(context)!.vhRecul;
+  } else {
+    vretour = AppLocalizations.of(context)!.abrVhRecul;
+  }
   if (lvl >= 3) {
     vretour = AppLocalizations.of(context)!.hRecul;
   }
@@ -92,9 +107,14 @@ String getReculG5(int lvl, int t, BuildContext context) {
   return vretour;
 }
 
-String getReculG6(int lvl, int t, BuildContext context) {
+String getReculG6(int lvl, int t, BuildContext context, bool img) {
   lvl += t;
-  String vretour = AppLocalizations.of(context)!.vhRecul;
+  String vretour = "";
+  if (img) {
+    vretour = AppLocalizations.of(context)!.vhRecul;
+  } else {
+    vretour = AppLocalizations.of(context)!.abrVhRecul;
+  }
   if (lvl >= 5) {
     vretour = AppLocalizations.of(context)!.hRecul;
   }
