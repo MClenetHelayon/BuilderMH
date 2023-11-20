@@ -1,7 +1,10 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/local/arme/kinsect/getTypeAttaque.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+import '../manager/local/arme/kinsect/getBoostKinsect.dart';
+import '../manager/local/arme/kinsect/getTypeKinsect.dart';
 import '../manager/weapon/AmmoManager.dart';
 import '../manager/local/arme/fusarb/getMod.dart';
 import '../manager/skill/calculManager.dart';
@@ -19,12 +22,17 @@ import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
 import '../manager/textManager.dart';
 import '../manager/weapon/bowManager.dart';
-import '../object/Armure.dart';
+import '../object/armor/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Kinsect.dart';
 import '../object/Screen.dart';
 import '../object/Talent.dart';
 import '../object/Talisman.dart';
+import '../object/armor/Bras.dart';
+import '../object/armor/Casque.dart';
+import '../object/armor/Ceinture.dart';
+import '../object/armor/Jambe.dart';
+import '../object/armor/Plastron.dart';
 import '../object/weapon/Arc.dart';
 import '../object/weapon/Arme.dart';
 import '../object/Stuff.dart';
@@ -518,8 +526,10 @@ Widget gOff(Stuff s, BuildContext context) {
               "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}"),
           Text("${AppLocalizations.of(context)!.efr} : ${efr(s)}"),
           Text("${AppLocalizations.of(context)!.trr} : ${row(s).toString()}"),
-          switchColorBlack("${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
-              100, s.affinite),
+          switchColorBlack(
+              "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
+              100,
+              s.affinite),
           Text(
               "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentById(22), s).toString()}"),
         ]))
@@ -629,12 +639,15 @@ gKinsect(Stuff s, BuildContext context) {
                 .toString(),
           ),
         ]),
-        Text(k.typeAttaque),
+        Text(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(k.typeKinsect[0]),
-          if (k.typeKinsect.length > 1) Text(k.typeKinsect[1]),
+          Text(getTypeKinsect(k.typeKinsect[0], context)),
+          if (k.typeKinsect.length > 1) Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+                (k.typeKinsect.length > 2
+                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
+                    : "")),
         ]),
-        Text(k.bonusKinsect)
+        Text(getBoostKinsect(k.bonusKinsect, context))
       ]));
 }
 

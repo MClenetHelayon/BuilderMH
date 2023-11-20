@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:builder_mhrs/object/Kinsect.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 
@@ -34,8 +35,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
     List<dynamic> jsonResponse = json.decode(jsonText);
     setState(() {
       lkinsect.add(Kinsect.getBase());
-      lkinsect +=
-          jsonResponse.map((kinsect) => Kinsect.fromJson(kinsect)).toList();
+      lkinsect += jsonResponse
+          .map((kinsect) => Kinsect.fromJson(kinsect, Stuff.local))
+          .toList();
     });
   }
 

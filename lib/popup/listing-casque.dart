@@ -5,7 +5,6 @@ import 'package:builder_mhrs/manager/popup/accordeonManager.dart';
 import 'package:builder_mhrs/manager/popup/cardListManager.dart';
 import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/filter/getSearchBar.dart';
-import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,6 +12,7 @@ import '../manager/filter/getCheckbox.dart';
 import '../manager/filter/getCombobox.dart';
 import '../object/Stuff.dart';
 import '../object/Talent.dart';
+import '../object/armor/Casque.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({

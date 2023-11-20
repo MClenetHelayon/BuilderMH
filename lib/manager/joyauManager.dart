@@ -1,7 +1,11 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:flutter/material.dart';
+import '../object/armor/Bras.dart';
+import '../object/armor/Casque.dart';
+import '../object/armor/Ceinture.dart';
+import '../object/armor/Jambe.dart';
 import '../object/weapon/Arme.dart';
-import '../object/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Stuff.dart';
 import '../object/Talisman.dart';
@@ -30,7 +34,7 @@ Widget joyauPlastron(int slot, int numJoyau, Stuff s, VoidCallback onUpdate) {
   return JoyauWidget(
       slot: slot,
       numJoyau: numJoyau,
-      listJoyaux: Casque.listJoyaux,
+      listJoyaux: Plastron.listJoyaux,
       s: s,
       onUpdate: onUpdate);
 }

@@ -1,7 +1,10 @@
 [
     {
         "id": 1000,
-        "name": "Démon Epine",
+        "name": {
+            "fr": "Démon Epine",
+            "en": "Archfiend Epine"
+        },
         "rarete": 10,
         "categorie": "maitre",
         "def": 126,

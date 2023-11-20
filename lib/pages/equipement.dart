@@ -15,13 +15,17 @@ import '../manager/popupManager.dart' as pop;
 import '../manager/sharpManager.dart';
 import '../manager/textManager.dart';
 import '../manager/weaponManager.dart';
+import '../object/armor/Bras.dart';
+import '../object/armor/Casque.dart';
+import '../object/armor/Ceinture.dart';
+import '../object/armor/Jambe.dart';
+import '../object/armor/Plastron.dart';
 import '../object/weapon/tranchant/CornedeChasse.dart';
 import '../object/weapon/tranchant/Insectoglaive.dart';
 import '../provider/app_state.dart';
 
 import '../object/Stuff.dart';
 import '../object/weapon/Arme.dart';
-import '../object/Armure.dart';
 import '../object/Florelet.dart';
 import '../object/Joyau.dart';
 import '../object/JoyauCalam.dart';

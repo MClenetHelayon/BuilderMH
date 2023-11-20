@@ -1,15 +1,18 @@
 [
     {
         "id": 0,
-        "name": "Feuillacath",
+        "name": {
+            "fr": "Feuillacath",
+            "en": "Foliacath"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Kinsecte",
+        "bonusKinsect": 12,
         "niveauKinsect": [
             [
                 107,
@@ -90,15 +93,18 @@
     },
     {
         "id": 1,
-        "name": "Flamflotte",
+        "name": {
+            "fr": "Flamflotte",
+            "en": "Fleetlammer"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Kinsecte",
+        "bonusKinsect": 12,
         "niveauKinsect": [
             [
                 107,
@@ -179,16 +185,20 @@
     },
     {
         "id": 2,
-        "name": "Coccitour",
+        "name": {
+            "fr": "Coccitour",
+            "en": "Ladytower"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison / Paralysie"
+            2,
+            3,
+            1
         ],
-        "bonusKinsect": "Poudriere Vortex",
+        "bonusKinsect": 11,
         "niveauKinsect": [
             [
                 90,
@@ -269,16 +279,20 @@
     },
     {
         "id": 3,
-        "name": "Sabrebrix",
+        "name": {
+            "fr": "Sabrebrix",
+            "en": "Bilbobrix"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Explosion / Guerison"
+            2,
+            2,
+            3
         ],
-        "bonusKinsect": "Poudriere Vortex",
+        "bonusKinsect": 11,
         "niveauKinsect": [
             [
                 90,
@@ -359,15 +373,18 @@
     },
     {
         "id": 4,
-        "name": "Lumiptère",
+        "name": {
+            "fr": "Lumiptère",
+            "en": "Gleambeetle"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Poudre Amelioree",
+        "bonusKinsect": 10,
         "niveauKinsect": [
             [
                 125,
@@ -448,15 +465,18 @@
     },
     {
         "id": 5,
-        "name": "Alucanide Exalte",
+        "name": {
+            "fr": "Alucanide Exalte",
+            "en": "Exalted Alucanide"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Poudre Amelioree",
+        "bonusKinsect": 10,
         "niveauKinsect": [
             [
                 125,
@@ -537,15 +557,18 @@
     },
     {
         "id": 6,
-        "name": "Aeropoda",
+        "name": {
+            "fr": "Aeropoda",
+            "en": "Whispervesp"
+        },
         "rarete": 3,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Rapide",
+        "bonusKinsect": 9,
         "niveauKinsect": [
             [
                 90,
@@ -626,15 +649,18 @@
     },
     {
         "id": 7,
-        "name": "Pseudocath",
+        "name": {
+            "fr": "Pseudocath",
+            "en": "Pseudocath"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Rapide",
+        "bonusKinsect": 9,
         "niveauKinsect": [
             [
                 90,
@@ -715,15 +741,18 @@
     },
     {
         "id": 8,
-        "name": "Suairophage",
+        "name": {
+            "fr": "Suairophage",
+            "en": "Bullshroud"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Attaque Enchaînée Chargée",
+        "bonusKinsect": 8,
         "niveauKinsect": [
             [
                 90,
@@ -804,15 +833,18 @@
     },
     {
         "id": 9,
-        "name": "Grancathar",
+        "name": {
+            "fr": "Grancathar",
+            "en": "Grancathar"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Attaque Enchaînée Chargée",
+        "bonusKinsect": 8,
         "niveauKinsect": [
             [
                 90,
@@ -893,16 +925,19 @@
     },
     {
         "id": 10,
-        "name": "Arkmaiden",
+        "name": {
+            "fr": "Arkmaiden",
+            "en": "Arkmaiden"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison"
+            2,
+            3
         ],
-        "bonusKinsect": "Récup. endur. inactiv.+",
+        "bonusKinsect": 7,
         "niveauKinsect": [
             [
                 72,
@@ -983,16 +1018,19 @@
     },
     {
         "id": 11,
-        "name": "Lamobrix",
+        "name": {
+            "fr": "Lamobrix",
+            "en": "Fiddlebrix"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Explosion"
+            2,
+            2
         ],
-        "bonusKinsect": "Récup. endur. inactiv.+",
+        "bonusKinsect": 7,
         "niveauKinsect": [
             [
                 72,
@@ -1073,16 +1111,20 @@
     },
     {
         "id": 12,
-        "name": "Prothoccinelle",
+        "name": {
+            "fr": "Prothoccinelle",
+            "en": "Labypavise"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison / Poison"
+            2,
+            3,
+            0
         ],
-        "bonusKinsect": "Freq. attaque auto.+",
+        "bonusKinsect": 6,
         "niveauKinsect": [
             [
                 90,
@@ -1163,16 +1205,20 @@
     },
     {
         "id": 13,
-        "name": "Armurophage",
+        "name": {
+            "fr": "Armurophage",
+            "en": "Cancadaman"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Poison / Paralysie"
+            2,
+            0,
+            1
         ],
-        "bonusKinsect": "Freq. attaque auto.+",
+        "bonusKinsect": 6,
         "niveauKinsect": [
             [
                 90,
@@ -1253,15 +1299,18 @@
     },
     {
         "id": 14,
-        "name": "Artillollide",
+        "name": {
+            "fr": "Artillollide",
+            "en": "Bonnetfille"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Vitesse)",
+        "bonusKinsect": 3,
         "niveauKinsect": [
             [
                 107,
@@ -1342,15 +1391,18 @@
     },
     {
         "id": 15,
-        "name": "Impérialoptère",
+        "name": {
+            "fr": "Impérialoptère",
+            "en": "Empresswing"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Vitesse)",
+        "bonusKinsect": 3,
         "niveauKinsect": [
             [
                 107,
@@ -1431,15 +1483,18 @@
     },
     {
         "id": 16,
-        "name": "Scarnagabée",
+        "name": {
+            "fr": "Scarnagabée",
+            "en": "Carnage Beetle"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Attaque)",
+        "bonusKinsect": 2,
         "niveauKinsect": [
             [
                 125,
@@ -1520,15 +1575,18 @@
     },
     {
         "id": 17,
-        "name": "Alucanide Royal",
+        "name": {
+            "fr": "Alucanide Royal",
+            "en": "Monarch Alucanide"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Attaque)",
+        "bonusKinsect": 2,
         "niveauKinsect": [
             [
                 125,
@@ -1609,15 +1667,18 @@
     },
     {
         "id": 18,
-        "name": "Gullshad",
+        "name": {
+            "fr": "Gullshad",
+            "en": "Gullshad"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Temps Triplé",
+        "bonusKinsect": 5,
         "niveauKinsect": [
             [
                 72,
@@ -1698,15 +1759,18 @@
     },
     {
         "id": 19,
-        "name": "Zéphyropode",
+        "name": {
+            "fr": "Zéphyropode",
+            "en": "Windchopper"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Temps Triplé",
+        "bonusKinsect": 5,
         "niveauKinsect": [
             [
                 72,
@@ -1787,16 +1851,19 @@
     },
     {
         "id": 20,
-        "name": "Coccitarge",
+        "name": {
+            "fr": "Coccitarge",
+            "en": "Ladytarge"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Poison"
+            2,
+            0
         ],
-        "bonusKinsect": "Ralent. Consom. Endurance",
+        "bonusKinsect": 4,
         "niveauKinsect": [
             [
                 72,
@@ -1877,16 +1944,19 @@
     },
     {
         "id": 21,
-        "name": "Rigiphage",
+        "name": {
+            "fr": "Rigiphage",
+            "en": "Rigiprayne"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Paralysie"
+            2,
+            1
         ],
-        "bonusKinsect": "Ralent. Consom. Endurance",
+        "bonusKinsect": 4,
         "niveauKinsect": [
             [
                 72,
@@ -1967,15 +2037,18 @@
     },
     {
         "id": 22,
-        "name": "Destrutoptère",
+        "name": {
+            "fr": "Destrutoptère",
+            "en": "Foebeetle"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Défense)",
+        "bonusKinsect": 1,
         "niveauKinsect": [
             [
                 107,
@@ -2056,15 +2129,18 @@
     },
     {
         "id": 23,
-        "name": "Alucanide",
+        "name": {
+            "fr": "Alucanide",
+            "en": "Alucanide"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Défense)",
+        "bonusKinsect": 1,
         "niveauKinsect": [
             [
                 107,
@@ -2145,15 +2221,18 @@
     },
     {
         "id": 24,
-        "name": "Mutilogote",
+        "name": {
+            "fr": "Mutilogote",
+            "en": "Mauldrone"
+        },
         "rarete": 1,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
-            "Standard"
+            0
         ],
-        "bonusKinsect": "Récupération Bonus",
+        "bonusKinsect": 0,
         "niveauKinsect": [
             [
                 72,
@@ -2234,15 +2313,18 @@
     },
     {
         "id": 25,
-        "name": "Tortuoptède",
+        "name": {
+            "fr": "Tortuoptède",
+            "en": "Culldrone"
+        },
         "rarete": 1,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
-            "Standard"
+            0
         ],
-        "bonusKinsect": "Récupération Bonus",
+        "bonusKinsect": 0,
         "niveauKinsect": [
             [
                 72,

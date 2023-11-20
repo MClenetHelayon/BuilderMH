@@ -2,9 +2,13 @@ import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
 
 import '../manager/skill/calculManager.dart' as aff;
+import 'armor/Bras.dart';
+import 'armor/Casque.dart';
+import 'armor/Ceinture.dart';
+import 'armor/Jambe.dart';
+import 'armor/Plastron.dart';
 import 'weapon/Arme.dart';
 import 'Florelet.dart';
-import 'Armure.dart';
 import 'Joyau.dart';
 import 'JoyauCalam.dart';
 import 'Talent.dart';

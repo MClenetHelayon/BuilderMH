@@ -1,7 +1,10 @@
 [
     {
         "id": 0,
-        "name": "Aelucanth S / Rhopessa S",
+        "name": {
+            "fr": "Aelucanth S / Rhopessa S",
+            "en": "Aelucanth S / Rhopessa S"
+        },
         "rarete": 6,
         "categorie": "expert",
         "def": 62,
@@ -22,7 +25,10 @@
     },
     {
         "id": 1000,
-        "name": "Démon Cerato",
+        "name": {
+            "fr": "Démon Cerato",
+            "en": "Archfiend Cerato"
+        },
         "rarete": 10,
         "categorie": "maitre",
         "def": 126,
@@ -48,7 +54,10 @@
     },
     {
         "id": 1001,
-        "name": "Rancune Sinistre",
+        "name": {
+            "fr": "Rancune Sinistre",
+            "en": "Sinister Grudge"
+        },
         "rarete": 10,
         "categorie": "maitre",
         "def": 124,
