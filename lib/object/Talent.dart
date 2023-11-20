@@ -49,7 +49,7 @@ class Talent {
 
   static getBase() {
     return Talent(
-      name: 'Aucun Talent',
+      name: '----------',
       id: -1,
       level: 0,
       levelMax: 0,

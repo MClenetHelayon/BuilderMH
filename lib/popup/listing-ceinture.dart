@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:accordion/accordion.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../manager/colorManager.dart';
 import '../manager/filter/getCheckbox.dart';
+import '../manager/filter/getCombobox.dart';
 import '../manager/filter/getSearchBar.dart';
+import '../manager/popup/accordeonManager.dart';
+import '../manager/popup/cardListManager.dart';
 import '../object/Stuff.dart';
+import '../object/Talent.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -20,9 +24,8 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Ceinture> lbelt = [], filteredBelts = [];
-  bool rcCheck = false;
-  bool rmCheck = true;
+  List<Ceinture> lbelt = [], filteredBelts = [];  List<Talent> lskill = [];  Talent selectedSkill = Talent.getBase();
+  bool rcCheck = false, rmCheck = true, isExpanded = false;
   TextEditingController tc = TextEditingController();
 
   @override
@@ -44,7 +47,17 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lbelt = jsonResponse
           .map(
               (ceinture) => Ceinture.fromJson(ceinture, skillList, Stuff.local))
-          .toList();
+          .toList();      lskill.add(Talent.getBase());
+      lskill.addAll(skillList
+          .map((skill) => Talent.getJson(skill, Stuff.local))
+          .toList());
+      // Triez la liste lskill par le nom du talent
+      lskill.sort((a, b) => a.name.compareTo(b.name));
+
+      // Exclure les éléments ayant les ID 147, 148 et 149
+      lskill.removeWhere(
+          (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
+
       getFilteredBelts();
     });
   }
@@ -86,26 +99,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
           Card(
               color: getSecondary(),
               child: Column(children: [
-                Card(
-                    color: getThird(),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          checkboxRank("RC", rcCheck, () {
-                            setState(() {
-                              resetRankChoice();
-                              rcCheck = !rcCheck;
-                              getFilteredBelts();
-                            });
-                          }),
-                          checkboxRank("RM", rmCheck, () {
-                            setState(() {
-                              resetRankChoice();
-                              rmCheck = !rmCheck;
-                              getFilteredBelts();
-                            });
-                          })
-                        ])),
+                filterRank(),
+                filterAccordeon(),
                 getSearchBar(tc, context, searchFilter),
               ])),
           Expanded(
@@ -113,48 +108,47 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   itemCount: filteredBelts.length,
                   itemBuilder: (context, index) {
                     Ceinture belt = filteredBelts[index];
-                    return Card(
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 10, right: 10),
-                        child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(getFourth()),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(belt);
-                            },
-                            child: ListTile(
-                                title: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [Text(belt.name)]),
-                                subtitle: Column(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Column(children: [
-                                          Text(AppLocalizations.of(context)!.joyau),
-                                          slotJowel(belt.slots)
-                                        ]),
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Column(children: [
-                                     Text(AppLocalizations.of(context)!.talent),
-                                          for (int i = 0; i < 4; i++)
-                                            if (belt.talents.length > i)
-                                              Text(
-                                                  '${belt.talents[i].name} + ${belt.talents[i].level}'),
-                                        ])
-                                      ]),
-                                ]))));
+                    return getCardArmorPopup(belt, context);
                   }))
         ]));
   }
+ Widget filterAccordeon() {
+    return accordeon(AccordionSection(
+        isOpen: isExpanded,
+        onOpenSection: () => setState(() => isExpanded = true),
+        contentVerticalPadding: 10,
+        contentBackgroundColor: getThird(),
+        contentBorderColor: getThird(),
+        header: Text(AppLocalizations.of(context)!.moreFilters,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Column(children: [          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+            setState(() {
+              selectedSkill =
+                  lskill.firstWhere((skill) => skill.id == newValue!);
+            });
+          })])));
+  }
 
+  Widget filterRank() {
+    return Card(
+        color: getThird(),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          checkboxRank("RC", rcCheck, () {
+            setState(() {
+              resetRankChoice();
+              rcCheck = !rcCheck;
+              getFilteredBelts();
+            });
+          }),
+          checkboxRank("RM", rmCheck, () {
+            setState(() {
+              resetRankChoice();
+              rmCheck = !rmCheck;
+              getFilteredBelts();
+            });
+          })
+        ]));
+  }
   void resetRankChoice() {
     rcCheck = false;
     rmCheck = false;

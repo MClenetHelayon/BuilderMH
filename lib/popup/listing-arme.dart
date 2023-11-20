@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/popup/accordeonManager.dart';
 import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/filter/getCombobox.dart';
@@ -573,76 +574,53 @@ class _ListViewScreenState extends State<ListViewScreen> {
   }
 
   Widget filterAccordeon() {
-    return Card(
-        margin: const EdgeInsets.all(2),
-        color: getThird(),
-        child: Accordion(
-            paddingListTop: 0,
-            paddingListBottom: 0,
-            paddingListHorizontal: 0,
-            headerBackgroundColor: getThird(),
-            headerBorderWidth: 0,
-            headerBorderColorOpened: getThird(),
-            headerBackgroundColorOpened: getThird(),
-            contentBackgroundColor: getThird(),
-            contentBorderColor: getThird(),
-            contentBorderWidth: 0,
-            scaleWhenAnimating: true,
-            openAndCloseAnimation: true,
-            headerPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            children: [
-              AccordionSection(
-                  isOpen: isExpanded,
-                  onOpenSection: () => setState(() => isExpanded = true),
-                  contentVerticalPadding: 10,
-                  contentBackgroundColor: getThird(),
-                  contentBorderColor: getThird(),
-                  header: Text(AppLocalizations.of(context)!.moreFilters,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
-                  content: Column(children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(AppLocalizations.of(context)!.affNeg),
-                      const SizedBox(width: 10),
-                      checkboxRank("✓", affNeg, () {
-                        setState(() {
-                          affNeg = !affNeg;
-                        });
-                      })
-                    ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(AppLocalizations.of(context)!.catElem),
-                      const SizedBox(width: 10),
-                      filterComboElem(cbxElem, context, (String? newValue) {
-                        setState(() {
-                          cbxElem = newValue!;
-                        });
-                      })
-                    ]),
-                    if (!arcCheck && !lbgCheck && !hbgCheck)
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(AppLocalizations.of(context)!.sharp),
-                            const SizedBox(width: 10),
-                            filterComboSharp(cbxSharp, context,
-                                (String? newValue) {
-                              setState(() {
-                                cbxSharp = newValue!;
-                              });
-                            })
-                          ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text(AppLocalizations.of(context)!.calam),
-                      const SizedBox(width: 10),
-                      filterComboCalam(cbxCalam, context, (String? newValue) {
-                        setState(() {
-                          cbxCalam = newValue!;
-                        });
-                      })
-                    ]),
-                  ]))
-            ]));
+    return accordeon(AccordionSection(
+        isOpen: isExpanded,
+        onOpenSection: () => setState(() => isExpanded = true),
+        contentVerticalPadding: 10,
+        contentBackgroundColor: getThird(),
+        contentBorderColor: getThird(),
+        header: Text(AppLocalizations.of(context)!.moreFilters,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Column(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(AppLocalizations.of(context)!.affNeg),
+            const SizedBox(width: 10),
+            checkboxRank("✓", affNeg, () {
+              setState(() {
+                affNeg = !affNeg;
+              });
+            })
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(AppLocalizations.of(context)!.catElem),
+            const SizedBox(width: 10),
+            filterComboElem(cbxElem, context, (String? newValue) {
+              setState(() {
+                cbxElem = newValue!;
+              });
+            })
+          ]),
+          if (!arcCheck && !lbgCheck && !hbgCheck)
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(AppLocalizations.of(context)!.sharp),
+              const SizedBox(width: 10),
+              filterComboSharp(cbxSharp, context, (String? newValue) {
+                setState(() {
+                  cbxSharp = newValue!;
+                });
+              })
+            ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(AppLocalizations.of(context)!.calam),
+            const SizedBox(width: 10),
+            filterComboCalam(cbxCalam, context, (String? newValue) {
+              setState(() {
+                cbxCalam = newValue!;
+              });
+            })
+          ]),
+        ])));
   }
 
   //Widget gérant l'affichage des filtres

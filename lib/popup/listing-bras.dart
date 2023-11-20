@@ -1,14 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:accordion/accordion.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../manager/colorManager.dart';
 import '../manager/filter/getCheckbox.dart';
+import '../manager/filter/getCombobox.dart';
 import '../manager/filter/getSearchBar.dart';
+import '../manager/popup/accordeonManager.dart';
+import '../manager/popup/cardListManager.dart';
 import '../object/Stuff.dart';
+import '../object/Talent.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -21,14 +25,17 @@ class ListViewScreen extends StatefulWidget {
 
 class _ListViewScreenState extends State<ListViewScreen> {
   List<Bras> lvambrace = [], filteredVambraces = [];
-  bool rcCheck = false;
-  bool rmCheck = true;
+  List<Talent> lskill = [];
+  Talent selectedSkill = Talent.getBase();
+  bool rcCheck = false, rmCheck = true, isExpanded = false;
   TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     loadVambrace();
+    getFilteredVambraces();
+    filteredVambraces = lvambrace;
   }
 
   Future<void> loadVambrace() async {
@@ -42,13 +49,23 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lvambrace = jsonResponse
           .map((vambrace) => Bras.fromJson(vambrace, skillList, Stuff.local))
           .toList();
+      lskill.add(Talent.getBase());
+      lskill.addAll(skillList
+          .map((skill) => Talent.getJson(skill, Stuff.local))
+          .toList());
+      // Triez la liste lskill par le nom du talent
+      lskill.sort((a, b) => a.name.compareTo(b.name));
+
+      // Exclure les éléments ayant les ID 147, 148 et 149
+      lskill.removeWhere(
+          (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
+
       getFilteredVambraces();
     });
   }
 
   void getFilteredVambraces() {
     List<Bras> fVambraces = [];
-
     if (rcCheck) {
       fVambraces.addAll(lvambrace
           .where((vambrace) => vambrace.categorie == 'expert')
@@ -87,26 +104,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
           Card(
               color: getSecondary(),
               child: Column(children: [
-                Card(
-                    color: getThird(),
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          checkboxRank("RC", rcCheck, () {
-                            setState(() {
-                              resetRankChoice();
-                              rcCheck = !rcCheck;
-                              getFilteredVambraces();
-                            });
-                          }),
-                          checkboxRank("RM", rmCheck, () {
-                            setState(() {
-                              resetRankChoice();
-                              rmCheck = !rmCheck;
-                              getFilteredVambraces();
-                            });
-                          })
-                        ])),
+                filterRank(),
+                filterAccordeon(),
                 getSearchBar(tc, context, searchFilter),
               ])),
           Expanded(
@@ -114,45 +113,48 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   itemCount: filteredVambraces.length,
                   itemBuilder: (context, index) {
                     Bras vambrace = filteredVambraces[index];
-                    return Card(
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 10, right: 10),
-                        child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 255, 255, 255)),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(vambrace);
-                            },
-                            child: ListTile(
-                                title: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [Text(vambrace.name)]),
-                                subtitle: Column(children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Column(children: [
-                                          Text(AppLocalizations.of(context)!.joyau),
-                                          slotJowel(vambrace.slots),
-                                        ]),
-                                      ]),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Column(children: [
-                                         Text(AppLocalizations.of(context)!.talent),
-                                          for (int i = 0; i < 4; i++)
-                                            if (vambrace.talents.length > i)
-                                              Text(
-                                                  '${vambrace.talents[i].name} + ${vambrace.talents[i].level}'),
-                                        ])
-                                      ])
-                                ]))));
+                    return getCardArmorPopup(vambrace, context);
                   }))
+        ]));
+  }
+
+  Widget filterAccordeon() {
+    return accordeon(AccordionSection(
+        isOpen: isExpanded,
+        onOpenSection: () => setState(() => isExpanded = true),
+        contentVerticalPadding: 10,
+        contentBackgroundColor: getThird(),
+        contentBorderColor: getThird(),
+        header: Text(AppLocalizations.of(context)!.moreFilters,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Column(children: [
+          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+            setState(() {
+              selectedSkill =
+                  lskill.firstWhere((skill) => skill.id == newValue!);
+            });
+          })
+        ])));
+  }
+
+  Widget filterRank() {
+    return Card(
+        color: getThird(),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          checkboxRank("RC", rcCheck, () {
+            setState(() {
+              resetRankChoice();
+              rcCheck = !rcCheck;
+              getFilteredVambraces();
+            });
+          }),
+          checkboxRank("RM", rmCheck, () {
+            setState(() {
+              resetRankChoice();
+              rmCheck = !rmCheck;
+              getFilteredVambraces();
+            });
+          })
         ]));
   }
 
