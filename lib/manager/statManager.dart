@@ -91,8 +91,10 @@ Widget gOff(Stuff s, BuildContext context) {
           white("${AppLocalizations.of(context)!.trr} : ${row(s).toString()}"),
           white(
               "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}"),
-          switchColor("${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
-              100, s.affinite),
+          switchColorWhite(
+              "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
+              100,
+              s.affinite),
           white(
               "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentById(22), s).toString()}"),
         ])
@@ -162,9 +164,9 @@ Widget recapTalent(Stuff s, BuildContext context) {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      switchColor('${skill.key.name} : ', skill.key.levelMax,
-                          skill.value),
-                      switchColor('${skill.value} / ${skill.key.levelMax}',
+                      switchColorWhite('${skill.key.name} : ',
+                          skill.key.levelMax, skill.value),
+                      switchColorWhite('${skill.value} / ${skill.key.levelMax}',
                           skill.key.levelMax, skill.value)
                     ],
                   ),

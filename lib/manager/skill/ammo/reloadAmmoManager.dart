@@ -52,9 +52,11 @@ String getReloadN3G2Elem(int lvl, int t, BuildContext context, bool img) {
 String getReloadP2P3Sh3StkH2PElem(
     int lvl, int t, BuildContext context, bool img) {
   lvl += t;
-  String vretour = AppLocalizations.of(context)!.stRecharge;
-  if (lvl >= 3) {
+  String vretour = "";
+  if (img) {
     vretour = AppLocalizations.of(context)!.stRecharge;
+  } else {
+    vretour = AppLocalizations.of(context)!.abrStRecharge;
   }
   if (lvl >= 5) {
     vretour = AppLocalizations.of(context)!.fRecharge;

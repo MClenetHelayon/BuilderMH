@@ -25,7 +25,7 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
       child: Container(
           padding: const EdgeInsets.only(left: 20.0, right: 20.0),
           child: Column(children: [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
                   child: Text(

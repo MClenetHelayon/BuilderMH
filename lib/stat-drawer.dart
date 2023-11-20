@@ -3,6 +3,7 @@ import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'manager/statManager.dart';
@@ -19,6 +20,12 @@ class StatDrawer extends StatefulWidget {
 }
 
 class _StatDrawerState extends State<StatDrawer> {
+  @override
+  initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+        overlays: [SystemUiOverlay.bottom]);
+  }
   @override
   Widget build(BuildContext context) {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);

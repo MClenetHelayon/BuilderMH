@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
@@ -21,11 +22,8 @@ Widget armorTopInfo(Armure armure) {
       ]));
 }
 
-TableRow armorRarityTalent(Armure armure, BuildContext context) {
-  return TableRow(children: [
-    Container(
-      child: white("${AppLocalizations.of(context)!.rarete} ${armure.rarete}"),
-    ),
+Row armorTalent(Armure armure, BuildContext context) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Container(
         margin: const EdgeInsets.only(top: 10.0, bottom: 3),
         child: Column(
@@ -37,23 +35,19 @@ TableRow armorRarityTalent(Armure armure, BuildContext context) {
   ]);
 }
 
-TableRow armorSlot(
-    Armure armure, BuildContext context,Widget joyau) {
-  return TableRow(children: [
-    Container(),
-    Container(
-        margin: const EdgeInsets.only(top: 10.0, bottom: 5),
-        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Column(children: [
-            Container(
-                margin: const EdgeInsets.only(bottom: 10.0),
-                child: white(armure.slots.length == 0
-                    ? AppLocalizations.of(context)!.nJoyau
-                    : AppLocalizations.of(context)!.joyaux)),
-            Container(child: joyau)
-          ])
-        ])),
-  ]);
+Widget armorSlot(Armure armure, BuildContext context, Widget joyau) {
+  return Container(
+      margin: const EdgeInsets.only(top: 10.0, bottom: 5),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Column(children: [
+          Container(
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: white(armure.slots.length == 0
+                  ? AppLocalizations.of(context)!.nJoyau
+                  : AppLocalizations.of(context)!.joyaux)),
+          Container(child: joyau)
+        ])
+      ]));
 }
 
 Widget armorSlotCasque(
@@ -61,13 +55,19 @@ Widget armorSlotCasque(
   return Column(children: [
     if (armure.slots.length >= 1)
       if (armure.slots[0] != 0)
-        Card(child: joyauCasque(armure.slots[0], 0, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCasque(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
-        Card(child: joyauCasque(armure.slots[1], 1, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCasque(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
-        Card(child: joyauCasque(armure.slots[2], 2, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCasque(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 
@@ -76,13 +76,19 @@ Widget armorSlotPlastron(
   return Column(children: [
     if (armure.slots.length >= 1)
       if (armure.slots[0] != 0)
-        Card(child: joyauPlastron(armure.slots[0], 0, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauPlastron(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
-        Card(child: joyauPlastron(armure.slots[1], 1, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauPlastron(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
-        Card(child: joyauPlastron(armure.slots[2], 2, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauPlastron(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 
@@ -91,13 +97,19 @@ Widget armorSlotBras(
   return Column(children: [
     if (armure.slots.length >= 1)
       if (armure.slots[0] != 0)
-        Card(child: joyauBras(armure.slots[0], 0, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauBras(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
-        Card(child: joyauBras(armure.slots[1], 1, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauBras(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
-        Card(child: joyauBras(armure.slots[2], 2, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauBras(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 
@@ -106,13 +118,19 @@ Widget armorSlotCeinture(
   return Column(children: [
     if (armure.slots.length >= 1)
       if (armure.slots[0] != 0)
-        Card(child: joyauCeinture(armure.slots[0], 0, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCeinture(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
-        Card(child: joyauCeinture(armure.slots[1], 1, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCeinture(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
-        Card(child: joyauCeinture(armure.slots[2], 2, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauCeinture(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 
@@ -121,13 +139,19 @@ Widget armorSlotJambiere(
   return Column(children: [
     if (armure.slots.length >= 1)
       if (armure.slots[0] != 0)
-        Card(child: joyauJambiere(armure.slots[0], 0, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauJambiere(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
-        Card(child: joyauJambiere(armure.slots[1], 1, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauJambiere(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
-        Card(child: joyauJambiere(armure.slots[2], 2, s, onUpdated)),
+        Card(
+            color: getPrimary(),
+            child: joyauJambiere(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 
@@ -136,40 +160,45 @@ Widget TalisJoyau(
   return Column(children: [
     Container(
         margin: const EdgeInsets.only(bottom: 10.0),
-        child: white(s.charm.slots.length == 0
+        child: whiteBoldUnderligne(s.charm.slots.length == 0
             ? AppLocalizations.of(context)!.nJoyau
             : AppLocalizations.of(context)!.joyaux)),
-    Container(
-        child: Column(children: [
+    Column(children: [
       if (s.charm.slots.length >= 1)
         if (s.charm.slots[0] != 0)
-          Card(child: joyauTalisman(s.charm.slots[0], 0, s, onUpdated)),
+          Card(
+              color: getPrimary(),
+              child: joyauTalisman(s.charm.slots[0], 0, s, onUpdated)),
       if (s.charm.slots.length >= 2)
         if (s.charm.slots[1] != 0)
-          Card(child: joyauTalisman(s.charm.slots[1], 1, s, onUpdated)),
+          Card(
+              color: getPrimary(),
+              child: joyauTalisman(s.charm.slots[1], 1, s, onUpdated)),
       if (s.charm.slots.length == 3)
         if (s.charm.slots[2] != 0)
-          Card(child: joyauTalisman(s.charm.slots[2], 2, s, onUpdated)),
-    ]))
+          Card(
+              color: getPrimary(),
+              child: joyauTalisman(s.charm.slots[2], 2, s, onUpdated)),
+    ])
   ]);
 }
 
 Widget TalisTalent(Talisman charm, BuildContext context) {
   return Column(children: [
     Container(
-        margin: EdgeInsets.only(bottom: 10.0),
-        child: white(charm.talents.length == 0
+        margin: const EdgeInsets.only(bottom: 10.0),
+        child: whiteBoldUnderligne(charm.talents.isEmpty
             ? AppLocalizations.of(context)!.nTalent
             : AppLocalizations.of(context)!.talents)),
     Column(children: [
       if (charm.talents.length >= 1)
         Container(
-          margin: EdgeInsets.only(bottom: 5.0),
+          margin: const EdgeInsets.only(bottom: 5.0),
           child: talent("${charm.talents[0].name} +${charm.talents[0].level}"),
         ),
       if (charm.talents.length >= 2)
         Container(
-            margin: EdgeInsets.only(bottom: 5.0),
+            margin: const EdgeInsets.only(bottom: 5.0),
             child:
                 talent("${charm.talents[1].name} +${charm.talents[1].level}"))
     ])
