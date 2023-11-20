@@ -205,7 +205,7 @@ Widget Armor(int i, Armure a, Screen screen) {
               child: Text(a.name,
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: getFifth()))),
-          exportTalent(a.talent)
+          exportTalent(a.talents)
         ])),
         Container(
             margin: const EdgeInsets.only(right: 5),

@@ -31,9 +31,9 @@ Widget getCardArmorPopup(Armure armor, BuildContext context) {
                   Column(children: [
                     Text(AppLocalizations.of(context)!.talent),
                     for (int i = 0; i < 4; i++)
-                      if (armor.talent.length > i)
+                      if (armor.talents.length > i)
                         Text(
-                            '${armor.talent[i].name} + ${armor.talent[i].level}'),
+                            '${armor.talents[i].name} + ${armor.talents[i].level}'),
                   ])
                 ])
               ]))));

@@ -45,7 +45,7 @@ List<T> getLArmorsBySkill<T extends Armure>(List<T> larmors, Talent cbxSkill) {
   List<T> vretour = [];
   if (cbxSkill.id != -1) {
     larmors.forEach((armure) {
-      if (armure.talent.contains(cbxSkill)) {
+      if (armure.talents.contains(cbxSkill)) {
         vretour.add(armure);
       }
     });

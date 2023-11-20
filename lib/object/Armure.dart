@@ -4,60 +4,57 @@ import 'package:json_annotation/json_annotation.dart';
 
 class Armure {
   final String name, categorie;
-  final List<Talent> talent;
+  final List<Talent> talents;
   final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
+  final int id, rarete, defense, feu, eau, foudre, glace, dragon;
 
-  Armure(this.name, this.rarete, this.talent, this.defense, this.feu, this.eau,
-      this.foudre, this.glace, this.dragon, this.slots, this.categorie);
+  Armure(
+      {required this.id,
+      required this.name,
+      required this.rarete,
+      required this.talents,
+      required this.defense,
+      required this.feu,
+      required this.eau,
+      required this.foudre,
+      required this.glace,
+      required this.dragon,
+      required this.slots,
+      required this.categorie});
 }
 
 @JsonSerializable()
 class Casque extends Armure {
-  final String name, categorie;
-  final List<Talent> talents;
-  final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
   static List<Joyaux> listJoyaux = [];
-  Casque({
-    required this.name,
-    required this.rarete,
-    required this.categorie,
-    required this.talents,
-    required this.defense,
-    required this.feu,
-    required this.eau,
-    required this.foudre,
-    required this.glace,
-    required this.dragon,
-    required this.slots,
-  }) : super(
-          name,
-          rarete,
-          talents,
-          defense,
-          feu,
-          eau,
-          foudre,
-          glace,
-          dragon,
-          slots,
-          categorie,
-        );
+  Casque(
+      {required super.id,
+      required super.name,
+      required super.rarete,
+      required super.talents,
+      required super.defense,
+      required super.feu,
+      required super.eau,
+      required super.foudre,
+      required super.glace,
+      required super.dragon,
+      required super.slots,
+      required super.categorie});
 
   factory Casque.fromJson(
     Map<String, dynamic> json,
     List<dynamic> skillList,
-      String currentLanguage,
+    String currentLanguage,
   ) {
     var listSlots = json['slots'] as List<dynamic>;
     List<int> lSlots = List<int>.from(listSlots);
     var talentsJson = json['talents'] as List<dynamic>;
     List<Talent> lTalents = talentsJson
-        .map<Talent>((talentJson) => Talent.fromJson(talentJson, skillList, currentLanguage))
+        .map<Talent>((talentJson) =>
+            Talent.fromJson(talentJson, skillList, currentLanguage))
         .toList();
 
     return Casque(
+      id: json['id'],
       name: json['name'],
       rarete: json['rarete'],
       categorie: json['categorie'],
@@ -77,6 +74,7 @@ class Casque extends Armure {
 
   static getBase() {
     return Casque(
+      id: -1,
       name: 'Casque',
       rarete: 0,
       categorie: 'novice',
@@ -97,50 +95,36 @@ class Casque extends Armure {
 
 @JsonSerializable()
 class Plastron extends Armure {
-  final String name, categorie;
-  final List<Talent> talents;
-  final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
   static List<Joyaux> listJoyaux = [];
-  Plastron({
-    required this.name,
-    required this.rarete,
-    required this.categorie,
-    required this.talents,
-    required this.defense,
-    required this.feu,
-    required this.eau,
-    required this.foudre,
-    required this.glace,
-    required this.dragon,
-    required this.slots,
-  }) : super(
-          name,
-          rarete,
-          talents,
-          defense,
-          feu,
-          eau,
-          foudre,
-          glace,
-          dragon,
-          slots,
-          categorie,
-        );
+  Plastron(
+      {required super.id,
+      required super.name,
+      required super.rarete,
+      required super.talents,
+      required super.defense,
+      required super.feu,
+      required super.eau,
+      required super.foudre,
+      required super.glace,
+      required super.dragon,
+      required super.slots,
+      required super.categorie});
 
   factory Plastron.fromJson(
     Map<String, dynamic> json,
     List<dynamic> skillList,
-      String currentLanguage,
+    String currentLanguage,
   ) {
     var listSlots = json['slots'] as List<dynamic>;
     List<int> lSlots = List<int>.from(listSlots);
     var talentsJson = json['talents'] as List<dynamic>;
     List<Talent> lTalents = talentsJson
-        .map<Talent>((talentJson) => Talent.fromJson(talentJson, skillList, currentLanguage))
+        .map<Talent>((talentJson) =>
+            Talent.fromJson(talentJson, skillList, currentLanguage))
         .toList();
 
     return Plastron(
+      id: json['id'],
       name: json['name'],
       rarete: json['rarete'],
       categorie: json['categorie'],
@@ -157,10 +141,10 @@ class Plastron extends Armure {
   getListJoyaux() {
     return listJoyaux;
   }
-  
 
   static getBase() {
     return Plastron(
+      id: -1,
       name: 'Platron',
       rarete: 0,
       categorie: 'novice',
@@ -181,51 +165,37 @@ class Plastron extends Armure {
 
 @JsonSerializable()
 class Bras extends Armure {
-  final String name, categorie;
-  final List<Talent> talents;
-  final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
   static List<Joyaux> listJoyaux = [];
 
-  Bras({
-    required this.name,
-    required this.rarete,
-    required this.categorie,
-    required this.talents,
-    required this.defense,
-    required this.feu,
-    required this.eau,
-    required this.foudre,
-    required this.glace,
-    required this.dragon,
-    required this.slots,
-  }) : super(
-          name,
-          rarete,
-          talents,
-          defense,
-          feu,
-          eau,
-          foudre,
-          glace,
-          dragon,
-          slots,
-          categorie,
-        );
+  Bras(
+      {required super.id,
+      required super.name,
+      required super.rarete,
+      required super.talents,
+      required super.defense,
+      required super.feu,
+      required super.eau,
+      required super.foudre,
+      required super.glace,
+      required super.dragon,
+      required super.slots,
+      required super.categorie});
 
   factory Bras.fromJson(
     Map<String, dynamic> json,
     List<dynamic> skillList,
-      String currentLanguage,
+    String currentLanguage,
   ) {
     var listSlots = json['slots'] as List<dynamic>;
     List<int> lSlots = List<int>.from(listSlots);
     var talentsJson = json['talents'] as List<dynamic>;
     List<Talent> lTalents = talentsJson
-        .map<Talent>((talentJson) => Talent.fromJson(talentJson, skillList, currentLanguage))
+        .map<Talent>((talentJson) =>
+            Talent.fromJson(talentJson, skillList, currentLanguage))
         .toList();
 
     return Bras(
+      id: json['id'],
       name: json['name'],
       rarete: json['rarete'],
       categorie: json['categorie'],
@@ -245,6 +215,7 @@ class Bras extends Armure {
 
   static getBase() {
     return Bras(
+      id: -1,
       name: 'Bras',
       rarete: 0,
       categorie: 'novice',
@@ -265,51 +236,36 @@ class Bras extends Armure {
 
 @JsonSerializable()
 class Ceinture extends Armure {
-  final String name, categorie;
-  final List<Talent> talents;
-  final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
   static List<Joyaux> listJoyaux = [];
 
-  Ceinture({
-    required this.name,
-    required this.rarete,
-    required this.categorie,
-    required this.talents,
-    required this.defense,
-    required this.feu,
-    required this.eau,
-    required this.foudre,
-    required this.glace,
-    required this.dragon,
-    required this.slots,
-  }) : super(
-          name,
-          rarete,
-          talents,
-          defense,
-          feu,
-          eau,
-          foudre,
-          glace,
-          dragon,
-          slots,
-          categorie,
-        );
-
+  Ceinture(
+      {required super.id,
+      required super.name,
+      required super.rarete,
+      required super.talents,
+      required super.defense,
+      required super.feu,
+      required super.eau,
+      required super.foudre,
+      required super.glace,
+      required super.dragon,
+      required super.slots,
+      required super.categorie});
   factory Ceinture.fromJson(
     Map<String, dynamic> json,
     List<dynamic> skillList,
-      String currentLanguage,
+    String currentLanguage,
   ) {
     var listSlots = json['slots'] as List<dynamic>;
     List<int> lSlots = List<int>.from(listSlots);
     var talentsJson = json['talents'] as List<dynamic>;
     List<Talent> lTalents = talentsJson
-        .map<Talent>((talentJson) => Talent.fromJson(talentJson, skillList, currentLanguage))
+        .map<Talent>((talentJson) =>
+            Talent.fromJson(talentJson, skillList, currentLanguage))
         .toList();
 
     return Ceinture(
+      id: json['id'],
       name: json['name'],
       rarete: json['rarete'],
       categorie: json['categorie'],
@@ -329,6 +285,7 @@ class Ceinture extends Armure {
 
   static getBase() {
     return Ceinture(
+      id: -1,
       name: 'Ceinture',
       rarete: 0,
       categorie: 'novice',
@@ -349,51 +306,37 @@ class Ceinture extends Armure {
 
 @JsonSerializable()
 class Jambiere extends Armure {
-  final String name, categorie;
-  final List<Talent> talents;
-  final List<int> slots;
-  final int rarete, defense, feu, eau, foudre, glace, dragon;
   static List<Joyaux> listJoyaux = [];
 
-  Jambiere({
-    required this.name,
-    required this.rarete,
-    required this.categorie,
-    required this.talents,
-    required this.defense,
-    required this.feu,
-    required this.eau,
-    required this.foudre,
-    required this.glace,
-    required this.dragon,
-    required this.slots,
-  }) : super(
-          name,
-          rarete,
-          talents,
-          defense,
-          feu,
-          eau,
-          foudre,
-          glace,
-          dragon,
-          slots,
-          categorie,
-        );
+  Jambiere(
+      {required super.id,
+      required super.name,
+      required super.rarete,
+      required super.talents,
+      required super.defense,
+      required super.feu,
+      required super.eau,
+      required super.foudre,
+      required super.glace,
+      required super.dragon,
+      required super.slots,
+      required super.categorie});
 
   factory Jambiere.fromJson(
     Map<String, dynamic> json,
     List<dynamic> skillList,
-      String currentLanguage,
+    String currentLanguage,
   ) {
     var listSlots = json['slots'] as List<dynamic>;
     List<int> lSlots = List<int>.from(listSlots);
     var talentsJson = json['talents'] as List<dynamic>;
     List<Talent> lTalents = talentsJson
-        .map<Talent>((talentJson) => Talent.fromJson(talentJson, skillList, currentLanguage))
+        .map<Talent>((talentJson) =>
+            Talent.fromJson(talentJson, skillList, currentLanguage))
         .toList();
 
     return Jambiere(
+      id: json['id'],
       name: json['name'],
       rarete: json['rarete'],
       categorie: json['categorie'],
@@ -413,6 +356,7 @@ class Jambiere extends Armure {
 
   static getBase() {
     return Jambiere(
+      id: -1,
       name: 'Jambière',
       rarete: 0,
       categorie: 'novice',
