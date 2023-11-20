@@ -1,10 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:accordion/accordion.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../manager/colorManager.dart';
+import '../manager/filter/getCheckbox.dart';
+import '../manager/filter/getCombobox.dart';
+import '../manager/filter/getSearchBar.dart';
+import '../manager/popup/accordeonManager.dart';
+import '../manager/popup/cardListManager.dart';
 import '../object/Stuff.dart';
+import '../object/Talent.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -16,178 +24,134 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Ceinture> lbelt = [];
-  bool showNoviceBelts = true;
-  bool showExpertBelts = true;
-  bool showMaitreBelts = true;
+  List<Ceinture> lbelt = [], filteredBelts = [];  List<Talent> lskill = [];  Talent selectedSkill = Talent.getBase();
+  bool rcCheck = false, rmCheck = true, isExpanded = false;
+  TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     loadBelt();
-  }
-
-  Future<String> loadBeltData() async {
-    return await rootBundle.loadString('database/mhrs/armor/waist.json');
-  }
-
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
+    getFilteredBelts();
+    filteredBelts = lbelt;
   }
 
   Future<void> loadBelt() async {
-    String jsonText = await loadBeltData();
+    String jsonText =
+        await rootBundle.loadString('database/mhrs/armor/waist.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
-    String skillJsonText = await loadSkillData();
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       lbelt = jsonResponse
           .map(
               (ceinture) => Ceinture.fromJson(ceinture, skillList, Stuff.local))
-          .toList();
+          .toList();      lskill.add(Talent.getBase());
+      lskill.addAll(skillList
+          .map((skill) => Talent.getJson(skill, Stuff.local))
+          .toList());
+      // Triez la liste lskill par le nom du talent
+      lskill.sort((a, b) => a.name.compareTo(b.name));
+
+      // Exclure les éléments ayant les ID 147, 148 et 149
+      lskill.removeWhere(
+          (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
+
+      getFilteredBelts();
     });
   }
 
-  List<Ceinture> getFilteredBelts() {
-    List<Ceinture> filteredBelts = [];
+  void getFilteredBelts() {
+    List<Ceinture> fBelts = [];
 
-    if (showExpertBelts) {
-      filteredBelts
-          .addAll(lbelt.where((belt) => belt.categorie == 'expert').toList());
+    if (rcCheck) {
+      fBelts.addAll(lbelt.where((belt) => belt.categorie == 'expert').toList());
     }
-    if (showMaitreBelts) {
-      filteredBelts
-          .addAll(lbelt.where((belt) => belt.categorie == 'maitre').toList());
+    if (rmCheck) {
+      fBelts.addAll(lbelt.where((belt) => belt.categorie == 'maitre').toList());
     }
-    return filteredBelts;
+    filteredBelts = fBelts;
+  }
+
+  void searchFilter(String keyword) {
+    getFilteredBelts();
+    List<Ceinture> fBelts = [];
+    if (keyword.isEmpty || keyword == '') {
+      fBelts = filteredBelts;
+    } else {
+      fBelts = filteredBelts
+          .where((armor) =>
+              armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
+              armor.categorie == "none")
+          .toList();
+    }
+    setState(() {
+      filteredBelts = fBelts;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: getSecondary(),
+        child: Column(children: [
           Card(
-            margin: const EdgeInsets.all(5),
-            child: Column(
-              children: [
-                CheckboxListTile(
-                  title: const Text('Novices'),
-                  value: showNoviceBelts,
-                  onChanged: (checked) {
-                    setState(() {
-                      showNoviceBelts = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Experts'),
-                  value: showExpertBelts,
-                  onChanged: (checked) {
-                    setState(() {
-                      showExpertBelts = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Maîtres'),
-                  value: showMaitreBelts,
-                  onChanged: (checked) {
-                    setState(() {
-                      showMaitreBelts = checked ?? false;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
+              color: getSecondary(),
+              child: Column(children: [
+                filterRank(),
+                filterAccordeon(),
+                getSearchBar(tc, context, searchFilter),
+              ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: getFilteredBelts().length,
+                  itemCount: filteredBelts.length,
                   itemBuilder: (context, index) {
-                    Ceinture belt = getFilteredBelts()[index];
-                    return Card(
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 10, right: 10),
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(belt);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  belt.name,
-                                ),
-                              ],
-                            ),
-                            leading: Text('R${belt.rarete}'),
-                            subtitle: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Joyau"),
-                                      getFilteredBelts()[index].slots.isEmpty
-                                          ? const Text('- / - / -')
-                                          : Row(
-                                              children: [
-                                                for (int i = 0; i < 3; i++)
-                                                  Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 8),
-                                                    child: Text(getFilteredBelts()[
-                                                                    index]
-                                                                .slots
-                                                                .length >
-                                                            i
-                                                        ? '${getFilteredBelts()[index].slots[i].toString()} /'
-                                                        : i != 2
-                                                            ? '- /'
-                                                            : '-'),
-                                                  ),
-                                              ],
-                                            ),
-                                    ]),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Talent"),
-                                      for (int i = 0; i < 4; i++)
-                                        if (belt.talents.length > i)
-                                          Text(
-                                              '${belt.talents[i].name} + ${belt.talents[i].level}'),
-                                    ])
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ));
+                    Ceinture belt = filteredBelts[index];
+                    return getCardArmorPopup(belt, context);
                   }))
-        ],
-      ),
-    );
+        ]));
+  }
+ Widget filterAccordeon() {
+    return accordeon(AccordionSection(
+        isOpen: isExpanded,
+        onOpenSection: () => setState(() => isExpanded = true),
+        contentVerticalPadding: 10,
+        contentBackgroundColor: getThird(),
+        contentBorderColor: getThird(),
+        header: Text(AppLocalizations.of(context)!.moreFilters,
+            style: const TextStyle(fontWeight: FontWeight.bold)),
+        content: Column(children: [          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+            setState(() {
+              selectedSkill =
+                  lskill.firstWhere((skill) => skill.id == newValue!);
+            });
+          })])));
   }
 
-  Widget statDef(String image, int value) {
-    return Row(
-      children: [
-        Image.asset(image, height: 16, width: 16),
-        const SizedBox(width: 5),
-        Text(value.toString()),
-      ],
-    );
+  Widget filterRank() {
+    return Card(
+        color: getThird(),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          checkboxRank("RC", rcCheck, () {
+            setState(() {
+              resetRankChoice();
+              rcCheck = !rcCheck;
+              getFilteredBelts();
+            });
+          }),
+          checkboxRank("RM", rmCheck, () {
+            setState(() {
+              resetRankChoice();
+              rmCheck = !rmCheck;
+              getFilteredBelts();
+            });
+          })
+        ]));
+  }
+  void resetRankChoice() {
+    rcCheck = false;
+    rmCheck = false;
+    tc.text = "";
   }
 }
