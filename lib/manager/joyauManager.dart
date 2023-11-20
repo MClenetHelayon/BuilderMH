@@ -6,7 +6,6 @@ import '../object/armor/Casque.dart';
 import '../object/armor/Ceinture.dart';
 import '../object/armor/Jambe.dart';
 import '../object/weapon/Arme.dart';
-import '../object/armor/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Stuff.dart';
 import '../object/Talisman.dart';

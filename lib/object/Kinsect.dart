@@ -1,7 +1,7 @@
 class Kinsect {
-  final String name, niveau, bonusKinsect;
-  final int rarete, id, typeAttaque;
-  final List<String> typeKinsect;
+  final String name, niveau;
+  final int rarete, id, typeAttaque, bonusKinsect;
+  final List<int> typeKinsect;
   final List<List<int>> niveauKinsect;
   Kinsect(
       {required this.id,
@@ -13,9 +13,9 @@ class Kinsect {
       required this.typeKinsect,
       required this.niveauKinsect});
 
-  factory Kinsect.fromJson(Map<String, dynamic> json ,  String local) {
+  factory Kinsect.fromJson(Map<String, dynamic> json, String local) {
     var ListTypeKinsect = json['typeKinsect'] as List<dynamic>;
-    List<String> lType = List<String>.from(ListTypeKinsect);
+    List<int> lType = List<int>.from(ListTypeKinsect);
     var ListNiveau = json['niveauKinsect'] as List<dynamic>;
     List<List<int>> lNiveau = List<List<int>>.from(
       ListNiveau.map((niveau) => List<int>.from(niveau)),
@@ -45,7 +45,7 @@ class Kinsect {
       rarete: 0,
       niveau: "novice",
       typeAttaque: 0,
-      bonusKinsect: "-------------",
+      bonusKinsect: 0,
       typeKinsect: [],
       niveauKinsect: [],
     );

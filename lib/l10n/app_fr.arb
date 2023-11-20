@@ -203,5 +203,18 @@
   "kPoison": "Poison",
   "kExplo": "Explosion",
   "kPara": "Paralysie",
-  "kSoin": "Guerison"
+  "kSoin": "Guerison",
+  "kbRecup": "Récupération Bonus",
+  "kbDuoDef": "Duo de Couleurs (Défense)",
+  "kbDuoAtk": "Duo de Couleurs (Attaque)",
+  "kbDuoSpd": "Duo de Couleurs (Vitesse)",
+  "kbSlowConsoEndu": "Ralent. Consom. Endurance",
+  "kbTime3x": "Temps Triplé",
+  "kbFreqAtt": "Freq. attaque auto.+",
+  "kbRecupEnduOff": "Récup. endur. inactiv.+",
+  "kbAttChainCharg": "Attaque Enchaînée Chargée",
+  "kbSpdCharg": "Charge Rapide",
+  "kbPoudreUp": "Poudre Amelioree",
+  "kbPoudreVortex": "Poudriere Vortex",
+  "kbChargKinsect": "Charge Kinsecte"
 }

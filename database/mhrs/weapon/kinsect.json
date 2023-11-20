@@ -10,9 +10,9 @@
         "niveau": "maitre",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Kinsecte",
+        "bonusKinsect": 12,
         "niveauKinsect": [
             [
                 107,
@@ -102,9 +102,9 @@
         "niveau": "maitre",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Kinsecte",
+        "bonusKinsect": 12,
         "niveauKinsect": [
             [
                 107,
@@ -194,10 +194,11 @@
         "niveau": "maitre",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison / Paralysie"
+            2,
+            3,
+            1
         ],
-        "bonusKinsect": "Poudriere Vortex",
+        "bonusKinsect": 11,
         "niveauKinsect": [
             [
                 90,
@@ -287,10 +288,11 @@
         "niveau": "maitre",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Explosion / Guerison"
+            2,
+            2,
+            3
         ],
-        "bonusKinsect": "Poudriere Vortex",
+        "bonusKinsect": 11,
         "niveauKinsect": [
             [
                 90,
@@ -380,9 +382,9 @@
         "niveau": "maitre",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Poudre Amelioree",
+        "bonusKinsect": 10,
         "niveauKinsect": [
             [
                 125,
@@ -472,9 +474,9 @@
         "niveau": "maitre",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Poudre Amelioree",
+        "bonusKinsect": 10,
         "niveauKinsect": [
             [
                 125,
@@ -564,9 +566,9 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Rapide",
+        "bonusKinsect": 9,
         "niveauKinsect": [
             [
                 90,
@@ -656,9 +658,9 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Charge Rapide",
+        "bonusKinsect": 9,
         "niveauKinsect": [
             [
                 90,
@@ -748,9 +750,9 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Attaque Enchaînée Chargée",
+        "bonusKinsect": 8,
         "niveauKinsect": [
             [
                 90,
@@ -840,9 +842,9 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Attaque Enchaînée Chargée",
+        "bonusKinsect": 8,
         "niveauKinsect": [
             [
                 90,
@@ -932,10 +934,10 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison"
+            2,
+            3
         ],
-        "bonusKinsect": "Récup. endur. inactiv.+",
+        "bonusKinsect": 7,
         "niveauKinsect": [
             [
                 72,
@@ -1025,10 +1027,10 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Explosion"
+            2,
+            2
         ],
-        "bonusKinsect": "Récup. endur. inactiv.+",
+        "bonusKinsect": 7,
         "niveauKinsect": [
             [
                 72,
@@ -1118,10 +1120,11 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Guerison / Poison"
+            2,
+            3,
+            0
         ],
-        "bonusKinsect": "Freq. attaque auto.+",
+        "bonusKinsect": 6,
         "niveauKinsect": [
             [
                 90,
@@ -1211,10 +1214,11 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Poison / Paralysie"
+            2,
+            0,
+            1
         ],
-        "bonusKinsect": "Freq. attaque auto.+",
+        "bonusKinsect": 6,
         "niveauKinsect": [
             [
                 90,
@@ -1304,9 +1308,9 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Vitesse)",
+        "bonusKinsect": 3,
         "niveauKinsect": [
             [
                 107,
@@ -1396,9 +1400,9 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Vitesse)",
+        "bonusKinsect": 3,
         "niveauKinsect": [
             [
                 107,
@@ -1488,9 +1492,9 @@
         "niveau": "expert",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Attaque)",
+        "bonusKinsect": 2,
         "niveauKinsect": [
             [
                 125,
@@ -1580,9 +1584,9 @@
         "niveau": "expert",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Attaque)",
+        "bonusKinsect": 2,
         "niveauKinsect": [
             [
                 125,
@@ -1672,9 +1676,9 @@
         "niveau": "novice",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Temps Triplé",
+        "bonusKinsect": 5,
         "niveauKinsect": [
             [
                 72,
@@ -1764,9 +1768,9 @@
         "niveau": "novice",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Vitesse"
+            3
         ],
-        "bonusKinsect": "Temps Triplé",
+        "bonusKinsect": 5,
         "niveauKinsect": [
             [
                 72,
@@ -1856,10 +1860,10 @@
         "niveau": "novice",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Poudre",
-            "Poison"
+            2,
+            0
         ],
-        "bonusKinsect": "Ralent. Consom. Endurance",
+        "bonusKinsect": 4,
         "niveauKinsect": [
             [
                 72,
@@ -1949,10 +1953,10 @@
         "niveau": "novice",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Poudre",
-            "Paralysie"
+            2,
+            1
         ],
-        "bonusKinsect": "Ralent. Consom. Endurance",
+        "bonusKinsect": 4,
         "niveauKinsect": [
             [
                 72,
@@ -2042,9 +2046,9 @@
         "niveau": "novice",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Défense)",
+        "bonusKinsect": 1,
         "niveauKinsect": [
             [
                 107,
@@ -2134,9 +2138,9 @@
         "niveau": "novice",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Baroudeur"
+            1
         ],
-        "bonusKinsect": "Duo de Couleurs (Défense)",
+        "bonusKinsect": 1,
         "niveauKinsect": [
             [
                 107,
@@ -2226,9 +2230,9 @@
         "niveau": "novice",
         "typeAttaque": 1,
         "typeKinsect": [
-            "Standard"
+            0
         ],
-        "bonusKinsect": "Récupération Bonus",
+        "bonusKinsect": 0,
         "niveauKinsect": [
             [
                 72,
@@ -2318,9 +2322,9 @@
         "niveau": "novice",
         "typeAttaque": 0,
         "typeKinsect": [
-            "Standard"
+            0
         ],
-        "bonusKinsect": "Récupération Bonus",
+        "bonusKinsect": 0,
         "niveauKinsect": [
             [
                 72,

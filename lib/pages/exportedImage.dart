@@ -3,6 +3,8 @@ import 'package:builder_mhrs/manager/local/arme/kinsect/getTypeAttaque.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+import '../manager/local/arme/kinsect/getBoostKinsect.dart';
+import '../manager/local/arme/kinsect/getTypeKinsect.dart';
 import '../manager/weapon/AmmoManager.dart';
 import '../manager/local/arme/fusarb/getMod.dart';
 import '../manager/skill/calculManager.dart';
@@ -639,10 +641,13 @@ gKinsect(Stuff s, BuildContext context) {
         ]),
         Text(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(k.typeKinsect[0]),
-          if (k.typeKinsect.length > 1) Text(k.typeKinsect[1]),
+          Text(getTypeKinsect(k.typeKinsect[0], context)),
+          if (k.typeKinsect.length > 1) Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+                (k.typeKinsect.length > 2
+                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
+                    : "")),
         ]),
-        Text(k.bonusKinsect)
+        Text(getBoostKinsect(k.bonusKinsect, context))
       ]));
 }
 

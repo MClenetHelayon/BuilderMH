@@ -203,5 +203,18 @@
   "kPoison": "Poison",
   "kExplo": "Blast",
   "kPara": "Paralysis",
-  "kSoin": "Heal"
+  "kSoin": "Heal",
+  "kbRecup": "Bonus Heal",
+  "kbDuoDef": "Dual Color (Defense)",
+  "kbDuoAtk": "Dual Color (Attack)",
+  "kbDuoSpd": "Dual Color (Speed)",
+  "kbSlowConsoEndu": "Stamina Use Slowed",
+  "kbTime3x": "Triple Up Time",
+  "kbFreqAtt": "Auto Attack Frequency Up",
+  "kbRecupEnduOff": "Idle Stamina Recovery Up",
+  "kbAttChainCharg": "Charge Chain Attack",
+  "kbSpdCharg": "Fast Charge",
+  "kbPoudreUp": "Booster Powder Exctract",
+  "kbPoudreVortex": "Powder Vortex",
+  "kbChargKinsect": "Kinsect Charge"
 }

@@ -1,4 +1,6 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/local/arme/kinsect/getBoostKinsect.dart';
+import 'package:builder_mhrs/manager/local/arme/kinsect/getTypeKinsect.dart';
 import 'package:builder_mhrs/manager/weaponManager.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:flutter/material.dart';
@@ -305,10 +307,14 @@ gKinsect(Stuff s, BuildContext context) {
         ]),
         white(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          white(k.typeKinsect[0]),
-          if (k.typeKinsect.length > 1) white(k.typeKinsect[1]),
+          white(getTypeKinsect(k.typeKinsect[0], context)),
+          if (k.typeKinsect.length > 1)
+            white(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+                (k.typeKinsect.length > 2
+                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
+                    : "")),
         ]),
-        white(k.bonusKinsect)
+        white(getBoostKinsect(k.bonusKinsect, context)),
       ]));
 }
 
