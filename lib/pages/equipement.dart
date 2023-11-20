@@ -1,5 +1,4 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
-import 'package:builder_mhrs/manager/weapon/bowManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -14,10 +13,8 @@ import '../manager/florManager.dart';
 import '../manager/imgManager.dart';
 import '../manager/popupManager.dart' as pop;
 import '../manager/sharpManager.dart';
-import '../manager/statManager.dart';
 import '../manager/textManager.dart';
 import '../manager/weaponManager.dart';
-import '../object/weapon/Arc.dart';
 import '../object/weapon/tranchant/CornedeChasse.dart';
 import '../object/weapon/tranchant/Insectoglaive.dart';
 import '../provider/app_state.dart';

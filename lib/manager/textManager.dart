@@ -3,7 +3,6 @@ import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:flutter/material.dart';
 
 import '../object/Stuff.dart';
-import '../object/weapon/Arme.dart';
 import 'imgManager.dart';
 
 Container title(String t) {
