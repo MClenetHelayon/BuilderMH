@@ -59,7 +59,7 @@ Widget buildCard(Screen screen) {
                         margin: const EdgeInsets.only(
                             bottom: 1, top: 1, left: 5, right: 5),
                         child: Column(children: [
-                          switchColor(
+                          switchColorBlack(
                               skill.key.name, skill.key.levelMax, skill.value),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,7 +68,7 @@ Widget buildCard(Screen screen) {
                                     child: SkillNumLogo(
                                         skill.value, skill.key.levelMax)),
                                 Container(
-                                    child: switchColor(
+                                    child: switchColorBlack(
                                         "${AppLocalizations.of(screen.context)!.niv} ${skill.value}",
                                         skill.key.levelMax,
                                         skill.value))
@@ -244,7 +244,7 @@ Widget calamJowel(Stuff s, BuildContext context) {
 Widget Charm(Screen screen) {
   Stuff s = screen.stuff;
   return Card(
-      color: Colors.white,
+      color: getFourth(),
       child: Row(children: [
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -283,7 +283,7 @@ Widget Charm(Screen screen) {
 Widget Flor(Screen screen) {
   Stuff s = screen.stuff;
   return Card(
-      color: Colors.white,
+      color: getFourth(),
       child: Row(children: [
         Flexible(
             flex: 1,
@@ -518,7 +518,7 @@ Widget gOff(Stuff s, BuildContext context) {
               "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}"),
           Text("${AppLocalizations.of(context)!.efr} : ${efr(s)}"),
           Text("${AppLocalizations.of(context)!.trr} : ${row(s).toString()}"),
-          switchColor("${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
+          switchColorBlack("${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
               100, s.affinite),
           Text(
               "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentById(22), s).toString()}"),

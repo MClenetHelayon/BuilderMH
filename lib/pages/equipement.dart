@@ -144,29 +144,30 @@ class _BuilderPageState extends State<BuilderPage> {
                   }
                 });
               },
-              child: Table(columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(70),
-                1: FlexColumnWidth(),
-              }, children: [
-                TableRow(children: [
-                  Container(
-                      margin: const EdgeInsets.only(right: 10.0, top: 5.0),
-                      width: 60,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            icon(0, false),
-                            if (openWeapon)
-                              Text(
-                                "${AppLocalizations.of(context)!.rarete} ${s.weapon.rarete}",
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                          ])),
-                  valueWeapon(s.weapon, context)
+              child: Column(children: [
+                Table(columnWidths: const <int, TableColumnWidth>{
+                  0: FixedColumnWidth(70),
+                  1: FlexColumnWidth(),
+                }, children: [
+                  TableRow(children: [
+                    Container(
+                        margin: const EdgeInsets.only(right: 10.0, top: 5.0),
+                        width: 60,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              icon(0, false),
+                              if (openWeapon)
+                                Text(
+                                  "${AppLocalizations.of(context)!.rarete}${s.weapon.rarete}",
+                                  style: TextStyle(color: getFourth()),
+                                ),
+                            ])),
+                    valueWeapon(s.weapon, context)
+                  ]),
                 ]),
                 if (openWeapon)
-                  TableRow(children: [
-                    Container(),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Column(children: [
                       if (s.weapon.niveau == "maitre")
                         Column(
@@ -278,12 +279,9 @@ class _BuilderPageState extends State<BuilderPage> {
                 Container(
                     margin: const EdgeInsets.all(10.0),
                     child: Column(children: [
-                      Container(
-                        child: Text(s.florelet.name,
-                            style: TextStyle(
-                                color: getFifth(),
-                                fontWeight: FontWeight.bold)),
-                      ),
+                      Text(s.florelet.name,
+                          style: TextStyle(
+                              color: getFifth(), fontWeight: FontWeight.bold)),
                       if (openPetalas) flor(s.florelet, context)
                     ]))
               ])
@@ -307,40 +305,42 @@ class _BuilderPageState extends State<BuilderPage> {
                 Talisman.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [
-                icon(7, true),
-                Container(
-                    margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                    child: Column(
-                      children: [
-                        Container(
-                            margin: const EdgeInsets.only(bottom: 20.0),
-                            child: Text(AppLocalizations.of(context)!.tali,
-                                style: TextStyle(
-                                    color: getFifth(),
-                                    fontWeight: FontWeight.bold))),
-                        if (openCharm)
-                          Table(columnWidths: const <int, TableColumnWidth>{
-                            0: FlexColumnWidth(),
-                            1: FlexColumnWidth(),
-                          }, children: [
-                            TableRow(children: [
-                              TalisTalent(s.charm, context),
-                              TalisJoyau(s.charm, s, _reloadMainPage, context),
-                            ])
-                          ])
-                      ],
-                    )),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  icon(7, true),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Container(
+                        margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                        child: Text(AppLocalizations.of(context)!.tali,
+                            style: TextStyle(
+                                color: getFifth(),
+                                fontWeight: FontWeight.bold)))
+                  ])
+                ]),
               ]),
+              if (openCharm)
+                Column(children: [
+                  Container(
+                      margin: const EdgeInsets.only(bottom: 10.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TalisTalent(s.charm, context),
+                          ])),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    TalisJoyau(s.charm, s, _reloadMainPage, context),
+                  ])
+                ])
             ])));
   }
 
   Widget CalamJowel(int slot, String categ, BuildContext context) {
     return Card(
+      color: getPrimary(),
       child: TextButton(
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
@@ -378,15 +378,26 @@ class _BuilderPageState extends State<BuilderPage> {
                 Casque.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [icon(1, true), armorTopInfo(s.helmet)]),
-              if (openHelmet) armorRarityTalent(s.helmet, context),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  Column(children: [
+                    icon(1, true),
+                    white(
+                        "${AppLocalizations.of(context)!.rarete}${s.helmet.rarete}"),
+                  ]),
+                  armorTopInfo(s.helmet)
+                ]),
+              ]),
+              if (openHelmet) armorTalent(s.helmet, context),
               if (openHelmet)
-                armorSlot(s.helmet, context,
-                    armorSlotCasque(s.helmet, s, _reloadMainPage, context))
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  armorSlot(s.helmet, context,
+                      armorSlotCasque(s.helmet, s, _reloadMainPage, context))
+                ])
             ])));
   }
 
@@ -404,15 +415,26 @@ class _BuilderPageState extends State<BuilderPage> {
                 Plastron.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [icon(2, true), armorTopInfo(s.torso)]),
-              if (openChest) armorRarityTalent(s.torso, context),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  Column(children: [
+                    icon(1, true),
+                    white(
+                        "${AppLocalizations.of(context)!.rarete}${s.torso.rarete}"),
+                  ]),
+                  armorTopInfo(s.torso)
+                ]),
+              ]),
+              if (openChest) armorTalent(s.torso, context),
               if (openChest)
-                armorSlot(s.torso, context,
-                    armorSlotPlastron(s.torso, s, _reloadMainPage, context))
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  armorSlot(s.torso, context,
+                      armorSlotCasque(s.torso, s, _reloadMainPage, context))
+                ])
             ])));
   }
 
@@ -431,15 +453,26 @@ class _BuilderPageState extends State<BuilderPage> {
                 Bras.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [icon(3, true), armorTopInfo(s.gant)]),
-              if (openGant) armorRarityTalent(s.gant, context),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  Column(children: [
+                    icon(1, true),
+                    white(
+                        "${AppLocalizations.of(context)!.rarete}${s.gant.rarete}"),
+                  ]),
+                  armorTopInfo(s.gant)
+                ]),
+              ]),
+              if (openGant) armorTalent(s.gant, context),
               if (openGant)
-                armorSlot(s.gant, context,
-                    armorSlotBras(s.gant, s, _reloadMainPage, context))
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  armorSlot(s.gant, context,
+                      armorSlotCasque(s.gant, s, _reloadMainPage, context))
+                ])
             ])));
   }
 
@@ -457,15 +490,26 @@ class _BuilderPageState extends State<BuilderPage> {
                 Ceinture.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [icon(4, true), armorTopInfo(s.boucle)]),
-              if (openBoucle) armorRarityTalent(s.boucle, context),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  Column(children: [
+                    icon(1, true),
+                    white(
+                        "${AppLocalizations.of(context)!.rarete}${s.boucle.rarete}"),
+                  ]),
+                  armorTopInfo(s.boucle)
+                ]),
+              ]),
+              if (openBoucle) armorTalent(s.boucle, context),
               if (openBoucle)
-                armorSlot(s.boucle, context,
-                    armorSlotCeinture(s.boucle, s, _reloadMainPage, context))
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  armorSlot(s.boucle, context,
+                      armorSlotCasque(s.boucle, s, _reloadMainPage, context))
+                ])
             ])));
   }
 
@@ -483,15 +527,26 @@ class _BuilderPageState extends State<BuilderPage> {
                 Jambiere.listJoyaux.clear();
               });
             },
-            child: Table(columnWidths: const <int, TableColumnWidth>{
-              0: FixedColumnWidth(60),
-              1: FlexColumnWidth(),
-            }, children: [
-              TableRow(children: [icon(5, true), armorTopInfo(s.pied)]),
-              if (openLeg) armorRarityTalent(s.pied, context),
+            child: Column(children: [
+              Table(columnWidths: const <int, TableColumnWidth>{
+                0: FixedColumnWidth(60),
+                1: FlexColumnWidth(),
+              }, children: [
+                TableRow(children: [
+                  Column(children: [
+                    icon(1, true),
+                    white(
+                        "${AppLocalizations.of(context)!.rarete}${s.pied.rarete}"),
+                  ]),
+                  armorTopInfo(s.pied)
+                ]),
+              ]),
+              if (openLeg) armorTalent(s.pied, context),
               if (openLeg)
-                armorSlot(s.pied, context,
-                    armorSlotJambiere(s.pied, s, _reloadMainPage, context))
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  armorSlot(s.pied, context,
+                      armorSlotCasque(s.pied, s, _reloadMainPage, context))
+                ])
             ])));
   }
 

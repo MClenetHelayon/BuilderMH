@@ -36,10 +36,25 @@ Text white(String t) {
       ));
 }
 
-Text switchColor(String t, int max, num value) {
+Text whiteBoldUnderligne(String t) {
+  return Text(t,
+      style: TextStyle(
+        color: getFourth(),
+        fontWeight: FontWeight.bold,
+        decoration: TextDecoration.underline,
+      ));
+}
+
+Text switchColorWhite(String t, int max, num value) {
   return Text(t,
       style: TextStyle(
           color: value <= max && value > 0 ? getFourth() : Colors.red));
+}
+
+Text switchColorBlack(String t, int max, num value) {
+  return Text(t,
+      style: TextStyle(
+          color: value <= max && value > 0 ? getSecondary() : Colors.red));
 }
 
 Container gDefSimply(String img, int value) {
