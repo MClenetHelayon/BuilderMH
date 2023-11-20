@@ -1,6 +1,6 @@
 import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/weaponManager.dart';
-import 'package:builder_mhrs/object/Armure.dart';
+import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../object/Kinsect.dart';
@@ -19,6 +19,7 @@ import 'local/arme/fusarb/getRechargement.dart';
 import 'local/arme/fusarb/getRecul.dart';
 import 'local/arme/fusarb/getTirSpe.dart';
 import 'local/arme/glTypeCanon.dart';
+import 'local/arme/kinsect/getTypeAttaque.dart';
 import 'local/arme/saTypeFiole.dart';
 import 'skill/calculManager.dart';
 import 'imgManager.dart';
@@ -302,7 +303,7 @@ gKinsect(Stuff s, BuildContext context) {
                 .toString(),
           ),
         ]),
-        white(k.typeAttaque),
+        white(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           white(k.typeKinsect[0]),
           if (k.typeKinsect.length > 1) white(k.typeKinsect[1]),

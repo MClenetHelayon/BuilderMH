@@ -1,7 +1,10 @@
 [
     {
         "id": 1000,
-        "name": "Démon Sceros",
+        "name": {
+            "fr": "Démon Sceros",
+            "en": "Archfiend Sceros"
+        },
         "rarete": 10,
         "categorie": "maitre",
         "def": 126,

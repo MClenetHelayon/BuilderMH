@@ -193,5 +193,15 @@
   "sharpV": "Green",
   "sharpB": "Blue",
   "sharpBc": "White",
-  "sharpVl": "Purple"
+  "sharpVl": "Purple",
+  "blunt": "Blunt",
+  "severe": "Severing",
+  "kNormal": "Normal",
+  "kVitesse": "Speed",
+  "kBaroudeur": "Assist",
+  "kPowder": "Powder",
+  "kPoison": "Poison",
+  "kExplo": "Blast",
+  "kPara": "Paralysis",
+  "kSoin": "Heal"
 }

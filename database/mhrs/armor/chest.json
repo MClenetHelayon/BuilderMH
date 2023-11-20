@@ -1,7 +1,10 @@
 [
     {
         "id": 1000,
-        "name": "Démon Baulo",
+        "name": {
+            "fr": "Démon Baulo",
+            "en": "Archfiend Baulo"
+        },
         "rarete": 10,
         "categorie": "maitre",
         "def": 126,

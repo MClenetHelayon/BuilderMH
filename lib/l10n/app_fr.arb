@@ -193,5 +193,15 @@
   "sharpV": "Vert",
   "sharpB": "Bleu",
   "sharpBc": "Blanc",
-  "sharpVl": "Violet"
+  "sharpVl": "Violet",
+  "blunt": "Contondant",
+  "severe": "Coupant",
+  "kNormal": "Standard",
+  "kVitesse": "Vitesse",
+  "kBaroudeur": "Baroudeur",
+  "kPowder": "Poudre",
+  "kPoison": "Poison",
+  "kExplo": "Explosion",
+  "kPara": "Paralysie",
+  "kSoin": "Guerison"
 }

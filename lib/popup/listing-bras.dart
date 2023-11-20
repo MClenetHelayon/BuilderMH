@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
-import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,6 +12,7 @@ import '../manager/popup/accordeonManager.dart';
 import '../manager/popup/cardListManager.dart';
 import '../object/Stuff.dart';
 import '../object/Talent.dart';
+import '../object/armor/Bras.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({

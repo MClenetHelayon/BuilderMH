@@ -1,11 +1,14 @@
 [
     {
         "id": 0,
-        "name": "Feuillacath",
+        "name": {
+            "fr": "Feuillacath",
+            "en": "Foliacath"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -90,11 +93,14 @@
     },
     {
         "id": 1,
-        "name": "Flamflotte",
+        "name": {
+            "fr": "Flamflotte",
+            "en": "Fleetlammer"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -179,11 +185,14 @@
     },
     {
         "id": 2,
-        "name": "Coccitour",
+        "name": {
+            "fr": "Coccitour",
+            "en": "Ladytower"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Poudre",
             "Guerison / Paralysie"
@@ -269,11 +278,14 @@
     },
     {
         "id": 3,
-        "name": "Sabrebrix",
+        "name": {
+            "fr": "Sabrebrix",
+            "en": "Bilbobrix"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Poudre",
             "Explosion / Guerison"
@@ -359,11 +371,14 @@
     },
     {
         "id": 4,
-        "name": "Lumiptère",
+        "name": {
+            "fr": "Lumiptère",
+            "en": "Gleambeetle"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -448,11 +463,14 @@
     },
     {
         "id": 5,
-        "name": "Alucanide Exalte",
+        "name": {
+            "fr": "Alucanide Exalte",
+            "en": "Exalted Alucanide"
+        },
         "rarete": 7,
         "categorie": "kinsect",
         "niveau": "maitre",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -537,11 +555,14 @@
     },
     {
         "id": 6,
-        "name": "Aeropoda",
+        "name": {
+            "fr": "Aeropoda",
+            "en": "Whispervesp"
+        },
         "rarete": 3,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -626,11 +647,14 @@
     },
     {
         "id": 7,
-        "name": "Pseudocath",
+        "name": {
+            "fr": "Pseudocath",
+            "en": "Pseudocath"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -715,11 +739,14 @@
     },
     {
         "id": 8,
-        "name": "Suairophage",
+        "name": {
+            "fr": "Suairophage",
+            "en": "Bullshroud"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -804,11 +831,14 @@
     },
     {
         "id": 9,
-        "name": "Grancathar",
+        "name": {
+            "fr": "Grancathar",
+            "en": "Grancathar"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -893,11 +923,14 @@
     },
     {
         "id": 10,
-        "name": "Arkmaiden",
+        "name": {
+            "fr": "Arkmaiden",
+            "en": "Arkmaiden"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Poudre",
             "Guerison"
@@ -983,11 +1016,14 @@
     },
     {
         "id": 11,
-        "name": "Lamobrix",
+        "name": {
+            "fr": "Lamobrix",
+            "en": "Fiddlebrix"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Poudre",
             "Explosion"
@@ -1073,11 +1109,14 @@
     },
     {
         "id": 12,
-        "name": "Prothoccinelle",
+        "name": {
+            "fr": "Prothoccinelle",
+            "en": "Labypavise"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Poudre",
             "Guerison / Poison"
@@ -1163,11 +1202,14 @@
     },
     {
         "id": 13,
-        "name": "Armurophage",
+        "name": {
+            "fr": "Armurophage",
+            "en": "Cancadaman"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Poudre",
             "Poison / Paralysie"
@@ -1253,11 +1295,14 @@
     },
     {
         "id": 14,
-        "name": "Artillollide",
+        "name": {
+            "fr": "Artillollide",
+            "en": "Bonnetfille"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -1342,11 +1387,14 @@
     },
     {
         "id": 15,
-        "name": "Impérialoptère",
+        "name": {
+            "fr": "Impérialoptère",
+            "en": "Empresswing"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -1431,11 +1479,14 @@
     },
     {
         "id": 16,
-        "name": "Scarnagabée",
+        "name": {
+            "fr": "Scarnagabée",
+            "en": "Carnage Beetle"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -1520,11 +1571,14 @@
     },
     {
         "id": 17,
-        "name": "Alucanide Royal",
+        "name": {
+            "fr": "Alucanide Royal",
+            "en": "Monarch Alucanide"
+        },
         "rarete": 4,
         "categorie": "kinsect",
         "niveau": "expert",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -1609,11 +1663,14 @@
     },
     {
         "id": 18,
-        "name": "Gullshad",
+        "name": {
+            "fr": "Gullshad",
+            "en": "Gullshad"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -1698,11 +1755,14 @@
     },
     {
         "id": 19,
-        "name": "Zéphyropode",
+        "name": {
+            "fr": "Zéphyropode",
+            "en": "Windchopper"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Vitesse"
         ],
@@ -1787,11 +1847,14 @@
     },
     {
         "id": 20,
-        "name": "Coccitarge",
+        "name": {
+            "fr": "Coccitarge",
+            "en": "Ladytarge"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Poudre",
             "Poison"
@@ -1877,11 +1940,14 @@
     },
     {
         "id": 21,
-        "name": "Rigiphage",
+        "name": {
+            "fr": "Rigiphage",
+            "en": "Rigiprayne"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Poudre",
             "Paralysie"
@@ -1967,11 +2033,14 @@
     },
     {
         "id": 22,
-        "name": "Destrutoptère",
+        "name": {
+            "fr": "Destrutoptère",
+            "en": "Foebeetle"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -2056,11 +2125,14 @@
     },
     {
         "id": 23,
-        "name": "Alucanide",
+        "name": {
+            "fr": "Alucanide",
+            "en": "Alucanide"
+        },
         "rarete": 2,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Baroudeur"
         ],
@@ -2145,11 +2217,14 @@
     },
     {
         "id": 24,
-        "name": "Mutilogote",
+        "name": {
+            "fr": "Mutilogote",
+            "en": "Mauldrone"
+        },
         "rarete": 1,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Contondant",
+        "typeAttaque": 1,
         "typeKinsect": [
             "Standard"
         ],
@@ -2234,11 +2309,14 @@
     },
     {
         "id": 25,
-        "name": "Tortuoptède",
+        "name": {
+            "fr": "Tortuoptède",
+            "en": "Culldrone"
+        },
         "rarete": 1,
         "categorie": "kinsect",
         "niveau": "novice",
-        "typeAttaque": "Coupant",
+        "typeAttaque": 0,
         "typeKinsect": [
             "Standard"
         ],
