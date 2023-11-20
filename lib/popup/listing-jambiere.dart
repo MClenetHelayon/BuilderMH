@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../manager/colorManager.dart';
+import '../manager/filter/getCheckbox.dart';
+import '../manager/filter/getSearchBar.dart';
 import '../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
@@ -16,10 +20,10 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Jambiere> lleg = [];
-  bool showNoviceLegs = true;
-  bool showExpertLegs = true;
-  bool showMaitreLegs = true;
+  List<Jambiere> lleg = [], filteredLegs = [];
+  bool rcCheck = false;
+  bool rmCheck = true;
+  TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
@@ -27,167 +31,130 @@ class _ListViewScreenState extends State<ListViewScreen> {
     loadLeg();
   }
 
-  Future<String> loadLegData() async {
-    return await rootBundle.loadString('database/mhrs/armor/legs.json');
-  }
-
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
-  }
-
   Future<void> loadLeg() async {
-    String jsonText = await loadLegData();
+    String jsonText =
+        await rootBundle.loadString('database/mhrs/armor/legs.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
-    String skillJsonText = await loadSkillData();
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       lleg = jsonResponse
           .map(
               (jambiere) => Jambiere.fromJson(jambiere, skillList, Stuff.local))
           .toList();
+      getFilteredLegs();
     });
   }
 
-  List<Jambiere> getFilteredLegs() {
-    List<Jambiere> filteredLegs = [];
+  void getFilteredLegs() {
+    List<Jambiere> fLegs = [];
+    if (rcCheck) {
+      fLegs.addAll(lleg.where((leg) => leg.categorie == 'expert').toList());
+    }
+    if (rmCheck) {
+      fLegs.addAll(lleg.where((leg) => leg.categorie == 'maitre').toList());
+    }
+    filteredLegs = fLegs;
+  }
 
-    if (showExpertLegs) {
-      filteredLegs
-          .addAll(lleg.where((leg) => leg.categorie == 'expert').toList());
+  void searchFilter(String keyword) {
+    getFilteredLegs();
+    List<Jambiere> fLegs = [];
+    if (keyword.isEmpty || keyword == '') {
+      fLegs = filteredLegs;
+    } else {
+      fLegs = filteredLegs
+          .where((armor) =>
+              armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
+              armor.categorie == "none")
+          .toList();
     }
-    if (showMaitreLegs) {
-      filteredLegs
-          .addAll(lleg.where((leg) => leg.categorie == 'maitre').toList());
-    }
-    return filteredLegs;
+    setState(() {
+      filteredLegs = fLegs;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: getSecondary(),
+        child: Column(children: [
           Card(
-            margin: const EdgeInsets.all(5),
-            child: Column(
-              children: [
-                CheckboxListTile(
-                  title: const Text('Novices'),
-                  value: showNoviceLegs,
-                  onChanged: (checked) {
-                    setState(() {
-                      showNoviceLegs = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Experts'),
-                  value: showExpertLegs,
-                  onChanged: (checked) {
-                    setState(() {
-                      showExpertLegs = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Maîtres'),
-                  value: showMaitreLegs,
-                  onChanged: (checked) {
-                    setState(() {
-                      showMaitreLegs = checked ?? false;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
+              color: getSecondary(),
+              child: Column(children: [
+                Card(
+                    color: getThird(),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          checkboxRank("RC", rcCheck, () {
+                            setState(() {
+                              resetRankChoice();
+                              rcCheck = !rcCheck;
+                              getFilteredLegs();
+                            });
+                          }),
+                          checkboxRank("RM", rmCheck, () {
+                            setState(() {
+                              resetRankChoice();
+                              rmCheck = !rmCheck;
+                              getFilteredLegs();
+                            });
+                          })
+                        ])),
+                getSearchBar(tc, context, searchFilter),
+              ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: getFilteredLegs().length,
+                  itemCount: filteredLegs.length,
                   itemBuilder: (context, index) {
-                    Jambiere leg = getFilteredLegs()[index];
+                    Jambiere leg = filteredLegs[index];
                     return Card(
                         margin:
                             const EdgeInsets.only(top: 5, left: 10, right: 10),
                         child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(leg);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  leg.name,
-                                ),
-                              ],
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color.fromARGB(255, 255, 255, 255)),
                             ),
-                            leading: Text('R${leg.rarete}'),
-                            subtitle: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Joyau"),
-                                      getFilteredLegs()[index].slots.isEmpty
-                                          ? const Text('- / - / -')
-                                          : Row(
-                                              children: [
-                                                for (int i = 0; i < 3; i++)
-                                                  Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 8),
-                                                    child: Text(getFilteredLegs()[
-                                                                    index]
-                                                                .slots
-                                                                .length >
-                                                            i
-                                                        ? '${getFilteredLegs()[index].slots[i].toString()} /'
-                                                        : i != 2
-                                                            ? '- /'
-                                                            : '-'),
-                                                  ),
-                                              ],
-                                            ),
-                                    ]),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Talent"),
-                                      for (int i = 0; i < 4; i++)
-                                        if (leg.talents.length > i)
-                                          Text(
-                                              '${leg.talents[i].name} + ${leg.talents[i].level}'),
-                                    ])
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ));
+                            onPressed: () {
+                              Navigator.of(context).pop(leg);
+                            },
+                            child: ListTile(
+                                title: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [Text(leg.name)]),
+                                subtitle: Column(children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Column(children: [
+                                          Text(AppLocalizations.of(context)!.joyau),
+                                          slotJowel(leg.slots)
+                                        ])
+                                      ]),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Column(children: [
+                                         Text(AppLocalizations.of(context)!.talent),
+                                          for (int i = 0; i < 4; i++)
+                                            if (leg.talents.length > i)
+                                              Text(
+                                                  '${leg.talents[i].name} + ${leg.talents[i].level}'),
+                                        ])
+                                      ])
+                                ]))));
                   }))
-        ],
-      ),
-    );
+        ]));
   }
 
-  Widget statDef(String image, int value) {
-    return Row(
-      children: [
-        Image.asset(image, height: 16, width: 16),
-        const SizedBox(width: 5),
-        Text(value.toString()),
-      ],
-    );
+  void resetRankChoice() {
+    rcCheck = false;
+    rmCheck = false;
+    tc.text = "";
   }
 }

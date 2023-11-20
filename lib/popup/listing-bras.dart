@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/Armure.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../manager/colorManager.dart';
+import '../manager/filter/getCheckbox.dart';
+import '../manager/filter/getSearchBar.dart';
 import '../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
@@ -16,10 +20,10 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Bras> lvambrace = [];
-  bool showNoviceVambraces = true;
-  bool showExpertVambraces = true;
-  bool showMaitreVambraces = true;
+  List<Bras> lvambrace = [], filteredVambraces = [];
+  bool rcCheck = false;
+  bool rmCheck = true;
+  TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
@@ -27,171 +31,134 @@ class _ListViewScreenState extends State<ListViewScreen> {
     loadVambrace();
   }
 
-  Future<String> loadVambraceData() async {
-    return await rootBundle.loadString('database/mhrs/armor/arm.json');
-  }
-
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
-  }
-
   Future<void> loadVambrace() async {
-    String jsonText = await loadVambraceData();
+    String jsonText =
+        await rootBundle.loadString('database/mhrs/armor/arm.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
-    String skillJsonText = await loadSkillData();
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       lvambrace = jsonResponse
           .map((vambrace) => Bras.fromJson(vambrace, skillList, Stuff.local))
           .toList();
+      getFilteredVambraces();
     });
   }
 
-  List<Bras> getFilteredVambraces() {
-    List<Bras> filteredVambraces = [];
+  void getFilteredVambraces() {
+    List<Bras> fVambraces = [];
 
-    if (showExpertVambraces) {
-      filteredVambraces.addAll(lvambrace
+    if (rcCheck) {
+      fVambraces.addAll(lvambrace
           .where((vambrace) => vambrace.categorie == 'expert')
           .toList());
     }
-    if (showMaitreVambraces) {
-      filteredVambraces.addAll(lvambrace
+    if (rmCheck) {
+      fVambraces.addAll(lvambrace
           .where((vambrace) => vambrace.categorie == 'maitre')
           .toList());
     }
-    return filteredVambraces;
+    filteredVambraces = fVambraces;
+  }
+
+  void searchFilter(String keyword) {
+    getFilteredVambraces();
+    List<Bras> fVambraces = [];
+    if (keyword.isEmpty || keyword == '') {
+      fVambraces = filteredVambraces;
+    } else {
+      fVambraces = filteredVambraces
+          .where((armor) =>
+              armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
+              armor.categorie == "none")
+          .toList();
+    }
+    setState(() {
+      filteredVambraces = fVambraces;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: getSecondary(),
+        child: Column(children: [
           Card(
-            margin: const EdgeInsets.all(5),
-            child: Column(
-              children: [
-                CheckboxListTile(
-                  title: const Text('Novices'),
-                  value: showNoviceVambraces,
-                  onChanged: (checked) {
-                    setState(() {
-                      showNoviceVambraces = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Experts'),
-                  value: showExpertVambraces,
-                  onChanged: (checked) {
-                    setState(() {
-                      showExpertVambraces = checked ?? false;
-                    });
-                  },
-                ),
-                CheckboxListTile(
-                  title: const Text('Maîtres'),
-                  value: showMaitreVambraces,
-                  onChanged: (checked) {
-                    setState(() {
-                      showMaitreVambraces = checked ?? false;
-                    });
-                  },
-                ),
-              ],
-            ),
-          ),
+              color: getSecondary(),
+              child: Column(children: [
+                Card(
+                    color: getThird(),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          checkboxRank("RC", rcCheck, () {
+                            setState(() {
+                              resetRankChoice();
+                              rcCheck = !rcCheck;
+                              getFilteredVambraces();
+                            });
+                          }),
+                          checkboxRank("RM", rmCheck, () {
+                            setState(() {
+                              resetRankChoice();
+                              rmCheck = !rmCheck;
+                              getFilteredVambraces();
+                            });
+                          })
+                        ])),
+                getSearchBar(tc, context, searchFilter),
+              ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: getFilteredVambraces().length,
+                  itemCount: filteredVambraces.length,
                   itemBuilder: (context, index) {
-                    Bras vambrace = getFilteredVambraces()[index];
+                    Bras vambrace = filteredVambraces[index];
                     return Card(
                         margin:
                             const EdgeInsets.only(top: 5, left: 10, right: 10),
                         child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(vambrace);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  vambrace.name,
-                                ),
-                              ],
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color.fromARGB(255, 255, 255, 255)),
                             ),
-                            leading: Text('R${vambrace.rarete}'),
-                            subtitle: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Joyau"),
-                                      getFilteredVambraces()[index]
-                                              .slots
-                                              .isEmpty
-                                          ? const Text('- / - / -')
-                                          : Row(
-                                              children: [
-                                                for (int i = 0; i < 3; i++)
-                                                  Container(
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            right: 8),
-                                                    child: Text(
-                                                        getFilteredVambraces()[
-                                                                        index]
-                                                                    .slots
-                                                                    .length >
-                                                                i
-                                                            ? '${getFilteredVambraces()[index].slots[i].toString()} /'
-                                                            : i != 2
-                                                                ? '- /'
-                                                                : '-'),
-                                                  ),
-                                              ],
-                                            ),
-                                    ]),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(children: [
-                                      const Text("Talent"),
-                                      for (int i = 0; i < 4; i++)
-                                        if (vambrace.talents.length > i)
-                                          Text(
-                                              '${vambrace.talents[i].name} + ${vambrace.talents[i].level}'),
-                                    ])
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ));
+                            onPressed: () {
+                              Navigator.of(context).pop(vambrace);
+                            },
+                            child: ListTile(
+                                title: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [Text(vambrace.name)]),
+                                subtitle: Column(children: [
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Column(children: [
+                                          Text(AppLocalizations.of(context)!.joyau),
+                                          slotJowel(vambrace.slots),
+                                        ]),
+                                      ]),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Column(children: [
+                                         Text(AppLocalizations.of(context)!.talent),
+                                          for (int i = 0; i < 4; i++)
+                                            if (vambrace.talents.length > i)
+                                              Text(
+                                                  '${vambrace.talents[i].name} + ${vambrace.talents[i].level}'),
+                                        ])
+                                      ])
+                                ]))));
                   }))
-        ],
-      ),
-    );
+        ]));
   }
 
-  Widget statDef(String image, int value) {
-    return Row(
-      children: [
-        Image.asset(image, height: 16, width: 16),
-        const SizedBox(width: 5),
-        Text(value.toString()),
-      ],
-    );
+  void resetRankChoice() {
+    rcCheck = false;
+    rmCheck = false;
+    tc.text = "";
   }
 }

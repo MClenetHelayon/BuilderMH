@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:builder_mhrs/manager/colorManager.dart';
 import 'package:builder_mhrs/manager/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/filter/getCombobox.dart';
+import 'package:builder_mhrs/manager/filter/getSearchBar.dart';
 import 'package:builder_mhrs/manager/filter/logicWeapon.dart';
 import 'package:builder_mhrs/manager/imgManager.dart';
 import 'package:builder_mhrs/manager/local/arme/fusarb/getRechargement.dart';
@@ -339,15 +340,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
         child: Column(children: [
           filterRankWeapon(),
           filterAccordeon(),
-          Card(
-              color: getThird(),
-              margin: const EdgeInsets.all(2),
-              child: TextField(
-                  controller: tc,
-                  decoration: InputDecoration(
-                      hintText: AppLocalizations.of(context)!.search,
-                      prefixIcon: const Icon(Icons.search)),
-                  onChanged: (query) => searchFilter(query))),
+          getSearchBar(tc, context, searchFilter),
           Expanded(
               child: ListView.builder(
                   itemCount: lArme.length,
@@ -394,7 +387,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                                 element(weapon.idElement2),
                                                 weapon.element2)
                                           else if (weapon.idElement != 0)
-                                            printStatBlack(element(weapon.idElement),
+                                            printStatBlack(
+                                                element(weapon.idElement),
                                                 weapon.element.toString()),
                                           printStatBlack(
                                               "images/elementaire/Defense.png",
@@ -408,7 +402,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                             Column(children: [
                                               Text(AppLocalizations.of(context)!
                                                   .joyaux),
-                                              printSlotJowel(weapon)
+                                              slotJowel(weapon.slots)
                                             ]),
                                             if (weapon is Tranchant)
                                               Row(

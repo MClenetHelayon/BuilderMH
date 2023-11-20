@@ -111,35 +111,22 @@ Widget cadreAmmoValueImg(double w, Widget value) {
 }
 
 Widget cadreAmmoValueStat(double w, Widget value) {
-  return Container(
-      width: w,
-      margin: const EdgeInsets.all(3),
-     // padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-      ),
-      child: value);
+  return SizedBox(width: w, child: value);
 }
 
-Widget printSlotJowel(Arme weapon) {
-  Widget vretour = const Text('- / - / -');
-  if (weapon.slots.isNotEmpty) {
-    Row(children: [
-      for (int i = 0; i < 3; i++)
-        Container(
-          margin: const EdgeInsets.only(right: 8),
-          child: Text(
-            weapon.slots.length > i
-                ? i != 2 || weapon.slots.length > i + 1
-                    ? '${weapon.slots[i].toString()} /'
-                    : weapon.slots[i].toString()
-                : i != 2
-                    ? '- /'
-                    : '-',
-          ),
-        ),
-    ]);
-  }
-  return vretour;
+Widget slotJowel(List<int> slots) {
+  return slots.isEmpty
+      ? const Text('- / - / -')
+      : Row(children: [
+          for (int i = 0; i < 3; i++)
+            Container(
+                margin: const EdgeInsets.only(right: 8),
+                child: Text(slots.length > i
+                    ? '${slots[i].toString()} /'
+                    : i != 2
+                        ? '- /'
+                        : '-'))
+        ]);
 }
 
 Widget verticalDivider() {

@@ -45,5 +45,34 @@
                 "level": 1
             }
         ]
+    },
+    {
+        "id": 1001,
+        "name": "Rancune Sinistre",
+        "rarete": 10,
+        "categorie": "maitre",
+        "def": 124,
+        "defF": 3,
+        "defW": -3,
+        "defT": 1,
+        "defI": -2,
+        "defD": 1,
+        "slots": [
+            3
+        ],
+        "talents": [
+            {
+                "talentId": 30,
+                "level": 2
+            },
+            {
+                "talentId": 140,
+                "level": 2
+            },
+            {
+                "talentId": 117,
+                "level": 1
+            }
+        ]
     }
 ]
