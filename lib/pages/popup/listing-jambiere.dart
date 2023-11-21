@@ -1,19 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
-import 'package:builder_mhrs/manager/filter/getCombobox.dart';
-import 'package:builder_mhrs/manager/filter/logicArmor.dart';
-import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../manager/colorManager.dart';
-import '../manager/filter/getCheckbox.dart';
-import '../manager/filter/getSearchBar.dart';
-import '../manager/popup/accordeonManager.dart';
-import '../manager/popup/cardListManager.dart';
-import '../object/Stuff.dart';
-import '../object/armor/Plastron.dart';
+import '../../manager/color/colorManager.dart';
+import '../../manager/filter/getCheckbox.dart';
+import '../../manager/filter/getCombobox.dart';
+import '../../manager/filter/getSearchBar.dart';
+import '../../manager/popup/accordeonManager.dart';
+import '../../manager/popup/cardListManager.dart';
+import '../../object/Stuff.dart';
+import '../../object/Talent.dart';
+import '../../object/armor/Jambe.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -25,7 +24,7 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Plastron> lchestplate = [], filteredChestplates = [];
+  List<Jambiere> lleg = [], filteredLegs = [];
   List<Talent> lskill = [];
   Talent selectedSkill = Talent.getBase();
   bool rcCheck = false, rmCheck = true, isExpanded = false;
@@ -34,22 +33,20 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   void initState() {
     super.initState();
-    loadChestplate();
-    getFilteredChestplates();
-    filteredChestplates = lchestplate;
+    loadLeg();
   }
 
-  Future<void> loadChestplate() async {
+  Future<void> loadLeg() async {
     String jsonText =
-        await rootBundle.loadString('database/mhrs/armor/chest.json');
+        await rootBundle.loadString('database/mhrs/armor/legs.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
     String skillJsonText =
         await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
-      lchestplate = jsonResponse
+      lleg = jsonResponse
           .map(
-              (plastron) => Plastron.fromJson(plastron, skillList, Stuff.local))
+              (jambiere) => Jambiere.fromJson(jambiere, skillList, Stuff.local))
           .toList();
       lskill.add(Talent.getBase());
       lskill.addAll(skillList
@@ -62,43 +59,40 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lskill.removeWhere(
           (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
 
-      getFilteredChestplates();
+      getFilteredLegs();
     });
   }
 
-  void getFilteredChestplates() {
-    List<Plastron> fChest = [];
+  void getFilteredLegs() {
+    List<Jambiere> fLegs = [];
     if (rcCheck) {
-      fChest.addAll(
-          lchestplate.where((helmet) => helmet.categorie == 'expert').toList());
+      fLegs.addAll(lleg.where((leg) => leg.categorie == 'expert').toList());
     }
     if (rmCheck) {
-      fChest.addAll(
-          lchestplate.where((helmet) => helmet.categorie == 'maitre').toList());
+      fLegs.addAll(lleg.where((leg) => leg.categorie == 'maitre').toList());
     }
-    filteredChestplates = fChest;
+    filteredLegs = fLegs;
   }
 
   void searchFilter(String keyword) {
-    getFilteredChestplates();
-    List<Plastron> fChest = [];
+    getFilteredLegs();
+    List<Jambiere> fLegs = [];
     if (keyword.isEmpty || keyword == '') {
-      fChest = filteredChestplates;
+      fLegs = filteredLegs;
     } else {
-      fChest = filteredChestplates
+      fLegs = filteredLegs
           .where((armor) =>
               armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
               armor.categorie == "none")
           .toList();
     }
     setState(() {
-      filteredChestplates = fChest;
+      filteredLegs = fLegs;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    List<Plastron> fChest = getLPlastron(filteredChestplates, selectedSkill);
     return Card(
         color: getSecondary(),
         child: Column(children: [
@@ -111,10 +105,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
               ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: fChest.length,
+                  itemCount: filteredLegs.length,
                   itemBuilder: (context, index) {
-                    Plastron chestplate = fChest[index];
-                    return getCardArmorPopup(chestplate, context);
+                    Jambiere leg = filteredLegs[index];
+                    return getCardArmorPopup(leg, context);
                   }))
         ]));
   }
@@ -146,14 +140,14 @@ class _ListViewScreenState extends State<ListViewScreen> {
             setState(() {
               resetRankChoice();
               rcCheck = !rcCheck;
-              getFilteredChestplates();
+              getFilteredLegs();
             });
           }),
           checkboxRank("RM", rmCheck, () {
             setState(() {
               resetRankChoice();
               rmCheck = !rmCheck;
-              getFilteredChestplates();
+              getFilteredLegs();
             });
           })
         ]));

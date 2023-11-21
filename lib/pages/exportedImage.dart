@@ -1,22 +1,21 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
-import 'package:builder_mhrs/manager/local/arme/kinsect/getTypeAttaque.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRechargement.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRecul.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getTirSpe.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKinsect.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinsect.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
+import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-
-import '../manager/local/arme/kinsect/getBoostKinsect.dart';
-import '../manager/local/arme/kinsect/getTypeKinsect.dart';
-import '../manager/weapon/AmmoManager.dart';
-import '../manager/local/arme/fusarb/getMod.dart';
 import '../manager/skill/calculManager.dart';
 import '../manager/imgManager.dart' as img;
 import '../manager/imgManager.dart';
-import '../manager/local/arme/fusarb/getDeviation.dart';
-import '../manager/local/arme/fusarb/getRechargement.dart';
-import '../manager/local/arme/fusarb/getTirSpe.dart';
-import '../manager/local/arme/glTypeCanon.dart';
-import '../manager/local/arme/saTypeFiole.dart';
-import '../manager/local/arme/cbTypeFiole.dart';
-import '../manager/local/arme/fusarb/getRecul.dart';
 import '../manager/sharpManager.dart';
 import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
@@ -642,7 +641,8 @@ gKinsect(Stuff s, BuildContext context) {
         Text(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Text(getTypeKinsect(k.typeKinsect[0], context)),
-          if (k.typeKinsect.length > 1) Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+          if (k.typeKinsect.length > 1)
+            Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
                 (k.typeKinsect.length > 2
                     ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
                     : "")),

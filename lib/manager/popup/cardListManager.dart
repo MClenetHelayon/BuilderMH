@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../colorManager.dart';
+import '../color/colorManager.dart';
 import '../textManager.dart';
 
 Widget getCardArmorPopup(Armure armor, BuildContext context) {

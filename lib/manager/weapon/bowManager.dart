@@ -1,10 +1,10 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/arc/getTypeBarrage.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/arc/getTypeTir.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/manager/local/arme/arc/getTypeBarrage.dart';
-import 'package:builder_mhrs/manager/local/arme/arc/getTypeTir.dart';
 import 'package:builder_mhrs/object/weapon/Arc.dart';
 
 Widget arc(Arc bow, Stuff s, BuildContext context) {

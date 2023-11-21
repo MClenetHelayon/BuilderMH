@@ -1,19 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../manager/imgManager.dart';
-import '../object/JoyauCalam.dart';
-import '../object/Stuff.dart';
+import '../../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
   final int slot;
-  final String categ;
   const ListViewScreen(
-    this.slot,
-    this.categ, {
+    this.slot, {
     Key? key,
   }) : super(key: key);
 
@@ -22,80 +18,56 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<JoyauxCalam> lcalamJowel = [];
-  bool showSlot3 = true;
-  bool showSlot2 = true;
-  bool showSlot1 = true;
+  List<Joyaux> ljowel = [];
+  bool show4 = true;
+  bool show3 = true;
+  bool show2 = true;
+  bool show1 = true;
 
   @override
   void initState() {
     super.initState();
-    loadCalamJowel();
+    loadJowel();
   }
 
-  Future<String> loadCalamJowelData() async {
-    return await rootBundle.loadString('database/mhrs/calamityJowel.json');
+  Future<String> loadJowelData() async {
+    return await rootBundle.loadString('database/mhrs/jowel.json');
   }
 
-  Future<void> loadCalamJowel() async {
-    String jsonText = await loadCalamJowelData();
+  Future<String> loadSkillData() async {
+    return await rootBundle.loadString('database/mhrs/skill.json');
+  }
+
+  Future<void> loadJowel() async {
+    String jsonText = await loadJowelData();
     List<dynamic> jsonResponse = json.decode(jsonText);
+    String skillJsonText = await loadSkillData();
+    List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
-      lcalamJowel = jsonResponse
-          .map((calamJowel) => JoyauxCalam.fromJson(calamJowel, Stuff.local))
+      ljowel = jsonResponse
+          .map((jowel) => Joyaux.fromJson(jowel, skillList,Stuff.local))
           .toList();
     });
   }
 
-  List<JoyauxCalam> getFilteredCalamJowels() {
-    List<JoyauxCalam> filteredCalamJowel = [];
-    if (lcalamJowel.isNotEmpty) {
-      filteredCalamJowel.add(lcalamJowel[0]);
+  List<Joyaux> getFilteredJowel(int slot) {
+    List<Joyaux> filteredJowel = [];
+    if (ljowel.isNotEmpty) {
+      filteredJowel.add(ljowel[0]);
     }
-    if (showSlot3 && widget.slot == 3) {
-      filteredCalamJowel.addAll(
-          lcalamJowel.where((calamJowel) => calamJowel.slot == 3).toList());
+    if (show4 && slot == 4) {
+      filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 4).toList());
     }
-    if (showSlot2 && widget.slot >= 2) {
-      filteredCalamJowel.addAll(
-          lcalamJowel.where((calamJowel) => calamJowel.slot == 2).toList());
+    if (show3 && slot >= 3) {
+      filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 3).toList());
     }
-    if (showSlot1 && widget.slot >= 1) {
-      filteredCalamJowel.addAll(
-          lcalamJowel.where((calamJowel) => calamJowel.slot == 1).toList());
+    if (show2 && slot >= 2) {
+      filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 2).toList());
     }
-    if (widget.categ != "GS" && widget.categ != "CB") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 3);
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 4);
+    if (show1 && slot >= 1) {
+      filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 1).toList());
     }
-    if (widget.categ != "DB") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 5);
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 31);
-    }
-    if (widget.categ != "MRTO") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 30);
-    }
-    if (widget.categ != "HH") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 6);
-    }
-    if (widget.categ != "LNC") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 33);
-    }
-    if (widget.categ != "SA") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 7);
-    }
-    if (widget.categ != "IG") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 32);
-    }
-    if (widget.categ != "ARC") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 8);
-    }
-    if (widget.categ != "LBG" &&
-        widget.categ != "HBG" &&
-        widget.categ != "GL") {
-      filteredCalamJowel.removeWhere((calamJowel) => calamJowel.id == 9);
-    }
-    return filteredCalamJowel;
+    return filteredJowel;
   }
 
   @override
@@ -108,44 +80,54 @@ class _ListViewScreenState extends State<ListViewScreen> {
             margin: const EdgeInsets.all(5),
             child: Column(
               children: [
-                if (widget.slot == 3)
+                if (widget.slot == 4)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 3'),
-                    value: showSlot3,
+                    title: const Text('Emplacement 4'),
+                    value: show4,
                     onChanged: (checked) {
                       setState(() {
-                        showSlot3 = checked ?? false;
+                        show4 = checked ?? false;
+                      });
+                    },
+                  ),
+                if (widget.slot >= 3)
+                  CheckboxListTile(
+                    title: const Text('Emplacement 3'),
+                    value: show3,
+                    onChanged: (checked) {
+                      setState(() {
+                        show3 = checked ?? false;
                       });
                     },
                   ),
                 if (widget.slot >= 2)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 2'),
-                    value: showSlot2,
+                    title: const Text('Emplacement 2'),
+                    value: show2,
                     onChanged: (checked) {
                       setState(() {
-                        showSlot2 = checked ?? false;
+                        show2 = checked ?? false;
                       });
                     },
                   ),
                 if (widget.slot >= 1)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 1'),
-                    value: showSlot1,
+                    title: const Text('Emplacement 1'),
+                    value: show1,
                     onChanged: (checked) {
                       setState(() {
-                        showSlot1 = checked ?? false;
+                        show1 = checked ?? false;
                       });
                     },
-                  ),
+                  )
               ],
             ),
           ),
           Expanded(
               child: ListView.builder(
-                  itemCount: getFilteredCalamJowels().length,
+                  itemCount: getFilteredJowel(widget.slot).length,
                   itemBuilder: (context, index) {
-                    JoyauxCalam calamJowel = getFilteredCalamJowels()[index];
+                    Joyaux jowel = getFilteredJowel(widget.slot)[index];
                     if (index == 0) {
                       return Card(
                         margin:
@@ -156,13 +138,15 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 const Color.fromARGB(255, 255, 255, 255)),
                           ),
                           onPressed: () {
-                            Navigator.of(context).pop(calamJowel);
+                            Navigator.of(context).pop(jowel);
                           },
                           child: ListTile(
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(calamJowel.name),
+                                Text(
+                                  jowel.name,
+                                ),
                               ],
                             ),
                           ),
@@ -178,14 +162,15 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                   const Color.fromARGB(255, 255, 255, 255)),
                             ),
                             onPressed: () {
-                              Navigator.of(context).pop(calamJowel);
+                              Navigator.of(context).pop(jowel);
                             },
                             child: ListTile(
                               title: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                      "${AppLocalizations.of(context)!.joyau} ${calamJowel.name}"),
+                                    jowel.name,
+                                  ),
                                 ],
                               ),
                               leading: Container(
@@ -194,18 +179,13 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color:
-                                        const Color.fromARGB(134, 96, 96, 96),
+                                    color: const Color.fromARGB(135, 42, 42, 42),
                                     boxShadow: const [
                                       BoxShadow(
-                                          color:
-                                              Color.fromARGB(255, 97, 97, 97),
-                                          spreadRadius: 3,
-                                          blurRadius: 2),
+                                          color: Color.fromARGB(255, 97, 97, 97), spreadRadius: 3, blurRadius: 2),
                                     ],
                                     image: DecorationImage(
-                                      image: AssetImage(
-                                          slotCalam(calamJowel.slot)),
+                                      image: imgSlot(jowel.slot),
                                     )),
                               ),
                               subtitle: Column(
@@ -213,9 +193,11 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        "${AppLocalizations.of(context)!.talent} : ${calamJowel.talentName}",
-                                      )
+                                      Column(children: [
+                                        const Text("Talent"),
+                                        Text(
+                                            '${jowel.nameSkill} +${jowel.level}'),
+                                      ])
                                     ],
                                   ),
                                 ],
@@ -227,5 +209,24 @@ class _ListViewScreenState extends State<ListViewScreen> {
         ],
       ),
     );
+  }
+
+  AssetImage imgSlot(int slot) {
+    String img = 'images/logoBuildCard.png';
+    switch (slot) {
+      case 1:
+        img = "images/joyau/j1.png";
+        break;
+      case 2:
+        img = "images/joyau/j2.png";
+        break;
+      case 3:
+        img = "images/joyau/j3.png";
+        break;
+      case 4:
+        img = "images/joyau/j4.png";
+        break;
+    }
+    return AssetImage(img);
   }
 }

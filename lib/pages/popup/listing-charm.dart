@@ -5,7 +5,7 @@ import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 
-import '../object/Stuff.dart';
+import '../../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({

@@ -4,15 +4,15 @@ import 'package:accordion/accordion.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../manager/colorManager.dart';
-import '../manager/filter/getCheckbox.dart';
-import '../manager/filter/getCombobox.dart';
-import '../manager/filter/getSearchBar.dart';
-import '../manager/popup/accordeonManager.dart';
-import '../manager/popup/cardListManager.dart';
-import '../object/Stuff.dart';
-import '../object/Talent.dart';
-import '../object/armor/Ceinture.dart';
+import '../../manager/color/colorManager.dart';
+import '../../manager/filter/getCheckbox.dart';
+import '../../manager/filter/getCombobox.dart';
+import '../../manager/filter/getSearchBar.dart';
+import '../../manager/popup/accordeonManager.dart';
+import '../../manager/popup/cardListManager.dart';
+import '../../object/Stuff.dart';
+import '../../object/Talent.dart';
+import '../../object/armor/Ceinture.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({

@@ -1,5 +1,5 @@
 import 'package:accordion/accordion.dart';
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:flutter/material.dart';
 
 Widget accordeon(AccordionSection content) {

@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
+import 'package:builder_mhrs/manager/popup/accordeonManager.dart';
+import 'package:builder_mhrs/manager/popup/cardListManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/filter/getSearchBar.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../manager/colorManager.dart';
-import '../manager/filter/getCheckbox.dart';
-import '../manager/filter/getCombobox.dart';
-import '../manager/filter/getSearchBar.dart';
-import '../manager/popup/accordeonManager.dart';
-import '../manager/popup/cardListManager.dart';
-import '../object/Stuff.dart';
-import '../object/Talent.dart';
-import '../object/armor/Jambe.dart';
+import '../../manager/filter/getCheckbox.dart';
+import '../../manager/filter/getCombobox.dart';
+import '../../object/Stuff.dart';
+import '../../object/Talent.dart';
+import '../../object/armor/Casque.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -24,31 +24,29 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Jambiere> lleg = [], filteredLegs = [];
-  List<Talent> lskill = [];
-  Talent selectedSkill = Talent.getBase();
+  List<Casque> lhelmet = [], filteredHelmets = [];  List<Talent> lskill = [];  Talent selectedSkill = Talent.getBase();
   bool rcCheck = false, rmCheck = true, isExpanded = false;
   TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    loadLeg();
+    loadHelmet();
+    getFilteredHelmets();
+    filteredHelmets = lhelmet;
   }
 
-  Future<void> loadLeg() async {
+  Future<void> loadHelmet() async {
     String jsonText =
-        await rootBundle.loadString('database/mhrs/armor/legs.json');
+        await rootBundle.loadString('database/mhrs/armor/helmet.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
     String skillJsonText =
         await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
-      lleg = jsonResponse
-          .map(
-              (jambiere) => Jambiere.fromJson(jambiere, skillList, Stuff.local))
-          .toList();
-      lskill.add(Talent.getBase());
+      lhelmet = jsonResponse
+          .map((casque) => Casque.fromJson(casque, skillList, Stuff.local))
+          .toList();      lskill.add(Talent.getBase());
       lskill.addAll(skillList
           .map((skill) => Talent.getJson(skill, Stuff.local))
           .toList());
@@ -59,35 +57,37 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lskill.removeWhere(
           (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
 
-      getFilteredLegs();
+      getFilteredHelmets();
     });
   }
 
-  void getFilteredLegs() {
-    List<Jambiere> fLegs = [];
+  void getFilteredHelmets() {
+    List<Casque> fHelmet = [];
     if (rcCheck) {
-      fLegs.addAll(lleg.where((leg) => leg.categorie == 'expert').toList());
+      fHelmet.addAll(
+          lhelmet.where((helmet) => helmet.categorie == 'expert').toList());
     }
     if (rmCheck) {
-      fLegs.addAll(lleg.where((leg) => leg.categorie == 'maitre').toList());
+      fHelmet.addAll(
+          lhelmet.where((helmet) => helmet.categorie == 'maitre').toList());
     }
-    filteredLegs = fLegs;
+    filteredHelmets = fHelmet;
   }
 
   void searchFilter(String keyword) {
-    getFilteredLegs();
-    List<Jambiere> fLegs = [];
+    getFilteredHelmets();
+    List<Casque> fHelmet = [];
     if (keyword.isEmpty || keyword == '') {
-      fLegs = filteredLegs;
+      fHelmet = filteredHelmets;
     } else {
-      fLegs = filteredLegs
+      fHelmet = filteredHelmets
           .where((armor) =>
               armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
               armor.categorie == "none")
           .toList();
     }
     setState(() {
-      filteredLegs = fLegs;
+      filteredHelmets = fHelmet;
     });
   }
 
@@ -105,12 +105,18 @@ class _ListViewScreenState extends State<ListViewScreen> {
               ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: filteredLegs.length,
+                  itemCount: filteredHelmets.length,
                   itemBuilder: (context, index) {
-                    Jambiere leg = filteredLegs[index];
-                    return getCardArmorPopup(leg, context);
+                    Casque helmet = filteredHelmets[index];
+                    return getCardArmorPopup(helmet, context);
                   }))
         ]));
+  }
+
+  void resetRankChoice() {
+    rcCheck = false;
+    rmCheck = false;
+    tc.text = "";
   }
 
   Widget filterAccordeon() {
@@ -122,14 +128,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
         contentBorderColor: getThird(),
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Column(children: [
-          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+        content: Column(children: [          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
             setState(() {
               selectedSkill =
                   lskill.firstWhere((skill) => skill.id == newValue!);
             });
-          })
-        ])));
+          })])));
   }
 
   Widget filterRank() {
@@ -140,22 +144,16 @@ class _ListViewScreenState extends State<ListViewScreen> {
             setState(() {
               resetRankChoice();
               rcCheck = !rcCheck;
-              getFilteredLegs();
+              getFilteredHelmets();
             });
           }),
           checkboxRank("RM", rmCheck, () {
             setState(() {
               resetRankChoice();
               rmCheck = !rmCheck;
-              getFilteredLegs();
+              getFilteredHelmets();
             });
           })
         ]));
-  }
-
-  void resetRankChoice() {
-    rcCheck = false;
-    rmCheck = false;
-    tc.text = "";
   }
 }

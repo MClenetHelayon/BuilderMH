@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../imgManager.dart';
-import '../textManager.dart';
-import '../filter/getCombobox.dart';
+import '../../imgManager.dart';
+import '../../textManager.dart';
+import '../../filter/getCombobox.dart';
 
 String getElemName(String id, BuildContext context) {
   String vretour = '';

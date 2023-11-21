@@ -1,5 +1,6 @@
+import 'package:builder_mhrs/manager/text/localization/getElem.dart';
+
 import '../../object/weapon/Arme.dart';
-import '../local/getElem.dart';
 
 List<Arme> getLWeapons(List<Arme> lweapons, String cbxElem, String cbxCalam,
     String cbxSharp, bool affNeg) {

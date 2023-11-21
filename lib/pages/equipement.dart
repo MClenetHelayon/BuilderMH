@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -426,7 +426,7 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(1, true),
+                    icon(2, true),
                     white(
                         "${AppLocalizations.of(context)!.rarete}${s.torso.rarete}"),
                   ]),
@@ -464,7 +464,7 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(1, true),
+                    icon(3, true),
                     white(
                         "${AppLocalizations.of(context)!.rarete}${s.gant.rarete}"),
                   ]),
@@ -501,7 +501,7 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(1, true),
+                    icon(4, true),
                     white(
                         "${AppLocalizations.of(context)!.rarete}${s.boucle.rarete}"),
                   ]),
@@ -538,7 +538,7 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(1, true),
+                    icon(5, true),
                     white(
                         "${AppLocalizations.of(context)!.rarete}${s.pied.rarete}"),
                   ]),

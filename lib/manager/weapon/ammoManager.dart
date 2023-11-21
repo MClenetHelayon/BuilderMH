@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../object/Stuff.dart';
 import '../../object/weapon/Arme.dart';
 import '../../object/weapon/fusarbalete/FusarbaleteLeger.dart';
-import '../colorManager.dart';
+import '../color/colorManager.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;

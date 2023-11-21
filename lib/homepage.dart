@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';

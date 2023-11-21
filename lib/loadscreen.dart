@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

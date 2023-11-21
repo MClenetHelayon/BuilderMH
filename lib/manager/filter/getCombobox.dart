@@ -1,10 +1,12 @@
-import 'package:builder_mhrs/manager/local/getSharp.dart';
+
+import 'package:builder_mhrs/manager/text/localization/getCalam.dart';
+import 'package:builder_mhrs/manager/text/localization/getElem.dart';
+import 'package:builder_mhrs/manager/text/localization/getSharp.dart';
 import 'package:builder_mhrs/manager/sharpManager.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/material.dart';
 
-import '../local/getCalam.dart';
-import '../local/getElem.dart';
+
 
 Widget filterComboElem(
     String cbxElem, BuildContext context, Function(String?) onChanged) {

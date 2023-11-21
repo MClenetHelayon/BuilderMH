@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:flutter/material.dart';
 import '../object/armor/Bras.dart';

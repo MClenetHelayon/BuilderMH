@@ -1,18 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
-import 'package:builder_mhrs/manager/popup/accordeonManager.dart';
-import 'package:builder_mhrs/manager/popup/cardListManager.dart';
-import 'package:builder_mhrs/manager/colorManager.dart';
-import 'package:builder_mhrs/manager/filter/getSearchBar.dart';
+import 'package:builder_mhrs/manager/filter/getCombobox.dart';
+import 'package:builder_mhrs/manager/logic/logicArmor.dart';
+import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../manager/filter/getCheckbox.dart';
-import '../manager/filter/getCombobox.dart';
-import '../object/Stuff.dart';
-import '../object/Talent.dart';
-import '../object/armor/Casque.dart';
+import '../../manager/color/colorManager.dart';
+import '../../manager/filter/getCheckbox.dart';
+import '../../manager/filter/getSearchBar.dart';
+import '../../manager/popup/accordeonManager.dart';
+import '../../manager/popup/cardListManager.dart';
+import '../../object/Stuff.dart';
+import '../../object/armor/Plastron.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -24,29 +25,33 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Casque> lhelmet = [], filteredHelmets = [];  List<Talent> lskill = [];  Talent selectedSkill = Talent.getBase();
+  List<Plastron> lchestplate = [], filteredChestplates = [];
+  List<Talent> lskill = [];
+  Talent selectedSkill = Talent.getBase();
   bool rcCheck = false, rmCheck = true, isExpanded = false;
   TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    loadHelmet();
-    getFilteredHelmets();
-    filteredHelmets = lhelmet;
+    loadChestplate();
+    getFilteredChestplates();
+    filteredChestplates = lchestplate;
   }
 
-  Future<void> loadHelmet() async {
+  Future<void> loadChestplate() async {
     String jsonText =
-        await rootBundle.loadString('database/mhrs/armor/helmet.json');
+        await rootBundle.loadString('database/mhrs/armor/chest.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
     String skillJsonText =
         await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
-      lhelmet = jsonResponse
-          .map((casque) => Casque.fromJson(casque, skillList, Stuff.local))
-          .toList();      lskill.add(Talent.getBase());
+      lchestplate = jsonResponse
+          .map(
+              (plastron) => Plastron.fromJson(plastron, skillList, Stuff.local))
+          .toList();
+      lskill.add(Talent.getBase());
       lskill.addAll(skillList
           .map((skill) => Talent.getJson(skill, Stuff.local))
           .toList());
@@ -57,42 +62,43 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lskill.removeWhere(
           (talent) => talent.id == 147 || talent.id == 148 || talent.id == 149);
 
-      getFilteredHelmets();
+      getFilteredChestplates();
     });
   }
 
-  void getFilteredHelmets() {
-    List<Casque> fHelmet = [];
+  void getFilteredChestplates() {
+    List<Plastron> fChest = [];
     if (rcCheck) {
-      fHelmet.addAll(
-          lhelmet.where((helmet) => helmet.categorie == 'expert').toList());
+      fChest.addAll(
+          lchestplate.where((helmet) => helmet.categorie == 'expert').toList());
     }
     if (rmCheck) {
-      fHelmet.addAll(
-          lhelmet.where((helmet) => helmet.categorie == 'maitre').toList());
+      fChest.addAll(
+          lchestplate.where((helmet) => helmet.categorie == 'maitre').toList());
     }
-    filteredHelmets = fHelmet;
+    filteredChestplates = fChest;
   }
 
   void searchFilter(String keyword) {
-    getFilteredHelmets();
-    List<Casque> fHelmet = [];
+    getFilteredChestplates();
+    List<Plastron> fChest = [];
     if (keyword.isEmpty || keyword == '') {
-      fHelmet = filteredHelmets;
+      fChest = filteredChestplates;
     } else {
-      fHelmet = filteredHelmets
+      fChest = filteredChestplates
           .where((armor) =>
               armor.name.toLowerCase().contains(keyword.toLowerCase()) ||
               armor.categorie == "none")
           .toList();
     }
     setState(() {
-      filteredHelmets = fHelmet;
+      filteredChestplates = fChest;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Plastron> fChest = getLPlastron(filteredChestplates, selectedSkill);
     return Card(
         color: getSecondary(),
         child: Column(children: [
@@ -105,18 +111,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
               ])),
           Expanded(
               child: ListView.builder(
-                  itemCount: filteredHelmets.length,
+                  itemCount: fChest.length,
                   itemBuilder: (context, index) {
-                    Casque helmet = filteredHelmets[index];
-                    return getCardArmorPopup(helmet, context);
+                    Plastron chestplate = fChest[index];
+                    return getCardArmorPopup(chestplate, context);
                   }))
         ]));
-  }
-
-  void resetRankChoice() {
-    rcCheck = false;
-    rmCheck = false;
-    tc.text = "";
   }
 
   Widget filterAccordeon() {
@@ -128,12 +128,14 @@ class _ListViewScreenState extends State<ListViewScreen> {
         contentBorderColor: getThird(),
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Column(children: [          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+        content: Column(children: [
+          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
             setState(() {
               selectedSkill =
                   lskill.firstWhere((skill) => skill.id == newValue!);
             });
-          })])));
+          })
+        ])));
   }
 
   Widget filterRank() {
@@ -144,16 +146,22 @@ class _ListViewScreenState extends State<ListViewScreen> {
             setState(() {
               resetRankChoice();
               rcCheck = !rcCheck;
-              getFilteredHelmets();
+              getFilteredChestplates();
             });
           }),
           checkboxRank("RM", rmCheck, () {
             setState(() {
               resetRankChoice();
               rmCheck = !rmCheck;
-              getFilteredHelmets();
+              getFilteredChestplates();
             });
           })
         ]));
+  }
+
+  void resetRankChoice() {
+    rcCheck = false;
+    rmCheck = false;
+    tc.text = "";
   }
 }
