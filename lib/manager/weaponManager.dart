@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';

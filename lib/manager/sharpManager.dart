@@ -1,11 +1,12 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorSharp.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/text/tranchant.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../object/weapon/Arme.dart';
-import '../object/Stuff.dart';
 import 'statManager.dart';
-import 'textManager.dart';
 
 Widget sharpStat(Tranchant sharp) {
   return Container(
@@ -16,13 +17,10 @@ Widget sharpStat(Tranchant sharp) {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              superColoring(4, sharp),
-            ],
-          ),
-          if (sharp.sharpBoost.length != 0)
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [superColoring(4, sharp)]),
+          if (sharp.sharpBoost.isNotEmpty)
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -52,19 +50,19 @@ Widget sharpG(Stuff s, BuildContext context) {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   superColoring(2, sharp),
-                  if (sharp.sharpBoost.length != 0)
+                  if (sharp.sharpBoost.isNotEmpty)
                     containerSimplyStat(
                         s.nbSavoirFaire >= 1 ? 15 : 7, 5, sharp.sharpBoost[0]),
-                  if (sharp.sharpBoost.length != 0)
+                  if (sharp.sharpBoost.isNotEmpty)
                     containerSimplyStat(
                         s.nbSavoirFaire >= 2 ? 15 : 7, 5, sharp.sharpBoost[1]),
-                  if (sharp.sharpBoost.length != 0)
+                  if (sharp.sharpBoost.isNotEmpty)
                     containerSimplyStat(
                         s.nbSavoirFaire >= 3 ? 15 : 7, 5, sharp.sharpBoost[2]),
-                  if (sharp.sharpBoost.length != 0)
+                  if (sharp.sharpBoost.isNotEmpty)
                     containerSimplyStat(
                         s.nbSavoirFaire >= 4 ? 15 : 7, 5, sharp.sharpBoost[3]),
-                  if (sharp.sharpBoost.length != 0)
+                  if (sharp.sharpBoost.isNotEmpty)
                     containerSimplyStat(
                         s.nbSavoirFaire >= 5 ? 15 : 7, 5, sharp.sharpBoost[4]),
                 ],
@@ -104,7 +102,6 @@ Widget containerSimplyStat(double h, double w, int i) {
     color: couleur(i),
   );
 }
-
 
 double getBoostRaw(Stuff s) {
   List<int> allSharp = allIntSharp(s);

@@ -1,8 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:flutter/material.dart';
 
-import '../object/Stuff.dart';
 import 'img/imgManager.dart';
 
 Container title(String t) {
@@ -13,48 +12,6 @@ Container title(String t) {
             color: getFifth(),
             fontWeight: FontWeight.bold,
           )));
-}
-
-Text blue(String t) {
-  return Text(t,
-      style: const TextStyle(
-        color: Colors.blue,
-      ));
-}
-
-Text black(String t) {
-  return Text(t,
-      style: TextStyle(
-        color: getSecondary(),
-      ));
-}
-
-Text white(String t) {
-  return Text(t,
-      style: TextStyle(
-        color: getFourth(),
-      ));
-}
-
-Text whiteBoldUnderligne(String t) {
-  return Text(t,
-      style: TextStyle(
-        color: getFourth(),
-        fontWeight: FontWeight.bold,
-        decoration: TextDecoration.underline,
-      ));
-}
-
-Text switchColorWhite(String t, int max, num value) {
-  return Text(t,
-      style: TextStyle(
-          color: value <= max && value > 0 ? getFourth() : Colors.red));
-}
-
-Text switchColorBlack(String t, int max, num value) {
-  return Text(t,
-      style: TextStyle(
-          color: value <= max && value > 0 ? getSecondary() : Colors.red));
 }
 
 Container gDefSimply(String img, int value) {
@@ -106,11 +63,6 @@ Widget printStatWhite(String img, String stat) {
   ]);
 }
 
-String listTranchant(Stuff s) {
-  List<int> allSharp = allIntSharp(s);
-  return "${allSharp[0]}/${allSharp[1]}/${allSharp[2]}/${allSharp[3]}/${allSharp[4]}/${allSharp[5]}/${allSharp[6]}";
-}
-
 Widget cadreAmmoValueImg(double w, Widget value) {
   return Container(
       width: w,
@@ -141,20 +93,4 @@ Widget slotJowel(List<int> slots) {
                         ? '- /'
                         : '-'))
         ]);
-}
-
-Widget verticalDivider() {
-  return Container(
-    height: 50.0,
-    color: getThird(), // Couleur du séparateur
-    width: 1.0, // Épaisseur du séparateur
-  );
-}
-
-Widget verticalDividerBlack() {
-  return Container(
-    height: 50.0,
-    color: Colors.black, // Couleur du séparateur
-    width: 1.0, // Épaisseur du séparateur
-  );
 }

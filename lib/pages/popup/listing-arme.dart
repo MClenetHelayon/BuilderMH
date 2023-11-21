@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/arc/getTypeBarrage.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';

@@ -1,6 +1,7 @@
 import 'package:builder_mhrs/manager/skill/ammo/qteAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reculAmmoManager.dart';
 import 'package:builder_mhrs/manager/skill/ammo/reloadAmmoManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -13,7 +14,6 @@ import '../manager/florManager.dart';
 import '../manager/img/imgManager.dart';
 import '../manager/popupManager.dart' as pop;
 import '../manager/sharpManager.dart';
-import '../manager/textManager.dart';
 import '../manager/weaponManager.dart';
 import '../object/armor/Bras.dart';
 import '../object/armor/Casque.dart';

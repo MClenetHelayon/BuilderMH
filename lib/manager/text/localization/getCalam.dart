@@ -1,9 +1,10 @@
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../widget/filter/getCombobox.dart';
-import '../../img/imgManager.dart';
-import '../../textManager.dart';
+
 
 String convertCalamName(String id, BuildContext context) {
   String vretour = "";

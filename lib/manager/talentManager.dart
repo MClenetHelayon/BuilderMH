@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:flutter/material.dart';
 
 talentIfHere(var value) {

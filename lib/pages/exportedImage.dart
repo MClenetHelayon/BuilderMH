@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
@@ -10,6 +11,8 @@ import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKins
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinsect.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
+import 'package:builder_mhrs/manager/text/tranchant.dart';
+import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

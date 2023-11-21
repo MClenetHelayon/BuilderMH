@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/textManager.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
