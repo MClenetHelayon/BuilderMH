@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:flutter/material.dart';
 
 talentIfHere(var value) {
@@ -55,14 +55,4 @@ talentIfHere(var value) {
     default:
       return talent("Aucun Talent");
   }
-}
-
-Widget talent(String nom) {
-  return Container(
-      margin: const EdgeInsets.only(left: 20.0),
-      child: Row(children: [
-        Image.asset('images/joyau/skill.webp', height: 22, width: 22),
-        const SizedBox(width: 5),
-        white(nom),
-      ]));
 }

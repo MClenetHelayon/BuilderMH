@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/arc/getTypeBarrage.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
@@ -8,38 +9,38 @@ import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRechargeme
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRecul.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
+import 'package:builder_mhrs/manager/text/slot.dart';
 import 'package:builder_mhrs/manager/widget/accordeonManager.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
-import 'package:builder_mhrs/manager/logic/logicWeapon.dart';
+import 'package:builder_mhrs/manager/logic/calculWeapon.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/textManager.dart';
-import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
-import 'package:builder_mhrs/manager/weapon/bowManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Musique.dart';
+import 'package:builder_mhrs/object/weapon/Arc.dart';
+import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLeger.dart';
 import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/EpeeBouclier.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/GrandeEpee.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Katana.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/LameDouble.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Lance.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Lancecanon.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Marteau.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:accordion/accordion.dart';
-import '../../manager/sharpManager.dart';
-import '../../object/Musique.dart';
-import '../../object/weapon/Arc.dart';
-import '../../object/weapon/fusarbalete/FusarbaleteLeger.dart';
-import '../../object/weapon/tranchant/CornedeChasse.dart';
-import '../../object/weapon/tranchant/EpeeBouclier.dart';
-import '../../object/weapon/tranchant/Insectoglaive.dart';
-import '../../object/weapon/tranchant/Katana.dart';
-import '../../object/weapon/tranchant/LameDouble.dart';
-import '../../object/weapon/tranchant/Lance.dart';
-import '../../object/weapon/tranchant/Lancecanon.dart';
-import '../../object/weapon/tranchant/Marteau.dart';
-import '../../object/weapon/tranchant/MorphoHache.dart';
-import '../../object/weapon/tranchant/VoltoHache.dart';
-import '../../object/weapon/tranchant/GrandeEpee.dart';
 
 class ListViewScreen extends StatefulWidget {
   final Stuff s;
@@ -375,24 +376,23 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                           Text('R${weapon.rarete}'),
-                                          printStatBlack(
+                                          statBlack(
                                               "images/elementaire/Attaque.webp",
                                               weapon.attaque.toString()),
-                                          printStatBlack(
+                                          statBlack(
                                               "images/elementaire/Affinite.webp",
                                               weapon.affinite.toString()),
                                           if (weapon is LameDouble &&
                                               weapon.idElement2 != 0)
-                                            printDoubleElemBlack(
+                                            doubleElemBlack(
                                                 element(weapon.idElement),
                                                 weapon.element,
                                                 element(weapon.idElement2),
                                                 weapon.element2)
                                           else if (weapon.idElement != 0)
-                                            printStatBlack(
-                                                element(weapon.idElement),
+                                            statBlack(element(weapon.idElement),
                                                 weapon.element.toString()),
-                                          printStatBlack(
+                                          statBlack(
                                               "images/elementaire/Defense.png",
                                               weapon.defense.toString())
                                         ])),
@@ -415,7 +415,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                                         margin: const EdgeInsets
                                                             .only(top: 5),
                                                         child:
-                                                            sharpStat(weapon)),
+                                                            sharpStat(weapon))
                                                   ]),
                                             if (weapon is Fusarbalete ||
                                                 weapon is Arc)
@@ -560,9 +560,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               height: 35,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all<
-                                          Color>(
-                                      const Color.fromARGB(255, 255, 255, 255)),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          getFourth()),
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop(weapon);

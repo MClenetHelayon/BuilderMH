@@ -1,36 +1,33 @@
+import 'package:builder_mhrs/manager/mh/armor/armorManager.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/mh/armor/florManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
+import 'package:builder_mhrs/manager/popupManager.dart' as pop;
+import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/JoyauCalam.dart';
+import 'package:builder_mhrs/object/Kinsect.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Bras.dart';
+import 'package:builder_mhrs/object/armor/Casque.dart';
+import 'package:builder_mhrs/object/armor/Ceinture.dart';
+import 'package:builder_mhrs/object/armor/Jambe.dart';
+import 'package:builder_mhrs/object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
+import 'package:builder_mhrs/provider/app_state.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:async';
 import 'dart:convert';
-
-import '../manager/armorManager.dart';
-import '../manager/florManager.dart';
-import '../manager/img/imgManager.dart';
-import '../manager/popupManager.dart' as pop;
-import '../manager/sharpManager.dart';
-import '../manager/weaponManager.dart';
-import '../object/armor/Bras.dart';
-import '../object/armor/Casque.dart';
-import '../object/armor/Ceinture.dart';
-import '../object/armor/Jambe.dart';
-import '../object/armor/Plastron.dart';
-import '../object/weapon/tranchant/CornedeChasse.dart';
-import '../object/weapon/tranchant/Insectoglaive.dart';
-import '../provider/app_state.dart';
-
-import '../object/Stuff.dart';
-import '../object/weapon/Arme.dart';
-import '../object/Florelet.dart';
-import '../object/Joyau.dart';
-import '../object/JoyauCalam.dart';
-import '../object/Talisman.dart';
-import '../object/Kinsect.dart';
 
 class BuilderPage extends StatefulWidget {
   const BuilderPage({super.key});

@@ -1,8 +1,8 @@
 import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Florelet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../object/Florelet.dart';
-import 'textManager.dart';
 
 Widget flor(Florelet florelet, BuildContext context) {
   return Container(
@@ -27,11 +27,4 @@ Widget partFlor(int vie, int stam, int att, int def, String titre) {
       statFlor("images/elementaire/Defense.png", def),
     ])
   ]);
-}
-
-Widget statFlor(String img, int stat) {
-  return Container(
-    margin: const EdgeInsets.only(left: 10.0),
-    child: printStatWhite(img, stat.toString()),
-  );
 }

@@ -13,17 +13,17 @@ import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinse
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/tranchant.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
-import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import '../manager/skill/calculManager.dart';
 import '../manager/img/imgManager.dart' as img;
 import '../manager/img/imgManager.dart';
-import '../manager/sharpManager.dart';
+import '../manager/mh/weapon/sharpManager.dart';
 import '../manager/skill/affiniteManager.dart';
 import '../manager/statManager.dart';
-import '../manager/textManager.dart';
-import '../manager/weapon/bowManager.dart';
+import '../manager/mh/weapon/bowManager.dart';
 import '../object/armor/Armure.dart';
 import '../object/Joyau.dart';
 import '../object/Kinsect.dart';
@@ -474,7 +474,7 @@ Container printValueImg(String img, String t) {
       bottom: 3,
       right: 3,
     ),
-    child: printStatWhite(img, t),
+    child: statWhite(img, t),
   );
 }
 
@@ -625,17 +625,17 @@ gKinsect(Stuff s, BuildContext context) {
         ]),
         Text(k.name),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          printStatBlack(
+          statBlack(
             "images/elementaire/AttKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][0]
                 .toString(),
           ),
-          printStatBlack(
+          statBlack(
             "images/elementaire/VitKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][1]
                 .toString(),
           ),
-          printStatBlack(
+          statBlack(
             "images/elementaire/HealKinsect.png",
             k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][2]
                 .toString(),

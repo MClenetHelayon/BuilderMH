@@ -1,12 +1,9 @@
-
-import 'package:builder_mhrs/manager/color/colorSharp.dart';
 import 'package:builder_mhrs/manager/text/localization/getCalam.dart';
 import 'package:builder_mhrs/manager/text/localization/getElem.dart';
 import 'package:builder_mhrs/manager/text/localization/getSharp.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/material.dart';
-
-
 
 Widget filterComboElem(
     String cbxElem, BuildContext context, Function(String?) onChanged) {
@@ -72,26 +69,4 @@ Widget filterComboSkill(List<Talent> skills, Talent cbxSkill,
       );
     }).toList(),
   );
-}
-
-Widget statComboElem(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-    Image.asset(img, height: 18, width: 18),
-    const SizedBox(width: 3),
-    Text(stat),
-  ]);
-}
-
-Widget statComboCalam(String img) {
-  return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [Image.asset(img, height: 18, width: 18)]);
-}
-
-Widget statComboSharp(int id, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-    Container(width: 10.0, height: 10.0, color: couleur(id)),
-    const SizedBox(width: 3),
-    Text(stat),
-  ]);
 }

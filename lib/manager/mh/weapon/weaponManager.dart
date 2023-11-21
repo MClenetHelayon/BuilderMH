@@ -1,24 +1,23 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/joyauManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
+import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/LameDouble.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Lancecanon.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../object/weapon/Arme.dart';
-import '../object/Stuff.dart';
-import '../object/weapon/tranchant/CornedeChasse.dart';
-import '../object/weapon/tranchant/Insectoglaive.dart';
-import '../object/weapon/tranchant/LameDouble.dart';
-import '../object/weapon/tranchant/Lancecanon.dart';
-import '../object/weapon/tranchant/MorphoHache.dart';
-import '../object/weapon/tranchant/VoltoHache.dart';
-import 'img/imgManager.dart';
-import 'joyauManager.dart';
-import 'sharpManager.dart';
-import 'statManager.dart';
-import 'textManager.dart';
 
 Widget valueWeapon(Arme weapon, BuildContext context) {
   return Container(
@@ -33,8 +32,8 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
                     weapon.name,
                     style: TextStyle(
                       color: getFifth(),
-                      fontWeight: FontWeight.bold,
-                    ),
+                      fontWeight: FontWeight.bold
+                    )
                   ))
             ]),
             statOff(weapon, context),
@@ -88,9 +87,9 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
           Container(
               margin: const EdgeInsets.only(bottom: 10.0, top: 5.0),
               child: Text(AppLocalizations.of(context)!.music)),
-          printStatWhite(musique(0), horn.musique[0].name),
-          printStatWhite(musique(1), horn.musique[1].name),
-          printStatWhite(musique(2), horn.musique[2].name),
+          statWhite(musique(0), horn.musique[0].name),
+          statWhite(musique(1), horn.musique[1].name),
+          statWhite(musique(2), horn.musique[2].name),
         ])
       ]));
 }
@@ -129,11 +128,10 @@ Widget insecto(Insectoglaive insect, BuildContext context) {
 Widget isDualBlade(Arme weapon, BuildContext context) {
   Widget vretour = white(AppLocalizations.of(context)!.none);
   if (weapon is LameDouble && weapon.idElement2 != 0) {
-    vretour = printDoubleElemWhite(element(weapon.idElement), weapon.element,
+    vretour = doubleElemWhite(element(weapon.idElement), weapon.element,
         element(weapon.idElement2), weapon.element2);
   } else if (weapon.idElement != 0) {
-    vretour =
-        printStatWhite(element(weapon.idElement), weapon.element.toString());
+    vretour = statWhite(element(weapon.idElement), weapon.element.toString());
   }
 
   return vretour;
@@ -152,7 +150,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStatBlack(
+                  child: statBlack(
                     "images/elementaire/AttKinsect.png",
                     s
                         .kinsect
@@ -163,7 +161,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStatBlack(
+                  child: statBlack(
                     "images/elementaire/VitKinsect.png",
                     s
                         .kinsect
@@ -174,7 +172,7 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: printStatBlack(
+                  child: statBlack(
                     "images/elementaire/HealKinsect.png",
                     s
                         .kinsect

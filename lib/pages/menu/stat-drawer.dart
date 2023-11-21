@@ -1,16 +1,16 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/weapon/ammoManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'manager/statManager.dart';
-import 'object/weapon/Arc.dart';
-import 'object/weapon/tranchant/CornedeChasse.dart';
-import 'object/weapon/tranchant/Insectoglaive.dart';
-import 'provider/stuff_state.dart';
+import '../../manager/statManager.dart';
+import '../../object/weapon/Arc.dart';
+import '../../object/weapon/tranchant/CornedeChasse.dart';
+import '../../object/weapon/tranchant/Insectoglaive.dart';
+import '../../provider/stuff_state.dart';
 
 class StatDrawer extends StatefulWidget {
   const StatDrawer({Key? key}) : super(key: key);

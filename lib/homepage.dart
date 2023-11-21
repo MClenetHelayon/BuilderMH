@@ -14,7 +14,7 @@ import 'manager/exported/windowsManager.dart';
 
 import 'object/Screen.dart';
 
-import 'header-drawer.dart';
+import 'pages/menu/header-drawer.dart';
 
 import 'pages/setting.dart';
 import 'pages/equipement.dart';
@@ -22,7 +22,7 @@ import 'pages/info.dart';
 import 'pages/exportedImage.dart' as expImg;
 import 'provider/app_state.dart';
 import 'provider/stuff_state.dart';
-import 'stat-drawer.dart';
+import 'pages/menu/stat-drawer.dart';
 
 class App extends StatelessWidget {
   @override

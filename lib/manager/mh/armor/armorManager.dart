@@ -1,14 +1,14 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/joyauManager.dart';
 import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/talentManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/manager/textManager.dart';
+import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'joyauManager.dart';
-import 'talentManager.dart';
 
 Widget armorTopInfo(Armure armure) {
   return Container(
@@ -43,7 +43,7 @@ Widget armorSlot(Armure armure, BuildContext context, Widget joyau) {
         Column(children: [
           Container(
               margin: const EdgeInsets.only(bottom: 10.0),
-              child: white(armure.slots.length == 0
+              child: white(armure.slots.isEmpty
                   ? AppLocalizations.of(context)!.nJoyau
                   : AppLocalizations.of(context)!.joyaux)),
           Container(child: joyau)
@@ -54,7 +54,7 @@ Widget armorSlot(Armure armure, BuildContext context, Widget joyau) {
 Widget armorSlotCasque(
     Armure armure, Stuff s, VoidCallback onUpdated, BuildContext context) {
   return Column(children: [
-    if (armure.slots.length >= 1)
+    if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
             color: getPrimary(),
@@ -75,7 +75,7 @@ Widget armorSlotCasque(
 Widget armorSlotPlastron(
     Armure armure, Stuff s, VoidCallback onUpdated, BuildContext context) {
   return Column(children: [
-    if (armure.slots.length >= 1)
+    if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
             color: getPrimary(),
@@ -96,7 +96,7 @@ Widget armorSlotPlastron(
 Widget armorSlotBras(
     Armure armure, Stuff s, VoidCallback onUpdated, BuildContext context) {
   return Column(children: [
-    if (armure.slots.length >= 1)
+    if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
             color: getPrimary(),
@@ -117,7 +117,7 @@ Widget armorSlotBras(
 Widget armorSlotCeinture(
     Armure armure, Stuff s, VoidCallback onUpdated, BuildContext context) {
   return Column(children: [
-    if (armure.slots.length >= 1)
+    if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
             color: getPrimary(),
@@ -138,7 +138,7 @@ Widget armorSlotCeinture(
 Widget armorSlotJambiere(
     Armure armure, Stuff s, VoidCallback onUpdated, BuildContext context) {
   return Column(children: [
-    if (armure.slots.length >= 1)
+    if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
             color: getPrimary(),
@@ -161,11 +161,11 @@ Widget TalisJoyau(
   return Column(children: [
     Container(
         margin: const EdgeInsets.only(bottom: 10.0),
-        child: whiteBoldUnderligne(s.charm.slots.length == 0
+        child: whiteBoldUnderligne(s.charm.slots.isEmpty
             ? AppLocalizations.of(context)!.nJoyau
             : AppLocalizations.of(context)!.joyaux)),
     Column(children: [
-      if (s.charm.slots.length >= 1)
+      if (s.charm.slots.isNotEmpty)
         if (s.charm.slots[0] != 0)
           Card(
               color: getPrimary(),
@@ -192,7 +192,7 @@ Widget TalisTalent(Talisman charm, BuildContext context) {
             ? AppLocalizations.of(context)!.nTalent
             : AppLocalizations.of(context)!.talents)),
     Column(children: [
-      if (charm.talents.length >= 1)
+      if (charm.talents.isNotEmpty)
         Container(
           margin: const EdgeInsets.only(bottom: 5.0),
           child: talent("${charm.talents[0].name} +${charm.talents[0].level}"),

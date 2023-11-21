@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
-import 'package:builder_mhrs/manager/logic/logicArmor.dart';
+import 'package:builder_mhrs/manager/logic/calculArmor.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';

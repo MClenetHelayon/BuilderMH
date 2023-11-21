@@ -1,4 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/popupManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:flutter/material.dart';
 import '../object/armor/Bras.dart';
@@ -9,8 +12,6 @@ import '../object/weapon/Arme.dart';
 import '../object/Joyau.dart';
 import '../object/Stuff.dart';
 import '../object/Talisman.dart';
-import 'popupManager.dart';
-import 'textManager.dart';
 
 Widget joyauArme(int slot, int numJoyau, Stuff s, Function() onUpdate) {
   return JoyauWidget(
@@ -95,7 +96,7 @@ class JoyauWidget extends StatefulWidget {
 
 class _JoyauWidgetState extends State<JoyauWidget> {
   Joyaux joyauValue =
-      Stuff.ljowel.length != 0 ? Stuff.ljowel[0] : Joyaux.getBase();
+      Stuff.ljowel.isNotEmpty ? Stuff.ljowel[0] : Joyaux.getBase();
 
   void updateListJoyaux(Function(List<Joyaux>) action) {
     setState(() {
@@ -138,5 +139,14 @@ class _JoyauWidgetState extends State<JoyauWidget> {
         ],
       ),
     );
+  }
+
+  Widget jowel(int leSlot, String nom) {
+    String img = slot(leSlot);
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Image.asset(img, height: 22, width: 22),
+      const SizedBox(width: 10),
+      white(nom),
+    ]);
   }
 }
