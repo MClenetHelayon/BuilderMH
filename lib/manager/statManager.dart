@@ -24,7 +24,7 @@ import '../object/weapon/tranchant/Lancecanon.dart';
 import '../object/weapon/tranchant/MorphoHache.dart';
 import '../object/weapon/tranchant/VoltoHache.dart';
 import 'skill/calculManager.dart';
-import 'imgManager.dart';
+import 'img/imgManager.dart';
 import 'skill/affiniteManager.dart';
 import 'sharpManager.dart';
 import 'textManager.dart';

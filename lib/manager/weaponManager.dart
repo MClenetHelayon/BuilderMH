@@ -13,7 +13,7 @@ import '../object/weapon/tranchant/LameDouble.dart';
 import '../object/weapon/tranchant/Lancecanon.dart';
 import '../object/weapon/tranchant/MorphoHache.dart';
 import '../object/weapon/tranchant/VoltoHache.dart';
-import 'imgManager.dart';
+import 'img/imgManager.dart';
 import 'joyauManager.dart';
 import 'sharpManager.dart';
 import 'statManager.dart';

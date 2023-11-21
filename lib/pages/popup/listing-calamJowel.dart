@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../manager/imgManager.dart';
+import '../../manager/img/imgManager.dart';
 import '../../object/JoyauCalam.dart';
 import '../../object/Stuff.dart';
 

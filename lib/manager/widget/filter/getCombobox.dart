@@ -1,8 +1,8 @@
 
+import 'package:builder_mhrs/manager/color/colorSharp.dart';
 import 'package:builder_mhrs/manager/text/localization/getCalam.dart';
 import 'package:builder_mhrs/manager/text/localization/getElem.dart';
 import 'package:builder_mhrs/manager/text/localization/getSharp.dart';
-import 'package:builder_mhrs/manager/sharpManager.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:flutter/material.dart';
 

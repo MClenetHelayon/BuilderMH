@@ -10,7 +10,7 @@ import 'dart:convert';
 
 import '../manager/armorManager.dart';
 import '../manager/florManager.dart';
-import '../manager/imgManager.dart';
+import '../manager/img/imgManager.dart';
 import '../manager/popupManager.dart' as pop;
 import '../manager/sharpManager.dart';
 import '../manager/textManager.dart';
