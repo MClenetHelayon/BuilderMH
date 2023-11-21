@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
 
-import '../manager/skill/calculManager.dart' as aff;
+import '../manager/mh/skill/calculManager.dart' as aff;
 import 'armor/Bras.dart';
 import 'armor/Casque.dart';
 import 'armor/Ceinture.dart';

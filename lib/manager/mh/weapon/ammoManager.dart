@@ -1,17 +1,16 @@
-import 'package:builder_mhrs/manager/skill/ammo/qteAmmoManager.dart';
-import 'package:builder_mhrs/manager/skill/ammo/reculAmmoManager.dart';
-import 'package:builder_mhrs/manager/skill/ammo/reloadAmmoManager.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/ammo/qteAmmoManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/ammo/reculAmmoManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/ammo/reloadAmmoManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/cadreAmmoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
+import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLeger.dart';
 import 'package:builder_mhrs/object/weapon/fusarbalete/FusarbaleteLourd.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../object/Stuff.dart';
-import '../../../object/weapon/Arme.dart';
-import '../../../object/weapon/fusarbalete/FusarbaleteLeger.dart';
-import '../../color/colorManager.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;

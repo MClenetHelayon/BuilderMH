@@ -26,9 +26,9 @@ import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'skill/calculManager.dart';
+import 'mh/skill/calculManager.dart';
 import 'img/imgManager.dart';
-import 'skill/affiniteManager.dart';
+import 'mh/skill/affiniteManager.dart';
 import 'mh/weapon/sharpManager.dart';
 import 'mh/weapon/bowManager.dart';
 
