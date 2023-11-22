@@ -167,7 +167,3 @@ Widget StatKinsect(Stuff s) {
         ]),
       ));
 }
-
-Widget fusarbalete(Fusarbalete weapon, BuildContext context) {
-  return Container();
-}

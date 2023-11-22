@@ -205,7 +205,6 @@ class _BuilderPageState extends State<BuilderPage> {
                       if (s.weapon is CorneDeChasse)
                         corne(s.weapon as CorneDeChasse, context),
                       if (s.weapon is Fusarbalete)
-                        //fusarbalete(s.weapon as Fusarbalete, context),
                         comboModFusar(s.weapon as Fusarbalete, context,
                             (int? newValue) {
                           setState(() {
