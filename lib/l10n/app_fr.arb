@@ -7,6 +7,7 @@
   "name": "Nom",
   "search": "Recherche...",
   "moreFilters": "Plus de Filtres",
+  "recap": "Recapitulatif",
   "stat": "Statistique",
   "efr": "Brut Effectif",
   "efe": "Élément Effectif",
@@ -35,6 +36,7 @@
   "petalas": "Florelet",
   "insect": "Kinsecte",
   "tali": "Talisman",
+  "trans": "Transcendances",
   "calam": "Calamité",
   "calamJowel": "Joyau Calamité",
   "catElem": "Categ. Elém.",
@@ -216,5 +218,13 @@
   "kbSpdCharg": "Charge Rapide",
   "kbPoudreUp": "Poudre Amelioree",
   "kbPoudreVortex": "Poudriere Vortex",
-  "kbChargKinsect": "Charge Kinsecte"
+  "kbChargKinsect": "Charge Kinsecte",
+  "tSlot": "Emplacement +",
+  "tAttack": "Attaque",
+  "tAffinite": "Affinite",
+  "tElement": "Elément",
+  "tAffliction": "Affliction",
+  "tCalam": "Emplacement Calamité",
+  "tSharp": "Sharpness Boost",
+  "tShelling": "Shelling Level Boost"
 }

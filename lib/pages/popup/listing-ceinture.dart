@@ -1,18 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/widget/accordeonManager.dart';
+import 'package:builder_mhrs/manager/widget/cardListManager.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
+import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/Talent.dart';
+import 'package:builder_mhrs/object/armor/Ceinture.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../manager/color/colorManager.dart';
-import '../../manager/widget/filter/getCheckbox.dart';
-import '../../manager/widget/filter/getCombobox.dart';
-import '../../manager/widget/filter/getSearchBar.dart';
-import '../../manager/widget/accordeonManager.dart';
-import '../../manager/widget/cardListManager.dart';
-import '../../object/Stuff.dart';
-import '../../object/Talent.dart';
-import '../../object/armor/Ceinture.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -24,7 +24,9 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Ceinture> lbelt = [], filteredBelts = [];  List<Talent> lskill = [];  Talent selectedSkill = Talent.getBase();
+  List<Ceinture> lbelt = [], filteredBelts = [];
+  List<Talent> lskill = [];
+  Talent selectedSkill = Talent.getBase();
   bool rcCheck = false, rmCheck = true, isExpanded = false;
   TextEditingController tc = TextEditingController();
 
@@ -47,7 +49,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
       lbelt = jsonResponse
           .map(
               (ceinture) => Ceinture.fromJson(ceinture, skillList, Stuff.local))
-          .toList();      lskill.add(Talent.getBase());
+          .toList();
+      lskill.add(Talent.getBase());
       lskill.addAll(skillList
           .map((skill) => Talent.getJson(skill, Stuff.local))
           .toList());
@@ -112,7 +115,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                   }))
         ]));
   }
- Widget filterAccordeon() {
+
+  Widget filterAccordeon() {
     return accordeon(AccordionSection(
         isOpen: isExpanded,
         onOpenSection: () => setState(() => isExpanded = true),
@@ -121,12 +125,14 @@ class _ListViewScreenState extends State<ListViewScreen> {
         contentBorderColor: getThird(),
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
-        content: Column(children: [          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
+        content: Column(children: [
+          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
             setState(() {
               selectedSkill =
                   lskill.firstWhere((skill) => skill.id == newValue!);
             });
-          })])));
+          })
+        ])));
   }
 
   Widget filterRank() {
@@ -149,6 +155,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           })
         ]));
   }
+
   void resetRankChoice() {
     rcCheck = false;
     rmCheck = false;

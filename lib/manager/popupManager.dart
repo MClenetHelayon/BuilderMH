@@ -5,21 +5,24 @@ import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/Transcendance.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../pages/popup/listing-casque.dart' as ListCasque;
-import '../pages/popup/listing-bras.dart' as ListBras;
-import '../pages/popup/listing-plastron.dart' as ListPlastron;
-import '../pages/popup/listing-jambiere.dart' as ListJambiere;
-import '../pages/popup/listing-ceinture.dart' as ListCeinture;
-import '../pages/popup/listing-petalas.dart' as ListPetalas;
-import '../pages/popup/listing-jowel.dart' as ListJoyaux;
-import '../pages/popup/listing-calamJowel.dart' as ListJoyauxCalam;
-import '../pages/popup/listing-arme.dart' as ListArme;
-import '../pages/popup/listing-charm.dart' as ListCharm;
-import '../pages/popup/listing-kinsect.dart' as ListKinsect;
+import 'package:builder_mhrs/pages/popup/listing-casque.dart' as ListCasque;
+import 'package:builder_mhrs/pages/popup/listing-bras.dart' as ListBras;
+import 'package:builder_mhrs/pages/popup/listing-plastron.dart' as ListPlastron;
+import 'package:builder_mhrs/pages/popup/listing-jambiere.dart' as ListJambiere;
+import 'package:builder_mhrs/pages/popup/listing-ceinture.dart' as ListCeinture;
+import 'package:builder_mhrs/pages/popup/listing-petalas.dart' as ListPetalas;
+import 'package:builder_mhrs/pages/popup/listing-jowel.dart' as ListJoyaux;
+import 'package:builder_mhrs/pages/popup/listing-calamJowel.dart'
+    as ListJoyauxCalam;
+import 'package:builder_mhrs/pages/popup/listing-arme.dart' as ListArme;
+import 'package:builder_mhrs/pages/popup/listing-charm.dart' as ListCharm;
+import 'package:builder_mhrs/pages/popup/listing-kinsect.dart' as ListKinsect;
+import 'package:builder_mhrs/pages/popup/listing-augment.dart' as ListAugment;
 
 void close(context) {
   Navigator.of(context).pop();
@@ -106,29 +109,33 @@ Future<Talisman?> charm(BuildContext context) {
       });
 }
 
+Future<List<Transcendance>?> transcendance(BuildContext context, Arme w) {
+  return showDialog<List<Transcendance>>(
+      context: context,
+      builder: (context) {
+        return somePopup(context, AppLocalizations.of(context)!.trans,
+            ListAugment.ListViewScreen(w));
+      });
+}
+
 Widget somePopup(BuildContext context, String txt, Widget popup) {
   return AlertDialog(
-    insetPadding: const EdgeInsets.all(10),
-    contentPadding: const EdgeInsets.only(left: 10, right: 10),
-    clipBehavior: Clip.antiAliasWithSaveLayer,
-    title: Row(
-      children: [
+      insetPadding: const EdgeInsets.all(10),
+      contentPadding: const EdgeInsets.only(left: 10, right: 10),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      title: Row(children: [
         Text(txt,
             style: TextStyle(fontWeight: FontWeight.bold, color: getFourth())),
         const Spacer(),
         CloseButton(
-          color: getFifth(),
-          onPressed: () {
-            close(context);
-          },
-        ),
-      ],
-    ),
-    backgroundColor: getPrimary(),
-    content: SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: popup,
-    ),
-  );
+            color: getFifth(),
+            onPressed: () {
+              close(context);
+            })
+      ]),
+      backgroundColor: getPrimary(),
+      content: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: popup));
 }

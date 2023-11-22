@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/object/JoyauCalam.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../manager/img/imgManager.dart';
-import '../../object/JoyauCalam.dart';
-import '../../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
   final int slot;
@@ -101,46 +101,39 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: Colors.black,
+        child: Column(children: [
           Card(
-            margin: const EdgeInsets.all(5),
-            child: Column(
-              children: [
+              margin: const EdgeInsets.all(5),
+              child: Column(children: [
                 if (widget.slot == 3)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 3'),
-                    value: showSlot3,
-                    onChanged: (checked) {
-                      setState(() {
-                        showSlot3 = checked ?? false;
-                      });
-                    },
-                  ),
+                      title: Text('${AppLocalizations.of(context)!.slot} 3'),
+                      value: showSlot3,
+                      onChanged: (checked) {
+                        setState(() {
+                          showSlot3 = checked ?? false;
+                        });
+                      }),
                 if (widget.slot >= 2)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 2'),
-                    value: showSlot2,
-                    onChanged: (checked) {
-                      setState(() {
-                        showSlot2 = checked ?? false;
-                      });
-                    },
-                  ),
+                      title: Text('${AppLocalizations.of(context)!.slot} 2'),
+                      value: showSlot2,
+                      onChanged: (checked) {
+                        setState(() {
+                          showSlot2 = checked ?? false;
+                        });
+                      }),
                 if (widget.slot >= 1)
                   CheckboxListTile(
-                    title: Text('${AppLocalizations.of(context)!.slot} 1'),
-                    value: showSlot1,
-                    onChanged: (checked) {
-                      setState(() {
-                        showSlot1 = checked ?? false;
-                      });
-                    },
-                  ),
-              ],
-            ),
-          ),
+                      title: Text('${AppLocalizations.of(context)!.slot} 1'),
+                      value: showSlot1,
+                      onChanged: (checked) {
+                        setState(() {
+                          showSlot1 = checked ?? false;
+                        });
+                      })
+              ])),
           Expanded(
               child: ListView.builder(
                   itemCount: getFilteredCalamJowels().length,
@@ -148,84 +141,72 @@ class _ListViewScreenState extends State<ListViewScreen> {
                     JoyauxCalam calamJowel = getFilteredCalamJowels()[index];
                     if (index == 0) {
                       return Card(
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 10, right: 10),
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(calamJowel);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(calamJowel.name),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                          margin: const EdgeInsets.only(
+                              top: 5, left: 10, right: 10),
+                          child: TextButton(
+                              style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          getFourth())),
+                              onPressed: () {
+                                Navigator.of(context).pop(calamJowel);
+                              },
+                              child: ListTile(
+                                  title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [Text(calamJowel.name)]))));
                     } else {
                       return Card(
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10),
                           child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 255, 255, 255)),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(calamJowel);
-                            },
-                            child: ListTile(
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                      "${AppLocalizations.of(context)!.joyau} ${calamJowel.name}"),
-                                ],
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all<
+                                        Color>(
+                                    const Color.fromARGB(255, 255, 255, 255)),
                               ),
-                              leading: Container(
-                                height: 22,
-                                width: 22,
-                                margin: const EdgeInsets.only(right: 10),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color:
-                                        const Color.fromARGB(134, 96, 96, 96),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                          color:
-                                              Color.fromARGB(255, 97, 97, 97),
-                                          spreadRadius: 3,
-                                          blurRadius: 2),
-                                    ],
-                                    image: DecorationImage(
-                                      image: AssetImage(
-                                          slotCalam(calamJowel.slot)),
-                                    )),
-                              ),
-                              subtitle: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "${AppLocalizations.of(context)!.talent} : ${calamJowel.talentName}",
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ));
+                              onPressed: () {
+                                Navigator.of(context).pop(calamJowel);
+                              },
+                              child: ListTile(
+                                  title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                            "${AppLocalizations.of(context)!.joyau} ${calamJowel.name}"),
+                                      ]),
+                                  leading: Container(
+                                      height: 22,
+                                      width: 22,
+                                      margin: const EdgeInsets.only(right: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: const Color.fromARGB(
+                                              134, 96, 96, 96),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Color.fromARGB(
+                                                    255, 97, 97, 97),
+                                                spreadRadius: 3,
+                                                blurRadius: 2),
+                                          ],
+                                          image: DecorationImage(
+                                              image: AssetImage(slotCalam(
+                                                  calamJowel.slot))))),
+                                  subtitle: Column(children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              "${AppLocalizations.of(context)!.talent} : ${calamJowel.talentName}")
+                                        ])
+                                  ]))));
                     }
                   }))
-        ],
-      ),
-    );
+        ]));
   }
 }

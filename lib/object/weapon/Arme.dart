@@ -1,3 +1,5 @@
+import 'package:builder_mhrs/object/Transcendance.dart';
+
 import '../Joyau.dart';
 import '../Talent.dart';
 
@@ -9,6 +11,7 @@ class Arme {
   final Talent? talent;
 
   static List<Joyaux> listJoyaux = [];
+  static List<Transcendance> listAugments = [];
   Arme({
     required this.id,
     required this.name,
@@ -191,7 +194,7 @@ class Fusarbalete extends Arme {
       required this.tranch,
       required this.tranquil});
 
-    void  setMod(int mod) {
-      this.mod = mod;
-    }
+  void setMod(int mod) {
+    this.mod = mod;
+  }
 }

@@ -1,19 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:accordion/accordion.dart';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/widget/accordeonManager.dart';
+import 'package:builder_mhrs/manager/widget/cardListManager.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/manager/logic/calculArmor.dart';
+import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
+import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../manager/color/colorManager.dart';
-import '../../manager/widget/filter/getCheckbox.dart';
-import '../../manager/widget/filter/getSearchBar.dart';
-import '../../manager/widget/accordeonManager.dart';
-import '../../manager/widget/cardListManager.dart';
-import '../../object/Stuff.dart';
-import '../../object/armor/Plastron.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({

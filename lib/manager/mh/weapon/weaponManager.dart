@@ -91,21 +91,21 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
 
 Widget morpho(MorphoHache morpho, BuildContext context) {
   return statArme(morpho.valueFiole != 0
-      ? Text("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
-      : Text(getSaFiole(morpho.typeFiole, context)));
+      ? white("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+      : white(getSaFiole(morpho.typeFiole, context)));
 }
 
 Widget volto(VoltoHache volto, BuildContext context) {
-  return statArme(Text(getCbFiole(volto.typeFiole, context)));
+  return statArme(white(getCbFiole(volto.typeFiole, context)));
 }
 
 Widget lancecanon(Lancecanon gunlance, BuildContext context) {
-  return statArme(Text(
+  return statArme(white(
       "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} ${gunlance.niveauCanon}"));
 }
 
 Widget insecto(Insectoglaive insect, BuildContext context) {
-  return statArme(Text(
+  return statArme(white(
       "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}"));
 }
 

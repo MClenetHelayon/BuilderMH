@@ -171,7 +171,7 @@ class _BuilderPageState extends State<BuilderPage> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            white("Transcendance"),
+                            white(AppLocalizations.of(context)!.trans),
                             Card(
                                 child: TextButton(
                               style: ButtonStyle(
@@ -179,13 +179,12 @@ class _BuilderPageState extends State<BuilderPage> {
                                     MaterialStateProperty.all<Color>(
                                         getPrimary()),
                               ),
-                              onPressed:
-                                  () {} /*async {
-          var value = await popupTranscendance(context);
-          if (value == null || value == this.weapon) return;
-          setState(() => this.weapon = value);
-        }*/
-                              ,
+                              onPressed: () async {
+                                var value =
+                                    await pop.transcendance(context, s.weapon);
+                                // if (value == null || value == this.) return;
+                                setState(() {} /*() => this.weapon = value*/);
+                              },
                               child: white("-/-/-/-/-/-"),
                             ))
                           ],
