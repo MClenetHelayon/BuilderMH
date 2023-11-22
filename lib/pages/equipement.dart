@@ -6,12 +6,15 @@ import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/popupManager.dart' as pop;
+import 'package:builder_mhrs/manager/util/convertIconInInt.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/object/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/armor/Bras.dart';
 import 'package:builder_mhrs/object/armor/Casque.dart';
 import 'package:builder_mhrs/object/armor/Ceinture.dart';
@@ -68,18 +71,12 @@ class _BuilderPageState extends State<BuilderPage> {
     loadJowel();
   }
 
-  Future<String> loadJowelData() async {
-    return await rootBundle.loadString('database/mhrs/jowel.json');
-  }
-
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
-  }
-
   Future<void> loadJowel() async {
-    String jsonTextJoyau = await loadJowelData();
+    String jsonTextJoyau =
+        await rootBundle.loadString('database/mhrs/jowel.json');
     List<dynamic> jsonResponseJoyau = json.decode(jsonTextJoyau);
-    String skillJsonText = await loadSkillData();
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       Stuff.ljowel = jsonResponseJoyau
@@ -207,6 +204,13 @@ class _BuilderPageState extends State<BuilderPage> {
                       joyau(s.weapon, s, _reloadMainPage, context),
                       if (s.weapon is CorneDeChasse)
                         corne(s.weapon as CorneDeChasse, context),
+                      if (s.weapon is Fusarbalete)
+                        comboModFusar(s.weapon as Fusarbalete, context,
+                            (int? newValue) {
+                          setState(() {
+                            (s.weapon as Fusarbalete).mod = newValue!;
+                          });
+                        }),
                     ]),
                   ]),
               ])),
@@ -348,9 +352,7 @@ class _BuilderPageState extends State<BuilderPage> {
           ),
           onPressed: () async {
             var value = await pop.calamJoyau(context, slot, categ);
-            if (value == null || value == s.joyauxCalam) {
-              return;
-            }
+            if (value == null || value == s.joyauxCalam) return;
             setState(() {
               s.joyauxCalam = value;
             });
@@ -366,168 +368,73 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Helmet(BuildContext context) {
-    return Card(
-        child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
-            ),
-            onPressed: () async {
-              var value = await pop.armor(context, 0);
-              if (value == null || value as Casque == s.helmet) return;
-              setState(() {
-                s.helmet = value;
-                Casque.listJoyaux.clear();
-              });
-            },
-            child: Column(children: [
-              Table(columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(60),
-                1: FlexColumnWidth(),
-              }, children: [
-                TableRow(children: [
-                  Column(children: [
-                    icon(1, true),
-                    white(
-                        "${AppLocalizations.of(context)!.rarete}${s.helmet.rarete}"),
-                  ]),
-                  armorTopInfo(s.helmet)
-                ]),
-              ]),
-              if (openHelmet) armorTalent(s.helmet, context),
-              if (openHelmet)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  armorSlot(s.helmet, context,
-                      armorSlotCasque(s.helmet, s, _reloadMainPage, context))
-                ])
-            ])));
+    return simplyArmor(context, s.helmet, openHelmet,
+        armorSlotCasque(s.helmet, s, _reloadMainPage, context), () async {
+      var value = await pop.armor(context, 0);
+      if (value == null || value as Casque == s.helmet) return;
+      setState(() {
+        s.helmet = value;
+        Casque.listJoyaux.clear();
+      });
+    });
   }
 
   Widget Torso(BuildContext context) {
-    return Card(
-        child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
-            ),
-            onPressed: () async {
-              var value = await pop.armor(context, 1);
-              if (value == null || value as Plastron == s.torso) return;
-              setState(() {
-                s.torso = value;
-                Plastron.listJoyaux.clear();
-              });
-            },
-            child: Column(children: [
-              Table(columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(60),
-                1: FlexColumnWidth(),
-              }, children: [
-                TableRow(children: [
-                  Column(children: [
-                    icon(2, true),
-                    white(
-                        "${AppLocalizations.of(context)!.rarete}${s.torso.rarete}"),
-                  ]),
-                  armorTopInfo(s.torso)
-                ]),
-              ]),
-              if (openChest) armorTalent(s.torso, context),
-              if (openChest)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  armorSlot(s.torso, context,
-                      armorSlotCasque(s.torso, s, _reloadMainPage, context))
-                ])
-            ])));
+    return simplyArmor(context, s.torso, openChest,
+        armorSlotPlastron(s.torso, s, _reloadMainPage, context), () async {
+      var value = await pop.armor(context, 1);
+      if (value == null || value as Plastron == s.torso) return;
+      setState(() {
+        s.torso = value;
+        Plastron.listJoyaux.clear();
+      });
+    });
   }
 
   Widget Gant(BuildContext context) {
-    return Card(
-        child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
-            ),
-            onPressed: () async {
-              var value = await pop.armor(context, 2);
-              if (value == null || value as Bras == s.gant) return;
-
-              setState(() {
-                s.gant = value;
-                Bras.listJoyaux.clear();
-              });
-            },
-            child: Column(children: [
-              Table(columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(60),
-                1: FlexColumnWidth(),
-              }, children: [
-                TableRow(children: [
-                  Column(children: [
-                    icon(3, true),
-                    white(
-                        "${AppLocalizations.of(context)!.rarete}${s.gant.rarete}"),
-                  ]),
-                  armorTopInfo(s.gant)
-                ]),
-              ]),
-              if (openGant) armorTalent(s.gant, context),
-              if (openGant)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  armorSlot(s.gant, context,
-                      armorSlotCasque(s.gant, s, _reloadMainPage, context))
-                ])
-            ])));
+    return simplyArmor(context, s.gant, openGant,
+        armorSlotBras(s.gant, s, _reloadMainPage, context), () async {
+      var value = await pop.armor(context, 2);
+      if (value == null || value as Bras == s.gant) return;
+      setState(() {
+        s.gant = value;
+        Bras.listJoyaux.clear();
+      });
+    });
   }
 
   Widget Boucle(BuildContext context) {
-    return Card(
-        child: TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
-            ),
-            onPressed: () async {
-              var value = await pop.armor(context, 3);
-              if (value == null || value as Ceinture == s.boucle) return;
-              setState(() {
-                s.boucle = value;
-                Ceinture.listJoyaux.clear();
-              });
-            },
-            child: Column(children: [
-              Table(columnWidths: const <int, TableColumnWidth>{
-                0: FixedColumnWidth(60),
-                1: FlexColumnWidth(),
-              }, children: [
-                TableRow(children: [
-                  Column(children: [
-                    icon(4, true),
-                    white(
-                        "${AppLocalizations.of(context)!.rarete}${s.boucle.rarete}"),
-                  ]),
-                  armorTopInfo(s.boucle)
-                ]),
-              ]),
-              if (openBoucle) armorTalent(s.boucle, context),
-              if (openBoucle)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  armorSlot(s.boucle, context,
-                      armorSlotCasque(s.boucle, s, _reloadMainPage, context))
-                ])
-            ])));
+    return simplyArmor(context, s.boucle, openBoucle,
+        armorSlotCeinture(s.boucle, s, _reloadMainPage, context), () async {
+      var value = await pop.armor(context, 3);
+      if (value == null || value as Ceinture == s.boucle) return;
+      setState(() {
+        s.boucle = value;
+        Ceinture.listJoyaux.clear();
+      });
+    });
   }
 
   Widget Pied(BuildContext context) {
+    return simplyArmor(context, s.pied, openLeg,
+        armorSlotJambiere(s.pied, s, _reloadMainPage, context), () async {
+      var value = await pop.armor(context, 4);
+      if (value == null || value as Jambiere == s.pied) return;
+      setState(() {
+        s.pied = value;
+        Jambiere.listJoyaux.clear();
+      });
+    });
+  }
+
+  Card simplyArmor(BuildContext context, Armure a, bool open, Widget slot,
+      void Function() reload) {
     return Card(
         child: TextButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
             ),
-            onPressed: () async {
-              var value = await pop.armor(context, 4);
-              if (value == null || value as Jambiere == s.pied) return;
-              setState(() {
-                s.pied = value;
-                Jambiere.listJoyaux.clear();
-              });
-            },
+            onPressed: reload,
             child: Column(children: [
               Table(columnWidths: const <int, TableColumnWidth>{
                 0: FixedColumnWidth(60),
@@ -535,19 +442,19 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(5, true),
-                    white(
-                        "${AppLocalizations.of(context)!.rarete}${s.pied.rarete}"),
+                    icon(convertIconInt(a), true),
+                    if (open)
+                      white(
+                          "${AppLocalizations.of(context)!.rarete}${a.rarete}"),
                   ]),
-                  armorTopInfo(s.pied)
-                ]),
-              ]),
-              if (openLeg) armorTalent(s.pied, context),
-              if (openLeg)
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  armorSlot(s.pied, context,
-                      armorSlotCasque(s.pied, s, _reloadMainPage, context))
+                  armorTopInfo(a)
                 ])
+              ]),
+              if (open) armorTalent(a, context),
+              if (open)
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [armorSlot(a, context, slot)])
             ])));
   }
 
@@ -561,10 +468,8 @@ class _BuilderPageState extends State<BuilderPage> {
             margin: const EdgeInsets.only(
               right: 10.0,
             ),
-            child: Image.asset(
-              isArmor ? armure(i) : arme(s.weapon.categorie),
-              fit: BoxFit.fill,
-            )));
+            child: Image.asset(isArmor ? armure(i) : arme(s.weapon.categorie),
+                fit: BoxFit.fill)));
   }
 
   void _reloadMainPage() {
@@ -573,7 +478,7 @@ class _BuilderPageState extends State<BuilderPage> {
     });
   }
 
-  changeOpen(int i) async {
+  void changeOpen(int i) async {
     switch (i) {
       case 0:
         setState(() {

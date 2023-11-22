@@ -70,6 +70,11 @@ Container statFlor(String img, int stat) {
   );
 }
 
+Container statArme(Widget wg) {
+  return Container(
+      margin: const EdgeInsets.only(bottom: 5.0, top: 15.0), child: wg);
+}
+
 Container talent(String nom) {
   return Container(
       margin: const EdgeInsets.only(left: 20.0),

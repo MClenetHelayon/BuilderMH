@@ -1,4 +1,12 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/JoyauCalam.dart';
+import 'package:builder_mhrs/object/Kinsect.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Armure.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../pages/popup/listing-casque.dart' as ListCasque;
@@ -12,14 +20,6 @@ import '../pages/popup/listing-calamJowel.dart' as ListJoyauxCalam;
 import '../pages/popup/listing-arme.dart' as ListArme;
 import '../pages/popup/listing-charm.dart' as ListCharm;
 import '../pages/popup/listing-kinsect.dart' as ListKinsect;
-import '../object/weapon/Arme.dart';
-import '../object/armor/Armure.dart';
-import '../object/Florelet.dart';
-import '../object/Joyau.dart';
-import '../object/JoyauCalam.dart';
-import '../object/Kinsect.dart';
-import '../object/Stuff.dart';
-import '../object/Talisman.dart';
 
 void close(context) {
   Navigator.of(context).pop();

@@ -240,7 +240,7 @@ List<int> allIntSharp(Stuff s) {
       bleu = tranch.bleu,
       blanc = tranch.blanc,
       violet = tranch.violet;
-  if (tranch.sharpBoost.length != 0) {
+  if (tranch.sharpBoost.isNotEmpty) {
     rouge += sharp(s, 1);
     orange += sharp(s, 2);
     jaune += sharp(s, 3);

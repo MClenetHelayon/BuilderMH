@@ -85,7 +85,8 @@ class Tranchant extends Arme {
 }
 
 class Fusarbalete extends Arme {
-  final int recul, rechargement, sensDeviation, puissanceDeviation, mod;
+  final int recul, rechargement, sensDeviation, puissanceDeviation;
+  int mod = 0;
   final bool bombFrag;
   final List<dynamic> normal1,
       normal2,
@@ -189,4 +190,8 @@ class Fusarbalete extends Arme {
       required this.pDragon,
       required this.tranch,
       required this.tranquil});
+
+    void  setMod(int mod) {
+      this.mod = mod;
+    }
 }

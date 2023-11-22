@@ -1,8 +1,12 @@
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
 import 'package:builder_mhrs/manager/text/localization/getCalam.dart';
 import 'package:builder_mhrs/manager/text/localization/getElem.dart';
 import 'package:builder_mhrs/manager/text/localization/getSharp.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/Talent.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 
 Widget filterComboElem(
@@ -66,6 +70,23 @@ Widget filterComboSkill(List<Talent> skills, Talent cbxSkill,
       return DropdownMenuItem<int>(
         value: talent.id,
         child: Text(talent.name),
+      );
+    }).toList(),
+  );
+}
+
+Widget comboModFusar(
+    Fusarbalete w, BuildContext context, Function(int?) onChanged) {
+  return DropdownButton<int>(
+    alignment: AlignmentDirectional.center,
+    dropdownColor: getPrimary(),
+    onChanged: onChanged,
+    value: w.mod,
+    items: <int>[0, 1, 2].map((int id) {
+      return DropdownMenuItem<int>(
+        alignment: AlignmentDirectional.center,
+        value: id,
+        child: white(getMod(id, w, context)),
       );
     }).toList(),
   );

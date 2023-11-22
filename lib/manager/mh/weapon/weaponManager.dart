@@ -28,13 +28,9 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: Text(
-                    weapon.name,
-                    style: TextStyle(
-                      color: getFifth(),
-                      fontWeight: FontWeight.bold
-                    )
-                  ))
+                  child: Text(weapon.name,
+                      style: TextStyle(
+                          color: getFifth(), fontWeight: FontWeight.bold)))
             ]),
             statOff(weapon, context),
             if (weapon is Tranchant)
@@ -54,18 +50,17 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
 
 Widget joyau(
     Arme weapon, Stuff s, VoidCallback onUpdated, BuildContext context) {
-  return Container(
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Column(children: [
       Container(
           margin: const EdgeInsets.only(bottom: 10.0),
-          child: white(s.weapon.slots.length == 0
+          child: white(s.weapon.slots.isEmpty
               ? AppLocalizations.of(context)!.nJoyau
               : AppLocalizations.of(context)!.joyaux)),
       Container(
           margin: const EdgeInsets.only(bottom: 10.0),
           child: Column(children: [
-            if (s.weapon.slots.length >= 1)
+            if (s.weapon.slots.isNotEmpty)
               if (s.weapon.slots[0] != 0)
                 Card(child: joyauArme(s.weapon.slots[0], 0, s, onUpdated)),
             if (s.weapon.slots.length >= 2)
@@ -76,7 +71,7 @@ Widget joyau(
                 Card(child: joyauArme(s.weapon.slots[2], 2, s, onUpdated)),
           ]))
     ])
-  ]));
+  ]);
 }
 
 Widget corne(CorneDeChasse horn, BuildContext context) {
@@ -95,34 +90,23 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
 }
 
 Widget morpho(MorphoHache morpho, BuildContext context) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-      child: morpho.valueFiole != 0
-          ? Text(
-              "${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
-          : Text(getSaFiole(morpho.typeFiole, context)));
+  return statArme(morpho.valueFiole != 0
+      ? Text("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+      : Text(getSaFiole(morpho.typeFiole, context)));
 }
 
 Widget volto(VoltoHache volto, BuildContext context) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-      child: Text(getCbFiole(volto.typeFiole, context)));
+  return statArme(Text(getCbFiole(volto.typeFiole, context)));
 }
 
 Widget lancecanon(Lancecanon gunlance, BuildContext context) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 5.0, top: 15.0),
-      child: Text(
-          "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} ${gunlance.niveauCanon}"));
+  return statArme(Text(
+      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} ${gunlance.niveauCanon}"));
 }
 
 Widget insecto(Insectoglaive insect, BuildContext context) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
-      child: Column(children: [
-        Text(
-            "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}")
-      ]));
+  return statArme(Text(
+      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}"));
 }
 
 Widget isDualBlade(Arme weapon, BuildContext context) {
@@ -133,7 +117,6 @@ Widget isDualBlade(Arme weapon, BuildContext context) {
   } else if (weapon.idElement != 0) {
     vretour = statWhite(element(weapon.idElement), weapon.element.toString());
   }
-
   return vretour;
 }
 

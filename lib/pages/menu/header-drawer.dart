@@ -27,16 +27,12 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
         padding: const EdgeInsets.only(top: 20.0, left: 20.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            margin: const EdgeInsets.only(bottom: 0.0),
-            height: 100,
-            width: 100,
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: AssetImage("images/logo.png"),
-              ),
-            ),
-          ),
+              height: 100,
+              width: 100,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image:
+                      DecorationImage(image: AssetImage("images/logo.png")))),
           const SizedBox(
             height: 10,
           ),
