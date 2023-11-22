@@ -1,4 +1,10 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
+import 'package:builder_mhrs/manager/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
@@ -15,35 +21,29 @@ import 'package:builder_mhrs/manager/text/tranchant.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/Kinsect.dart';
+import 'package:builder_mhrs/object/Screen.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/Talent.dart';
+import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Armure.dart';
+import 'package:builder_mhrs/object/armor/Bras.dart';
+import 'package:builder_mhrs/object/armor/Casque.dart';
+import 'package:builder_mhrs/object/armor/Ceinture.dart';
+import 'package:builder_mhrs/object/armor/Jambe.dart';
+import 'package:builder_mhrs/object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/weapon/Arc.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/LameDouble.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/Lancecanon.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
+import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import '../manager/mh/skill/calculManager.dart';
 import '../manager/img/imgManager.dart' as img;
-import '../manager/img/imgManager.dart';
-import '../manager/mh/weapon/sharpManager.dart';
-import '../manager/mh/skill/affiniteManager.dart';
-import '../manager/statManager.dart';
-import '../manager/mh/weapon/bowManager.dart';
-import '../object/armor/Armure.dart';
-import '../object/Joyau.dart';
-import '../object/Kinsect.dart';
-import '../object/Screen.dart';
-import '../object/Talent.dart';
-import '../object/Talisman.dart';
-import '../object/armor/Bras.dart';
-import '../object/armor/Casque.dart';
-import '../object/armor/Ceinture.dart';
-import '../object/armor/Jambe.dart';
-import '../object/armor/Plastron.dart';
-import '../object/weapon/Arc.dart';
-import '../object/weapon/Arme.dart';
-import '../object/Stuff.dart';
-import '../object/weapon/tranchant/CornedeChasse.dart';
-import '../object/weapon/tranchant/Insectoglaive.dart';
-import '../object/weapon/tranchant/LameDouble.dart';
-import '../object/weapon/tranchant/Lancecanon.dart';
-import '../object/weapon/tranchant/MorphoHache.dart';
-import '../object/weapon/tranchant/VoltoHache.dart';
 
 Widget buildCard(Screen screen) {
   Stuff s = screen.stuff;
@@ -170,7 +170,7 @@ Widget Weapon(Screen screen) {
               child: Column(children: [
                 const SizedBox(height: 4),
                 if (s.weapon.slots.isEmpty) Container(),
-                if (s.weapon.slots.length >= 1)
+                if (s.weapon.slots.isNotEmpty)
                   exportJowel(s.weapon.slots[0], j, 0, screen),
                 if (s.weapon.slots.length >= 2)
                   exportJowel(s.weapon.slots[1], j, 1, screen),
@@ -222,7 +222,7 @@ Widget Armor(int i, Armure a, Screen screen) {
             child: Column(children: [
               const SizedBox(height: 4),
               if (a.slots.isEmpty) Container(),
-              if (a.slots.length >= 1) exportJowel(a.slots[0], j, 0, screen),
+              if (a.slots.isNotEmpty) exportJowel(a.slots[0], j, 0, screen),
               if (a.slots.length >= 2) exportJowel(a.slots[1], j, 1, screen),
               if (a.slots.length == 3) exportJowel(a.slots[2], j, 2, screen),
             ]))
@@ -267,7 +267,7 @@ Widget Charm(Screen screen) {
                     TextStyle(fontWeight: FontWeight.bold, color: getFifth())),
             if (s.charm.talents.isEmpty) Container(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              if (s.charm.talents.length >= 1)
+              if (s.charm.talents.isNotEmpty)
                 talent(
                     '${s.charm.talents[0].name} +${s.charm.talents[0].level}'),
               if (s.charm.talents.length >= 2)
@@ -280,7 +280,7 @@ Widget Charm(Screen screen) {
             margin: const EdgeInsets.only(right: 5),
             child: Column(children: [
               if (s.charm.slots.isEmpty) Container(),
-              if (s.charm.slots.length >= 1 && s.charm.slots[0] != 0)
+              if (s.charm.slots.isNotEmpty && s.charm.slots[0] != 0)
                 exportJowel(s.charm.slots[0], Talisman.listJoyaux, 0, screen),
               if (s.charm.slots.length >= 2 && s.charm.slots[1] != 0)
                 exportJowel(s.charm.slots[1], Talisman.listJoyaux, 1, screen),
@@ -372,7 +372,7 @@ Widget exportTalent(List<Talent> t) {
     if (t.isEmpty) Container(),
     Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Row(children: [
-        if (t.length >= 1) talent('${t[0].name} +${t[0].level}'),
+        if (t.isNotEmpty) talent('${t[0].name} +${t[0].level}'),
         if (t.length >= 2) talent('${t[1].name} +${t[1].level}'),
       ]),
       Row(children: [
@@ -578,19 +578,19 @@ Widget gSharp(Stuff s, BuildContext context) {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     superColoring(3, sharp),
-                    if (sharp.sharpBoost.length != 0)
+                    if (sharp.sharpBoost.isNotEmpty)
                       containerSimplyStat(s.nbSavoirFaire >= 1 ? 12 : 6, 5,
                           sharp.sharpBoost[0]),
-                    if (sharp.sharpBoost.length != 0)
+                    if (sharp.sharpBoost.isNotEmpty)
                       containerSimplyStat(s.nbSavoirFaire >= 2 ? 12 : 6, 5,
                           sharp.sharpBoost[1]),
-                    if (sharp.sharpBoost.length != 0)
+                    if (sharp.sharpBoost.isNotEmpty)
                       containerSimplyStat(s.nbSavoirFaire >= 3 ? 12 : 6, 5,
                           sharp.sharpBoost[2]),
-                    if (sharp.sharpBoost.length != 0)
+                    if (sharp.sharpBoost.isNotEmpty)
                       containerSimplyStat(s.nbSavoirFaire >= 4 ? 12 : 6, 5,
                           sharp.sharpBoost[3]),
-                    if (sharp.sharpBoost.length != 0)
+                    if (sharp.sharpBoost.isNotEmpty)
                       containerSimplyStat(s.nbSavoirFaire >= 5 ? 12 : 6, 5,
                           sharp.sharpBoost[4]),
                   ],
