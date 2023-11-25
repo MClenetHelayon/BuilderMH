@@ -219,12 +219,14 @@
   "kbPoudreUp": "Poudre Amelioree",
   "kbPoudreVortex": "Poudriere Vortex",
   "kbChargKinsect": "Charge Kinsecte",
-  "tSlot": "Emplacement +",
-  "tAttack": "Attaque",
-  "tAffinite": "Affinite",
-  "tElement": "Elément",
-  "tAffliction": "Affliction",
+  "tSlot": "Emplacement Anomalie",
+  "tAttack": "Bonus Attaque",
+  "tAffinite": "Bonus Affinité",
+  "tElement": "Bonus Elément",
+  "tAffliction": "Bonus Affliction",
   "tCalam": "Emplacement Calamité",
-  "tSharp": "Sharpness Boost",
-  "tShelling": "Shelling Level Boost"
+  "tSharp": "Bonus Tranchant",
+  "tShelling": "Bonus Niveau du Canon",
+  "tActive": "Activé",
+  "tDesactive": "Désactivé"
 }

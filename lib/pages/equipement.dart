@@ -133,6 +133,7 @@ class _BuilderPageState extends State<BuilderPage> {
                   s.weapon = value;
                   s.joyauxCalam = JoyauxCalam.getBase();
                   Arme.listJoyaux.clear();
+                  Arme.augments = false;
                   if (s.weapon is Tranchant) {
                     s.sharpRaw = getBoostRaw(s);
                     s.sharpElem = getBoostElem(s);
@@ -464,9 +465,7 @@ class _BuilderPageState extends State<BuilderPage> {
         },
         iconSize: 60,
         icon: Container(
-            margin: const EdgeInsets.only(
-              right: 10.0,
-            ),
+            margin: const EdgeInsets.only(right: 10.0),
             child: Image.asset(isArmor ? armure(i) : arme(s.weapon.categorie),
                 fit: BoxFit.fill)));
   }

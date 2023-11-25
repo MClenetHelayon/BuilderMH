@@ -226,5 +226,7 @@
   "tAffliction": "Status Effect Boost",
   "tCalam": "Rampage Slot Upgrade",
   "tSharp": "Sharpness Boost",
-  "tShelling": "Shelling Level Boost"
+  "tShelling": "Shelling Level Boost",
+  "tActive": "Enabled",
+  "tDesactive": "Disabled"
 }

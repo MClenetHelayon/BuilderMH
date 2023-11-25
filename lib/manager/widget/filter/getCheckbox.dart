@@ -12,7 +12,7 @@ Widget checkboxArme(String img, bool check, Function(bool) onTapAction) {
               decoration: BoxDecoration(
                   border: Border.all(color: getFifth(), width: 1),
                   image: DecorationImage(
-                    image: AssetImage(img),
+                    image: AssetImage(img)
                   ),
                   borderRadius: BorderRadius.circular(5),
                   color: check ? getFifth() : Colors.transparent))));
@@ -34,3 +34,21 @@ Widget checkboxRank(String txt, bool check, Function onTapAction) {
                   child: Text(txt,
                       style: const TextStyle(fontWeight: FontWeight.bold))))));
 }
+
+Widget checkboxAugment(String txt, bool check, Function onTapAction) {
+  return Card(
+      color: getThird(),
+      child: GestureDetector(
+          onTap: () => onTapAction(),
+          child: Container(
+              width: 80,
+              height: 30,
+              decoration: BoxDecoration(
+                  border: Border.all(color: getFifth(), width: 1),
+                  borderRadius: BorderRadius.circular(5),
+                  color: check ? getFifth() : Colors.transparent),
+              child: Center(
+                  child: Text(txt,
+                      style: const TextStyle(fontWeight: FontWeight.bold))))));
+}
+

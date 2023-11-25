@@ -9,7 +9,7 @@ class Arme {
   final num affinite;
   final List<int> slots;
   final Talent? talent;
-
+  static bool augments = false;
   static List<Joyaux> listJoyaux = [];
   static List<Transcendance> listAugments = [];
   Arme({
