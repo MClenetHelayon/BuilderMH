@@ -1,47 +1,45 @@
 class Transcendance {
-  final int slot1,
-      slot2,
-      slot3,
-      slot4,
-      slot5,
-      slot6,
-      slot7,
-      slot8,
-      slot9,
-      slot10,
-      att,
-      elem,
-      sharp;
+  int slotTotal = 10, att, aff, elem, affl, sharp, calam, shell;
+  List<bool> bRamp = [false, false],
+      bAtt = [false, false, false, false],
+      bAff = [false, false, false],
+      bAffl = [false, false, false, false],
+      bElem = [false, false, false, false, false, false, false, false],
+      bSharp = [false, false, false, false],
+      bShell = [false, false];
 
   Transcendance(
-      {required this.slot1,
-      required this.slot2,
-      required this.slot3,
-      required this.slot4,
-      required this.slot5,
-      required this.slot6,
-      required this.slot7,
-      required this.slot8,
-      required this.slot9,
-      required this.slot10,
-      required this.att,
+      {required this.att,
+      required this.aff,
       required this.elem,
-      required this.sharp});
+      required this.affl,
+      required this.sharp,
+      required this.calam,
+      required this.shell});
 
   static getBase() {
     return Transcendance(
-        slot1: 0,
-        slot2: 0,
-        slot3: 0,
-        slot4: 0,
-        slot5: 0,
-        slot6: 0,
-        slot7: 0,
-        slot8: 0,
-        slot9: 0,
-        slot10: 0,
-        att: 0,
-        elem: 0,
-        sharp: 0);
+        att: 0, aff: 0, elem: 0, affl: 0, sharp: 0, calam: 0, shell: 0);
+  }
+
+  void reset() {
+    slotTotal = 10;
+  }
+
+  void fullReset() {
+    slotTotal = 10;
+    bRamp = [false, false];
+    bAtt = [false, false, false, false];
+    bAff = [false, false, false];
+    bAffl = [false, false, false, false];
+    bElem = [false, false, false, false, false, false, false, false];
+    bSharp = [false, false, false, false];
+    bShell = [false, false];
+  }
+
+  void notOverflow() {
+    if (slotTotal > 10) {
+      slotTotal = 10;
+    }
   }
 }

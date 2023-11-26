@@ -11,7 +11,7 @@ class Arme {
   final Talent? talent;
   static bool augments = false;
   static List<Joyaux> listJoyaux = [];
-  static List<Transcendance> listAugments = [];
+  static Transcendance transcendance = Transcendance.getBase();
   Arme({
     required this.id,
     required this.name,
