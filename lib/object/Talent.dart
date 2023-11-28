@@ -1,8 +1,8 @@
 class Talent {
   final String name;
-  final int id,level,levelMax;
+  final int id, level, levelMax;
   final bool talisman;
-
+  bool actif;
 
   Talent({
     required this.name,
@@ -10,8 +10,9 @@ class Talent {
     required this.level,
     required this.levelMax,
     required this.talisman,
+    required this.actif,
   });
-  factory Talent.getJson(Map<String, dynamic> json,String currentLanguage) {
+  factory Talent.getJson(Map<String, dynamic> json, String currentLanguage) {
     String localizedNames = "";
 
     json['name'].forEach((key, value) {
@@ -25,10 +26,12 @@ class Talent {
       level: 0,
       levelMax: json['levelMax'],
       talisman: json['talisman'],
+      actif: true,
     );
   }
 
-  factory Talent.fromJson(Map<String, dynamic> json, List<dynamic> skillList,String currentLanguage) {
+  factory Talent.fromJson(Map<String, dynamic> json, List<dynamic> skillList,
+      String currentLanguage) {
     final skill =
         skillList.firstWhere((skill) => skill['id'] == json['talentId']);
     String localizedNames = "";
@@ -44,6 +47,7 @@ class Talent {
       level: json['level'],
       levelMax: skill['levelMax'],
       talisman: skill['talisman'],
+      actif: true,
     );
   }
 
@@ -54,6 +58,7 @@ class Talent {
       level: 0,
       levelMax: 0,
       talisman: true,
+      actif: false,
     );
   }
 }

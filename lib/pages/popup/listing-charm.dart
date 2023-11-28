@@ -105,7 +105,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                         id: lskill[talentIndex1].id,
                         level: talentLevel1,
                         levelMax: lskill[talentIndex1].levelMax,
-                        talisman: true);
+                        talisman: true,
+                        actif: true);
                     list.add(t1);
                   }
                   if (talent2Active) {
@@ -115,7 +116,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                           id: lskill[talentIndex2].id,
                           level: talentLevel2,
                           levelMax: lskill[talentIndex2].levelMax,
-                          talisman: true);
+                          talisman: true,
+                          actif: true);
                       list.add(t2);
                     }
                   }
