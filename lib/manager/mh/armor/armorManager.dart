@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/joyauManager.dart';
-import 'package:builder_mhrs/manager/statManager.dart';
-import 'package:builder_mhrs/manager/talentManager.dart';
+import 'package:builder_mhrs/manager/mh/joyauManager.dart';
+import 'package:builder_mhrs/manager/mh/statManager.dart';
+import 'package:builder_mhrs/manager/mh/armor/talentManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';

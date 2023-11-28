@@ -1,191 +1,200 @@
+import 'package:builder_mhrs/manager/img/simplyArmor.dart';
+import 'package:builder_mhrs/manager/img/simplyDeco.dart';
+import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyMusic.dart';
+import 'package:builder_mhrs/manager/img/simplyRampage.dart';
+import 'package:builder_mhrs/manager/img/simplyRaw.dart';
+import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
+
 String element(int id) {
-  String img = 'images/logoBuildCard.png';
+  String vretour = 'images/logoBuildCard.png';
   switch (id) {
     case 1:
-      img = 'images/elementaire/Feu.webp';
+      vretour = getFeu();
       break;
     case 2:
-      img = 'images/elementaire/Eau.webp';
+      vretour = getEau();
       break;
     case 3:
-      img = 'images/elementaire/Foudre.webp';
+      vretour = getFoudre();
       break;
     case 4:
-      img = 'images/elementaire/Glace.webp';
+      vretour = getGlace();
       break;
     case 5:
-      img = 'images/elementaire/Dragon.webp';
+      vretour = getDragon();
       break;
     case 6:
-      img = 'images/elementaire/Poison.png';
+      vretour = getPoison();
       break;
     case 7:
-      img = 'images/elementaire/Para.png';
+      vretour = getPara();
       break;
     case 8:
-      img = 'images/elementaire/Sleep.png';
+      vretour = getSleep();
       break;
     case 9:
-      img = 'images/elementaire/Explo.png';
+      vretour = getExplo();
   }
-  return img;
+  return vretour;
 }
 
 String elementWtName(String id) {
-  String img = 'images/logoBuildCard.png';
+  String vretour = getBasique();
   switch (id) {
     case 'fire':
-      img = 'images/elementaire/Feu.webp';
+      vretour = getFeu();
       break;
     case 'water':
-      img = 'images/elementaire/Eau.webp';
+      vretour = getEau();
       break;
     case 'thunder':
-      img = 'images/elementaire/Foudre.webp';
+      vretour = getFoudre();
       break;
     case 'ice':
-      img = 'images/elementaire/Glace.webp';
+      vretour = getGlace();
       break;
     case 'dragon':
-      img = 'images/elementaire/Dragon.webp';
+      vretour = getDragon();
       break;
     case 'poison':
-      img = 'images/elementaire/Poison.png';
+      vretour = getPoison();
       break;
     case 'para':
-      img = 'images/elementaire/Para.png';
+      vretour = getPara();
       break;
     case 'sleep':
-      img = 'images/elementaire/Sleep.png';
+      vretour = getSleep();
       break;
     case 'explo':
-      img = 'images/elementaire/Explo.png';
+      vretour = getExplo();
   }
-  return img;
+  return vretour;
 }
 
 String slot(int slot) {
-  String img = 'images/logoBuildCard.png';
+  String vretour = getBasique();
   switch (slot) {
     case 1:
-      img = "images/joyau/j1.png";
+      vretour = getSlot1();
       break;
     case 2:
-      img = "images/joyau/j2.png";
+      vretour = getSlot2();
       break;
     case 3:
-      img = "images/joyau/j3.png";
+      vretour = getSlot3();
       break;
     case 4:
-      img = "images/joyau/j4.png";
+      vretour = getSlot4();
       break;
   }
-  return img;
+  return vretour;
 }
 
 String slotCalam(int slot) {
-  String img = 'images/logoBuildCard.png';
+  String vretour = getBasique();
   switch (slot) {
     case 1:
-      img = "images/joyau/ramp1.png";
+      vretour = getRampage1();
       break;
     case 2:
-      img = "images/joyau/ramp2.png";
+      vretour = getRampage2();
       break;
     case 3:
-      img = "images/joyau/ramp3.png";
+      vretour = getRampage3();
       break;
   }
-  return img;
+  return vretour;
 }
 
 String arme(String categorie) {
-  String img = 'images/arme/GreatSword.png';
+  String vretour = getGS();
   switch (categorie) {
     case 'GS':
-      img = 'images/arme/GreatSword.png';
+      vretour = getGS();
       break;
     case 'LS':
-      img = 'images/arme/LongSword.png';
+      vretour = getLS();
       break;
     case 'SNS':
-      img = 'images/arme/SwordNShield.png';
+      vretour = getSNS();
       break;
     case 'DB':
-      img = 'images/arme/DualBlades.png';
+      vretour = getDB();
       break;
     case 'MRTO':
-      img = 'images/arme/Hammer.png';
+      vretour = getMRTO();
       break;
     case 'HH':
-      img = 'images/arme/HuntingHorn.png';
+      vretour = getHH();
       break;
     case 'LNC':
-      img = 'images/arme/Lance.png';
+      vretour = getLNC();
       break;
     case 'GL':
-      img = 'images/arme/Gunlance.png';
+      vretour = getGL();
       break;
     case 'SA':
-      img = 'images/arme/SwitchAxe.png';
+      vretour = getSA();
       break;
     case 'CB':
-      img = 'images/arme/ChargeBlade.png';
+      vretour = getCB();
       break;
     case 'IG':
-      img = 'images/arme/InsectGlaive.png';
+      vretour = getIG();
       break;
     case 'ARC':
-      img = 'images/arme/Bow.png';
+      vretour = getARC();
       break;
     case 'LBG':
-      img = 'images/arme/LightBowGun.png';
+      vretour = getLBG();
       break;
     case 'HBG':
-      img = 'images/arme/HeavyBowGun.png';
+      vretour = getHBG();
       break;
   }
-  return img;
+  return vretour;
 }
 
 String armure(int id) {
-  String vretour = "images/armure/Casque.png";
+  String vretour = getCasque();
   switch (id) {
     case 1:
-      vretour = "images/armure/Casque.png";
+      vretour = getCasque();
       break;
     case 2:
-      vretour = "images/armure/Torse.png";
+      vretour = getTorse();
       break;
     case 3:
-      vretour = "images/armure/Bras.png";
+      vretour = getBras();
       break;
     case 4:
-      vretour = "images/armure/Ceinture.png";
+      vretour = getCeinture();
       break;
     case 5:
-      vretour = "images/armure/Jambe.png";
+      vretour = getJambe();
       break;
     case 6:
-      vretour = "images/armure/Petalas.png";
+      vretour = getPetalas();
       break;
     case 7:
-      vretour = "images/armure/Talisman.png";
+      vretour = getTalisman();
+      break;
   }
   return vretour;
 }
 
 String musique(int id) {
-  String vretour = "images/logoBuildCard.png";
+  String vretour = getBasique();
   switch (id) {
     case 0:
-      vretour = "images/arme/hhnote/note1.png";
+      vretour = getNote1();
       break;
     case 1:
-      vretour = "images/arme/hhnote/note2.png";
+      vretour = getNote2();
       break;
     case 2:
-      vretour = "images/arme/hhnote/note3.png";
+      vretour = getNote3();
       break;
   }
   return vretour;

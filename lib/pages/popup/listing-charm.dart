@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-
-import '../../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
@@ -43,8 +42,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
     setState(() {
       lskill.add(Talent.getBase());
       for (Map<String, dynamic> skill in skillList) {
-        if (Talent.getJson(skill,Stuff.local).talisman) {
-          lskill.add(Talent.getJson(skill,Stuff.local));
+        if (Talent.getJson(skill, Stuff.local).talisman) {
+          lskill.add(Talent.getJson(skill, Stuff.local));
         }
       }
     });
@@ -57,43 +56,40 @@ class _ListViewScreenState extends State<ListViewScreen> {
         child: Column(
           children: [
             Card(
-              color: const Color.fromARGB(255, 218, 218, 218),
-              child: Column(children: [
-                Text("Talent 1"),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      if (lskill.length > 0) TalentDropdown1(),
-                      if (lskill.length > 0) LevelDropdown1(),
-                    ])
-              ]),
-            ),
-            if (talent2Active)
-              Card(
                 color: const Color.fromARGB(255, 218, 218, 218),
                 child: Column(children: [
-                  Text("Talent 2"),
+                  Text("Talent 1"),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        if (lskill.length > 0) TalentDropdown2(),
-                        if (lskill.length > 0) LevelDropdown2(),
+                        if (lskill.length > 0) TalentDropdown1(),
+                        if (lskill.length > 0) LevelDropdown1(),
                       ])
-                ]),
-              ),
+                ])),
+            if (talent2Active)
+              Card(
+                  color: const Color.fromARGB(255, 218, 218, 218),
+                  child: Column(children: [
+                    Text("Talent 2"),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          if (lskill.length > 0) TalentDropdown2(),
+                          if (lskill.length > 0) LevelDropdown2(),
+                        ])
+                  ])),
             Card(
-              color: const Color.fromARGB(255, 218, 218, 218),
-              child: Column(children: [
-                Text("Emplacements"),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SlotDropdown1(),
-                      if (slot1Active) SlotDropdown2(),
-                      if (slot1Active && slot2Active) SlotDropdown3(),
-                    ])
-              ]),
-            ),
+                color: const Color.fromARGB(255, 218, 218, 218),
+                child: Column(children: [
+                  Text("Emplacements"),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SlotDropdown1(),
+                        if (slot1Active) SlotDropdown2(),
+                        if (slot1Active && slot2Active) SlotDropdown3(),
+                      ])
+                ])),
             TextButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
@@ -305,7 +301,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
         ));
       }
     } else {
-      items.add(DropdownMenuItem(
+      items.add(const DropdownMenuItem(
         value: 0,
         child: Text('0'),
       ));

@@ -88,10 +88,12 @@ flutter:
     - images/arme/
     - images/arme/hhnote/
     - images/arme/mun/
+    - images/arme/kinsect/
     - images/armure/
     - images/elementaire/
     - images/joyau/
     - images/drapeau/
+    - images/transcendance/
     - database/
     - database/mhrs/
     - database/mhrs/armor/

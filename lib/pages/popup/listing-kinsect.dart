@@ -133,20 +133,4 @@ class _ListViewScreenState extends State<ListViewScreen> {
       ),
     );
   }
-
-  AssetImage imgSlot(int slot) {
-    String img = 'images/logoBuildCard.png';
-    switch (slot) {
-      case 1:
-        img = "images/joyau/ramp1.png";
-        break;
-      case 2:
-        img = "images/joyau/ramp2.png";
-        break;
-      case 3:
-        img = "images/joyau/ramp3.png";
-        break;
-    }
-    return AssetImage(img);
-  }
 }

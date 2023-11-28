@@ -1,6 +1,6 @@
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 
-import '../../../object/Stuff.dart';
-import '../../../object/weapon/Arme.dart';
 import 'affiniteManager.dart' as aff;
 import 'brutManager.dart' as att;
 import 'defenseManager.dart' as def;
@@ -28,6 +28,9 @@ int sharp(Stuff s, int idColor) {
 
 num affinite(Stuff s) {
   num vretour = s.weapon.affinite;
+  if (Arme.augments) {
+    vretour += (Arme.transcendance.aff).toDouble();
+  }
   if (s.getTalentById(87) != 0) {
     vretour += aff.getMaitre(s.getTalentById(87));
   }
@@ -52,6 +55,9 @@ num affinite(Stuff s) {
 int row(Stuff s) {
   double vretour = (s.weapon.attaque).toDouble() + (s.florelet.gAtt).toDouble(),
       base = vretour;
+  if (Arme.augments) {
+    vretour += (Arme.transcendance.att).toDouble();
+  }
   if (s.getTalentById(78) != 0) {
     vretour += att.getMachine(s.getTalentById(78), base);
   }
@@ -221,5 +227,8 @@ int dragonHeart(int i, Stuff s) {
 
 int elem(Stuff s) {
   int vretour = s.weapon.element;
+  if (Arme.augments) {
+    vretour += Arme.transcendance.aff;
+  }
   return vretour;
 }

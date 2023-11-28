@@ -19,3 +19,7 @@ Color getFourth() {
 Color getFifth() {
   return const Color(0xFFF1895C);
 }
+
+Color getSixth() {
+  return const Color.fromARGB(255, 15, 15, 15);
+}

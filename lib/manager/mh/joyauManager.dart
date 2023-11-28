@@ -4,14 +4,14 @@ import 'package:builder_mhrs/manager/popupManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:flutter/material.dart';
-import '../object/armor/Bras.dart';
-import '../object/armor/Casque.dart';
-import '../object/armor/Ceinture.dart';
-import '../object/armor/Jambe.dart';
-import '../object/weapon/Arme.dart';
-import '../object/Joyau.dart';
-import '../object/Stuff.dart';
-import '../object/Talisman.dart';
+import '../../object/armor/Bras.dart';
+import '../../object/armor/Casque.dart';
+import '../../object/armor/Ceinture.dart';
+import '../../object/armor/Jambe.dart';
+import '../../object/weapon/Arme.dart';
+import '../../object/Joyau.dart';
+import '../../object/Stuff.dart';
+import '../../object/Talisman.dart';
 
 Widget joyauArme(int slot, int numJoyau, Stuff s, Function() onUpdate) {
   return JoyauWidget(

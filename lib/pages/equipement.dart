@@ -6,6 +6,7 @@ import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/popupManager.dart' as pop;
+import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/util/convertIconInInt.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/object/Florelet.dart';
@@ -64,7 +65,7 @@ class _BuilderPageState extends State<BuilderPage> {
       openKinsect = true,
       openSkill = false,
       reload = false;
-
+  String txtAugment = "";
   @override
   void initState() {
     super.initState();
@@ -133,6 +134,8 @@ class _BuilderPageState extends State<BuilderPage> {
                   s.weapon = value;
                   s.joyauxCalam = JoyauxCalam.getBase();
                   Arme.listJoyaux.clear();
+                  Arme.augments = false;
+                  Arme.transcendance.fullReset();
                   if (s.weapon is Tranchant) {
                     s.sharpRaw = getBoostRaw(s);
                     s.sharpElem = getBoostElem(s);
@@ -156,40 +159,35 @@ class _BuilderPageState extends State<BuilderPage> {
                             children: [
                               icon(0, false),
                               if (openWeapon)
-                                Text(
-                                  "${AppLocalizations.of(context)!.rarete}${s.weapon.rarete}",
-                                  style: TextStyle(color: getFourth()),
-                                ),
+                                white(
+                                    "${AppLocalizations.of(context)!.rarete}${s.weapon.rarete}")
                             ])),
                     valueWeapon(s.weapon, context)
-                  ]),
+                  ])
                 ]),
                 if (openWeapon)
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Column(children: [
                       if (s.weapon.niveau == "maitre")
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            white("Transcendance"),
-                            Card(
-                                child: TextButton(
-                              style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        getPrimary()),
-                              ),
-                              onPressed:
-                                  () {} /*async {
-          var value = await popupTranscendance(context);
-          if (value == null || value == this.weapon) return;
-          setState(() => this.weapon = value);
-        }*/
-                              ,
-                              child: white("-/-/-/-/-/-"),
-                            ))
-                          ],
-                        ),
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              white(AppLocalizations.of(context)!.trans),
+                              Card(
+                                  child: TextButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all<Color>(
+                                                  getPrimary())),
+                                      onPressed: () async {
+                                        await pop.transcendance(
+                                            context, s.weapon);
+                                        setState(() {
+                                          txtAugment = txtListAugment(s.weapon);
+                                        });
+                                      },
+                                      child: white(txtAugment)))
+                            ]),
                       if (s.weapon.niveau == "maitre")
                         Container(
                             margin: const EdgeInsets.all(10.0),
@@ -210,10 +208,10 @@ class _BuilderPageState extends State<BuilderPage> {
                           setState(() {
                             (s.weapon as Fusarbalete).mod = newValue!;
                           });
-                        }),
-                    ]),
-                  ]),
-              ])),
+                        })
+                    ])
+                  ])
+              ]))
         ]));
   }
 
@@ -233,7 +231,7 @@ class _BuilderPageState extends State<BuilderPage> {
             },
             child: Table(columnWidths: const <int, TableColumnWidth>{
               0: FixedColumnWidth(50),
-              1: FlexColumnWidth(),
+              1: FlexColumnWidth()
             }, children: [
               TableRow(children: [
                 Container(
@@ -246,11 +244,8 @@ class _BuilderPageState extends State<BuilderPage> {
                             openKinsect = !openKinsect;
                           });
                         },
-                        icon: Image.asset(
-                          'images/arme/kinsect.png',
-                          height: 100,
-                          width: 100,
-                        ))),
+                        icon: Image.asset('images/arme/kinsect.png',
+                            height: 100, width: 100))),
                 StatKinsect(s)
               ]),
               TableRow(children: [
@@ -284,9 +279,7 @@ class _BuilderPageState extends State<BuilderPage> {
                 Container(
                     margin: const EdgeInsets.all(10.0),
                     child: Column(children: [
-                      Text(s.florelet.name,
-                          style: TextStyle(
-                              color: getFifth(), fontWeight: FontWeight.bold)),
+                      boldOrange(s.florelet.name),
                       if (openPetalas) flor(s.florelet, context)
                     ]))
               ])
@@ -320,12 +313,9 @@ class _BuilderPageState extends State<BuilderPage> {
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Container(
                         margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                        child: Text(AppLocalizations.of(context)!.tali,
-                            style: TextStyle(
-                                color: getFifth(),
-                                fontWeight: FontWeight.bold)))
+                        child: boldOrange(AppLocalizations.of(context)!.tali))
                   ])
-                ]),
+                ])
               ]),
               if (openCharm)
                 Column(children: [
@@ -465,9 +455,7 @@ class _BuilderPageState extends State<BuilderPage> {
         },
         iconSize: 60,
         icon: Container(
-            margin: const EdgeInsets.only(
-              right: 10.0,
-            ),
+            margin: const EdgeInsets.only(right: 10.0),
             child: Image.asset(isArmor ? armure(i) : arme(s.weapon.categorie),
                 fit: BoxFit.fill)));
   }

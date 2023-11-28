@@ -80,9 +80,15 @@ Widget superColoring(int i, Tranchant sharp) {
     coloring(sharp.orange, i, 2),
     coloring(sharp.jaune, i, 3),
     coloring(sharp.vert, i, 4),
-    coloring(sharp.bleu, i, 5),
-    coloring(sharp.blanc, i, 6),
-    coloring(sharp.violet, i, 7),
+    sharp.bleu != 0 && sharp.blanc == 0 && Arme.augments
+        ? coloring(sharp.bleu + Arme.transcendance.sharp, i, 5)
+        : coloring(sharp.bleu, i, 5),
+    sharp.blanc != 0 && sharp.violet == 0 && Arme.augments
+        ? coloring(sharp.blanc + Arme.transcendance.sharp, i, 6)
+        : coloring(sharp.blanc, i, 6),
+    sharp.violet != 0 && Arme.augments
+        ? coloring(sharp.violet + Arme.transcendance.sharp, i, 7)
+        : coloring(sharp.violet, i, 7)
   ]);
 }
 
@@ -101,4 +107,44 @@ Widget containerSimplyStat(double h, double w, int i) {
     width: w,
     color: couleur(i),
   );
+}
+
+int getLastSharp(Tranchant t) {
+  int vretour = 0;
+  if (t.rouge != 0) vretour = 1;
+  if (t.orange != 0) vretour = 2;
+  if (t.jaune != 0) vretour = 3;
+  if (t.vert != 0) vretour = 4;
+  if (t.bleu != 0) vretour = 5;
+  if (t.blanc != 0) vretour = 6;
+  if (t.violet != 0) vretour = 7;
+  return vretour;
+}
+
+int getValueLastSharp(Tranchant t) {
+  int vretour = 0, sharp = getLastSharp(t);
+  switch (sharp) {
+    case 1:
+      vretour = t.rouge;
+      break;
+    case 2:
+      vretour = t.orange;
+      break;
+    case 3:
+      vretour = t.jaune;
+      break;
+    case 4:
+      vretour = t.vert;
+      break;
+    case 5:
+      vretour = t.bleu;
+      break;
+    case 6:
+      vretour = t.blanc;
+      break;
+    case 7:
+      vretour = t.violet;
+      break;
+  }
+  return vretour;
 }

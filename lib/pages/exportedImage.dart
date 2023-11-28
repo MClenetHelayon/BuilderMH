@@ -4,7 +4,7 @@ import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
-import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';

@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 
 double getBoostRaw(Stuff s) {

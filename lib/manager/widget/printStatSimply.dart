@@ -51,7 +51,12 @@ Widget statComboCalam(String img) {
 
 Widget statComboSharp(int id, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-    Container(width: 10.0, height: 10.0, color: couleur(id)),
+    Container(
+        width: 10.0,
+        height: 10.0,
+        decoration: BoxDecoration(
+            border: Border.all(width: 1, color: getSecondary()),
+            color: couleur(id))),
     const SizedBox(width: 3),
     Text(stat),
   ]);
