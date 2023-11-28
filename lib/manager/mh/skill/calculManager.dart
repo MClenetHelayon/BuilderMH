@@ -222,13 +222,15 @@ int dragonHeart(int i, Stuff s) {
   if (s.getTalentById(46) != 0) {
     vretour = def.getDragonHeart(s.getTalentById(46));
   }
+
   return vretour;
 }
 
 int elem(Stuff s) {
   int vretour = s.weapon.element;
   if (Arme.augments) {
-    vretour += (Arme.transcendance.elem).toInt();
+    if (s.weapon.idElement <= 5) vretour += (Arme.transcendance.elem).toInt();
+    if (s.weapon.idElement >= 6) vretour += (Arme.transcendance.affl).toInt();
   }
   return vretour;
 }
