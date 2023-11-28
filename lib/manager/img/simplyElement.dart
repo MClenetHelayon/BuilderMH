@@ -1,35 +1,9 @@
-String getFeu() {
-  return 'images/elementaire/Feu.webp';
-}
-
-String getEau() {
-  return 'images/elementaire/Eau.webp';
-}
-
-String getFoudre() {
-  return 'images/elementaire/Foudre.webp';
-}
-
-String getGlace() {
-  return 'images/elementaire/Glace.webp';
-}
-
-String getDragon() {
-  return 'images/elementaire/Dragon.webp';
-}
-
-String getPoison() {
-  return 'images/elementaire/Poison.png';
-}
-
-String getPara() {
-  return 'images/elementaire/Para.png';
-}
-
-String getSleep() {
-  return 'images/elementaire/Sleep.png';
-}
-
-String getExplo() {
-  return 'images/elementaire/Explo.png';
-}
+const feu = 'images/elementaire/Feu.webp';
+const eau = 'images/elementaire/Eau.webp';
+const foudre = 'images/elementaire/Foudre.webp';
+const glace = 'images/elementaire/Glace.webp';
+const dragon = 'images/elementaire/Dragon.webp';
+const poison = 'images/elementaire/Poison.png';
+const para = 'images/elementaire/Para.png';
+const sleep = 'images/elementaire/Sleep.png';
+const explo = 'images/elementaire/Explo.png';

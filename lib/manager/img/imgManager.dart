@@ -7,194 +7,194 @@ import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
 
 String element(int id) {
-  String vretour = getBasique();
+  String vretour = basic;
   switch (id) {
     case 1:
-      vretour = getFeu();
+      vretour = feu;
       break;
     case 2:
-      vretour = getEau();
+      vretour = eau;
       break;
     case 3:
-      vretour = getFoudre();
+      vretour = foudre;
       break;
     case 4:
-      vretour = getGlace();
+      vretour = glace;
       break;
     case 5:
-      vretour = getDragon();
+      vretour = dragon;
       break;
     case 6:
-      vretour = getPoison();
+      vretour = poison;
       break;
     case 7:
-      vretour = getPara();
+      vretour = para;
       break;
     case 8:
-      vretour = getSleep();
+      vretour = sleep;
       break;
     case 9:
-      vretour = getExplo();
+      vretour = explo;
   }
   return vretour;
 }
 
 String elementWtName(String id) {
-  String vretour = getBasique();
+  String vretour = basic;
   switch (id) {
     case 'fire':
-      vretour = getFeu();
+      vretour = feu;
       break;
     case 'water':
-      vretour = getEau();
+      vretour = eau;
       break;
     case 'thunder':
-      vretour = getFoudre();
+      vretour = foudre;
       break;
     case 'ice':
-      vretour = getGlace();
+      vretour = glace;
       break;
     case 'dragon':
-      vretour = getDragon();
+      vretour = dragon;
       break;
     case 'poison':
-      vretour = getPoison();
+      vretour = poison;
       break;
     case 'para':
-      vretour = getPara();
+      vretour = para;
       break;
     case 'sleep':
-      vretour = getSleep();
+      vretour = sleep;
       break;
     case 'explo':
-      vretour = getExplo();
+      vretour = explo;
   }
   return vretour;
 }
 
 String slot(int slot) {
-  String vretour = getBasique();
+  String vretour = basic;
   switch (slot) {
     case 1:
-      vretour = getSlot1();
+      vretour = slot1;
       break;
     case 2:
-      vretour = getSlot2();
+      vretour = slot2;
       break;
     case 3:
-      vretour = getSlot3();
+      vretour = slot3;
       break;
     case 4:
-      vretour = getSlot4();
+      vretour = slot4;
       break;
   }
   return vretour;
 }
 
 String slotCalam(int slot) {
-  String vretour = getBasique();
+  String vretour = basic;
   switch (slot) {
     case 1:
-      vretour = getRampage1();
+      vretour = ramp1;
       break;
     case 2:
-      vretour = getRampage2();
+      vretour = ramp2;
       break;
     case 3:
-      vretour = getRampage3();
+      vretour = ramp3;
       break;
   }
   return vretour;
 }
 
 String arme(String categorie) {
-  String vretour = getGS();
+  String vretour = gs;
   switch (categorie) {
     case 'GS':
-      vretour = getGS();
+      vretour = gs;
       break;
     case 'LS':
-      vretour = getLS();
+      vretour = ls;
       break;
     case 'SNS':
-      vretour = getSNS();
+      vretour = sns;
       break;
     case 'DB':
-      vretour = getDB();
+      vretour = db;
       break;
     case 'MRTO':
-      vretour = getMRTO();
+      vretour = mrto;
       break;
     case 'HH':
-      vretour = getHH();
+      vretour = hh;
       break;
     case 'LNC':
-      vretour = getLNC();
+      vretour = lnc;
       break;
     case 'GL':
-      vretour = getGL();
+      vretour = gl;
       break;
     case 'SA':
-      vretour = getSA();
+      vretour = sa;
       break;
     case 'CB':
-      vretour = getCB();
+      vretour = cb;
       break;
     case 'IG':
-      vretour = getIG();
+      vretour = ig;
       break;
     case 'ARC':
-      vretour = getARC();
+      vretour = arc;
       break;
     case 'LBG':
-      vretour = getLBG();
+      vretour = lbg;
       break;
     case 'HBG':
-      vretour = getHBG();
+      vretour = hbg;
       break;
   }
   return vretour;
 }
 
 String armure(int id) {
-  String vretour = getCasque();
+  String vretour = casque;
   switch (id) {
     case 1:
-      vretour = getCasque();
+      vretour = casque;
       break;
     case 2:
-      vretour = getTorse();
+      vretour = torse;
       break;
     case 3:
-      vretour = getBras();
+      vretour = bras;
       break;
     case 4:
-      vretour = getCeinture();
+      vretour = ceinture;
       break;
     case 5:
-      vretour = getJambe();
+      vretour = jambe;
       break;
     case 6:
-      vretour = getPetalas();
+      vretour = petalas;
       break;
     case 7:
-      vretour = getTalisman();
+      vretour = talisman;
       break;
   }
   return vretour;
 }
 
 String musique(int id) {
-  String vretour = getBasique();
+  String vretour = basic;
   switch (id) {
     case 0:
-      vretour = getNote1();
+      vretour = note1;
       break;
     case 1:
-      vretour = getNote2();
+      vretour = note2;
       break;
     case 2:
-      vretour = getNote3();
+      vretour = note3;
       break;
   }
   return vretour;

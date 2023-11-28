@@ -1,7 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/simplyAugment.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/logic/calculSlotAugment.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/AugmentManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/slotAManager.dart';
@@ -79,7 +78,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           Center(child: boldBlack(AppLocalizations.of(context)!.recap)),
           const Divider(color: Colors.black),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            simplyRecap(statBlack(getAttaque(), "+${t.att.toString()}")),
+            simplyRecap(statBlack(att, "+${t.att.toString()}")),
             if (w.idElement != 0 && w.idElement <= 5)
               simplyRecap(
                   statBlack(element(w.idElement), "+${t.elem.toString()}")),
@@ -87,7 +86,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               simplyRecap(
                   statBlack(element(w.idElement), "+${t.affl.toString()}")),
             if (t.bAff.contains(true))
-              simplyRecap(statBlack(getAffinite(), "+${t.aff.toString()}")),
+              simplyRecap(statBlack(aff, "+${t.aff.toString()}")),
             if (w is Tranchant)
               simplyRecap(statComboSharp(
                   getLastSharp(w as Tranchant), "+${t.sharp.toString()}")),
@@ -112,9 +111,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
         color: getPrimary(),
         child: Column(children: [
           simplyCheckAugment(
-              t.bAtt, getAtt(), 0, AppLocalizations.of(context)!.tAttack),
-          simplyCheckAugment(t.bAff, getAffinity(), 1,
-              AppLocalizations.of(context)!.tAffinite),
+              t.bAtt, att, 0, AppLocalizations.of(context)!.tAttack),
+          simplyCheckAugment(
+              t.bAff, aff, 1, AppLocalizations.of(context)!.tAffinite),
           if (w.idElement != 0 && w.idElement <= 5)
             Card(
                 color: getThird(),
@@ -127,7 +126,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       children: List.generate(t.bElem.length - 4, (index) {
                         int value = getSlotElem(index);
                         return checkboxModAugment(
-                            statBlack(getElem(), value.toString()),
+                            statBlack(elem, value.toString()),
                             t.bElem[index],
                             value,
                             t.slotTotal, () {
@@ -139,7 +138,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       children: List.generate(t.bElem.length - 4, (index) {
                         int value = getSlotElem(index + 4);
                         return checkboxModAugment(
-                            statBlack(getElem(), value.toString()),
+                            statBlack(elem, value.toString()),
                             t.bElem[index + 4],
                             value,
                             t.slotTotal, () {
@@ -148,14 +147,14 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       }))
                 ])),
           if (w.idElement != 0 && w.idElement >= 6)
-            simplyCheckAugment(t.bAffl, getAffliction(), 3,
-                AppLocalizations.of(context)!.tAffliction),
+            simplyCheckAugment(
+                t.bAffl, affl, 3, AppLocalizations.of(context)!.tAffliction),
           if (w is Lancecanon)
-            simplyCheckAugment(t.bShell, getShelling(), 4,
-                AppLocalizations.of(context)!.tShelling),
+            simplyCheckAugment(
+                t.bShell, shell, 4, AppLocalizations.of(context)!.tShelling),
           if (w is Tranchant)
             simplyCheckAugment(
-                t.bSharp, getSharp(), 5, AppLocalizations.of(context)!.tSharp),
+                t.bSharp, sharp, 5, AppLocalizations.of(context)!.tSharp),
           if (w.slotCalamite != 3)
             Card(
                 color: getThird(),
@@ -171,7 +170,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                         } else {
                           int value = getSlotRamp(index);
                           return checkboxModAugment(
-                              statBlack(getRampage(), value.toString()),
+                              statBlack(ramp, value.toString()),
                               t.bRamp[index],
                               value,
                               t.slotTotal, () {

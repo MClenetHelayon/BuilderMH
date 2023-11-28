@@ -85,7 +85,7 @@ Container talent(String nom) {
   return Container(
       margin: const EdgeInsets.only(left: 20.0),
       child: Row(children: [
-        Image.asset(getSkill(), height: 22, width: 22),
+        Image.asset(skill, height: 22, width: 22),
         const SizedBox(width: 5),
         white(nom),
       ]));

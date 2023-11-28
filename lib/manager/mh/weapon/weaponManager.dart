@@ -126,34 +126,27 @@ Widget StatKinsect(Stuff s) {
   return Container(
       margin: const EdgeInsets.all(10.0),
       child: Container(
-        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: Column(children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 10.0),
-              child: title(s.kinsect.name)),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statWhite(
-                    getAttKinsect(),
-                    k.niveauKinsect[i.niveauKinsect][0].toString(),
-                  )),
-            if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statWhite(
-                    getVitKinsect(),
-                    k.niveauKinsect[i.niveauKinsect][1].toString(),
-                  )),
-            if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statWhite(
-                    getHealKinsect(),
-                    k.niveauKinsect[i.niveauKinsect][2].toString(),
-                  )),
-          ])
-        ]),
-      ));
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+          child: Column(children: [
+            Container(
+                margin: const EdgeInsets.only(bottom: 10.0),
+                child: title(s.kinsect.name)),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+              if (s.kinsect.id != 9999)
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kAtt, k.niveauKinsect[i.niveauKinsect][0].toString())),
+              if (s.kinsect.id != 9999)
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kVit, k.niveauKinsect[i.niveauKinsect][1].toString())),
+              if (s.kinsect.id != 9999)
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())),
+            ])
+          ])));
 }

@@ -1,19 +1,5 @@
-String getBasique() {
-  return 'images/logoBuildCard.png';
-}
-
-String getAttaque() {
-  return 'images/elementaire/Attaque.webp';
-}
-
-String getRaw() {
-  return 'images/elementaire/Raw.webp';
-}
-
-String getDefense() {
-  return 'images/elementaire/Defense.png';
-}
-
-String getAffinite() {
-  return 'images/elementaire/Affinite.webp';
-}
+const basic = 'images/logoBuildCard.png';
+const attaque = 'images/elementaire/Attaque.webp';
+const raw = 'images/elementaire/Raw.webp';
+const defense = 'images/elementaire/Defense.png';
+const affinite = 'images/elementaire/Affinite.webp';
