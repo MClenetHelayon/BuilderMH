@@ -25,3 +25,6 @@ String getTalisman() {
 String getPetalas() {
   return 'images/armure/Petalas.png';
 }
+String getSkill() {
+  return 'images/joyau/skill.webp';
+}

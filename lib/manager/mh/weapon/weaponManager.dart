@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
@@ -8,6 +9,7 @@ import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
@@ -121,6 +123,8 @@ Widget isDualBlade(Arme weapon, BuildContext context) {
 }
 
 Widget StatKinsect(Stuff s) {
+  Kinsect k = s.kinsect;
+  Insectoglaive i = s.weapon as Insectoglaive;
   return Container(
       margin: const EdgeInsets.all(10.0),
       child: Container(
@@ -133,35 +137,23 @@ Widget StatKinsect(Stuff s) {
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/AttKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][0]
-                        .toString(),
+                  child: statWhite(
+                    getAttKinsect(),
+                    k.niveauKinsect[i.niveauKinsect][0].toString(),
                   )),
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/VitKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][1]
-                        .toString(),
+                  child: statWhite(
+                    getVitKinsect(),
+                    k.niveauKinsect[i.niveauKinsect][1].toString(),
                   )),
             if (s.kinsect.id != 9999)
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/HealKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][2]
-                        .toString(),
+                  child: statWhite(
+                    getHealKinsect(),
+                    k.niveauKinsect[i.niveauKinsect][2].toString(),
                   )),
           ])
         ]),

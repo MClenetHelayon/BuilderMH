@@ -63,37 +63,43 @@ Column typeShootListing(Arc bow, BuildContext context) {
 Column coating(Arc bow, BuildContext context) {
   return Column(children: [
     if (bow.combat != 0)
-      fiole(bow.combat, AppLocalizations.of(context)!.cCombat),
-    if (bow.force != 0) fiole(bow.force, AppLocalizations.of(context)!.cForce),
+      fiole(bow.combat, AppLocalizations.of(context)!.cCombat, 1),
+    if (bow.force != 0)
+      fiole(bow.force, AppLocalizations.of(context)!.cForce, 1),
     if (bow.poison != 0)
-      fiole(bow.poison, AppLocalizations.of(context)!.cPoison),
-    if (bow.para != 0) fiole(bow.para, AppLocalizations.of(context)!.cPara),
-    if (bow.sleep != 0) fiole(bow.sleep, AppLocalizations.of(context)!.cSleep),
-    if (bow.explo != 0) fiole(bow.explo, AppLocalizations.of(context)!.cExplo),
+      fiole(bow.poison, AppLocalizations.of(context)!.cPoison, 1),
+    if (bow.para != 0) fiole(bow.para, AppLocalizations.of(context)!.cPara, 1),
+    if (bow.sleep != 0)
+      fiole(bow.sleep, AppLocalizations.of(context)!.cSleep, 1),
+    if (bow.explo != 0)
+      fiole(bow.explo, AppLocalizations.of(context)!.cExplo, 1),
     if (bow.fatigue != 0)
-      fiole(bow.fatigue, AppLocalizations.of(context)!.cFaiblesse),
+      fiole(bow.fatigue, AppLocalizations.of(context)!.cFaiblesse, 1),
   ]);
 }
 
 Column coatingListing(Arc bow, BuildContext context) {
   return Column(children: [
     if (bow.combat != 0)
-      fiole(bow.combat, AppLocalizations.of(context)!.combat),
-    if (bow.force != 0) fiole(bow.force, AppLocalizations.of(context)!.force),
+      fiole(bow.combat, AppLocalizations.of(context)!.combat, 0),
+    if (bow.force != 0)
+      fiole(bow.force, AppLocalizations.of(context)!.force, 0),
     if (bow.poison != 0)
-      fiole(bow.poison, AppLocalizations.of(context)!.poison),
-    if (bow.para != 0) fiole(bow.para, AppLocalizations.of(context)!.para),
-    if (bow.sleep != 0) fiole(bow.sleep, AppLocalizations.of(context)!.sleep),
-    if (bow.explo != 0) fiole(bow.explo, AppLocalizations.of(context)!.explo),
+      fiole(bow.poison, AppLocalizations.of(context)!.poison, 0),
+    if (bow.para != 0) fiole(bow.para, AppLocalizations.of(context)!.para, 0),
+    if (bow.sleep != 0)
+      fiole(bow.sleep, AppLocalizations.of(context)!.sleep, 0),
+    if (bow.explo != 0)
+      fiole(bow.explo, AppLocalizations.of(context)!.explo, 0),
     if (bow.fatigue != 0)
-      fiole(bow.fatigue, AppLocalizations.of(context)!.faiblesse),
+      fiole(bow.fatigue, AppLocalizations.of(context)!.faiblesse, 0),
   ]);
 }
 
-Widget fiole(int fiole, String nom) {
+Widget fiole(int fiole, String nom, int i) {
   String vretour = nom;
   if (fiole == 2) {
     vretour = "$nom +";
   }
-  return white(vretour);
+  return i == 0 ? Text(vretour) : white(vretour);
 }

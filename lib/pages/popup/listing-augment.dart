@@ -80,7 +80,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           const Divider(color: Colors.black),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             simplyRecap(statBlack(getAttaque(), "+${t.att.toString()}")),
-            if ((w.idElement != 0 && w.idElement <= 5) && w is Tranchant)
+            if (w.idElement != 0 && w.idElement <= 5)
               simplyRecap(
                   statBlack(element(w.idElement), "+${t.elem.toString()}")),
             if (t.bAffl.contains(true))
@@ -217,6 +217,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                     break;
                   case 4:
                     value = getSlotShelling(index);
+                    break;
                   case 5:
                     value = getSlotSharp(index);
                     break;

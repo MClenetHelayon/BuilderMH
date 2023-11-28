@@ -228,7 +228,7 @@ int dragonHeart(int i, Stuff s) {
 int elem(Stuff s) {
   int vretour = s.weapon.element;
   if (Arme.augments) {
-    vretour += Arme.transcendance.aff;
+    vretour += (Arme.transcendance.elem).toInt();
   }
   return vretour;
 }

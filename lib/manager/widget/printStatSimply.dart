@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorSharp.dart';
+import 'package:builder_mhrs/manager/img/simplyArmor.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:flutter/material.dart';
 
@@ -84,18 +85,12 @@ Container talent(String nom) {
   return Container(
       margin: const EdgeInsets.only(left: 20.0),
       child: Row(children: [
-        Image.asset('images/joyau/skill.webp', height: 22, width: 22),
+        Image.asset(getSkill(), height: 22, width: 22),
         const SizedBox(width: 5),
         white(nom),
       ]));
 }
 
 Container title(String t) {
-  return Container(
-      margin: const EdgeInsets.only(top: 5),
-      child: Text(t,
-          style: TextStyle(
-            color: getFifth(),
-            fontWeight: FontWeight.bold,
-          )));
+  return Container(margin: const EdgeInsets.only(top: 5), child: boldOrange(t));
 }
