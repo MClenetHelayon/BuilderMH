@@ -1,5 +1,9 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
+import 'package:builder_mhrs/manager/img/simplyRaw.dart';
+import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
@@ -111,19 +115,18 @@ Widget gDef(Stuff s, BuildContext context) {
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply("images/elementaire/Vie.png", s.florelet.uVie + 150),
-            statDefSimply(
-                "images/elementaire/Stam.png", s.florelet.uStam + 150),
-            statDefSimply("images/elementaire/Defense.png", defense(s)),
+            statDefSimply(vie, s.florelet.uVie + 150),
+            statDefSimply(stam, s.florelet.uStam + 150),
+            statDefSimply(def, defense(s)),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply("images/elementaire/Feu.webp", defFeu(s)),
-            statDefSimply("images/elementaire/Eau.webp", defEau(s)),
-            statDefSimply("images/elementaire/Foudre.webp", defFoudre(s)),
+            statDefSimply(feu, defFeu(s)),
+            statDefSimply(eau, defEau(s)),
+            statDefSimply(foudre, defFoudre(s)),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply("images/elementaire/Glace.webp", defGlace(s)),
-            statDefSimply("images/elementaire/Dragon.webp", defDragon(s)),
+            statDefSimply(glace, defGlace(s)),
+            statDefSimply(dragon, defDragon(s)),
           ])
         ]))
   ]);
@@ -194,30 +197,27 @@ Widget gSimplyCard(int i, Stuff s, BuildContext context) {
 
 Widget statOff(Arme weapon, BuildContext context) {
   return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-    statWhite("images/elementaire/Attaque.webp", weapon.attaque.toString()),
-    Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-      Image.asset("images/elementaire/Affinite.webp", height: 16, width: 16),
+    statWhite(attaque, weapon.attaque.toString()),
+    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Image.asset(affi, height: 16, width: 16),
       const SizedBox(width: 5),
       Text("${weapon.affinite.toString()}%",
           style: TextStyle(color: getFourth()))
     ]),
     isDualBlade(weapon, context),
-    statWhite("images/elementaire/Defense.png", weapon.defense.toString())
+    statWhite(def, weapon.defense.toString())
   ]);
 }
 
 Widget statDef(Armure armor) {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: [
-      statWhite("images/elementaire/Defense.png", armor.defense.toString()),
-      statWhite("images/elementaire/Feu.webp", armor.feu.toString()),
-      statWhite("images/elementaire/Eau.webp", armor.eau.toString()),
-      statWhite("images/elementaire/Foudre.webp", armor.foudre.toString()),
-      statWhite("images/elementaire/Glace.webp", armor.glace.toString()),
-      statWhite("images/elementaire/Dragon.webp", armor.dragon.toString())
-    ],
-  );
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    statWhite(def, armor.defense.toString()),
+    statWhite(feu, armor.feu.toString()),
+    statWhite(eau, armor.eau.toString()),
+    statWhite(foudre, armor.foudre.toString()),
+    statWhite(glace, armor.glace.toString()),
+    statWhite(dragon, armor.dragon.toString())
+  ]);
 }
 
 List<int> allIntSharp(Stuff s) {
@@ -253,6 +253,7 @@ Widget SkillNumLogo(int level, int levelMax) {
 
 gKinsect(Stuff s, BuildContext context) {
   Kinsect k = s.kinsect;
+  Insectoglaive i = s.weapon as Insectoglaive;
   return Card(
       margin: const EdgeInsets.all(5),
       color: getPrimary(),
@@ -263,8 +264,7 @@ gKinsect(Stuff s, BuildContext context) {
               child: IconButton(
                   onPressed: () {},
                   iconSize: 20,
-                  icon: Image.asset('images/arme/kinsect.png',
-                      fit: BoxFit.fill))),
+                  icon: Image.asset(ksct, fit: BoxFit.fill))),
           Container(
               margin: const EdgeInsets.only(bottom: 3),
               child: Column(children: [
@@ -273,18 +273,9 @@ gKinsect(Stuff s, BuildContext context) {
               ]))
         ]),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          statWhite(
-              "images/elementaire/AttKinsect.png",
-              k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][0]
-                  .toString()),
-          statWhite(
-              "images/elementaire/VitKinsect.png",
-              k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][1]
-                  .toString()),
-          statWhite(
-              "images/elementaire/HealKinsect.png",
-              k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][2]
-                  .toString()),
+          statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString()),
+          statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString()),
+          statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())
         ]),
         white(getTypeAttack(k.typeAttaque, context)),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [

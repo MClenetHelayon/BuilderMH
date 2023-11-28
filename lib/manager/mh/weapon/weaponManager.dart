@@ -131,22 +131,20 @@ Widget StatKinsect(Stuff s) {
             Container(
                 margin: const EdgeInsets.only(bottom: 10.0),
                 child: title(s.kinsect.name)),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              if (s.kinsect.id != 9999)
+            if (s.kinsect.id != 9999)
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 Container(
                     margin: const EdgeInsets.only(bottom: 10.0),
                     child: statWhite(
                         kAtt, k.niveauKinsect[i.niveauKinsect][0].toString())),
-              if (s.kinsect.id != 9999)
                 Container(
                     margin: const EdgeInsets.only(bottom: 10.0),
                     child: statWhite(
                         kVit, k.niveauKinsect[i.niveauKinsect][1].toString())),
-              if (s.kinsect.id != 9999)
                 Container(
                     margin: const EdgeInsets.only(bottom: 10.0),
                     child: statWhite(
                         kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())),
-            ])
+              ])
           ])));
 }

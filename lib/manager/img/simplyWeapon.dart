@@ -25,3 +25,5 @@ const arc = 'images/arme/Bow.png';
 const lbg = 'images/arme/LightBowGun.png';
 
 const hbg = 'images/arme/HeavyBowGun.png';
+
+const ksct = 'images/arme/kinsect.png';
