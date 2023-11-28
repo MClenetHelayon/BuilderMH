@@ -1,7 +1,6 @@
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/Talent.dart';
 import 'package:builder_mhrs/object/Transcendance.dart';
-
-import '../Joyau.dart';
-import '../Talent.dart';
 
 class Arme {
   final String name, categorie, niveau;

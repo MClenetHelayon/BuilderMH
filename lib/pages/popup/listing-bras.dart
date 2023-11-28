@@ -13,6 +13,7 @@ import 'package:builder_mhrs/object/armor/Bras.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class ListViewScreen extends StatefulWidget {
   const ListViewScreen({
     Key? key,

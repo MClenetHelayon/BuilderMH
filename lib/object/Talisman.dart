@@ -1,5 +1,5 @@
-import 'Joyau.dart';
-import 'Talent.dart';
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/Talent.dart';
 
 class Talisman {
   final List<Talent> talents;

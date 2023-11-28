@@ -1,11 +1,10 @@
+import 'package:builder_mhrs/loadscreen.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
+import 'package:builder_mhrs/provider/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../loadscreen.dart';
-import '../object/Stuff.dart';
-import '../provider/app_state.dart';
 
 class SettingsPage extends StatefulWidget {
   final Function(Locale) onLanguageChanged;

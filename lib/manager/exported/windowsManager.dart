@@ -1,9 +1,8 @@
 import 'dart:io';
 
+import 'package:builder_mhrs/util/name-image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
-
-import '../../util/name-image.dart';
 
 Future<void> downloadImageWindows(Uint8List imageUint8List) async {
   if (Platform.isWindows) {

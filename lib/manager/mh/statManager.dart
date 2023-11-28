@@ -1,4 +1,9 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
+import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
@@ -23,11 +28,6 @@ import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'skill/calculManager.dart';
-import '../img/imgManager.dart';
-import 'skill/affiniteManager.dart';
-import 'weapon/sharpManager.dart';
-import 'weapon/bowManager.dart';
 
 Widget g(Stuff s, BuildContext context) {
   return Card(

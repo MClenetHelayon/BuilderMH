@@ -1,6 +1,5 @@
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:flutter/material.dart';
-
-import '../../color/colorManager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget getSearchBar(TextEditingController tc, BuildContext context,

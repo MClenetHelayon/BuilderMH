@@ -1,4 +1,4 @@
-import '../../../object/Stuff.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
 
 double getBerserk(int i, Stuff s) {
   double vretour = 0;

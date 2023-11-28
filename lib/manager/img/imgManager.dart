@@ -7,7 +7,7 @@ import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
 
 String element(int id) {
-  String vretour = 'images/logoBuildCard.png';
+  String vretour = getBasique();
   switch (id) {
     case 1:
       vretour = getFeu();
