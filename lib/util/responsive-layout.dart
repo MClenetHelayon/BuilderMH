@@ -1,6 +1,5 @@
+import 'package:builder_mhrs/tuto%20responsive/dimension.dart';
 import 'package:flutter/material.dart';
-
-import '../tuto responsive/dimension.dart';
 
 
 class ResponsiveLayout extends StatelessWidget {

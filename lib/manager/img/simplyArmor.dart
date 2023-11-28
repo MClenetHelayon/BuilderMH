@@ -1,27 +1,15 @@
-String getCasque() {
-  return 'images/armure/Casque.png';
-}
+const casque = 'images/armure/Casque.png';
 
-String getTorse() {
-  return 'images/armure/Torse.png';
-}
+const torse = 'images/armure/Torse.png';
 
-String getBras() {
-  return 'images/armure/Bras.png';
-}
+const bras = 'images/armure/Bras.png';
 
-String getCeinture() {
-  return 'images/armure/Ceinture.png';
-}
+const ceinture = 'images/armure/Ceinture.png';
 
-String getJambe() {
-  return 'images/armure/Jambe.png';
-}
+const jambe = 'images/armure/Jambe.png';
 
-String getTalisman() {
-  return 'images/armure/Talisman.png';
-}
+const talisman = 'images/armure/Talisman.png';
 
-String getPetalas() {
-  return 'images/armure/Petalas.png';
-}
+const petalas = 'images/armure/Petalas.png';
+
+const skill = 'images/joyau/skill.webp';

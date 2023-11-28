@@ -1,0 +1,1 @@
+const logo = 'images/logo.png';

@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
@@ -8,6 +9,7 @@ import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
@@ -40,11 +42,7 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         sharpStat(weapon),
-                      ])),
-            if (weapon is Lancecanon) lancecanon(weapon, context),
-            if (weapon is MorphoHache) morpho(weapon, context),
-            if (weapon is VoltoHache) volto(weapon, context),
-            if (weapon is Insectoglaive) insecto(weapon, context),
+                      ]))
           ])));
 }
 
@@ -90,23 +88,25 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
 }
 
 Widget morpho(MorphoHache morpho, BuildContext context) {
-  return statArme(morpho.valueFiole != 0
+  return morpho.valueFiole != 0
       ? white("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
-      : white(getSaFiole(morpho.typeFiole, context)));
+      : white(getSaFiole(morpho.typeFiole, context));
 }
 
 Widget volto(VoltoHache volto, BuildContext context) {
-  return statArme(white(getCbFiole(volto.typeFiole, context)));
+  return white(getCbFiole(volto.typeFiole, context));
 }
 
 Widget lancecanon(Lancecanon gunlance, BuildContext context) {
-  return statArme(white(
-      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} ${gunlance.niveauCanon}"));
+  int niveau = gunlance.niveauCanon;
+  if (Arme.augments) niveau = gunlance.niveauCanon + Arme.transcendance.shell;
+  return white(
+      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} $niveau");
 }
 
 Widget insecto(Insectoglaive insect, BuildContext context) {
-  return statArme(white(
-      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}"));
+  return white(
+      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}");
 }
 
 Widget isDualBlade(Arme weapon, BuildContext context) {
@@ -121,49 +121,30 @@ Widget isDualBlade(Arme weapon, BuildContext context) {
 }
 
 Widget StatKinsect(Stuff s) {
+  Kinsect k = s.kinsect;
+  Insectoglaive i = s.weapon as Insectoglaive;
   return Container(
       margin: const EdgeInsets.all(10.0),
       child: Container(
-        padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: Column(children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 10.0),
-              child: title(s.kinsect.name)),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+          child: Column(children: [
+            Container(
+                margin: const EdgeInsets.only(bottom: 10.0),
+                child: title(s.kinsect.name)),
             if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/AttKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][0]
-                        .toString(),
-                  )),
-            if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/VitKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][1]
-                        .toString(),
-                  )),
-            if (s.kinsect.id != 9999)
-              Container(
-                  margin: const EdgeInsets.only(bottom: 10.0),
-                  child: statBlack(
-                    "images/elementaire/HealKinsect.png",
-                    s
-                        .kinsect
-                        .niveauKinsect[
-                            (s.weapon as Insectoglaive).niveauKinsect][2]
-                        .toString(),
-                  )),
-          ])
-        ]),
-      ));
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kAtt, k.niveauKinsect[i.niveauKinsect][0].toString())),
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kVit, k.niveauKinsect[i.niveauKinsect][1].toString())),
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: statWhite(
+                        kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())),
+              ])
+          ])));
 }

@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/simplyGeneral.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,7 @@ class _LoadScreen extends State<LoadScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('images/logo.png',
+            Image.asset(logo,
                 height: 200, width: 200), // Remplacez par votre image
             const SizedBox(height: 20),
             LinearProgressIndicator(value: _progress), // Barre de chargement

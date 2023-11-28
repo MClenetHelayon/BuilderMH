@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/simplyGeneral.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -31,8 +32,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
               width: 100,
               decoration: const BoxDecoration(
                   shape: BoxShape.circle,
-                  image:
-                      DecorationImage(image: AssetImage("images/logo.png")))),
+                  image: DecorationImage(image: AssetImage(logo)))),
           const SizedBox(
             height: 10,
           ),

@@ -1,5 +1,5 @@
-import '../../Musique.dart';
-import '../Arme.dart';
+import 'package:builder_mhrs/object/Musique.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 
 class CorneDeChasse extends Tranchant {
   final List<Musique> musique;

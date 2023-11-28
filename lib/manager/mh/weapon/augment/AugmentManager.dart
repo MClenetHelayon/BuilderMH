@@ -146,7 +146,7 @@ int getElemChange(Arme w) {
       if (w is GrandeEpee || w is Marteau) vretour = 25;
     }
     if (Arme.transcendance.bElem[5]) {
-      vretour = 320;
+      vretour = 20;
       if (w is Lancecanon || w is Lance) vretour = 24;
       if (w is GrandeEpee || w is Marteau) vretour = 33;
     }

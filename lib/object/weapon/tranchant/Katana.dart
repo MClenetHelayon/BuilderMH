@@ -1,4 +1,4 @@
-import '../Arme.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 
 class Katana extends Tranchant {
   Katana(

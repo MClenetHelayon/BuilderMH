@@ -1,8 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-
-import '../Joyau.dart';
-import '../Talent.dart';
-import 'Armure.dart';
+import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/Talent.dart';
+import 'package:builder_mhrs/object/armor/Armure.dart';
 
 @JsonSerializable()
 class Casque extends Armure {

@@ -22,7 +22,6 @@ import 'package:builder_mhrs/object/armor/Ceinture.dart';
 import 'package:builder_mhrs/object/armor/Jambe.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
 import 'package:builder_mhrs/provider/app_state.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
@@ -136,6 +135,7 @@ class _BuilderPageState extends State<BuilderPage> {
                   Arme.listJoyaux.clear();
                   Arme.augments = false;
                   Arme.transcendance.fullReset();
+                  txtAugment = txtListAugment(s.weapon);
                   if (s.weapon is Tranchant) {
                     s.sharpRaw = getBoostRaw(s);
                     s.sharpElem = getBoostElem(s);
@@ -200,8 +200,6 @@ class _BuilderPageState extends State<BuilderPage> {
                                   ])
                                 : Container()),
                       joyau(s.weapon, s, _reloadMainPage, context),
-                      if (s.weapon is CorneDeChasse)
-                        corne(s.weapon as CorneDeChasse, context),
                       if (s.weapon is Fusarbalete)
                         comboModFusar(s.weapon as Fusarbalete, context,
                             (int? newValue) {
@@ -334,6 +332,9 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget CalamJowel(int slot, String categ, BuildContext context) {
+    if (Arme.augments) {
+      if (Arme.transcendance.calam != 0) slot = Arme.transcendance.calam;
+    }
     return Card(
       color: getPrimary(),
       child: TextButton(

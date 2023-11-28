@@ -1,4 +1,4 @@
-import '../Arme.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
 
 class LameDouble extends Tranchant {
   final int idElement2, element2;

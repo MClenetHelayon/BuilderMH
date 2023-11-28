@@ -1,11 +1,10 @@
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/Talent.dart';
-
-import '../../object/armor/Bras.dart';
-import '../../object/armor/Casque.dart';
-import '../../object/armor/Ceinture.dart';
-import '../../object/armor/Jambe.dart';
-import '../../object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/armor/Bras.dart';
+import 'package:builder_mhrs/object/armor/Casque.dart';
+import 'package:builder_mhrs/object/armor/Ceinture.dart';
+import 'package:builder_mhrs/object/armor/Jambe.dart';
+import 'package:builder_mhrs/object/armor/Plastron.dart';
 
 List<Casque> getLCasque(
   List<Casque> larmors,

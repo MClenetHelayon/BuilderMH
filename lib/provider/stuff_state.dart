@@ -1,5 +1,5 @@
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/material.dart';
-import '../object/Stuff.dart';
 
 class StuffProvider extends ChangeNotifier {
   Stuff? _stuff;

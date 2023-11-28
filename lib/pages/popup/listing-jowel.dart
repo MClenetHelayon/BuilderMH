@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:builder_mhrs/object/Joyau.dart';
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
-
-import '../../object/Stuff.dart';
 
 class ListViewScreen extends StatefulWidget {
   final int slot;
@@ -45,7 +44,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       ljowel = jsonResponse
-          .map((jowel) => Joyaux.fromJson(jowel, skillList,Stuff.local))
+          .map((jowel) => Joyaux.fromJson(jowel, skillList, Stuff.local))
           .toList();
     });
   }
@@ -179,10 +178,14 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 margin: const EdgeInsets.only(right: 10),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    color: const Color.fromARGB(135, 42, 42, 42),
+                                    color:
+                                        const Color.fromARGB(135, 42, 42, 42),
                                     boxShadow: const [
                                       BoxShadow(
-                                          color: Color.fromARGB(255, 97, 97, 97), spreadRadius: 3, blurRadius: 2),
+                                          color:
+                                              Color.fromARGB(255, 97, 97, 97),
+                                          spreadRadius: 3,
+                                          blurRadius: 2),
                                     ],
                                     image: DecorationImage(
                                       image: imgSlot(jowel.slot),
