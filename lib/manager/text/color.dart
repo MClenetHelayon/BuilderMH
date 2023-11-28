@@ -42,3 +42,8 @@ Text boldWhite(String t) {
   return Text(t,
       style: TextStyle(color: getFourth(), fontWeight: FontWeight.bold));
 }
+
+Text boldOrange(String t) {
+  return Text(t,
+      style: TextStyle(color: getFifth(), fontWeight: FontWeight.bold));
+}

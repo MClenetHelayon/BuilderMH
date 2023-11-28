@@ -80,9 +80,15 @@ Widget superColoring(int i, Tranchant sharp) {
     coloring(sharp.orange, i, 2),
     coloring(sharp.jaune, i, 3),
     coloring(sharp.vert, i, 4),
-    coloring(sharp.bleu, i, 5),
-    coloring(sharp.blanc, i, 6),
-    coloring(sharp.violet, i, 7),
+    sharp.bleu != 0 && sharp.blanc == 0 && Arme.augments
+        ? coloring(sharp.bleu + Arme.transcendance.sharp, i, 5)
+        : coloring(sharp.bleu, i, 5),
+    sharp.blanc != 0 && sharp.violet == 0 && Arme.augments
+        ? coloring(sharp.blanc + Arme.transcendance.sharp, i, 6)
+        : coloring(sharp.blanc, i, 6),
+    sharp.violet != 0 && Arme.augments
+        ? coloring(sharp.violet + Arme.transcendance.sharp, i, 7)
+        : coloring(sharp.violet, i, 7)
   ]);
 }
 

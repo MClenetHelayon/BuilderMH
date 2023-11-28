@@ -35,11 +35,21 @@ class Transcendance {
     bElem = [false, false, false, false, false, false, false, false];
     bSharp = [false, false, false, false];
     bShell = [false, false];
+    att = 0;
+    aff = 0;
+    elem = 0;
+    affl = 0;
+    sharp = 0;
+    calam = 0;
+    shell = 0;
   }
 
   void notOverflow() {
     if (slotTotal > 10) {
       slotTotal = 10;
+    }
+    if (slotTotal < 0) {
+      slotTotal = 0;
     }
   }
 }

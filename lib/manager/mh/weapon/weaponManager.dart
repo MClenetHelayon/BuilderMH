@@ -1,8 +1,8 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/joyauManager.dart';
+import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
-import 'package:builder_mhrs/manager/statManager.dart';
+import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';

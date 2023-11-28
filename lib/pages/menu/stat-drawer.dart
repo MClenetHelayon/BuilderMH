@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import '../../manager/statManager.dart';
+import '../../manager/mh/statManager.dart';
 import '../../object/weapon/Arc.dart';
 import '../../object/weapon/tranchant/CornedeChasse.dart';
 import '../../object/weapon/tranchant/Insectoglaive.dart';

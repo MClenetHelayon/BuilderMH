@@ -2,7 +2,7 @@ import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/simplyAugment.dart';
 import 'package:builder_mhrs/manager/img/simplyRaw.dart';
-import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
+import 'package:builder_mhrs/manager/logic/calculSlotAugment.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/AugmentManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/slotAManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
@@ -67,84 +67,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
             ])
           ]),
           recapG(),
-          if (Arme.augments)
-            Card(
-                color: getPrimary(),
-                child: Column(children: [
-                  simplyCheckAugment(t.bAtt, getAtt(), 1,
-                      AppLocalizations.of(context)!.tAttack),
-                  simplyCheckAugment(t.bAff, getAffinity(), 2,
-                      AppLocalizations.of(context)!.tAffinite),
-                  if (w.idElement != 0 && w.idElement <= 5)
-                    Card(
-                        color: getThird(),
-                        child: Column(children: [
-                          Center(
-                              child: boldBlack(
-                                  AppLocalizations.of(context)!.tElement)),
-                          const Divider(color: Colors.black),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children:
-                                  List.generate(t.bElem.length - 4, (index) {
-                                int value = getSlotElem(index);
-                                return checkboxModAugment(
-                                    statBlack(getElem(), value.toString()),
-                                    t.bElem[index],
-                                    value,
-                                    t.slotTotal, () {
-                                  autoSelect(index, t.bElem, value);
-                                });
-                              })),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children:
-                                  List.generate(t.bElem.length - 4, (index) {
-                                int value = getSlotElem(index + 4);
-                                return checkboxModAugment(
-                                    statBlack(getElem(), value.toString()),
-                                    t.bElem[index + 4],
-                                    value,
-                                    t.slotTotal, () {
-                                  autoSelect(index + 4, t.bElem, value);
-                                });
-                              }))
-                        ])),
-                  if (w.idElement != 0 && w.idElement >= 6)
-                    simplyCheckAugment(t.bAffl, getAffliction(), 3,
-                        AppLocalizations.of(context)!.tAffliction),
-                  if (w is Lancecanon)
-                    simplyCheckAugment(t.bShell, getShelling(), 4,
-                        AppLocalizations.of(context)!.tShelling),
-                  if (w is Tranchant)
-                    simplyCheckAugment(t.bSharp, getSharp(), 5,
-                        AppLocalizations.of(context)!.tSharp),
-                  if (w.slotCalamite != 3)
-                    Card(
-                        color: getThird(),
-                        child: Column(children: [
-                          Center(
-                              child: boldBlack(
-                                  AppLocalizations.of(context)!.tCalam)),
-                          const Divider(color: Colors.black),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: List.generate(t.bRamp.length, (index) {
-                                if (w.slotCalamite != 1 && index == 1) {
-                                  return const SizedBox();
-                                } else {
-                                  int value = getSlotRamp(index);
-                                  return checkboxModAugment(
-                                      statBlack(getRampage(), value.toString()),
-                                      t.bRamp[index],
-                                      value,
-                                      t.slotTotal, () {
-                                    autoSelect(index, t.bRamp, value);
-                                  });
-                                }
-                              }))
-                        ])),
-                ]))
+          if (Arme.augments) setAugment()
         ]));
   }
 
@@ -156,18 +79,18 @@ class _ListViewScreenState extends State<ListViewScreen> {
           Center(child: boldBlack(AppLocalizations.of(context)!.recap)),
           const Divider(color: Colors.black),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            simplyRecap(statBlack(getAttaque(), "+ ${t.att.toString()}")),
+            simplyRecap(statBlack(getAttaque(), "+${t.att.toString()}")),
             if ((w.idElement != 0 && w.idElement <= 5) && w is Tranchant)
               simplyRecap(
-                  statBlack(element(w.idElement), "+ ${t.elem.toString()}")),
+                  statBlack(element(w.idElement), "+${t.elem.toString()}")),
             if (t.bAffl.contains(true))
               simplyRecap(
-                  statBlack(element(w.idElement), "+ ${t.affl.toString()}")),
+                  statBlack(element(w.idElement), "+${t.affl.toString()}")),
             if (t.bAff.contains(true))
-              simplyRecap(statBlack(getAffinite(), "+ ${t.aff.toString()}")),
+              simplyRecap(statBlack(getAffinite(), "+${t.aff.toString()}")),
             if (w is Tranchant)
               simplyRecap(statComboSharp(
-                  getLastSharp(w as Tranchant), "+ ${t.sharp.toString()}")),
+                  getLastSharp(w as Tranchant), "+${t.sharp.toString()}")),
             if ((t.bRamp.contains(true)) && w.slotCalamite != 3)
               simplyRecap(
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -178,8 +101,85 @@ class _ListViewScreenState extends State<ListViewScreen> {
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             if (w is Lancecanon && t.bShell.contains(true))
-              simplyRecap(black("!!!!niv Canon + ${t.shell.toString()}")),
+              simplyRecap(black(
+                  "${AppLocalizations.of(context)!.abrNivCanon} + ${t.shell.toString()}")),
           ])
+        ]));
+  }
+
+  Widget setAugment() {
+    return Card(
+        color: getPrimary(),
+        child: Column(children: [
+          simplyCheckAugment(
+              t.bAtt, getAtt(), 0, AppLocalizations.of(context)!.tAttack),
+          simplyCheckAugment(t.bAff, getAffinity(), 1,
+              AppLocalizations.of(context)!.tAffinite),
+          if (w.idElement != 0 && w.idElement <= 5)
+            Card(
+                color: getThird(),
+                child: Column(children: [
+                  Center(
+                      child: boldBlack(AppLocalizations.of(context)!.tElement)),
+                  const Divider(color: Colors.black),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(t.bElem.length - 4, (index) {
+                        int value = getSlotElem(index);
+                        return checkboxModAugment(
+                            statBlack(getElem(), value.toString()),
+                            t.bElem[index],
+                            value,
+                            t.slotTotal, () {
+                          autoSelect(index, t.bElem, value);
+                        });
+                      })),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(t.bElem.length - 4, (index) {
+                        int value = getSlotElem(index + 4);
+                        return checkboxModAugment(
+                            statBlack(getElem(), value.toString()),
+                            t.bElem[index + 4],
+                            value,
+                            t.slotTotal, () {
+                          autoSelect(index + 4, t.bElem, value);
+                        });
+                      }))
+                ])),
+          if (w.idElement != 0 && w.idElement >= 6)
+            simplyCheckAugment(t.bAffl, getAffliction(), 3,
+                AppLocalizations.of(context)!.tAffliction),
+          if (w is Lancecanon)
+            simplyCheckAugment(t.bShell, getShelling(), 4,
+                AppLocalizations.of(context)!.tShelling),
+          if (w is Tranchant)
+            simplyCheckAugment(
+                t.bSharp, getSharp(), 5, AppLocalizations.of(context)!.tSharp),
+          if (w.slotCalamite != 3)
+            Card(
+                color: getThird(),
+                child: Column(children: [
+                  Center(
+                      child: boldBlack(AppLocalizations.of(context)!.tCalam)),
+                  const Divider(color: Colors.black),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: List.generate(t.bRamp.length, (index) {
+                        if (w.slotCalamite != 1 && index == 1) {
+                          return const SizedBox();
+                        } else {
+                          int value = getSlotRamp(index);
+                          return checkboxModAugment(
+                              statBlack(getRampage(), value.toString()),
+                              t.bRamp[index],
+                              value,
+                              t.slotTotal, () {
+                            autoSelect(index, t.bRamp, value);
+                          });
+                        }
+                      }))
+                ])),
         ]));
   }
 
@@ -235,14 +235,13 @@ class _ListViewScreenState extends State<ListViewScreen> {
         for (int j = 0; j <= i; j++) {
           b[j] = true;
         }
-        t.slotTotal -= empla;
       } else {
         for (int j = 0; j < b.length; j++) {
           b[j] = false;
         }
-        t.slotTotal += empla;
-        t.notOverflow();
       }
+      t.slotTotal = calculSlotAugment(t);
+      t.notOverflow();
     });
   }
 }

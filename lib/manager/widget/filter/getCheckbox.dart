@@ -53,9 +53,9 @@ Widget checkboxAugment(String txt, bool check, Function onTapAction) {
 Widget checkboxModAugment(
     Widget child, bool check, int i, int slot, Function onTapAction) {
   return Card(
-      color: getFourth(),
+      color: i <= slot ? getFourth() : getThird(),
       child: GestureDetector(
-          onTap: /*i <= slot ?*/ () => onTapAction() /*: null*/,
+          onTap: (i <= slot) || check ? () => onTapAction() : null,
           child: Container(
               width: 50,
               height: 30,
