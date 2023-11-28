@@ -4,6 +4,7 @@
   "buildcard": "Exporter en Image",
   "info": "Information",
   "set": "Equipement",
+  "boost" : "Talent",
   "name": "Nom",
   "search": "Recherche...",
   "moreFilters": "Plus de Filtres",

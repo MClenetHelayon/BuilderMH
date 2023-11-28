@@ -4,6 +4,7 @@
   "buildcard": "Make a Buildcard",
   "info": "Information",
   "set": "Build",
+  "boost" : "Skill",
   "name": "Name",
   "search": "Search...",
   "moreFilters": "More Filters",
