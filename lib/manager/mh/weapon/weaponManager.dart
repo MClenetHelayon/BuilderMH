@@ -42,11 +42,7 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         sharpStat(weapon),
-                      ])),
-            if (weapon is Lancecanon) lancecanon(weapon, context),
-            if (weapon is MorphoHache) morpho(weapon, context),
-            if (weapon is VoltoHache) volto(weapon, context),
-            if (weapon is Insectoglaive) insecto(weapon, context),
+                      ]))
           ])));
 }
 
@@ -92,23 +88,25 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
 }
 
 Widget morpho(MorphoHache morpho, BuildContext context) {
-  return statArme(morpho.valueFiole != 0
+  return morpho.valueFiole != 0
       ? white("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
-      : white(getSaFiole(morpho.typeFiole, context)));
+      : white(getSaFiole(morpho.typeFiole, context));
 }
 
 Widget volto(VoltoHache volto, BuildContext context) {
-  return statArme(white(getCbFiole(volto.typeFiole, context)));
+  return white(getCbFiole(volto.typeFiole, context));
 }
 
 Widget lancecanon(Lancecanon gunlance, BuildContext context) {
-  return statArme(white(
-      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} ${gunlance.niveauCanon}"));
+  int niveau = gunlance.niveauCanon;
+  if (Arme.augments) niveau = gunlance.niveauCanon + Arme.transcendance.shell;
+  return white(
+      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} $niveau");
 }
 
 Widget insecto(Insectoglaive insect, BuildContext context) {
-  return statArme(white(
-      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}"));
+  return white(
+      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}");
 }
 
 Widget isDualBlade(Arme weapon, BuildContext context) {

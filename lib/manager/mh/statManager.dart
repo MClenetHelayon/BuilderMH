@@ -1,16 +1,13 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRechargement.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRecul.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getTirSpe.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKinsect.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinsect.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
@@ -365,27 +362,16 @@ gArc(Stuff s, BuildContext context) {
 }
 
 gSpeArme(Arme w, BuildContext context) {
-  String vretour = "";
-  if (w is Lancecanon) {
-    vretour =
-        "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(w.typeCanon, context)} ${w.niveauCanon}";
-  }
-  if (w is Insectoglaive) {
-    vretour =
-        "${AppLocalizations.of(context)!.kinsectLvl} : ${w.niveauKinsect}";
-  }
-  if (w is MorphoHache) {
-    vretour = w.valueFiole != 0
-        ? "${getSaFiole(w.typeFiole, context)}} ${w.valueFiole}"
-        : getSaFiole(w.typeFiole, context);
-  }
-  if (w is VoltoHache) {
-    vretour = getCbFiole(w.typeFiole, context);
-  }
-  if (vretour != "") {
+  if (w is Lancecanon ||
+      w is MorphoHache ||
+      w is VoltoHache ||
+      w is Insectoglaive) {
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
-      white(vretour),
+      if (w is Lancecanon) lancecanon(w, context),
+      if (w is MorphoHache) morpho(w, context),
+      if (w is VoltoHache) volto(w, context),
+      if (w is Insectoglaive) insecto(w, context),
       const Divider(color: Colors.black)
     ]);
   } else if (w is Fusarbalete) {
