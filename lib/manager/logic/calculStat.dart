@@ -1,8 +1,9 @@
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
-import '../mh/skill/affiniteManager.dart' as aff;
-import '../mh/skill/brutManager.dart' as att;
-import '../mh/skill/defenseManager.dart' as def;
+import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart' as aff;
+import 'package:builder_mhrs/manager/mh/skill/brutManager.dart' as att;
+import 'package:builder_mhrs/manager/mh/skill/defenseManager.dart' as def;
+import 'package:builder_mhrs/manager/mh/skill/elementManager.dart' as ele;
 
 String efr(Stuff s) {
   return (row(s) * s.sharpRaw * (1 + (s.affinite / 100) * (s.critBoost - 1)))
@@ -308,11 +309,89 @@ int dragonHeart(int i, Stuff s) {
   return vretour;
 }
 
-int elem(Stuff s) {
-  int vretour = s.weapon.element;
+double elem(Stuff s) {
+  double vretour = s.weapon.element.toDouble();
   if (Arme.augments) {
     if (s.weapon.idElement <= 5) vretour += (Arme.transcendance.elem).toInt();
     if (s.weapon.idElement >= 6) vretour += (Arme.transcendance.affl).toInt();
+  }
+  if (s.weapon.idElement <= 5) {
+    if (s.getTalentValueById(128) != 0) {
+      vretour += ele.getSoifDeSang(
+          s.getTalentValueById(128), s.getTalentById(128).actif);
+    }
+    if (s.getTalentValueById(0) != 0) {
+      vretour +=
+          ele.getAbandon(s.getTalentValueById(0), s.getTalentById(0).actif);
+    }
+    if (s.getTalentValueById(142) != 0) {
+      vretour += ele.getVendetta(
+          s.getTalentValueById(142), s.getTalentById(142).actif, s.weapon);
+    }
+    if (s.getTalentValueById(57) != 0) {
+      vretour += ele.getEveilDeSang(
+          s.getTalentValueById(57), s.getTalentById(57).actif, s.weapon);
+    }
+    switch (s.weapon.idElement) {
+      case 1:
+        if (s.getTalentValueById(113) != 0) {
+          vretour += ele.getBoostElement(
+              s.getTalentValueById(113), vretour, s.getTalentById(113).actif);
+        }
+        if (s.getTalentValueById(21) != 0) {
+          vretour += ele.getKushTeoBlessing(
+              s.getTalentValueById(21), vretour, s.getTalentById(21).actif);
+        }
+        break;
+      case 2:
+        if (s.getTalentValueById(79) != 0) {
+          vretour += ele.getBoostElement(
+              s.getTalentValueById(79), vretour, s.getTalentById(79).actif);
+        }
+        if (s.getTalentValueById(20) != 0) {
+          vretour += ele.getKushTeoBlessing(
+              s.getTalentValueById(20), vretour, s.getTalentById(20).actif);
+        }
+        break;
+      case 3:
+        if (s.getTalentValueById(60) != 0) {
+          vretour += ele.getBoostElement(
+              s.getTalentValueById(60), vretour, s.getTalentById(60).actif);
+        }
+        if (s.getTalentValueById(6) != 0) {
+          vretour += ele.getStormsoul(
+              s.getTalentValueById(6), vretour, s.getTalentById(6).actif);
+        }
+        break;
+      case 4:
+        if (s.getTalentValueById(24) != 0) {
+          vretour += ele.getBoostElement(
+              s.getTalentValueById(24), vretour, s.getTalentById(24).actif);
+        }
+        if (s.getTalentValueById(20) != 0) {
+          vretour += ele.getKushTeoBlessing(
+              s.getTalentValueById(20), vretour, s.getTalentById(20).actif);
+        }
+        break;
+      case 5:
+        if (s.getTalentValueById(110) != 0) {
+          vretour += ele.getBoostElement(
+              s.getTalentValueById(110), vretour, s.getTalentById(110).actif);
+        }
+        if (s.getTalentValueById(6) != 0) {
+          vretour += ele.getStormsoul(
+              s.getTalentValueById(6), vretour, s.getTalentById(6).actif);
+        }
+        break;
+    }
+    if (s.getTalentValueById(77) != 0) {
+      vretour += ele.getLutte(
+          s.getTalentValueById(77), vretour, s.getTalentById(77).actif);
+    }
+    if (s.getTalentValueById(41) != 0) {
+      vretour += ele.getMailOfHellFire(
+          s.getTalentValueById(41), vretour, s.getTalentById(41).actif);
+    }
   }
   return vretour;
 }
