@@ -5,7 +5,7 @@ import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
 import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
-import 'package:builder_mhrs/manager/mh/skill/calculManager.dart';
+import 'package:builder_mhrs/manager/logic/calculStat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
@@ -161,16 +161,22 @@ Widget recapTalent(Stuff s, BuildContext context) {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Column(children: [
                 for (var skill in s.getAllTalents().entries)
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        switchColorWhite('${skill.key.name} : ',
-                            skill.key.levelMax, skill.value),
-                        switchColorWhite(
-                            '${skill.value} / ${skill.key.levelMax}',
-                            skill.key.levelMax,
-                            skill.value)
-                      ])
+                  Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color:
+                              skill.key.actif ? getPrimary() : getSecondary()),
+                      padding: const EdgeInsets.all(5),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            switchColorWhite('${skill.key.name} : ',
+                                skill.key.levelMax, skill.value),
+                            switchColorWhite(
+                                '${skill.value} / ${skill.key.levelMax}',
+                                skill.key.levelMax,
+                                skill.value)
+                          ]))
               ])
             ])
           ])));
@@ -337,7 +343,9 @@ gArc(Stuff s, BuildContext context) {
                   margin: const EdgeInsets.all(5),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [typeShoot(bow, context, s.getTalentValueById(82))]))
+                      children: [
+                        typeShoot(bow, context, s.getTalentValueById(82))
+                      ]))
             ]),
             verticalDividerBlack(),
             Column(children: [

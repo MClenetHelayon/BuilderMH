@@ -1,8 +1,8 @@
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
-import 'affiniteManager.dart' as aff;
-import 'brutManager.dart' as att;
-import 'defenseManager.dart' as def;
+import '../mh/skill/affiniteManager.dart' as aff;
+import '../mh/skill/brutManager.dart' as att;
+import '../mh/skill/defenseManager.dart' as def;
 
 String efr(Stuff s) {
   return (row(s) * s.sharpRaw * (1 + (s.affinite / 100) * (s.critBoost - 1)))
@@ -75,12 +75,10 @@ int row(Stuff s) {
     vretour +=
         att.getVengeance(s.getTalentValueById(143), s.getTalentById(94).actif);
   }
-
   if (s.getTalentValueById(142) != 0) {
     vretour +=
         att.getVendetta(s.getTalentValueById(142), s.getTalentById(94).actif);
   }
-
   if (s.getTalentValueById(107) != 0) {
     vretour +=
         att.getPeakPerf(s.getTalentValueById(107), s.getTalentById(94).actif);
