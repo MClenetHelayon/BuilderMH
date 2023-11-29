@@ -14,9 +14,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 getPrintImgAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
-  int maxMun = s.getTalentById(91);
-  int reculB = s.getTalentById(116);
-  int reloadB = s.getTalentById(144);
+  int maxMun = s.getTalentValueById(91);
+  int reculB = s.getTalentValueById(116);
+  int reloadB = s.getTalentValueById(144);
   if (s.getTalentById(118) != 0 && w.mod == 0) reloadB += 1;
   if (w is FusarbaleteLeger && w.mod == 1) reculB += 1;
   return Column(children: [
@@ -473,9 +473,9 @@ int munExists(List<dynamic> a) {
 
 getPrintBarreAmmo(Stuff s, BuildContext context) {
   Fusarbalete w = s.weapon as Fusarbalete;
-  int maxMun = s.getTalentById(91);
-  int reculB = s.getTalentById(116);
-  int reloadB = s.getTalentById(144);
+  int maxMun = s.getTalentValueById(91);
+  int reculB = s.getTalentValueById(116);
+  int reloadB = s.getTalentValueById(144);
   if (s.getTalentById(118) != 0 && w.mod == 0) reloadB += 1;
   if (w is FusarbaleteLeger && w.mod == 1) reculB += 1;
   return Card(

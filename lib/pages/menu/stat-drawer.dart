@@ -25,6 +25,7 @@ class _StatDrawerState extends State<StatDrawer> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
         overlays: [SystemUiOverlay.bottom]);
   }
+
   @override
   Widget build(BuildContext context) {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);

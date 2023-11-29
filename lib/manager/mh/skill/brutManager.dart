@@ -1,89 +1,99 @@
-double getEspritIndomptable(int i) {
+double getEspritIndomptable(int i, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = 5;
+        break;
+      case 2:
+        vretour = 10;
+        break;
+      case 3:
+        vretour = 20;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getVengeance(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = 5;
+        break;
+      case 2:
+        vretour = 10;
+        break;
+      case 3:
+        vretour = 15;
+        break;
+      case 4:
+        vretour = 20;
+        break;
+      case 5:
+        vretour = 25;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getVendetta(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    if (i != 0) {
       vretour = 5;
-      break;
-    case 2:
-      vretour = 10;
-      break;
-    case 3:
-      vretour = 20;
-      break;
+    }
   }
   return vretour;
 }
 
-double getVengeance(int i) {
+double getPeakPerf(int i, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
-      vretour = 5;
-      break;
-    case 2:
-      vretour = 10;
-      break;
-    case 3:
-      vretour = 15;
-      break;
-    case 4:
-      vretour = 20;
-      break;
-    case 5:
-      vretour = 25;
-      break;
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = 5;
+        break;
+      case 2:
+        vretour = 10;
+        break;
+      case 3:
+        vretour = 20;
+        break;
+    }
   }
   return vretour;
 }
 
-double getVendetta(int i) {
+double getContreAttaque(int i, bool actif) {
   double vretour = 0;
-  if (i != 0) {
-    vretour = 5;
-  }
-  return vretour;
-}
-
-double getPeakPerf(int i) {
-  double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
-      vretour = 5;
-      break;
-    case 2:
-      vretour = 10;
-      break;
-    case 3:
-      vretour = 20;
-      break;
-  }
-  return vretour;
-}
-
-double getContreAttaque(int i) {
-  double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
-      vretour = 10;
-      break;
-    case 2:
-      vretour = 15;
-      break;
-    case 3:
-      vretour = 25;
-      break;
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 15;
+        break;
+      case 3:
+        vretour = 25;
+        break;
+    }
   }
   return vretour;
 }
@@ -138,69 +148,75 @@ double getMatraquage(int i, double actual) {
   return vretour;
 }
 
-double getGardOff(int i, double actual) {
+double getGardOff(int i, double actual, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
-      vretour = actual * 0.05;
-      break;
-    case 2:
-      vretour = actual * 0.10;
-      break;
-    case 3:
-      vretour = actual * 0.15;
-      break;
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = actual * 0.05;
+        break;
+      case 2:
+        vretour = actual * 0.10;
+        break;
+      case 3:
+        vretour = actual * 0.15;
+        break;
+    }
   }
   return vretour;
 }
 
-double getTemerite(int i) {
+double getTemerite(int i, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 0:
-      vretour = 0;
-      break;
-    case 1:
-      vretour = 4;
-      break;
-    case 2:
-      vretour = 8;
-      break;
-    case 3:
-      vretour = 12;
-      break;
-    case 4:
-      vretour = 16;
-      break;
-    case 5:
-      vretour = 20;
-      break;
+  if (actif) {
+    switch (i) {
+      case 0:
+        vretour = 0;
+        break;
+      case 1:
+        vretour = 4;
+        break;
+      case 2:
+        vretour = 8;
+        break;
+      case 3:
+        vretour = 12;
+        break;
+      case 4:
+        vretour = 16;
+        break;
+      case 5:
+        vretour = 20;
+        break;
+    }
   }
   return vretour;
 }
 
-double getHeroisme(int i, double actual) {
+double getHeroisme(int i, double actual, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 2:
-      vretour = actual * 0.05;
-      break;
-    case 3:
-      vretour = actual * 0.05;
-      break;
-    case 4:
-      vretour = actual * 0.10;
-      break;
-    case 5:
-      vretour = actual * 0.30;
+  if (actif) {
+    switch (i) {
+      case 2:
+        vretour = actual * 0.05;
+        break;
+      case 3:
+        vretour = actual * 0.05;
+        break;
+      case 4:
+        vretour = actual * 0.10;
+        break;
+      case 5:
+        vretour = actual * 0.30;
+    }
   }
   return vretour;
 }
 
-double getJV(int i, double actual) {
+double getJV(int i, double actual, bool actif) {
   double vretour = 0;
   switch (i) {
     case 0:
@@ -235,15 +251,17 @@ double getBatto(int i) {
   return vretour;
 }
 
-double getDragonHeart(int i, double actual) {
+double getDragonHeart(int i, double actual, bool actif) {
   double vretour = 0;
-  switch (i) {
-    case 4:
-      vretour = actual * 0.05;
-      break;
-    case 5:
-      vretour = actual * 0.10;
-      break;
+  if (actif) {
+    switch (i) {
+      case 4:
+        vretour = actual * 0.05;
+        break;
+      case 5:
+        vretour = actual * 0.10;
+        break;
+    }
   }
   return vretour;
 }

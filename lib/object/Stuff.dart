@@ -94,7 +94,7 @@ class Stuff {
           return a.key.id.compareTo(b.key.id);
         }),
     );
-    nbSavoirFaire = getTalentById(125);
+    nbSavoirFaire = getTalentValueById(125);
     affinite = aff.affinite(this);
   }
 
@@ -137,12 +137,21 @@ class Stuff {
     }
   }
 
-  int getTalentById(int keyId) {
+  int getTalentValueById(int keyId) {
     for (var entry in _talents.entries) {
       if (entry.key.id == keyId) {
         return entry.value;
       }
     }
     return 0;
+  }
+
+  Talent getTalentById(int keyId) {
+    for (var entry in _talents.entries) {
+      if (entry.key.id == keyId) {
+        return entry.key;
+      }
+    }
+    return Talent.getBase();
   }
 }

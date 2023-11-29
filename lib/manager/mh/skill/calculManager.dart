@@ -1,6 +1,5 @@
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
-
 import 'affiniteManager.dart' as aff;
 import 'brutManager.dart' as att;
 import 'defenseManager.dart' as def;
@@ -31,23 +30,27 @@ num affinite(Stuff s) {
   if (Arme.augments) {
     vretour += (Arme.transcendance.aff).toDouble();
   }
-  if (s.getTalentById(87) != 0) {
-    vretour += aff.getMaitre(s.getTalentById(87));
+  if (s.getTalentValueById(87) != 0) {
+    vretour += aff.getMaitre(s.getTalentValueById(87));
   }
-  if (s.getTalentById(94) != 0) {
-    vretour += aff.getMaM(s.getTalentById(94));
+  if (s.getTalentValueById(94) != 0) {
+    vretour += aff.getMaM(s.getTalentValueById(94), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(132) != 0) {
-    vretour += aff.getTemerite(s.getTalentById(132));
+  if (s.getTalentValueById(132) != 0) {
+    vretour +=
+        aff.getTemerite(s.getTalentValueById(132), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(61) != 0) {
-    vretour += aff.getForceLatente(s.getTalentById(61));
+  if (s.getTalentValueById(61) != 0) {
+    vretour += aff.getForceLatente(
+        s.getTalentValueById(61), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(42) != 0) {
-    vretour += aff.getCorpsEtAme(s.getTalentById(42));
+  if (s.getTalentValueById(42) != 0) {
+    vretour +=
+        aff.getCorpsEtAme(s.getTalentValueById(42), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(50) != 0) {
-    vretour += aff.getDegainage(s.getTalentById(50));
+  if (s.getTalentValueById(50) != 0) {
+    vretour +=
+        aff.getDegainage(s.getTalentValueById(50), s.getTalentById(94).actif);
   }
   return vretour;
 }
@@ -58,46 +61,56 @@ int row(Stuff s) {
   if (Arme.augments) {
     vretour += (Arme.transcendance.att).toDouble();
   }
-  if (s.getTalentById(78) != 0) {
-    vretour += att.getMachine(s.getTalentById(78), base);
+  if (s.getTalentValueById(78) != 0) {
+    vretour += att.getMachine(s.getTalentValueById(78), base);
   }
-  if (s.getTalentById(16) != 0) {
-    vretour += att.getBatto(s.getTalentById(16));
+  if (s.getTalentValueById(16) != 0) {
+    vretour += att.getBatto(s.getTalentValueById(16));
   }
-  if (s.getTalentById(39) != 0) {
-    vretour += att.getContreAttaque(s.getTalentById(39));
+  if (s.getTalentValueById(39) != 0) {
+    vretour += att.getContreAttaque(
+        s.getTalentValueById(39), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(143) != 0) {
-    vretour += att.getVengeance(s.getTalentById(143));
-  }
-
-  if (s.getTalentById(142) != 0) {
-    vretour += att.getVendetta(s.getTalentById(142));
+  if (s.getTalentValueById(143) != 0) {
+    vretour +=
+        att.getVengeance(s.getTalentValueById(143), s.getTalentById(94).actif);
   }
 
-  if (s.getTalentById(107) != 0) {
-    vretour += att.getPeakPerf(s.getTalentById(107));
+  if (s.getTalentValueById(142) != 0) {
+    vretour +=
+        att.getVendetta(s.getTalentValueById(142), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(132) != 0) {
-    vretour += att.getTemerite(s.getTalentById(132));
+
+  if (s.getTalentValueById(107) != 0) {
+    vretour +=
+        att.getPeakPerf(s.getTalentValueById(107), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(55) != 0) {
-    vretour += att.getEspritIndomptable(s.getTalentById(55));
+  if (s.getTalentValueById(132) != 0) {
+    vretour +=
+        att.getTemerite(s.getTalentValueById(132), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(62) != 0) {
-    vretour += att.getGardOff(s.getTalentById(62), base);
+  if (s.getTalentValueById(55) != 0) {
+    vretour += att.getEspritIndomptable(
+        s.getTalentValueById(55), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(46) > 3) {
-    vretour += att.getDragonHeart(s.getTalentById(46), base);
+  if (s.getTalentValueById(62) != 0) {
+    vretour += att.getGardOff(
+        s.getTalentValueById(62), base, s.getTalentById(94).actif);
   }
-  if (s.getTalentById(68) > 1) {
-    vretour += att.getHeroisme(s.getTalentById(68), base);
+  if (s.getTalentValueById(46) > 3) {
+    vretour += att.getDragonHeart(
+        s.getTalentValueById(46), base, s.getTalentById(94).actif);
   }
-  if (s.getTalentById(89) != 0 && s.sharpRaw < 1.2 && s.sharpRaw > 0.8) {
-    vretour += att.getMatraquage(s.getTalentById(89), base);
+  if (s.getTalentValueById(68) > 1) {
+    vretour += att.getHeroisme(
+        s.getTalentValueById(68), base, s.getTalentById(94).actif);
   }
-  if (s.getTalentById(74) != 0) {
-    vretour += att.getJV(s.getTalentById(74), base);
+  if (s.getTalentValueById(89) != 0 && s.sharpRaw < 1.2 && s.sharpRaw > 0.8) {
+    vretour += att.getMatraquage(s.getTalentValueById(89), base);
+  }
+  if (s.getTalentValueById(74) != 0) {
+    vretour +=
+        att.getJV(s.getTalentValueById(74), base, s.getTalentById(94).actif);
   }
   return vretour.round();
 }
@@ -111,37 +124,39 @@ int defense(Stuff s) {
           s.weapon.defense +
           s.florelet.gDef)
       .toDouble();
-  if (s.getTalentById(17) != 0) {
-    vretour += def.getBastionDef(s.getTalentById(17), vretour);
+  if (s.getTalentValueById(17) != 0) {
+    vretour += def.getBastionDef(s.getTalentValueById(17), vretour);
   }
-  if (s.getTalentById(69) != 0) {
-    vretour += def.getDefInDefElem(s.getTalentById(69));
+  if (s.getTalentValueById(69) != 0) {
+    vretour += def.getDefInDefElem(s.getTalentValueById(69));
   }
-  if (s.getTalentById(56) != 0) {
-    vretour += def.getDefInDefElem(s.getTalentById(56));
+  if (s.getTalentValueById(56) != 0) {
+    vretour += def.getDefInDefElem(s.getTalentValueById(56));
   }
-  if (s.getTalentById(105) != 0) {
-    vretour += def.getDefInDefElem(s.getTalentById(105));
+  if (s.getTalentValueById(105) != 0) {
+    vretour += def.getDefInDefElem(s.getTalentValueById(105));
   }
-  if (s.getTalentById(10) != 0) {
-    vretour += def.getDefInDefElem(s.getTalentById(10));
+  if (s.getTalentValueById(10) != 0) {
+    vretour += def.getDefInDefElem(s.getTalentValueById(10));
   }
-  if (s.getTalentById(146) != 0) {
-    vretour += def.getDefInDefElem(s.getTalentById(146));
+  if (s.getTalentValueById(146) != 0) {
+    vretour += def.getDefInDefElem(s.getTalentValueById(146));
   }
-  if (s.getTalentById(68) != 0) {
-    vretour += def.getHeroisme(s.getTalentById(68));
+  if (s.getTalentValueById(68) != 0) {
+    vretour +=
+        def.getHeroisme(s.getTalentValueById(68), s.getTalentById(94).actif);
   }
-  if (s.getTalentById(74) != 0) {
-    vretour += def.getJV(s.getTalentById(74), vretour);
+  if (s.getTalentValueById(74) != 0) {
+    vretour +=
+        def.getJV(s.getTalentValueById(74), vretour, s.getTalentById(94).actif);
   }
   return vretour.round();
 }
 
 int defElem(int i, Stuff s) {
   int vretour = i;
-  if (s.getTalentById(17) > 3) {
-    vretour += def.getBastionElem(s.getTalentById(17));
+  if (s.getTalentValueById(17) > 3) {
+    vretour += def.getBastionElem(s.getTalentValueById(17));
   }
   return vretour;
 }
@@ -149,8 +164,8 @@ int defElem(int i, Stuff s) {
 int defFeu(Stuff s) {
   int vretour = defElem(
       s.helmet.feu + s.torso.feu + s.gant.feu + s.boucle.feu + s.pied.feu, s);
-  if (s.getTalentById(69) != 0) {
-    vretour += def.getDefElem(s.getTalentById(69));
+  if (s.getTalentValueById(69) != 0) {
+    vretour += def.getDefElem(s.getTalentValueById(69));
   }
   vretour = dragonHeart(vretour, s);
   return vretour;
@@ -164,11 +179,11 @@ int defFoudre(Stuff s) {
           s.boucle.foudre +
           s.pied.foudre,
       s);
-  if (s.getTalentById(105) != 0) {
-    vretour += def.getDefElem(s.getTalentById(105));
+  if (s.getTalentValueById(105) != 0) {
+    vretour += def.getDefElem(s.getTalentValueById(105));
   }
-  if (s.getTalentById(5) != 0) {
-    vretour += def.getAlignement(s.getTalentById(5));
+  if (s.getTalentValueById(5) != 0) {
+    vretour += def.getAlignement(s.getTalentValueById(5));
   }
   vretour = dragonHeart(vretour, s);
   return vretour;
@@ -177,8 +192,8 @@ int defFoudre(Stuff s) {
 int defEau(Stuff s) {
   int vretour = defElem(
       s.helmet.eau + s.torso.eau + s.gant.eau + s.boucle.eau + s.pied.eau, s);
-  if (s.getTalentById(56) != 0) {
-    vretour += def.getDefElem(s.getTalentById(56));
+  if (s.getTalentValueById(56) != 0) {
+    vretour += def.getDefElem(s.getTalentValueById(56));
   }
   vretour = dragonHeart(vretour, s);
   return vretour;
@@ -192,8 +207,8 @@ int defGlace(Stuff s) {
           s.boucle.glace +
           s.pied.glace,
       s);
-  if (s.getTalentById(10) != 0) {
-    vretour += def.getDefElem(s.getTalentById(10));
+  if (s.getTalentValueById(10) != 0) {
+    vretour += def.getDefElem(s.getTalentValueById(10));
   }
   vretour = dragonHeart(vretour, s);
   return vretour;
@@ -207,11 +222,11 @@ int defDragon(Stuff s) {
           s.boucle.dragon +
           s.pied.dragon,
       s);
-  if (s.getTalentById(146) != 0) {
-    vretour += def.getDefElem(s.getTalentById(146));
+  if (s.getTalentValueById(146) != 0) {
+    vretour += def.getDefElem(s.getTalentValueById(146));
   }
-  if (s.getTalentById(4) != 0) {
-    vretour += def.getAlignement(s.getTalentById(4));
+  if (s.getTalentValueById(4) != 0) {
+    vretour += def.getAlignement(s.getTalentValueById(4));
   }
   vretour = dragonHeart(vretour, s);
   return vretour;
@@ -219,8 +234,9 @@ int defDragon(Stuff s) {
 
 int dragonHeart(int i, Stuff s) {
   int vretour = i;
-  if (s.getTalentById(46) != 0) {
-    vretour = def.getDragonHeart(s.getTalentById(46));
+  if (s.getTalentValueById(46) != 0) {
+    vretour =
+        def.getDragonHeart(s.getTalentValueById(46), s.getTalentById(94).actif);
   }
 
   return vretour;

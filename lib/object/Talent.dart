@@ -61,4 +61,8 @@ class Talent {
       actif: false,
     );
   }
+
+  void invertActif() {
+    actif = !actif;
+  }
 }

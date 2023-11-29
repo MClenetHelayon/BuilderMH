@@ -1,6 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
@@ -29,7 +28,7 @@ class _BoostPageState extends State<BoostPage> {
         backgroundColor: getSecondary(),
         body: Column(children: [
           Card(
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               color: getPrimary(),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +47,7 @@ class _BoostPageState extends State<BoostPage> {
                             child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    t.actif = !t.actif;
+                                    t.invertActif();
                                   });
                                 },
                                 child: Container(
@@ -62,12 +61,15 @@ class _BoostPageState extends State<BoostPage> {
                                         children: [
                                           Container(
                                               margin: const EdgeInsets.all(5),
-                                              child: boldBlack(t.name)),
+                                              child: black(t.name)),
                                           Card(
                                               color: getFifth(),
                                               margin: const EdgeInsets.all(5),
-                                              child: boldBlack(
-                                                  t.actif ? "On" : "Off"))
+                                              child: Container(
+                                                  padding:
+                                                      const EdgeInsets.all(5),
+                                                  child: boldBlack(
+                                                      t.actif ? "On" : "Off")))
                                         ]))));
                       }))))
         ]));

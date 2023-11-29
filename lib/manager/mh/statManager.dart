@@ -101,7 +101,7 @@ Widget gOff(Stuff s, BuildContext context) {
                 100,
                 s.affinite),
             white(
-                "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentById(22), s).toString()}"),
+                "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}"),
           ])
         ]))
   ]);
@@ -337,7 +337,7 @@ gArc(Stuff s, BuildContext context) {
                   margin: const EdgeInsets.all(5),
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [typeShoot(bow, context, s.getTalentById(82))]))
+                      children: [typeShoot(bow, context, s.getTalentValueById(82))]))
             ]),
             verticalDividerBlack(),
             Column(children: [

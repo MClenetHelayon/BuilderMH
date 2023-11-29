@@ -37,7 +37,7 @@ int getDefInDefElem(int i) {
   return vretour;
 }
 
-double getHeroisme(int i) {
+double getHeroisme(int i, bool actif) {
   double vretour = 0;
   switch (i) {
     case 1:
@@ -55,7 +55,7 @@ double getHeroisme(int i) {
   return vretour;
 }
 
-double getJV(int i, double actual) {
+double getJV(int i, double actual, bool actif) {
   double vretour = 0;
   switch (i) {
     case 0:
@@ -90,7 +90,7 @@ int getBastionElem(int i) {
   return vretour;
 }
 
-int getDragonHeart(int i) {
+int getDragonHeart(int i, bool actif) {
   int vretour = 0;
   switch (i) {
     case 0:

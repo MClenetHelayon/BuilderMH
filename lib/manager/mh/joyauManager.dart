@@ -126,7 +126,7 @@ class _JoyauWidgetState extends State<JoyauWidget> {
             list.add(joyauValue);
           });
         }
-        widget.s.nbSavoirFaire = widget.s.getTalentById(125);
+        widget.s.nbSavoirFaire = widget.s.getTalentValueById(125);
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

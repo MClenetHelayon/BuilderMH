@@ -20,7 +20,7 @@ Widget arc(Arc bow, Stuff s, BuildContext context) {
           margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
           child: Column(children: [
             Text("${AppLocalizations.of(context)!.chargeShot} :"),
-            typeShoot(bow, context, s.getTalentById(82))
+            typeShoot(bow, context, s.getTalentValueById(82))
           ]))
     ]),
     Container(
