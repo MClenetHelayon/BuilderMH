@@ -1,6 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
-import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/mh/armor/talentManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
@@ -19,7 +20,14 @@ Widget armorTopInfo(Armure armure) {
               margin: const EdgeInsets.only(bottom: 20.0),
               child: title(armure.name))
         ]),
-        statDef(armure),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          statWhite(def, armure.defense.toString()),
+          statWhite(feu, armure.feu.toString()),
+          statWhite(eau, armure.eau.toString()),
+          statWhite(foudre, armure.foudre.toString()),
+          statWhite(glace, armure.glace.toString()),
+          statWhite(dragon, armure.dragon.toString())
+        ])
       ]));
 }
 

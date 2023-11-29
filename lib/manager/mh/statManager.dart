@@ -22,7 +22,6 @@ import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/weapon/Arc.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
@@ -212,17 +211,6 @@ Widget statOff(Arme weapon, BuildContext context) {
     ]),
     isDualBlade(weapon, context),
     statWhite(def, weapon.defense.toString())
-  ]);
-}
-
-Widget statDef(Armure armor) {
-  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-    statWhite(def, armor.defense.toString()),
-    statWhite(feu, armor.feu.toString()),
-    statWhite(eau, armor.eau.toString()),
-    statWhite(foudre, armor.foudre.toString()),
-    statWhite(glace, armor.glace.toString()),
-    statWhite(dragon, armor.dragon.toString())
   ]);
 }
 

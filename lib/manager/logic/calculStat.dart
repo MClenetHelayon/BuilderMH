@@ -52,6 +52,18 @@ num affinite(Stuff s) {
     vretour +=
         aff.getDegainage(s.getTalentValueById(50), s.getTalentById(94).actif);
   }
+  if (s.getTalentValueById(70) != 0) {
+    vretour +=
+        aff.getIncursion(s.getTalentValueById(70), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(77) != 0) {
+    vretour +=
+        aff.getLutte(s.getTalentValueById(77), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(128) != 0) {
+    vretour +=
+        aff.getSoifDeSang(s.getTalentValueById(128), s.getTalentById(94).actif);
+  }
   return vretour;
 }
 
@@ -76,8 +88,8 @@ int row(Stuff s) {
         att.getVengeance(s.getTalentValueById(143), s.getTalentById(94).actif);
   }
   if (s.getTalentValueById(142) != 0) {
-    vretour +=
-        att.getVendetta(s.getTalentValueById(142), s.getTalentById(94).actif);
+    vretour += att.getVendetta(
+        s.getTalentValueById(142), s.getTalentById(94).actif, s.weapon);
   }
   if (s.getTalentValueById(107) != 0) {
     vretour +=
@@ -109,6 +121,30 @@ int row(Stuff s) {
   if (s.getTalentValueById(74) != 0) {
     vretour +=
         att.getJV(s.getTalentValueById(74), base, s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(70) != 0) {
+    vretour +=
+        att.getIncursion(s.getTalentValueById(70), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(111) != 0) {
+    vretour +=
+        att.getAdrenaline(s.getTalentValueById(111), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(140) != 0) {
+    vretour +=
+        att.getUnion(s.getTalentValueById(140), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(14) != 0) {
+    vretour += att.getFurtif(
+        s.getTalentValueById(14), vretour, s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(57) != 0) {
+    vretour += att.getEveilDeSang(
+        s.getTalentValueById(57), s.getTalentById(94).actif, s.weapon);
+  }
+  if (s.getTalentValueById(128) != 0) {
+    vretour +=
+        att.getSoifDeSang(s.getTalentValueById(128), s.getTalentById(94).actif);
   }
   return vretour.round();
 }
@@ -148,6 +184,18 @@ int defense(Stuff s) {
     vretour +=
         def.getJV(s.getTalentValueById(74), vretour, s.getTalentById(94).actif);
   }
+  if (s.getTalentValueById(49) != 0) {
+    vretour +=
+        def.getDefiance(s.getTalentValueById(49), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(102) != 0) {
+    vretour +=
+        def.getFuriousDef(s.getTalentValueById(102), s.getTalentById(94).actif);
+  }
+  if (s.getTalentValueById(141) != 0) {
+    vretour +=
+        def.getVaillance(s.getTalentValueById(141), s.getTalentById(94).actif);
+  }
   return vretour.round();
 }
 
@@ -155,6 +203,10 @@ int defElem(int i, Stuff s) {
   int vretour = i;
   if (s.getTalentValueById(17) > 3) {
     vretour += def.getBastionElem(s.getTalentValueById(17));
+  }
+  if (s.getTalentValueById(102) != 0) {
+    vretour += def.getFuriousElem(
+        s.getTalentValueById(102), s.getTalentById(94).actif);
   }
   return vretour;
 }

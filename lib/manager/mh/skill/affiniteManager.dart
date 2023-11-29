@@ -25,9 +25,6 @@ double getBerserk(int i, Stuff s) {
 int getMaitre(int i) {
   int vretour = 0;
   switch (i) {
-    case 0:
-      vretour = 0;
-      break;
     case 1:
       vretour = 5;
       break;
@@ -57,9 +54,6 @@ int getMaM(int i, bool actif) {
   int vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 15;
         break;
@@ -78,9 +72,6 @@ int getTemerite(int i, bool actif) {
   int vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 3;
         break;
@@ -105,9 +96,6 @@ int getForceLatente(int i, bool actif) {
   int vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 10;
         break;
@@ -132,9 +120,6 @@ int getCorpsEtAme(int i, bool actif) {
   int vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 10;
         break;
@@ -153,9 +138,6 @@ int getDegainage(int i, bool actif) {
   int vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 10;
         break;
@@ -165,6 +147,51 @@ int getDegainage(int i, bool actif) {
       case 3:
         vretour = 40;
         break;
+    }
+  }
+  return vretour;
+}
+
+int getIncursion(int i, bool actif) {
+  int vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 2:
+        vretour = 10;
+        break;
+      case 3:
+        vretour = 20;
+        break;
+    }
+  }
+  return vretour;
+}
+
+int getLutte(int i, bool actif) {
+  int vretour = 0;
+  if (!actif) {
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 15;
+        break;
+      case 3:
+        vretour = 20;
+        break;
+    }
+  }
+  return vretour;
+}
+
+int getSoifDeSang(int i, bool actif) {
+  int vretour = 0;
+  if (!actif) {
+    if (i == 1) {
+      vretour = 20;
+    } else if (i != 0) {
+      vretour = 25;
     }
   }
   return vretour;

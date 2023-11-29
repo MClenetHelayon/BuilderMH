@@ -1,10 +1,10 @@
+import 'package:builder_mhrs/object/weapon/Arc.dart';
+import 'package:builder_mhrs/object/weapon/Arme.dart';
+
 double getEspritIndomptable(int i, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 5;
         break;
@@ -23,9 +23,6 @@ double getVengeance(int i, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 5;
         break;
@@ -46,11 +43,32 @@ double getVengeance(int i, bool actif) {
   return vretour;
 }
 
-double getVendetta(int i, bool actif) {
+double getVendetta(int i, bool actif, Arme a) {
   double vretour = 0;
   if (actif) {
-    if (i != 0) {
-      vretour = 5;
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 12;
+        break;
+      case 3:
+        vretour = 15;
+        break;
+    }
+    if (a is Fusarbalete || a is Arc) {
+      switch (i) {
+        case 1:
+          vretour = 8;
+          break;
+        case 2:
+          vretour = 9;
+          break;
+        case 3:
+          vretour = 10;
+          break;
+      }
     }
   }
   return vretour;
@@ -60,9 +78,6 @@ double getPeakPerf(int i, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 5;
         break;
@@ -81,9 +96,6 @@ double getContreAttaque(int i, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 10;
         break;
@@ -101,9 +113,6 @@ double getContreAttaque(int i, bool actif) {
 double getMachine(int i, double actual) {
   double vretour = 0;
   switch (i) {
-    case 0:
-      vretour = 0;
-      break;
     case 1:
       vretour = 3;
       break;
@@ -132,9 +141,6 @@ double getMachine(int i, double actual) {
 double getMatraquage(int i, double actual) {
   double vretour = 0;
   switch (i) {
-    case 0:
-      vretour = 0;
-      break;
     case 1:
       vretour = actual * 0.05;
       break;
@@ -152,9 +158,6 @@ double getGardOff(int i, double actual, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = actual * 0.05;
         break;
@@ -173,9 +176,6 @@ double getTemerite(int i, bool actif) {
   double vretour = 0;
   if (actif) {
     switch (i) {
-      case 0:
-        vretour = 0;
-        break;
       case 1:
         vretour = 4;
         break;
@@ -219,9 +219,6 @@ double getHeroisme(int i, double actual, bool actif) {
 double getJV(int i, double actual, bool actif) {
   double vretour = 0;
   switch (i) {
-    case 0:
-      vretour = 0;
-      break;
     case 1:
       vretour = actual * 0.10;
       break;
@@ -235,9 +232,6 @@ double getJV(int i, double actual, bool actif) {
 double getBatto(int i) {
   double vretour = 0;
   switch (i) {
-    case 0:
-      vretour = 0;
-      break;
     case 1:
       vretour = 3;
       break;
@@ -265,3 +259,128 @@ double getDragonHeart(int i, double actual, bool actif) {
   }
   return vretour;
 }
+
+double getAdrenaline(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 15;
+        break;
+      case 3:
+        vretour = 30;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getUnion(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 12;
+        break;
+      case 2:
+        vretour = 15;
+        break;
+      case 3:
+        vretour = 18;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getIncursion(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 10;
+        break;
+      case 3:
+        vretour = 15;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getFurtif(int i, double actual, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = actual * 0.05;
+        break;
+      case 2:
+        vretour = actual * 0.10;
+        break;
+      case 3:
+        vretour = actual * 0.12;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getEveilDeSang(int i, bool actif, Arme a) {
+  double vretour = 0;
+  if (actif) {
+    if (a is Fusarbalete || a is Arc) {
+      switch (i) {
+        case 1:
+          vretour = 8;
+          break;
+        case 2:
+          vretour = 15;
+          break;
+        case 3:
+          vretour = 25;
+          break;
+      }
+    } else {
+      switch (i) {
+        case 1:
+          vretour = 10;
+          break;
+        case 2:
+          vretour = 20;
+          break;
+        case 3:
+          vretour = 40;
+          break;
+      }
+    }
+  }
+  return vretour;
+}
+
+double getSoifDeSang(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 15;
+        break;
+      case 3:
+        vretour = 20;
+        break;
+    }
+  }
+  return vretour;
+}
+
+getAbandon() {}
+getMailOfHellFire() {}
