@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 Widget accordeon(AccordionSection content) {
   return Card(
       margin: const EdgeInsets.all(2),
-      color: getThird(),
+      color: third,
       child: Accordion(
           paddingListTop: 0,
           paddingListBottom: 0,
           paddingListHorizontal: 0,
-          headerBackgroundColor: getThird(),
+          headerBackgroundColor: third,
           headerBorderWidth: 0,
-          headerBorderColorOpened: getThird(),
-          headerBackgroundColorOpened: getThird(),
-          contentBackgroundColor: getThird(),
-          contentBorderColor: getThird(),
+          headerBorderColorOpened: third,
+          headerBackgroundColorOpened: third,
+          contentBackgroundColor: third,
+          contentBorderColor: third,
           contentBorderWidth: 0,
           scaleWhenAnimating: true,
           openAndCloseAnimation: true,

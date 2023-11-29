@@ -72,7 +72,7 @@ class _HomepageState extends State<Homepage> {
         container = const BuilderPage();
     }
     return Scaffold(
-        appBar: AppBar(backgroundColor: getFifth(), actions: [
+        appBar: AppBar(backgroundColor: fifth, actions: [
           Builder(
               builder: (context) => IconButton(
                   iconSize: 80,
@@ -89,7 +89,7 @@ class _HomepageState extends State<Homepage> {
           DrawerList(),
         ]))),
         endDrawer: Drawer(
-            backgroundColor: getSecondary(),
+            backgroundColor: secondary,
             child: const SingleChildScrollView(
                 child: Column(children: [StatDrawer()]))));
   }
@@ -129,7 +129,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                   padding: const EdgeInsets.all(10.0),
                   color: currentPage == DrawerSections.exporter
-                      ? getThird()
+                      ? third
                       : Colors.transparent,
                   child: Row(children: [
                     const Expanded(
@@ -152,7 +152,7 @@ class _HomepageState extends State<Homepage> {
 
   Widget MenuItem(int id, String title, IconData icon, bool isActive) {
     return Material(
-        color: isActive ? getThird() : Colors.transparent,
+        color: isActive ? third : Colors.transparent,
         child: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -178,7 +178,7 @@ class _HomepageState extends State<Homepage> {
                 Expanded(child: Icon(icon, size: 20, color: Colors.black)),
                 Expanded(
                     child: Text(title,
-                        style: TextStyle(color: getSecondary(), fontSize: 16))),
+                        style: TextStyle(color: secondary, fontSize: 16))),
               ])),
         ));
   }

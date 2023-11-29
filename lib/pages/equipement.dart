@@ -92,7 +92,7 @@ class _BuilderPageState extends State<BuilderPage> {
     s = stuffProvider.stuff!;
     s.getListTalents();
     return Scaffold(
-      backgroundColor: getSecondary(),
+      backgroundColor: secondary,
       body: Column(children: [
         Expanded(
             child: SingleChildScrollView(
@@ -120,12 +120,11 @@ class _BuilderPageState extends State<BuilderPage> {
 
   Widget Weapon(BuildContext context) {
     return Card(
-        color: getPrimary(),
+        color: primary,
         child: Column(children: [
           TextButton(
               style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(getPrimary())),
+                  backgroundColor: MaterialStateProperty.all<Color>(primary)),
               onPressed: () async {
                 var value = await pop.arme(context, s);
                 if (value == null || value == s.weapon) return;
@@ -178,7 +177,7 @@ class _BuilderPageState extends State<BuilderPage> {
                                       style: ButtonStyle(
                                           backgroundColor:
                                               MaterialStateProperty.all<Color>(
-                                                  getPrimary())),
+                                                  primary)),
                                       onPressed: () async {
                                         await pop.transcendance(
                                             context, s.weapon);
@@ -217,7 +216,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+              backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: () async {
               var value = await pop.kinsect(
@@ -259,7 +258,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+              backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: () async {
               var value = await pop.flor(context);
@@ -291,7 +290,7 @@ class _BuilderPageState extends State<BuilderPage> {
         ),
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+              backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: () async {
               var value = await pop.charm(context);
@@ -336,26 +335,25 @@ class _BuilderPageState extends State<BuilderPage> {
       if (Arme.transcendance.calam != 0) slot = Arme.transcendance.calam;
     }
     return Card(
-      color: getPrimary(),
-      child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
-          ),
-          onPressed: () async {
-            var value = await pop.calamJoyau(context, slot, categ);
-            if (value == null || value == s.joyauxCalam) return;
-            setState(() {
-              s.joyauxCalam = value;
-            });
-          },
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Image.asset(slotCalam(slot), height: 22, width: 22),
-            const SizedBox(width: 5),
-            white(s.joyauxCalam.id != 0 && s.joyauxCalam.id != 9999
-                ? "${s.joyauxCalam.name} [${s.joyauxCalam.slot}]"
-                : s.joyauxCalam.name),
-          ])),
-    );
+        color: primary,
+        child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(primary),
+            ),
+            onPressed: () async {
+              var value = await pop.calamJoyau(context, slot, categ);
+              if (value == null || value == s.joyauxCalam) return;
+              setState(() {
+                s.joyauxCalam = value;
+              });
+            },
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset(slotCalam(slot), height: 22, width: 22),
+              const SizedBox(width: 5),
+              white(s.joyauxCalam.id != 0 && s.joyauxCalam.id != 9999
+                  ? "${s.joyauxCalam.name} [${s.joyauxCalam.slot}]"
+                  : s.joyauxCalam.name),
+            ])));
   }
 
   Widget Helmet(BuildContext context) {
@@ -423,7 +421,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+              backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: reload,
             child: Column(children: [

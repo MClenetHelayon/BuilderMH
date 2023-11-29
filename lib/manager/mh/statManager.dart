@@ -34,7 +34,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Widget g(Stuff s, BuildContext context) {
   return Card(
-      color: getPrimary(),
+      color: primary,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         gSpeArme(s.weapon, context),
@@ -110,7 +110,7 @@ Widget gDef(Stuff s, BuildContext context) {
   return Column(children: [
     title(AppLocalizations.of(context)!.def),
     Container(
-        color: getPrimary(),
+        color: primary,
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -133,7 +133,7 @@ Widget gDef(Stuff s, BuildContext context) {
 
 Widget calamJowel(Stuff s, BuildContext context) {
   return Card(
-      color: getPrimary(),
+      color: primary,
       child: Container(
           padding: const EdgeInsets.all(5),
           child:
@@ -152,7 +152,7 @@ Widget calamJowel(Stuff s, BuildContext context) {
 
 Widget recapTalent(Stuff s, BuildContext context) {
   return Card(
-      color: getPrimary(),
+      color: primary,
       child: Container(
           margin: const EdgeInsets.only(bottom: 5),
           child: Column(children: [
@@ -164,7 +164,7 @@ Widget recapTalent(Stuff s, BuildContext context) {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
                           color:
-                              skill.key.actif ? getPrimary() : getSecondary()),
+                              skill.key.actif ? primary : secondary),
                       padding: const EdgeInsets.all(5),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -197,7 +197,7 @@ Widget gSimplyCard(int i, Stuff s, BuildContext context) {
       function = gSharp(s, context);
       break;
   }
-  return Container(color: getPrimary(), child: function);
+  return Container(color: primary, child: function);
 }
 
 Widget statOff(Arme weapon, BuildContext context) {
@@ -207,7 +207,7 @@ Widget statOff(Arme weapon, BuildContext context) {
       Image.asset(affi, height: 16, width: 16),
       const SizedBox(width: 5),
       Text("${weapon.affinite.toString()}%",
-          style: TextStyle(color: getFourth()))
+          style: TextStyle(color: fourth))
     ]),
     isDualBlade(weapon, context),
     statWhite(def, weapon.defense.toString())
@@ -250,11 +250,11 @@ gKinsect(Stuff s, BuildContext context) {
   Insectoglaive i = s.weapon as Insectoglaive;
   return Card(
       margin: const EdgeInsets.all(5),
-      color: getPrimary(),
+      color: primary,
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Card(
-              color: getSecondary(),
+              color: secondary,
               child: IconButton(
                   onPressed: () {},
                   iconSize: 20,
@@ -298,7 +298,7 @@ gCorne(Stuff s, BuildContext context) {
   CorneDeChasse horn = s.weapon as CorneDeChasse;
   return Card(
       margin: const EdgeInsets.all(5),
-      color: getPrimary(),
+      color: primary,
       child: Column(children: [
         title(AppLocalizations.of(context)!.music),
         printMusic(musique(0), horn.musique[0].name),
@@ -319,7 +319,7 @@ gArc(Stuff s, BuildContext context) {
   Arc bow = s.weapon as Arc;
   return Card(
       margin: const EdgeInsets.all(5),
-      color: getPrimary(),
+      color: primary,
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           title(AppLocalizations.of(context)!.arc),

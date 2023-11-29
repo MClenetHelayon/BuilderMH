@@ -54,10 +54,10 @@ Widget buildCard(Screen screen) {
   return Container(
       width: screen.width,
       height: screen.height,
-      color: getPrimary(),
+      color: primary,
       child: Row(children: [
         Container(
-            color: getSecondary(),
+            color: secondary,
             width:
                 s.weapon is Fusarbalete ? screen.width / 6 : screen.width / 5,
             height: screen.height,
@@ -109,7 +109,7 @@ Widget buildCard(Screen screen) {
         ])),
         if (s.weapon is! Fusarbalete)
           Container(
-              color: getSecondary(),
+              color: secondary,
               width:
                   s.weapon is Fusarbalete ? screen.width / 6 : screen.width / 5,
               height: screen.height,
@@ -131,7 +131,7 @@ Widget buildCard(Screen screen) {
               ])),
         if (s.weapon is Fusarbalete)
           Container(
-              color: getSecondary(),
+              color: secondary,
               width: screen.width / 3.25,
               height: screen.height,
               child: Column(children: [
@@ -150,7 +150,7 @@ Widget Weapon(Screen screen) {
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(color: getSecondary(), child: icon(0, false, s)),
+          Card(color: secondary, child: icon(0, false, s)),
         ]),
         Expanded(
             child:
@@ -159,7 +159,7 @@ Widget Weapon(Screen screen) {
               margin: const EdgeInsets.only(top: 5),
               child: Text(s.weapon.name,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: getFifth()))),
+                      fontWeight: FontWeight.bold, color: fifth))),
           exportArmeStat(s.weapon),
         ])),
         Row(children: [
@@ -205,7 +205,7 @@ Widget Armor(int i, Armure a, Screen screen) {
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(color: getSecondary(), child: icon(i, true, s)),
+          Card(color: secondary, child: icon(i, true, s)),
         ]),
         Expanded(
             child:
@@ -214,7 +214,7 @@ Widget Armor(int i, Armure a, Screen screen) {
               margin: const EdgeInsets.only(top: 5),
               child: Text(a.name,
                   style: TextStyle(
-                      fontWeight: FontWeight.bold, color: getFifth()))),
+                      fontWeight: FontWeight.bold, color: fifth))),
           exportTalent(a.talents)
         ])),
         Container(
@@ -254,17 +254,17 @@ Widget calamJowel(Stuff s, BuildContext context) {
 Widget Charm(Screen screen) {
   Stuff s = screen.stuff;
   return Card(
-      color: getFourth(),
+      color: fourth,
       child: Row(children: [
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [Card(color: getSecondary(), child: icon(7, true, s))]),
+            children: [Card(color: secondary, child: icon(7, true, s))]),
         Expanded(
             child: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(AppLocalizations.of(screen.context)!.tali,
                 style:
-                    TextStyle(fontWeight: FontWeight.bold, color: getFifth())),
+                    TextStyle(fontWeight: FontWeight.bold, color: fifth)),
             if (s.charm.talents.isEmpty) Container(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (s.charm.talents.isNotEmpty)
@@ -293,12 +293,12 @@ Widget Charm(Screen screen) {
 Widget Flor(Screen screen) {
   Stuff s = screen.stuff;
   return Card(
-      color: getFourth(),
+      color: fourth,
       child: Row(children: [
         Flexible(
             flex: 1,
             child: Column(children: [
-              Card(color: getSecondary(), child: icon(6, true, s)),
+              Card(color: secondary, child: icon(6, true, s)),
             ])),
         Flexible(
             flex: 3,
@@ -307,7 +307,7 @@ Widget Flor(Screen screen) {
                   flex: 1,
                   child: Text(s.florelet.name,
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: getFifth()))),
+                          fontWeight: FontWeight.bold, color: fifth))),
               Flexible(flex: 2, child: Container()),
               Flexible(
                   flex: 0,
@@ -350,7 +350,7 @@ Widget Flor(Screen screen) {
                       Container(
                         child: printValueImg("images/elementaire/Defense.png",
                             s.florelet.gDef.toString()),
-                      ),
+                      )
                     ])
                   ]))
             ]))
@@ -363,7 +363,7 @@ Widget icon(int i, bool isArmor, Stuff s) {
       iconSize: 40,
       icon: Image.asset(
         isArmor ? img.armure(i) : img.arme(s.weapon.categorie),
-        fit: BoxFit.fill,
+        fit: BoxFit.fill
       ));
 }
 
@@ -386,7 +386,7 @@ Widget exportTalent(List<Talent> t) {
 Container talent(String s) {
   return Container(
       decoration: BoxDecoration(
-        color: getSecondary(),
+        color: secondary,
         borderRadius: BorderRadius.circular(5),
       ),
       margin: const EdgeInsets.only(right: 5.0, bottom: 5.0),
@@ -409,8 +409,8 @@ Widget exportArmeStat(Arme weapon) {
       if (weapon.idElement != 0)
         printValueImg(element(weapon.idElement), weapon.element.toString()),
       if (weapon is LameDouble)
-        printValueImg(element(weapon.idElement2), weapon.element2.toString()),
-    ]),
+        printValueImg(element(weapon.idElement2), weapon.element2.toString())
+    ])
   ]);
 }
 
@@ -425,13 +425,13 @@ Widget exportCalam(int slotCalamite, Screen screen) {
 
   return Card(
       margin: const EdgeInsets.only(bottom: 3.0, right: 2),
-      color: getSecondary(),
+      color: secondary,
       child: Container(
           padding: const EdgeInsets.only(left: 2, right: 5, top: 1),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Image.asset(image, height: 22, width: 22),
             const SizedBox(width: 10),
-            Text(nom, style: const TextStyle(color: Colors.white)),
+            Text(nom, style: const TextStyle(color: fourth))
           ])));
 }
 
@@ -451,20 +451,20 @@ Widget exportJowel(int slot, List<Joyaux> j, int id, Screen screen) {
 
   return Card(
       margin: const EdgeInsets.only(bottom: 3.0),
-      color: getSecondary(),
+      color: secondary,
       child: Container(
           padding: const EdgeInsets.only(left: 2, right: 5, top: 1),
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             Image.asset(image, height: 22, width: 22),
             const SizedBox(width: 10),
-            Text(nom, style: const TextStyle(color: Colors.white)),
+            Text(nom, style: const TextStyle(color: fourth)),
           ])));
 }
 
 Container printValueImg(String img, String t) {
   return Container(
     decoration: BoxDecoration(
-      color: getSecondary(),
+      color: secondary,
       borderRadius: BorderRadius.circular(5),
     ),
     width: 60,
@@ -533,7 +533,7 @@ Widget gOff(Stuff s, BuildContext context) {
               100,
               s.affinite),
           Text(
-              "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}"),
+              "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}")
         ]))
   ]);
 }
@@ -571,7 +571,7 @@ Widget gSharp(Stuff s, BuildContext context) {
         margin: const EdgeInsets.all(5),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Container(
-              color: getSecondary(),
+              color: secondary,
               child: IntrinsicWidth(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -613,7 +613,7 @@ gKinsect(Stuff s, BuildContext context) {
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Card(
-              color: getSecondary(),
+              color: secondary,
               child: IconButton(
                   onPressed: () {},
                   iconSize: 20,

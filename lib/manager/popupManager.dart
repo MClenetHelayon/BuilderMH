@@ -1,3 +1,5 @@
+// ignore_for_file: library_prefixes
+
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/object/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
@@ -125,15 +127,15 @@ Widget somePopup(BuildContext context, String txt, Widget popup) {
       clipBehavior: Clip.antiAliasWithSaveLayer,
       title: Row(children: [
         Text(txt,
-            style: TextStyle(fontWeight: FontWeight.bold, color: getFourth())),
+            style: const TextStyle(fontWeight: FontWeight.bold, color: fourth)),
         const Spacer(),
         CloseButton(
-            color: getFifth(),
+            color: fifth,
             onPressed: () {
               close(context);
             })
       ]),
-      backgroundColor: getPrimary(),
+      backgroundColor: primary,
       content: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,

@@ -39,7 +39,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: getSecondary(),
+        color: secondary,
         child: Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             Column(children: [
@@ -56,7 +56,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
             ]),
             Column(children: [
               Card(
-                  color: getThird(),
+                  color: third,
                   child: SizedBox(
                       height: 30,
                       width: 120,
@@ -73,7 +73,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   Widget recapG() {
     getAllValue(w);
     return Card(
-        color: getThird(),
+        color: third,
         child: Column(children: [
           Center(child: boldBlack(AppLocalizations.of(context)!.recap)),
           const Divider(color: Colors.black),
@@ -108,7 +108,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
   Widget setAugment() {
     return Card(
-        color: getPrimary(),
+        color: primary,
         child: Column(children: [
           simplyCheckAugment(
               t.bAtt, att, 0, AppLocalizations.of(context)!.tAttack),
@@ -116,7 +116,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               t.bAff, aff, 1, AppLocalizations.of(context)!.tAffinite),
           if (w.idElement != 0 && w.idElement <= 5)
             Card(
-                color: getThird(),
+                color: third,
                 child: Column(children: [
                   Center(
                       child: boldBlack(AppLocalizations.of(context)!.tElement)),
@@ -157,7 +157,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                 t.bSharp, sharp, 5, AppLocalizations.of(context)!.tSharp),
           if (w.slotCalamite != 3)
             Card(
-                color: getThird(),
+                color: third,
                 child: Column(children: [
                   Center(
                       child: boldBlack(AppLocalizations.of(context)!.tCalam)),
@@ -185,7 +185,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   Container simplyRecap(Widget child) {
     return Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5), color: getFourth()),
+            borderRadius: BorderRadius.circular(5), color: fourth),
         margin: const EdgeInsets.only(bottom: 5),
         padding: const EdgeInsets.all(3),
         child: child);
@@ -193,7 +193,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
   Card simplyCheckAugment(List<bool> b, String img, int i, String txt) {
     return Card(
-        color: getThird(),
+        color: third,
         child: Column(children: [
           Center(child: boldBlack(txt)),
           const Divider(color: Colors.black),

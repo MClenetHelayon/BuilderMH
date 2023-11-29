@@ -97,10 +97,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: getSecondary(),
+        color: secondary,
         child: Column(children: [
           Card(
-              color: getSecondary(),
+              color: secondary,
               child: Column(children: [
                 filterRank(),
                 filterAccordeon(),
@@ -127,8 +127,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
         isOpen: isExpanded,
         onOpenSection: () => setState(() => isExpanded = true),
         contentVerticalPadding: 10,
-        contentBackgroundColor: getThird(),
-        contentBorderColor: getThird(),
+        contentBackgroundColor: third,
+        contentBorderColor: third,
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
         content: Column(children: [
@@ -143,7 +143,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
   Widget filterRank() {
     return Card(
-        color: getThird(),
+        color: third,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           checkboxRank("RC", rcCheck, () {
             setState(() {

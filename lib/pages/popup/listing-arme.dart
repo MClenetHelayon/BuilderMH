@@ -339,7 +339,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
     List<Arme> lArme =
         getLWeapons(lFilteredWeapons, cbxElem, cbxCalam, cbxSharp, affNeg);
     return Card(
-        color: getSecondary(),
+        color: secondary,
         child: Column(children: [
           filterRankWeapon(),
           filterAccordeon(),
@@ -357,7 +357,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(
-                                        getFourth()),
+                                        fourth),
                               ),
                               onPressed: () {
                                 Navigator.of(context).pop(weapon);
@@ -562,7 +562,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          getFourth()),
+                                          fourth),
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pop(weapon);
@@ -579,8 +579,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
         isOpen: isExpanded,
         onOpenSection: () => setState(() => isExpanded = true),
         contentVerticalPadding: 10,
-        contentBackgroundColor: getThird(),
-        contentBorderColor: getThird(),
+        contentBackgroundColor: third,
+        contentBorderColor: third,
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
         content: Column(children: [
@@ -627,7 +627,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
   //Widget gérant l'affichage des filtres
   Widget filterRankWeapon() {
     return Card(
-        color: getThird(),
+        color: third,
         margin: const EdgeInsets.all(2),
         child: Container(
             margin: const EdgeInsets.only(bottom: 5),

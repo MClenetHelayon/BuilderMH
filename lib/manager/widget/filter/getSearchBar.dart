@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 Widget getSearchBar(TextEditingController tc, BuildContext context,
     Function(String) searchFilter) {
   return Card(
-      color: getThird(),
+      color: third,
       margin: const EdgeInsets.all(2),
       child: TextField(
           controller: tc,

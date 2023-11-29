@@ -31,7 +31,7 @@ class _StatDrawerState extends State<StatDrawer> {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);
     Stuff s = stuffProvider.stuff!;
     return Container(
-        color: getSecondary(),
+        color: secondary,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           g(s, context),
           if (s.weapon.niveau == "maitre") calamJowel(s, context),

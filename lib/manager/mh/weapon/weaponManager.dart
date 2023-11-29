@@ -1,4 +1,3 @@
-import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
@@ -30,9 +29,7 @@ Widget valueWeapon(Arme weapon, BuildContext context) {
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Container(
                   margin: const EdgeInsets.only(bottom: 10.0),
-                  child: Text(weapon.name,
-                      style: TextStyle(
-                          color: getFifth(), fontWeight: FontWeight.bold)))
+                  child: boldOrange(weapon.name))
             ]),
             statOff(weapon, context),
             if (weapon is Tranchant)

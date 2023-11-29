@@ -109,7 +109,7 @@ class _JoyauWidgetState extends State<JoyauWidget> {
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(getPrimary()),
+        backgroundColor: MaterialStateProperty.all<Color>(primary),
       ),
       onPressed: () async {
         var value = await joyau(context, widget.slot);

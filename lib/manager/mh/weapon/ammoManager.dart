@@ -480,7 +480,7 @@ getPrintBarreAmmo(Stuff s, BuildContext context) {
   if (w is FusarbaleteLeger && w.mod == 1) reculB += 1;
   return Card(
       margin: const EdgeInsets.all(5),
-      color: getPrimary(),
+      color: primary,
       child: Container(
           padding: const EdgeInsets.all(5),
           child: Column(children: [
@@ -490,22 +490,22 @@ getPrintBarreAmmo(Stuff s, BuildContext context) {
                   50,
                   Text(AppLocalizations.of(context)!.name,
                       style: TextStyle(
-                          color: getFifth(), fontWeight: FontWeight.bold))),
+                          color: fifth, fontWeight: FontWeight.bold))),
               cadreAmmoValueStat(
                   30,
                   Text(AppLocalizations.of(context)!.qte,
                       style: TextStyle(
-                          color: getFifth(), fontWeight: FontWeight.bold))),
+                          color: fifth, fontWeight: FontWeight.bold))),
               cadreAmmoValueStat(
                   50,
                   Text(AppLocalizations.of(context)!.abrRecul,
                       style: TextStyle(
-                          color: getFifth(), fontWeight: FontWeight.bold))),
+                          color: fifth, fontWeight: FontWeight.bold))),
               cadreAmmoValueStat(
                   60,
                   Text(AppLocalizations.of(context)!.abrRecharge,
                       style: TextStyle(
-                          color: getFifth(), fontWeight: FontWeight.bold))),
+                          color: fifth, fontWeight: FontWeight.bold))),
               Row(children: [
                 logoMunStat(1, 'images/arme/mun/footstep.png', 15),
                 logoMunStat(1, 'images/arme/mun/greenCircle.png', 15),
@@ -870,7 +870,7 @@ Widget logoMunStat(int i, String img, double hw) {
   return Container(
       decoration: BoxDecoration(
           border: Border.all(
-        color: getSecondary(), // Couleur de la bordure
+        color: secondary, // Couleur de la bordure
         width: 1.0, // Épaisseur de la bordure
       )),
       child: vretour);

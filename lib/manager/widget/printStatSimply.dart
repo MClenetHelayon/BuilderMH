@@ -56,7 +56,7 @@ Widget statComboSharp(int id, String stat) {
         width: 10.0,
         height: 10.0,
         decoration: BoxDecoration(
-            border: Border.all(width: 1, color: getSecondary()),
+            border: Border.all(width: 1, color: secondary),
             color: couleur(id))),
     const SizedBox(width: 3),
     Text(stat),

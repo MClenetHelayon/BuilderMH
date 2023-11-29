@@ -26,11 +26,11 @@ class _BoostPageState extends State<BoostPage> {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);
     Stuff s = stuffProvider.stuff!;
     return Scaffold(
-        backgroundColor: getSecondary(),
+        backgroundColor: secondary,
         body: Column(children: [
           Card(
               margin: const EdgeInsets.all(5),
-              color: getPrimary(),
+              color: primary,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -43,7 +43,7 @@ class _BoostPageState extends State<BoostPage> {
                         margin: const EdgeInsets.all(5),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
-                            color: getThird()),
+                            color: third),
                         child: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -59,12 +59,12 @@ class _BoostPageState extends State<BoostPage> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       border: Border.all(
-                                          width: 1, color: getSixth()),
+                                          width: 1, color: sixth),
                                       color: Stuff.scroll ? scrollO : scrollB))
                             ])))
                   ])),
           Card(
-              color: getPrimary(),
+              color: primary,
               child: Expanded(
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +73,7 @@ class _BoostPageState extends State<BoostPage> {
                         Talent t =
                             s.getAllTalents().entries.elementAt(index).key;
                         return Card(
-                            color: getThird(),
+                            color: third,
                             child: GestureDetector(
                                 onTap: () {
                                   setState(() {
@@ -84,7 +84,7 @@ class _BoostPageState extends State<BoostPage> {
                                     height: 40,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
-                                        color: getThird()),
+                                        color: third),
                                     child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -93,7 +93,7 @@ class _BoostPageState extends State<BoostPage> {
                                               margin: const EdgeInsets.all(5),
                                               child: black(t.name)),
                                           Card(
-                                              color: getFifth(),
+                                              color: fifth,
                                               margin: const EdgeInsets.all(5),
                                               child: Container(
                                                   padding:
