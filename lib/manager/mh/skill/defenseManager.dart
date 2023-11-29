@@ -1,3 +1,5 @@
+import 'package:builder_mhrs/object/Stuff.dart';
+
 double getBastionDef(int i, double actual) {
   double vretour = 0;
   switch (i) {
@@ -126,6 +128,24 @@ double getVaillance(int i, bool actif) {
   return vretour;
 }
 
+double getMailOfHellFireDef(int i, bool actif) {
+  double vretour = 0;
+  if (actif && Stuff.scroll) {
+    switch (i) {
+      case 1:
+        vretour = 50;
+        break;
+      case 2:
+        vretour = 75;
+        break;
+      case 3:
+        vretour = 100;
+        break;
+    }
+  }
+  return vretour;
+}
+
 //Def Elementaire
 int getBastionElem(int i) {
   int vretour = 0;
@@ -217,6 +237,24 @@ int getFuriousElem(int i, bool actif) {
         break;
       case 3:
         vretour = 20;
+        break;
+    }
+  }
+  return vretour;
+}
+
+int getMailOfHellFireDefElem(int i, bool actif) {
+  int vretour = 0;
+  if (actif && !(Stuff.scroll)) {
+    switch (i) {
+      case 1:
+        vretour = 10;
+        break;
+      case 2:
+        vretour = 25;
+        break;
+      case 3:
+        vretour = 50;
         break;
     }
   }

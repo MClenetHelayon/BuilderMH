@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arc.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 
@@ -382,5 +383,38 @@ double getSoifDeSang(int i, bool actif) {
   return vretour;
 }
 
-getAbandon() {}
-getMailOfHellFire() {}
+double getAbandon(int i, bool actif) {
+  double vretour = 0;
+  if (actif && !(Stuff.scroll)) {
+    switch (i) {
+      case 1:
+        vretour = 25;
+        break;
+      case 2:
+        vretour = 30;
+        break;
+      case 3:
+        vretour = 35;
+        break;
+    }
+  }
+  return vretour;
+}
+
+double getMailOfHellFire(int i, bool actif) {
+  double vretour = 0;
+  if (actif && Stuff.scroll) {
+    switch (i) {
+      case 1:
+        vretour = 15;
+        break;
+      case 2:
+        vretour = 25;
+        break;
+      case 3:
+        vretour = 35;
+        break;
+    }
+  }
+  return vretour;
+}
