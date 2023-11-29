@@ -14,9 +14,9 @@ import 'JoyauCalam.dart';
 import 'Talent.dart';
 
 class Stuff {
+  static bool scroll = true;
   static String local = 'fr';
   static List<Talent> lSkill = [];
-  late Map<Talent, int> _talents = {};
   static List<Joyaux> ljowel = [];
   late Casque helmet;
   late Plastron torso;
@@ -28,6 +28,7 @@ class Stuff {
   late JoyauxCalam joyauxCalam;
   late Florelet florelet;
   late Kinsect kinsect;
+  late Map<Talent, int> _talents = {};
   num affinite = 0;
   int nbSavoirFaire = 0;
   double critBoost = 1.25, critElem = 1, sharpRaw = 0.5, sharpElem = 0.25;
