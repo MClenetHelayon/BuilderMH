@@ -110,6 +110,14 @@ Widget gOff(Stuff s, BuildContext context) {
 }
 
 Widget gDef(Stuff s, BuildContext context) {
+  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
+  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
+    fire = defFeu(s);
+    water = defEau(s);
+    thunder = defFoudre(s);
+    ice = defGlace(s);
+    drag = defDragon(s);
+  }
   return Column(children: [
     title(AppLocalizations.of(context)!.def),
     Container(
@@ -122,13 +130,13 @@ Widget gDef(Stuff s, BuildContext context) {
             statDefSimply(def, defense(s)),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(feu, defFeu(s)),
-            statDefSimply(eau, defEau(s)),
-            statDefSimply(foudre, defFoudre(s)),
+            statDefSimply(feu, fire),
+            statDefSimply(eau, water),
+            statDefSimply(foudre, thunder),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(glace, defGlace(s)),
-            statDefSimply(dragon, defDragon(s)),
+            statDefSimply(glace, ice),
+            statDefSimply(dragon, drag),
           ])
         ]))
   ]);

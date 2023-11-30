@@ -260,3 +260,21 @@ int getMailOfHellFireDefElem(int i, bool actif) {
   }
   return vretour;
 }
+
+int getDragonConversionBlue(int i, bool actif) {
+  int vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 3;
+        break;
+      case 2:
+        vretour = 5;
+        break;
+      case 3:
+        vretour = 10;
+        break;
+    }
+  }
+  return vretour;
+}

@@ -204,3 +204,19 @@ double getUnion(int i, bool actif) {
   }
   return vretour;
 }
+
+double getConvDragonRed(int i, int sumDef, bool actif, Arme a) {
+  double vretour = 0;
+  if (actif && Stuff.scroll) {
+    if (a is Arc || a is Fusarbalete) {
+      if (i != 0) vretour = sumDef * 0.04;
+
+      if (i == 3) vretour = sumDef * 0.08;
+    } else {
+      if (i != 0) vretour = sumDef * 0.15;
+
+      if (i == 3) vretour = sumDef * 0.25;
+    }
+  }
+  return vretour;
+}

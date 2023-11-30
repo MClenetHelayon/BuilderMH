@@ -238,6 +238,10 @@ int defElem(int i, Stuff s) {
     vretour -= def.getMailOfHellFireDefElem(
         s.getTalentValueById(41), s.getTalentById(41).actif);
   }
+  if (s.getTalentValueById(40) != 0) {
+    vretour += def.getDragonConversionBlue(
+        s.getTalentValueById(40), s.getTalentById(40).actif);
+  }
   return vretour;
 }
 
@@ -322,6 +326,10 @@ int dragonHeart(int i, Stuff s) {
   return vretour;
 }
 
+int defConvDragonRed() {
+  return 0;
+}
+
 double elem(Stuff s) {
   double vretour = s.weapon.element.toDouble();
   if (Arme.augments) {
@@ -348,6 +356,13 @@ double elem(Stuff s) {
     if (s.getTalentValueById(140) != 0) {
       vretour +=
           ele.getUnion(s.getTalentValueById(140), s.getTalentById(140).actif);
+    }
+    if (s.getTalentValueById(40) != 0) {
+      vretour += ele.getConvDragonRed(
+          s.getTalentValueById(40),
+          (defFeu(s) + defEau(s) + defGlace(s) + defDragon(s)),
+          s.getTalentById(40).actif,
+          s.weapon);
     }
     switch (s.weapon.idElement) {
       case 1:

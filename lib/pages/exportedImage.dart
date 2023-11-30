@@ -1,5 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/logic/calculStat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
@@ -158,8 +160,7 @@ Widget Weapon(Screen screen) {
           Container(
               margin: const EdgeInsets.only(top: 5),
               child: Text(s.weapon.name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: fifth))),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: fifth))),
           exportArmeStat(s.weapon),
         ])),
         Row(children: [
@@ -213,8 +214,7 @@ Widget Armor(int i, Armure a, Screen screen) {
           Container(
               margin: const EdgeInsets.only(top: 5),
               child: Text(a.name,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: fifth))),
+                  style: TextStyle(fontWeight: FontWeight.bold, color: fifth))),
           exportTalent(a.talents)
         ])),
         Container(
@@ -263,8 +263,7 @@ Widget Charm(Screen screen) {
             child: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(AppLocalizations.of(screen.context)!.tali,
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: fifth)),
+                style: TextStyle(fontWeight: FontWeight.bold, color: fifth)),
             if (s.charm.talents.isEmpty) Container(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (s.charm.talents.isNotEmpty)
@@ -361,10 +360,8 @@ Widget icon(int i, bool isArmor, Stuff s) {
   return IconButton(
       onPressed: () {},
       iconSize: 40,
-      icon: Image.asset(
-        isArmor ? img.armure(i) : img.arme(s.weapon.categorie),
-        fit: BoxFit.fill
-      ));
+      icon: Image.asset(isArmor ? img.armure(i) : img.arme(s.weapon.categorie),
+          fit: BoxFit.fill));
 }
 
 Widget exportTalent(List<Talent> t) {
@@ -479,6 +476,14 @@ Container printValueImg(String img, String t) {
 }
 
 Widget gDef(Stuff s, BuildContext context) {
+  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
+  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
+    fire = defFeu(s);
+    water = defEau(s);
+    thunder = defFoudre(s);
+    ice = defGlace(s);
+    drag = defDragon(s);
+  }
   return Column(
     children: [
       title(AppLocalizations.of(context)!.def),
@@ -488,20 +493,17 @@ Widget gDef(Stuff s, BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply(
-                      "images/elementaire/Vie.png", s.florelet.uVie + 150),
-                  gDefSimply(
-                      "images/elementaire/Stam.png", s.florelet.uStam + 150),
-                  gDefSimply("images/elementaire/Defense.png", defense(s)),
+                  gDefSimply(vie, s.florelet.uVie + 150),
+                  gDefSimply(stam, s.florelet.uStam + 150),
+                  gDefSimply(def, defense(s)),
                 ]),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [gDefSimply(feu, fire), gDefSimply(eau, water)]),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply("images/elementaire/Feu.webp", defFeu(s)),
-                  gDefSimply("images/elementaire/Eau.webp", defEau(s))
-                ]),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply("images/elementaire/Foudre.webp", defFoudre(s)),
-                  gDefSimply("images/elementaire/Glace.webp", defGlace(s)),
-                  gDefSimply("images/elementaire/Dragon.webp", defDragon(s)),
+                  gDefSimply(foudre, thunder),
+                  gDefSimply(glace, ice),
+                  gDefSimply(dragon, drag),
                 ])
               ]))
     ],
