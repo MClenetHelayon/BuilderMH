@@ -4,6 +4,7 @@ import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart' as aff;
 import 'package:builder_mhrs/manager/mh/skill/brutManager.dart' as att;
 import 'package:builder_mhrs/manager/mh/skill/defenseManager.dart' as def;
 import 'package:builder_mhrs/manager/mh/skill/elementManager.dart' as ele;
+import 'package:builder_mhrs/manager/mh/skill/afflictionManager.dart' as affli;
 
 String efr(Stuff s) {
   return (row(s) * s.sharpRaw * (1 + (s.affinite / 100) * (s.critBoost - 1)))
@@ -119,10 +120,7 @@ int row(Stuff s) {
   if (s.getTalentValueById(89) != 0 && s.sharpRaw < 1.2 && s.sharpRaw > 0.8) {
     vretour += att.getMatraquage(s.getTalentValueById(89), base);
   }
-  if (s.getTalentValueById(74) != 0) {
-    vretour +=
-        att.getJV(s.getTalentValueById(74), base, s.getTalentById(74).actif);
-  }
+
   if (s.getTalentValueById(70) != 0) {
     vretour +=
         att.getIncursion(s.getTalentValueById(70), s.getTalentById(70).actif);
@@ -154,6 +152,17 @@ int row(Stuff s) {
   if (s.getTalentValueById(41) != 0) {
     vretour += att.getMailOfHellFire(
         s.getTalentValueById(41), s.getTalentById(41).actif);
+  }
+  if (s.weapon.idElement >= 6) {
+    if (s.getTalentValueById(26) != 0) {
+      vretour += att.getBuildUpBoost(
+          s.getTalentValueById(26), base, s.getTalentById(26).actif);
+    }
+  }
+
+  if (s.getTalentValueById(74) != 0) {
+    vretour +=
+        att.getJV(s.getTalentValueById(74), base, s.getTalentById(74).actif);
   }
   return vretour.round();
 }
@@ -332,6 +341,10 @@ double elem(Stuff s) {
       vretour += ele.getEveilDeSang(
           s.getTalentValueById(57), s.getTalentById(57).actif, s.weapon);
     }
+    if (s.getTalentValueById(140) != 0) {
+      vretour +=
+          ele.getUnion(s.getTalentValueById(140), s.getTalentById(140).actif);
+    }
     switch (s.weapon.idElement) {
       case 1:
         if (s.getTalentValueById(113) != 0) {
@@ -391,6 +404,41 @@ double elem(Stuff s) {
     if (s.getTalentValueById(41) != 0) {
       vretour += ele.getMailOfHellFire(
           s.getTalentValueById(41), vretour, s.getTalentById(41).actif);
+    }
+  } else if (s.weapon.idElement >= 6) {
+    if (s.getTalentValueById(128) != 0) {
+      vretour += affli.getSoifDeSang(
+          s.getTalentValueById(128), s.getTalentById(128).actif);
+    }
+    switch (s.weapon.idElement) {
+      case 6:
+        if (s.getTalentValueById(96) != 0) {
+          vretour += affli.getBoostAffliction(
+              s.getTalentValueById(96), s.getTalentById(96).actif);
+        }
+        break;
+      case 7:
+        if (s.getTalentValueById(99) != 0) {
+          vretour += affli.getBoostAffliction(
+              s.getTalentValueById(99), s.getTalentById(99).actif);
+        }
+        break;
+      case 8:
+        if (s.getTalentValueById(75) != 0) {
+          vretour += affli.getBoostAffliction(
+              s.getTalentValueById(75), s.getTalentById(75).actif);
+        }
+        break;
+      case 9:
+        if (s.getTalentValueById(48) != 0) {
+          vretour += affli.getBoostAffliction(
+              s.getTalentValueById(48), s.getTalentById(48).actif);
+        }
+        break;
+    }
+    if (s.getTalentValueById(0) != 0) {
+      vretour += affli.getAbandon(
+          s.getTalentValueById(0), vretour, s.getTalentById(0).actif);
     }
   }
   return vretour;

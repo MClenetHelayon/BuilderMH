@@ -418,3 +418,21 @@ double getMailOfHellFire(int i, bool actif) {
   }
   return vretour;
 }
+
+double getBuildUpBoost(int i, double actual, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = actual * 0.10;
+        break;
+      case 2:
+        vretour = actual * 0.15;
+        break;
+      case 3:
+        vretour = actual * 0.20;
+        break;
+    }
+  }
+  return vretour;
+}

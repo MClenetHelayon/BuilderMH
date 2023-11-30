@@ -186,3 +186,21 @@ double getLutte(int i, double actual, bool actif) {
   }
   return vretour;
 }
+
+double getUnion(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = 2;
+        break;
+      case 2:
+        vretour = 3;
+        break;
+      case 3:
+        vretour = 4;
+        break;
+    }
+  }
+  return vretour;
+}
