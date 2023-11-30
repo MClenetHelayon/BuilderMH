@@ -37,7 +37,11 @@ class _StatDrawerState extends State<StatDrawer> {
           if (s.weapon.niveau == "maitre") calamJowel(s, context),
           recapTalent(s, context),
           if (s.weapon is Arc) gArc(s, context),
-          if (s.weapon is CorneDeChasse) gCorne(s, context),
+          if (s.weapon is CorneDeChasse)
+            Card(
+                margin: const EdgeInsets.all(5),
+                color: primary,
+                child: simplyMusic(s.weapon as CorneDeChasse, context, false)),
           if (s.weapon is Insectoglaive && s.kinsect.id != 9999)
             gKinsect(s, context),
           if (s.weapon is Fusarbalete) getPrintBarreAmmo(s, context)

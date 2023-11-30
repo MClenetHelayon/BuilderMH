@@ -1,5 +1,5 @@
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
+import 'package:builder_mhrs/manager/img/kinsect.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
@@ -84,26 +84,40 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
       ]));
 }
 
-Widget morpho(MorphoHache morpho, BuildContext context) {
+Widget morpho(MorphoHache morpho, BuildContext context, bool img) {
   return morpho.valueFiole != 0
-      ? white("${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
-      : white(getSaFiole(morpho.typeFiole, context));
+      ? img
+          ? black(
+              "${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+          : white(
+              "${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+      : img
+          ? black(getSaFiole(morpho.typeFiole, context))
+          : white(getSaFiole(morpho.typeFiole, context));
 }
 
-Widget volto(VoltoHache volto, BuildContext context) {
-  return white(getCbFiole(volto.typeFiole, context));
+Widget volto(VoltoHache volto, BuildContext context, bool img) {
+  return img
+      ? black(getCbFiole(volto.typeFiole, context))
+      : white(getCbFiole(volto.typeFiole, context));
 }
 
-Widget lancecanon(Lancecanon gunlance, BuildContext context) {
+Widget lancecanon(Lancecanon gunlance, BuildContext context, bool img) {
   int niveau = gunlance.niveauCanon;
   if (Arme.augments) niveau = gunlance.niveauCanon + Arme.transcendance.shell;
-  return white(
-      "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} $niveau");
+  return img
+      ? black(
+          "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} $niveau")
+      : white(
+          "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(gunlance.typeCanon, context)} $niveau");
 }
 
-Widget insecto(Insectoglaive insect, BuildContext context) {
-  return white(
-      "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}");
+Widget insecto(Insectoglaive insect, BuildContext context, bool img) {
+  return img
+      ? black(
+          "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}")
+      : white(
+          "${AppLocalizations.of(context)!.kinsectLvl} : ${insect.niveauKinsect}");
 }
 
 Widget isDualBlade(Arme weapon, BuildContext context) {

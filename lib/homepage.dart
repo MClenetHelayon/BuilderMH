@@ -54,8 +54,8 @@ class _HomepageState extends State<Homepage> {
     switch (currentPage) {
       case DrawerSections.equipement:
         container =
-            expImg.buildCard(screen);
-            //BuilderPage();
+            //expImg.buildCard(screen);
+            const BuilderPage();
         break;
       case DrawerSections.parametres:
         container = SettingsPage(onLanguageChanged: (Locale newLocale) {

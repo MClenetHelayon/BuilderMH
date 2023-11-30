@@ -1,6 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorSharp.dart';
-import 'package:builder_mhrs/manager/img/simplyArmor.dart';
+import 'package:builder_mhrs/manager/img/armor.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ Widget doubleElemWhite(String image, int value, String image2, int value2) {
 
 Widget statBlack(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 15, width: 15),
+    Image.asset(img, height: 18, width: 18),
     const SizedBox(width: 3),
     black(stat),
   ]);
@@ -30,7 +30,7 @@ Widget statBlack(String img, String stat) {
 
 Widget statWhite(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 15, width: 15),
+    Image.asset(img, height: 18, width: 18),
     const SizedBox(width: 3),
     white(stat),
   ]);
@@ -63,10 +63,24 @@ Widget statComboSharp(int id, String stat) {
   ]);
 }
 
+Widget pMusic(String img, String stat, bool forImg) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    Image.asset(img, height: 40, width: 40),
+    const SizedBox(width: 3),
+    forImg ? black(stat) : white(stat)
+  ]);
+}
+
 Container statDefSimply(String img, int value) {
   return Container(
       margin: const EdgeInsets.only(right: 5),
       child: statWhite(img, value.toString()));
+}
+
+Container statDefSimplyImg(String img, int value) {
+  return Container(
+      margin: const EdgeInsets.only(right: 5),
+      child: statBlack(img, value.toString()));
 }
 
 Container statFlor(String img, int stat) {

@@ -1,6 +1,6 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
+import 'package:builder_mhrs/manager/img/element.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/armor/talentManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';

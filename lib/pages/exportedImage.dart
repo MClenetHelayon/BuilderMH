@@ -1,10 +1,9 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorScroll.dart';
+import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart' as img;
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/logic/calculStat.dart';
@@ -12,17 +11,8 @@ import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRechargement.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRecul.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getTirSpe.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKinsect.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinsect.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
 import 'package:builder_mhrs/manager/text/tranchant.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
@@ -44,9 +34,6 @@ import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/LameDouble.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/Lancecanon.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -107,7 +94,7 @@ Widget buildCard(Screen screen) {
                   verticalDivider(),
                   gOff(s, screen.context),
                   verticalDivider(),
-                  gSpeArme(s.weapon, screen.context),
+                  gSpeArme(s.weapon, screen.context, true),
                 ])),
           Weapon(screen),
           Armor(1, s.helmet, screen),
@@ -129,7 +116,7 @@ Widget buildCard(Screen screen) {
                     child: Column(children: [
                   gScroll(screen.context),
                   const Divider(color: Colors.black),
-                  gSpeArme(s.weapon, screen.context),
+                  gSpeArme(s.weapon, screen.context, true),
                   gDef(s, screen.context),
                   const Divider(color: Colors.black),
                   gOff(s, screen.context),
@@ -137,7 +124,9 @@ Widget buildCard(Screen screen) {
                   if (s.weapon.idElement != 0) gElem(s, screen.context),
                   if (s.weapon is Tranchant) gSharp(s, screen.context),
                   if (s.weapon is Arc) gArc(s, screen.context),
-                  if (s.weapon is CorneDeChasse) gCorne(s, screen.context),
+                  if (s.weapon is CorneDeChasse)
+                    simplyMusic(
+                        s.weapon as CorneDeChasse, screen.context, true),
                   if (s.weapon is Insectoglaive && s.kinsect.id != 9999)
                     gKinsect(s, screen.context),
                 ])),
@@ -471,48 +460,10 @@ Container printValueImg(String img, String t) {
 }
 
 Widget gDef(Stuff s, BuildContext context) {
-  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
-  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
-    fire = defFeu(s);
-    water = defEau(s);
-    thunder = defFoudre(s);
-    ice = defGlace(s);
-    drag = defDragon(s);
-  }
-  return Column(
-    children: [
-      title(AppLocalizations.of(context)!.def),
-      Container(
-          margin: const EdgeInsets.all(5),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply(vie, s.florelet.uVie + 150),
-                  gDefSimply(stam, s.florelet.uStam + 150),
-                  gDefSimply(def, defense(s)),
-                ]),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [gDefSimply(feu, fire), gDefSimply(eau, water)]),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply(foudre, thunder),
-                  gDefSimply(glace, ice),
-                  gDefSimply(dragon, drag),
-                ])
-              ]))
-    ],
-  );
-}
-
-Container gDefSimply(String img, int value) {
-  return Container(
-      margin: const EdgeInsets.only(right: 5),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 18, width: 18),
-        const SizedBox(width: 3),
-        Text(value.toString()),
-      ]));
+  return Column(children: [
+    title(AppLocalizations.of(context)!.def),
+    Container(margin: const EdgeInsets.all(5), child: allDef(s, context, true))
+  ]);
 }
 
 Widget gOff(Stuff s, BuildContext context) {
@@ -618,71 +569,15 @@ gKinsect(Stuff s, BuildContext context) {
       margin: const EdgeInsets.only(bottom: 5),
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Card(
-              color: secondary,
-              child: IconButton(
-                  onPressed: () {},
-                  iconSize: 20,
-                  icon: Image.asset(
-                    'images/arme/kinsect.png',
-                    fit: BoxFit.fill,
-                  ))),
-          title(AppLocalizations.of(context)!.insect),
+          afficheImgKinsect(),
+          title(AppLocalizations.of(context)!.insect)
         ]),
         Text(k.name),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          statBlack(
-            kAtt,
-            k.niveauKinsect[i.niveauKinsect][0].toString(),
-          ),
-          statBlack(
-            kVit,
-            k.niveauKinsect[i.niveauKinsect][1].toString(),
-          ),
-          statBlack(
-            kHeal,
-            k.niveauKinsect[i.niveauKinsect][2].toString(),
-          ),
-        ]),
+        statKinsect(k, i, true),
         Text(getTypeAttack(k.typeAttaque, context)),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(getTypeKinsect(k.typeKinsect[0], context)),
-          if (k.typeKinsect.length > 1)
-            Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
-                (k.typeKinsect.length > 2
-                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
-                    : "")),
-        ]),
+        boostKinsect(k, context, true),
         Text(getBoostKinsect(k.bonusKinsect, context))
       ]));
-}
-
-Widget printBoostKinsect(String img, String stat) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 10.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 20, width: 20),
-        const SizedBox(width: 3),
-        Text(stat),
-      ]));
-}
-
-gCorne(Stuff s, BuildContext context) {
-  CorneDeChasse horn = s.weapon as CorneDeChasse;
-  return Column(children: [
-    title(AppLocalizations.of(context)!.music),
-    printMusic(musique(0), horn.musique[0].name),
-    printMusic(musique(1), horn.musique[1].name),
-    printMusic(musique(2), horn.musique[2].name),
-  ]);
-}
-
-Widget printMusic(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 40, width: 40),
-    const SizedBox(width: 3),
-    Text(stat),
-  ]);
 }
 
 gArc(Stuff s, BuildContext context) {
@@ -712,60 +607,18 @@ gFusar(Stuff s, BuildContext context) {
   ]);
 }
 
-gSpeArme(Arme w, BuildContext context) {
-  String vretour = "";
-  if (w is Lancecanon) {
-    vretour =
-        "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(w.typeCanon, context)} ${w.niveauCanon}";
-  }
-  if (w is Insectoglaive) {
-    vretour =
-        "${AppLocalizations.of(context)!.kinsectLvl} : ${w.niveauKinsect}";
-  }
-  if (w is MorphoHache) {
-    vretour = w.valueFiole != 0
-        ? "${getSaFiole(w.typeFiole, context)}} ${w.valueFiole}"
-        : getSaFiole(w.typeFiole, context);
-  }
-  if (w is VoltoHache) {
-    vretour = getCbFiole(w.typeFiole, context);
-  }
-  if (vretour != "") {
-    return Column(children: [
-      title(AppLocalizations.of(context)!.specArme),
-      Text(vretour),
-      const Divider(color: Colors.black)
-    ]);
-  } else if (w is Fusarbalete) {
-    return Column(children: [
-      title(AppLocalizations.of(context)!.specArme),
-      Text(
-          "${AppLocalizations.of(context)!.mod} : ${getMod(w.mod, w, context)}"),
-      Text(getTirSpe(w, context)),
-      Text(w.sensDeviation != 0
-          ? '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
-          : '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)}'),
-      Text(
-          '${AppLocalizations.of(context)!.recul} ${getRecul(w.recul, context)}'),
-      Text(
-          '${AppLocalizations.of(context)!.recharge} ${getRechargement(w.rechargement, context)}'),
-      const Divider(color: Colors.black)
-    ]);
-  } else {
-    return Container();
-  }
-}
-
 gScroll(BuildContext context) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    boldOrange(AppLocalizations.of(context)!.scroll),
-    const SizedBox(width: 3),
-    Container(
-        height: 15,
-        width: 15,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1, color: sixth),
-            color: Stuff.scroll ? scrollO : scrollB))
-  ]);
+  return Container(
+      margin: const EdgeInsets.only(top: 5),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        boldOrange(AppLocalizations.of(context)!.scroll),
+        const SizedBox(width: 3),
+        Container(
+            height: 15,
+            width: 15,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: 1, color: sixth),
+                color: Stuff.scroll ? scrollO : scrollB))
+      ]));
 }

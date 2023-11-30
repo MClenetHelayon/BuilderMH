@@ -1,9 +1,10 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
-import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
+import 'package:builder_mhrs/manager/img/element.dart';
+import 'package:builder_mhrs/manager/img/kinsect.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
+import 'package:builder_mhrs/manager/img/weapon.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/logic/calculStat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
@@ -37,7 +38,7 @@ Widget g(Stuff s, BuildContext context) {
       color: primary,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        gSpeArme(s.weapon, context),
+        gSpeArme(s.weapon, context, false),
         gSimplyCard(0, s, context),
         const Divider(color: Colors.black),
         gSimplyCard(1, s, context),
@@ -111,35 +112,44 @@ Widget gOff(Stuff s, BuildContext context) {
 }
 
 Widget gDef(Stuff s, BuildContext context) {
-  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
-  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
-    fire = defFeu(s);
-    water = defEau(s);
-    thunder = defFoudre(s);
-    ice = defGlace(s);
-    drag = defDragon(s);
-  }
   return Column(children: [
     title(AppLocalizations.of(context)!.def),
-    Container(
-        color: primary,
-        child:
-            Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(vie, s.florelet.uVie + 150),
-            statDefSimply(stam, s.florelet.uStam + 150),
-            statDefSimply(def, defense(s)),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(feu, fire),
-            statDefSimply(eau, water),
-            statDefSimply(foudre, thunder),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(glace, ice),
-            statDefSimply(dragon, drag),
-          ])
-        ]))
+    Container(color: primary, child: allDef(s, context, false))
+  ]);
+}
+
+Widget allDef(Stuff s, BuildContext context, bool img) {
+  int fire = defFeu(s),
+      water = defEau(s),
+      thunder = defFoudre(s),
+      ice = defGlace(s),
+      drag = defDragon(s);
+  if (s.getTalentValueById(40) != 0 && Stuff.scroll) {
+    fire = 0;
+    water = 0;
+    thunder = 0;
+    ice = 0;
+    drag = 0;
+  }
+  return Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      img
+          ? statDefSimplyImg(vie, s.florelet.uVie + 150)
+          : statDefSimply(vie, s.florelet.uVie + 150),
+      img
+          ? statDefSimplyImg(stam, s.florelet.uStam + 150)
+          : statDefSimply(stam, s.florelet.uStam + 150),
+      img ? statDefSimplyImg(def, defense(s)) : statDefSimply(def, defense(s))
+    ]),
+    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      img ? statDefSimplyImg(feu, fire) : statDefSimply(feu, fire),
+      img ? statDefSimplyImg(eau, water) : statDefSimply(eau, water),
+      img ? statDefSimplyImg(foudre, thunder) : statDefSimply(foudre, thunder)
+    ]),
+    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      img ? statDefSimplyImg(glace, ice) : statDefSimply(glace, ice),
+      img ? statDefSimplyImg(dragon, drag) : statDefSimply(dragon, drag)
+    ])
   ]);
 }
 
@@ -263,12 +273,7 @@ gKinsect(Stuff s, BuildContext context) {
       color: primary,
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Card(
-              color: secondary,
-              child: IconButton(
-                  onPressed: () {},
-                  iconSize: 20,
-                  icon: Image.asset(ksct, fit: BoxFit.fill))),
+          afficheImgKinsect(),
           Container(
               margin: const EdgeInsets.only(bottom: 3),
               child: Column(children: [
@@ -276,52 +281,60 @@ gKinsect(Stuff s, BuildContext context) {
                 title(k.name)
               ]))
         ]),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString()),
-          statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString()),
-          statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())
-        ]),
+        statKinsect(k, i, false),
         white(getTypeAttack(k.typeAttaque, context)),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          white(getTypeKinsect(k.typeKinsect[0], context)),
-          if (k.typeKinsect.length > 1)
-            white(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
-                (k.typeKinsect.length > 2
-                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
-                    : ""))
-        ]),
+        boostKinsect(k, context, false),
         white(getBoostKinsect(k.bonusKinsect, context))
       ]));
 }
 
-Widget printBoostKinsect(String img, String stat) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 10.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 20, width: 20),
-        const SizedBox(width: 3),
-        Text(stat)
-      ]));
+Widget statKinsect(Kinsect k, Insectoglaive i, bool img) {
+  if (img) {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      statBlack(
+        kAtt,
+        k.niveauKinsect[i.niveauKinsect][0].toString(),
+      ),
+      statBlack(
+        kVit,
+        k.niveauKinsect[i.niveauKinsect][1].toString(),
+      ),
+      statBlack(
+        kHeal,
+        k.niveauKinsect[i.niveauKinsect][2].toString(),
+      )
+    ]);
+  } else {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString()),
+      statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString()),
+      statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())
+    ]);
+  }
 }
 
-gCorne(Stuff s, BuildContext context) {
-  CorneDeChasse horn = s.weapon as CorneDeChasse;
-  return Card(
-      margin: const EdgeInsets.all(5),
-      color: primary,
-      child: Column(children: [
-        title(AppLocalizations.of(context)!.music),
-        printMusic(musique(0), horn.musique[0].name),
-        printMusic(musique(1), horn.musique[1].name),
-        printMusic(musique(2), horn.musique[2].name)
-      ]));
+Widget boostKinsect(Kinsect k, BuildContext context, bool img) {
+  String type = k.typeKinsect.length > 1
+      ? getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+          (k.typeKinsect.length > 2
+              ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
+              : "")
+      : "";
+
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    img
+        ? black(getTypeKinsect(k.typeKinsect[0], context))
+        : white(getTypeKinsect(k.typeKinsect[0], context)),
+    if (k.typeKinsect.length > 1) img ? black(type) : white(type)
+  ]);
 }
 
-Widget printMusic(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 40, width: 40),
-    const SizedBox(width: 3),
-    white(stat)
+Widget simplyMusic(CorneDeChasse horn, BuildContext context, bool forImg) {
+  return Column(children: [
+    title(AppLocalizations.of(context)!.music),
+    pMusic(musique(0), horn.musique[0].name, forImg),
+    pMusic(musique(1), horn.musique[1].name, forImg),
+    pMusic(musique(2), horn.musique[2].name, forImg)
   ]);
 }
 
@@ -358,17 +371,17 @@ gArc(Stuff s, BuildContext context) {
       ]));
 }
 
-gSpeArme(Arme w, BuildContext context) {
+gSpeArme(Arme w, BuildContext context, bool img) {
   if (w is Lancecanon ||
       w is MorphoHache ||
       w is VoltoHache ||
       w is Insectoglaive) {
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
-      if (w is Lancecanon) lancecanon(w, context),
-      if (w is MorphoHache) morpho(w, context),
-      if (w is VoltoHache) volto(w, context),
-      if (w is Insectoglaive) insecto(w, context),
+      if (w is Lancecanon) lancecanon(w, context, img),
+      if (w is MorphoHache) morpho(w, context, img),
+      if (w is VoltoHache) volto(w, context, img),
+      if (w is Insectoglaive) insecto(w, context, img),
       const Divider(color: Colors.black)
     ]);
   } else if (w is Fusarbalete) {
