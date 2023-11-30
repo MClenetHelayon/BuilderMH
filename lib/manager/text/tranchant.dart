@@ -1,4 +1,4 @@
-import 'package:builder_mhrs/manager/mh/statManager.dart';
+import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 

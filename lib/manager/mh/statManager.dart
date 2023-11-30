@@ -4,9 +4,8 @@ import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/element.dart';
 import 'package:builder_mhrs/manager/img/kinsect.dart';
 import 'package:builder_mhrs/manager/img/raw.dart';
-import 'package:builder_mhrs/manager/img/weapon.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
-import 'package:builder_mhrs/manager/logic/calculStat.dart';
+import 'package:builder_mhrs/manager/logic/stat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
@@ -52,7 +51,7 @@ Widget g(Stuff s, BuildContext context) {
 Widget gSharp(Stuff s, BuildContext context) {
   return Column(children: [
     title(AppLocalizations.of(context)!.sharp),
-    sharpG(s, context),
+    sharpG(s, context, false),
   ]);
 }
 
@@ -232,27 +231,6 @@ Widget statOff(Arme weapon, BuildContext context) {
     isDualBlade(weapon, context),
     statWhite(def, weapon.defense.toString())
   ]);
-}
-
-List<int> allIntSharp(Stuff s) {
-  Tranchant tranch = s.weapon as Tranchant;
-  int rouge = tranch.rouge,
-      orange = tranch.orange,
-      jaune = tranch.jaune,
-      vert = tranch.vert,
-      bleu = tranch.bleu,
-      blanc = tranch.blanc,
-      violet = tranch.violet;
-  if (tranch.sharpBoost.isNotEmpty) {
-    rouge += sharp(s, 1);
-    orange += sharp(s, 2);
-    jaune += sharp(s, 3);
-    vert += sharp(s, 4);
-    bleu += sharp(s, 5);
-    blanc += sharp(s, 6);
-    violet += sharp(s, 7);
-  }
-  return [rouge, orange, jaune, vert, bleu, blanc, violet];
 }
 
 Widget SkillNumLogo(int level, int levelMax) {

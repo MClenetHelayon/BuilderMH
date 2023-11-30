@@ -1,6 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorSharp.dart';
-import 'package:builder_mhrs/manager/logic/calculSharp.dart';
+import 'package:builder_mhrs/manager/logic/sharp.dart';
+import 'package:builder_mhrs/manager/logic/stat.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/tranchant.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
@@ -13,29 +14,25 @@ Widget sharpStat(Tranchant sharp) {
       padding: const EdgeInsets.all(2),
       color: secondary,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [superColoring(4, sharp)]),
-          if (sharp.sharpBoost.isNotEmpty)
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  containerSimplyStat(7, 3, sharp.sharpBoost[0]),
-                  containerSimplyStat(7, 3, sharp.sharpBoost[1]),
-                  containerSimplyStat(7, 3, sharp.sharpBoost[2]),
-                  containerSimplyStat(7, 3, sharp.sharpBoost[3]),
-                  containerSimplyStat(7, 3, sharp.sharpBoost[4]),
-                ])
-        ],
-      ));
+                children: [superColoring(4, sharp)]),
+            if (sharp.sharpBoost.isNotEmpty)
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    for (int i = 0; i <= 4; i++)
+                      containerSimplyStat(7, 3, sharp.sharpBoost[i])
+                  ])
+          ]));
 }
 
-Widget sharpG(Stuff s, BuildContext context) {
+Widget sharpG(Stuff s, BuildContext context, bool img) {
   Tranchant sharp = s.weapon as Tranchant;
   s.setSharpRaw(getBoostRaw(s));
   s.setSharpElem(getBoostElem(s));
@@ -45,32 +42,27 @@ Widget sharpG(Stuff s, BuildContext context) {
         Container(
             color: secondary,
             child: IntrinsicWidth(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
                   superColoring(2, sharp),
-                  if (sharp.sharpBoost.isNotEmpty)
-                    containerSimplyStat(
-                        s.nbSavoirFaire >= 1 ? 15 : 7, 5, sharp.sharpBoost[0]),
-                  if (sharp.sharpBoost.isNotEmpty)
-                    containerSimplyStat(
-                        s.nbSavoirFaire >= 2 ? 15 : 7, 5, sharp.sharpBoost[1]),
-                  if (sharp.sharpBoost.isNotEmpty)
-                    containerSimplyStat(
-                        s.nbSavoirFaire >= 3 ? 15 : 7, 5, sharp.sharpBoost[2]),
-                  if (sharp.sharpBoost.isNotEmpty)
-                    containerSimplyStat(
-                        s.nbSavoirFaire >= 4 ? 15 : 7, 5, sharp.sharpBoost[3]),
-                  if (sharp.sharpBoost.isNotEmpty)
-                    containerSimplyStat(
-                        s.nbSavoirFaire >= 5 ? 15 : 7, 5, sharp.sharpBoost[4]),
-                ],
-              ),
-            )),
-        white(listTranchant(s)),
-        white("${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
-        white("${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
+                  for (int i = 1; i <= 5; i++)
+                    if (sharp.sharpBoost.isNotEmpty)
+                      containerSimplyStat(s.nbSavoirFaire >= i ? 15 : 7, 5,
+                          sharp.sharpBoost[(i - 1)]),
+                ]))),
+        img ? black(listTranchant(s)) : white(listTranchant(s)),
+        img
+            ? black(
+                "${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}")
+            : white(
+                "${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
+        img
+            ? black(
+                "${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}")
+            : white(
+                "${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
       ]));
 }
 
@@ -147,4 +139,25 @@ int getValueLastSharp(Tranchant t) {
       break;
   }
   return vretour;
+}
+
+List<int> allIntSharp(Stuff s) {
+  Tranchant tranch = s.weapon as Tranchant;
+  int rouge = tranch.rouge,
+      orange = tranch.orange,
+      jaune = tranch.jaune,
+      vert = tranch.vert,
+      bleu = tranch.bleu,
+      blanc = tranch.blanc,
+      violet = tranch.violet;
+  if (tranch.sharpBoost.isNotEmpty) {
+    rouge += sharp(s, 1);
+    orange += sharp(s, 2);
+    jaune += sharp(s, 3);
+    vert += sharp(s, 4);
+    bleu += sharp(s, 5);
+    blanc += sharp(s, 6);
+    violet += sharp(s, 7);
+  }
+  return [rouge, orange, jaune, vert, bleu, blanc, violet];
 }

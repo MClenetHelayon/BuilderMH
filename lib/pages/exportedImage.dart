@@ -4,16 +4,14 @@ import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart' as img;
 import 'package:builder_mhrs/manager/img/raw.dart';
-import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
-import 'package:builder_mhrs/manager/logic/calculStat.dart';
+import 'package:builder_mhrs/manager/logic/stat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKinsect.dart';
 import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
-import 'package:builder_mhrs/manager/text/tranchant.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
@@ -518,44 +516,9 @@ Widget gElem(Stuff s, BuildContext context) {
 }
 
 Widget gSharp(Stuff s, BuildContext context) {
-  Tranchant sharp = s.weapon as Tranchant;
   return Column(children: [
     title(AppLocalizations.of(context)!.sharp),
-    Container(
-        margin: const EdgeInsets.all(5),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-              color: secondary,
-              child: IntrinsicWidth(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    superColoring(3, sharp),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 1 ? 12 : 6, 5,
-                          sharp.sharpBoost[0]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 2 ? 12 : 6, 5,
-                          sharp.sharpBoost[1]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 3 ? 12 : 6, 5,
-                          sharp.sharpBoost[2]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 4 ? 12 : 6, 5,
-                          sharp.sharpBoost[3]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 5 ? 12 : 6, 5,
-                          sharp.sharpBoost[4]),
-                  ],
-                ),
-              )),
-          black(listTranchant(s)),
-          Text(
-              "${AppLocalizations.of(context)!.sharpRaw} : x${getBoostRaw(s)}"),
-          Text(
-              "${AppLocalizations.of(context)!.sharpElem} : x${getBoostElem(s)}"),
-        ])),
+    sharpG(s, context, true),
     if (s.weapon is CorneDeChasse ||
         (s.weapon is Insectoglaive && s.kinsect.id != 9999))
       const Divider(color: Colors.black),

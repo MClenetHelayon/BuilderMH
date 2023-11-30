@@ -2,7 +2,7 @@ import 'package:builder_mhrs/manager/mh/armor/armorManager.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/mh/armor/florManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/logic/calculSharp.dart';
+import 'package:builder_mhrs/manager/logic/sharp.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/popupManager.dart' as pop;
