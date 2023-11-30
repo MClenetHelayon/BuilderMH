@@ -17,7 +17,11 @@ String efe(Stuff s) {
 }
 
 String affBuildup(Stuff s) {
-  return (buildup(s)).toStringAsFixed(1);
+  return (buildup(s)).toStringAsFixed(2);
+}
+
+String critElem(Stuff s) {
+  return (critElementaire(s)).toStringAsFixed(2);
 }
 
 int sharp(Stuff s, int idColor) {
@@ -498,6 +502,15 @@ double buildup(Stuff s) {
   if (s.getTalentValueById(140) != 0) {
     vretour += affli.getBuildupUnion(
         s.getTalentValueById(140), vretour, s.getTalentById(140).actif);
+  }
+  return vretour;
+}
+
+double critElementaire(Stuff s) {
+  double vretour = s.critElem;
+  if (s.getTalentValueById(114) != 0) {
+    vretour += ele.getCritElement(
+        s.getTalentValueById(114), vretour, s.getTalentById(114).actif);
   }
   return vretour;
 }

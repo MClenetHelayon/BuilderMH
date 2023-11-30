@@ -74,13 +74,14 @@ Widget gElem(Stuff s, BuildContext context) {
               const SizedBox(width: 3),
               Image.asset(element(s.weapon.idElement), height: 16, width: 16),
             ]),
-            Center(
-                child: white(
-                    "${AppLocalizations.of(context)!.elemCritMultip} : x${s.critElem}")),
+            if (s.weapon.idElement <= 5)
+              Center(
+                  child: white(
+                      "${AppLocalizations.of(context)!.elemCritMultip} : x${critElem(s)}")),
             if (s.weapon.idElement >= 6)
               Center(
                   child: white(
-                      "${AppLocalizations.of(context)!.accAffli} : ~${s.affBuilup}"))
+                      "${AppLocalizations.of(context)!.accAffli} : ~${affBuildup(s)}")),
           ])
         ]))
   ]);
