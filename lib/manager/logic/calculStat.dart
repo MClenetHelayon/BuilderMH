@@ -16,6 +16,10 @@ String efe(Stuff s) {
       .toStringAsFixed(1);
 }
 
+String affBuildup(Stuff s) {
+  return (buildup(s)).toStringAsFixed(1);
+}
+
 int sharp(Stuff s, int idColor) {
   Tranchant sharp = s.weapon as Tranchant;
   int vretour = 0;
@@ -440,6 +444,45 @@ double elem(Stuff s) {
       vretour += affli.getAbandon(
           s.getTalentValueById(0), vretour, s.getTalentById(0).actif);
     }
+  }
+  return vretour;
+}
+
+double buildup(Stuff s) {
+  double vretour = s.affBuilup;
+  switch (s.weapon.idElement) {
+    case 6:
+      if (s.getTalentValueById(96) != 0) {
+        vretour += affli.getBuildupBoostAffliction(
+            s.getTalentValueById(96), vretour, s.getTalentById(96).actif);
+      }
+      break;
+    case 7:
+      if (s.getTalentValueById(99) != 0) {
+        vretour += affli.getBuildupBoostAffliction(
+            s.getTalentValueById(99), vretour, s.getTalentById(99).actif);
+      }
+      break;
+    case 8:
+      if (s.getTalentValueById(75) != 0) {
+        vretour += affli.getBuildupBoostAffliction(
+            s.getTalentValueById(75), vretour, s.getTalentById(75).actif);
+      }
+      break;
+    case 9:
+      if (s.getTalentValueById(48) != 0) {
+        vretour += affli.getBuildupBoostAffliction(
+            s.getTalentValueById(48), vretour, s.getTalentById(48).actif);
+      }
+      if (s.getTalentValueById(29) != 0) {
+        vretour += affli.getBuildupTeo(
+            s.getTalentValueById(29), vretour, s.getTalentById(29).actif);
+      }
+      break;
+  }
+  if (s.getTalentValueById(140) != 0) {
+    vretour += affli.getBuildupUnion(
+        s.getTalentValueById(140), vretour, s.getTalentById(140).actif);
   }
   return vretour;
 }

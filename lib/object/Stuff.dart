@@ -31,7 +31,11 @@ class Stuff {
   late Map<Talent, int> _talents = {};
   num affinite = 0;
   int nbSavoirFaire = 0;
-  double critBoost = 1.25, critElem = 1, sharpRaw = 0.5, sharpElem = 0.25;
+  double critBoost = 1.25,
+      critElem = 1,
+      affBuilup = 1,
+      sharpRaw = 0.5,
+      sharpElem = 0.25;
 
   Stuff(this.helmet, this.torso, this.gant, this.boucle, this.pied, this.charm,
       this.weapon, this.joyauxCalam, this.florelet, this.kinsect);

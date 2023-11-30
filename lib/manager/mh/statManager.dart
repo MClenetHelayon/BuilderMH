@@ -74,10 +74,13 @@ Widget gElem(Stuff s, BuildContext context) {
               const SizedBox(width: 3),
               Image.asset(element(s.weapon.idElement), height: 16, width: 16),
             ]),
-            Row(children: [
-              white(
-                  "${AppLocalizations.of(context)!.elemCritMultip} : x${s.critElem}")
-            ])
+            Center(
+                child: white(
+                    "${AppLocalizations.of(context)!.elemCritMultip} : x${s.critElem}")),
+            if (s.weapon.idElement >= 6)
+              Center(
+                  child: white(
+                      "${AppLocalizations.of(context)!.accAffli} : ~${s.affBuilup}"))
           ])
         ]))
   ]);
@@ -163,8 +166,7 @@ Widget recapTalent(Stuff s, BuildContext context) {
                   Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
-                          color:
-                              skill.key.actif ? primary : secondary),
+                          color: skill.key.actif ? primary : secondary),
                       padding: const EdgeInsets.all(5),
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -206,8 +208,7 @@ Widget statOff(Arme weapon, BuildContext context) {
     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Image.asset(affi, height: 16, width: 16),
       const SizedBox(width: 5),
-      Text("${weapon.affinite.toString()}%",
-          style: TextStyle(color: fourth))
+      Text("${weapon.affinite.toString()}%", style: TextStyle(color: fourth))
     ]),
     isDualBlade(weapon, context),
     statWhite(def, weapon.defense.toString())
