@@ -4,7 +4,7 @@ import 'package:builder_mhrs/object/Screen.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/pages/boost.dart';
 import 'package:builder_mhrs/pages/equipement.dart';
-import 'package:builder_mhrs/pages/exportedImage.dart';
+import 'package:builder_mhrs/pages/exportedImage.dart' as expImg;
 import 'package:builder_mhrs/pages/info.dart';
 import 'package:builder_mhrs/pages/menu/header-drawer.dart';
 import 'package:builder_mhrs/pages/menu/stat-drawer.dart';
@@ -54,8 +54,8 @@ class _HomepageState extends State<Homepage> {
     switch (currentPage) {
       case DrawerSections.equipement:
         container =
-            //expImg.buildCard(screen);
-            BuilderPage();
+            expImg.buildCard(screen);
+            //BuilderPage();
         break;
       case DrawerSections.parametres:
         container = SettingsPage(onLanguageChanged: (Locale newLocale) {
@@ -88,9 +88,9 @@ class _HomepageState extends State<Homepage> {
           const HeaderDrawer(),
           DrawerList(),
         ]))),
-        endDrawer: Drawer(
+        endDrawer: const Drawer(
             backgroundColor: secondary,
-            child: const SingleChildScrollView(
+            child: SingleChildScrollView(
                 child: Column(children: [StatDrawer()]))));
   }
 
@@ -108,7 +108,7 @@ class _HomepageState extends State<Homepage> {
                 final screen = Screen(1100, 750, s, context);
                 final controller = ScreenshotController();
                 final bytes = await controller.captureFromWidget(
-                  Material(child: buildCard(screen)),
+                  Material(child: expImg.buildCard(screen)),
                   pixelRatio: 3.0, // Facteur de mise à l'échelle de la capture
                   targetSize: s.weapon is Fusarbalete
                       ? const Size(1350, 800)

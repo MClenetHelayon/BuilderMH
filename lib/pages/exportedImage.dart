@@ -1,7 +1,11 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/color/colorScroll.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/img/imgManager.dart' as img;
 import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
 import 'package:builder_mhrs/manager/img/simplyRaw.dart';
+import 'package:builder_mhrs/manager/logic/calculSharp.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
 import 'package:builder_mhrs/manager/logic/calculStat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
@@ -45,7 +49,6 @@ import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import '../manager/img/imgManager.dart' as img;
 
 Widget buildCard(Screen screen) {
   Stuff s = screen.stuff;
@@ -66,26 +69,32 @@ Widget buildCard(Screen screen) {
             child: Column(children: [
               if (s.weapon.niveau == "maitre") calamJowel(s, screen.context),
               for (var skill in s.getAllTalents().entries)
-                Card(
-                    child: Container(
-                        margin: const EdgeInsets.only(
-                            bottom: 1, top: 1, left: 5, right: 5),
-                        child: Column(children: [
-                          switchColorBlack(
-                              skill.key.name, skill.key.levelMax, skill.value),
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                    child: SkillNumLogo(
-                                        skill.value, skill.key.levelMax)),
-                                Container(
-                                    child: switchColorBlack(
-                                        "${AppLocalizations.of(screen.context)!.niv} ${skill.value}",
-                                        skill.key.levelMax,
-                                        skill.value))
-                              ])
-                        ])))
+                Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: skill.key.actif ? fifth : Colors.blueGrey,
+                          width: 2),
+                      borderRadius: BorderRadius.circular(5),
+                      color: fourth,
+                    ),
+                    margin: const EdgeInsets.only(
+                        bottom: 1, top: 1, left: 5, right: 5),
+                    child: Column(children: [
+                      switchColorBlack(
+                          skill.key.name, skill.key.levelMax, skill.value),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                                child: SkillNumLogo(
+                                    skill.value, skill.key.levelMax)),
+                            Container(
+                                child: switchColorBlack(
+                                    "${AppLocalizations.of(screen.context)!.niv} ${skill.value}",
+                                    skill.key.levelMax,
+                                    skill.value))
+                          ])
+                    ]))
             ])),
         Expanded(
             child: Column(children: [
@@ -118,6 +127,8 @@ Widget buildCard(Screen screen) {
               child: Column(children: [
                 Card(
                     child: Column(children: [
+                  gScroll(screen.context),
+                  const Divider(color: Colors.black),
                   gSpeArme(s.weapon, screen.context),
                   gDef(s, screen.context),
                   const Divider(color: Colors.black),
@@ -159,8 +170,7 @@ Widget Weapon(Screen screen) {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
               margin: const EdgeInsets.only(top: 5),
-              child: Text(s.weapon.name,
-                  style: TextStyle(fontWeight: FontWeight.bold, color: fifth))),
+              child: boldOrange(s.weapon.name)),
           exportArmeStat(s.weapon),
         ])),
         Row(children: [
@@ -212,9 +222,7 @@ Widget Armor(int i, Armure a, Screen screen) {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-              margin: const EdgeInsets.only(top: 5),
-              child: Text(a.name,
-                  style: TextStyle(fontWeight: FontWeight.bold, color: fifth))),
+              margin: const EdgeInsets.only(top: 5), child: boldOrange(a.name)),
           exportTalent(a.talents)
         ])),
         Container(
@@ -262,8 +270,7 @@ Widget Charm(Screen screen) {
         Expanded(
             child: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(AppLocalizations.of(screen.context)!.tali,
-                style: TextStyle(fontWeight: FontWeight.bold, color: fifth)),
+            boldOrange(AppLocalizations.of(screen.context)!.tali),
             if (s.charm.talents.isEmpty) Container(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               if (s.charm.talents.isNotEmpty)
@@ -302,11 +309,7 @@ Widget Flor(Screen screen) {
         Flexible(
             flex: 3,
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Flexible(
-                  flex: 1,
-                  child: Text(s.florelet.name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, color: fifth))),
+              Flexible(flex: 1, child: boldOrange(s.florelet.name)),
               Flexible(flex: 2, child: Container()),
               Flexible(
                   flex: 0,
@@ -395,12 +398,9 @@ Container talent(String s) {
 Widget exportArmeStat(Arme weapon) {
   return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Row(children: [
-      printValueImg(
-          "images/elementaire/Attaque.webp", weapon.attaque.toString()),
-      printValueImg(
-          "images/elementaire/Defense.png", weapon.defense.toString()),
-      printValueImg(
-          "images/elementaire/Affinite.webp", "${weapon.affinite.toString()}%")
+      printValueImg(attaque, weapon.attaque.toString()),
+      printValueImg(def, weapon.defense.toString()),
+      printValueImg(affi, "${weapon.affinite.toString()}%")
     ]),
     Row(children: [
       if (weapon.idElement != 0)
@@ -460,17 +460,12 @@ Widget exportJowel(int slot, List<Joyaux> j, int id, Screen screen) {
 
 Container printValueImg(String img, String t) {
   return Container(
-    decoration: BoxDecoration(
-      color: secondary,
-      borderRadius: BorderRadius.circular(5),
-    ),
+    decoration:
+        BoxDecoration(color: secondary, borderRadius: BorderRadius.circular(5)),
     width: 60,
     height: 22,
     padding: const EdgeInsets.only(top: 1, bottom: 1, left: 2, right: 2),
-    margin: const EdgeInsets.only(
-      bottom: 3,
-      right: 3,
-    ),
+    margin: const EdgeInsets.only(bottom: 3, right: 3),
     child: statWhite(img, t),
   );
 }
@@ -547,19 +542,25 @@ Widget gElem(Stuff s, BuildContext context) {
         margin: const EdgeInsets.all(5),
         child: Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
+            black(
                 "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.efe : AppLocalizations.of(context)!.efa} : ${efe(s)}"),
             const SizedBox(width: 3),
             Image.asset(img.element(s.weapon.idElement), height: 16, width: 16),
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(
+            black(
                 "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.tre : AppLocalizations.of(context)!.tra} : ${elem(s)}"),
             const SizedBox(width: 3),
             Image.asset(img.element(s.weapon.idElement), height: 16, width: 16),
           ]),
-          Text(
-              "${AppLocalizations.of(context)!.elemCritMultip} : x${s.critElem}"),
+          if (s.weapon.idElement <= 5)
+            Center(
+                child: black(
+                    "${AppLocalizations.of(context)!.elemCritMultip} : x${critElem(s)}")),
+          if (s.weapon.idElement >= 6)
+            Center(
+                child: black(
+                    "${AppLocalizations.of(context)!.accAffli} : ~${affBuildup(s)}")),
         ])),
     const Divider(color: Colors.black),
   ]);
@@ -599,8 +600,10 @@ Widget gSharp(Stuff s, BuildContext context) {
                 ),
               )),
           black(listTranchant(s)),
-          Text("${AppLocalizations.of(context)!.sharpRaw} : x${s.sharpRaw}"),
-          Text("${AppLocalizations.of(context)!.sharpElem} : x${s.sharpElem}"),
+          Text(
+              "${AppLocalizations.of(context)!.sharpRaw} : x${getBoostRaw(s)}"),
+          Text(
+              "${AppLocalizations.of(context)!.sharpElem} : x${getBoostElem(s)}"),
         ])),
     if (s.weapon is CorneDeChasse ||
         (s.weapon is Insectoglaive && s.kinsect.id != 9999))
@@ -610,6 +613,7 @@ Widget gSharp(Stuff s, BuildContext context) {
 
 gKinsect(Stuff s, BuildContext context) {
   Kinsect k = s.kinsect;
+  Insectoglaive i = s.weapon as Insectoglaive;
   return Container(
       margin: const EdgeInsets.only(bottom: 5),
       child: Column(children: [
@@ -628,19 +632,16 @@ gKinsect(Stuff s, BuildContext context) {
         Text(k.name),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           statBlack(
-            "images/elementaire/AttKinsect.png",
-            k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][0]
-                .toString(),
+            kAtt,
+            k.niveauKinsect[i.niveauKinsect][0].toString(),
           ),
           statBlack(
-            "images/elementaire/VitKinsect.png",
-            k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][1]
-                .toString(),
+            kVit,
+            k.niveauKinsect[i.niveauKinsect][1].toString(),
           ),
           statBlack(
-            "images/elementaire/HealKinsect.png",
-            k.niveauKinsect[(s.weapon as Insectoglaive).niveauKinsect][2]
-                .toString(),
+            kHeal,
+            k.niveauKinsect[i.niveauKinsect][2].toString(),
           ),
         ]),
         Text(getTypeAttack(k.typeAttaque, context)),
@@ -753,4 +754,18 @@ gSpeArme(Arme w, BuildContext context) {
   } else {
     return Container();
   }
+}
+
+gScroll(BuildContext context) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    boldOrange(AppLocalizations.of(context)!.scroll),
+    const SizedBox(width: 3),
+    Container(
+        height: 15,
+        width: 15,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(width: 1, color: sixth),
+            color: Stuff.scroll ? scrollO : scrollB))
+  ]);
 }

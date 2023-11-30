@@ -51,15 +51,15 @@ class _BoostPageState extends State<BoostPage> {
                               });
                             },
                             child: Row(children: [
-                              boldBlack("Parchemin"),
+                              boldBlack(AppLocalizations.of(context)!.scroll),
                               const SizedBox(width: 3),
                               Container(
                                   height: 15,
                                   width: 15,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
-                                      border: Border.all(
-                                          width: 1, color: sixth),
+                                      border:
+                                          Border.all(width: 1, color: sixth),
                                       color: Stuff.scroll ? scrollO : scrollB))
                             ])))
                   ])),
