@@ -11,7 +11,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 Widget sharpStat(Tranchant sharp) {
   return Container(
       padding: const EdgeInsets.all(2),
-      color: getSecondary(),
+      color: secondary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -43,7 +43,7 @@ Widget sharpG(Stuff s, BuildContext context) {
       margin: const EdgeInsets.all(5),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
-            color: getSecondary(),
+            color: secondary,
             child: IntrinsicWidth(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

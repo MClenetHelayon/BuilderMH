@@ -79,7 +79,7 @@ Widget comboModFusar(
     Fusarbalete w, BuildContext context, Function(int?) onChanged) {
   return DropdownButton<int>(
     alignment: AlignmentDirectional.center,
-    dropdownColor: getPrimary(),
+    dropdownColor: primary,
     onChanged: onChanged,
     value: w.mod,
     items: <int>[0, 1, 2].map((int id) {

@@ -20,7 +20,7 @@ Widget arc(Arc bow, Stuff s, BuildContext context) {
           margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
           child: Column(children: [
             Text("${AppLocalizations.of(context)!.chargeShot} :"),
-            typeShoot(bow, context, s.getTalentById(82))
+            typeShoot(bow, context, s.getTalentValueById(82))
           ]))
     ]),
     Container(
@@ -47,7 +47,7 @@ Column typeShoot(Arc bow, BuildContext context, int skill) {
     white('${getTypeTir(bow.typeMun2, context)} ${bow.lvlTypeMun2}'),
     white('${getTypeTir(bow.typeMun3, context)} ${bow.lvlTypeMun3}'),
     Text('${getTypeTir(bow.typeMun4, context)} ${bow.lvlTypeMun4}',
-        style: TextStyle(color: skill == 0 ? Colors.grey : getFourth()))
+        style: TextStyle(color: skill == 0 ? Colors.grey : fourth))
   ]);
 }
 

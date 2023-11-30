@@ -25,12 +25,13 @@ class _StatDrawerState extends State<StatDrawer> {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
         overlays: [SystemUiOverlay.bottom]);
   }
+
   @override
   Widget build(BuildContext context) {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);
     Stuff s = stuffProvider.stuff!;
     return Container(
-        color: getSecondary(),
+        color: secondary,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           g(s, context),
           if (s.weapon.niveau == "maitre") calamJowel(s, context),

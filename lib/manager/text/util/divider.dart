@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 Widget verticalDivider() {
   return Container(
     height: 50.0,
-    color: getThird(), // Couleur du séparateur
+    color: third, // Couleur du séparateur
     width: 1.0, // Épaisseur du séparateur
   );
 }

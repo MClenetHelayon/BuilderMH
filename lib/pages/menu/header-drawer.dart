@@ -22,7 +22,7 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: getSecondary(),
+        color: secondary,
         width: double.infinity,
         height: 200,
         padding: const EdgeInsets.only(top: 20.0, left: 20.0),
@@ -36,10 +36,10 @@ class _HeaderDrawerState extends State<HeaderDrawer> {
           const SizedBox(
             height: 10,
           ),
-          Text("Builder MHRS",
-              style: TextStyle(color: getFourth(), fontSize: 20)),
+          const Text("Builder MHRS",
+              style: TextStyle(color: fourth, fontSize: 20)),
           Text(AppLocalizations.of(context)!.creator,
-              style: TextStyle(color: getThird(), fontSize: 20)),
+              style: const TextStyle(color: third, fontSize: 20)),
         ]));
   }
 }

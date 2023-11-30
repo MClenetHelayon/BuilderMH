@@ -6,17 +6,17 @@ Text blue(String t) {
 }
 
 Text black(String t) {
-  return Text(t, style: TextStyle(color: getSecondary()));
+  return Text(t, style: const TextStyle(color: secondary));
 }
 
 Text white(String t) {
-  return Text(t, style: TextStyle(color: getFourth()));
+  return Text(t, style: const TextStyle(color: fourth));
 }
 
 Text whiteBoldUnderligne(String t) {
   return Text(t,
-      style: TextStyle(
-          color: getFourth(),
+      style: const TextStyle(
+          color: fourth,
           fontWeight: FontWeight.bold,
           decoration: TextDecoration.underline));
 }
@@ -24,26 +24,26 @@ Text whiteBoldUnderligne(String t) {
 Text switchColorWhite(String t, int max, num value) {
   return Text(t,
       style: TextStyle(
-          color: value <= max && value > 0 ? getFourth() : Colors.red));
+          color: value <= max && value > 0 ? fourth : Colors.red));
 }
 
 Text switchColorBlack(String t, int max, num value) {
   return Text(t,
       style: TextStyle(
-          color: value <= max && value > 0 ? getSecondary() : Colors.red));
+          color: value <= max && value > 0 ? secondary : Colors.red));
 }
 
 Text boldBlack(String t) {
   return Text(t,
-      style: TextStyle(color: getSixth(), fontWeight: FontWeight.bold));
+      style: const TextStyle(color: sixth, fontWeight: FontWeight.bold));
 }
 
 Text boldWhite(String t) {
   return Text(t,
-      style: TextStyle(color: getFourth(), fontWeight: FontWeight.bold));
+      style: const TextStyle(color: fourth, fontWeight: FontWeight.bold));
 }
 
 Text boldOrange(String t) {
   return Text(t,
-      style: TextStyle(color: getFifth(), fontWeight: FontWeight.bold));
+      style: const TextStyle(color: fifth, fontWeight: FontWeight.bold));
 }

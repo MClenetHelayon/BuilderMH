@@ -1,6 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/simplyElement.dart';
+import 'package:builder_mhrs/manager/img/simplyRaw.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
-import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/mh/armor/talentManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
@@ -19,7 +20,14 @@ Widget armorTopInfo(Armure armure) {
               margin: const EdgeInsets.only(bottom: 20.0),
               child: title(armure.name))
         ]),
-        statDef(armure),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          statWhite(def, armure.defense.toString()),
+          statWhite(feu, armure.feu.toString()),
+          statWhite(eau, armure.eau.toString()),
+          statWhite(foudre, armure.foudre.toString()),
+          statWhite(glace, armure.glace.toString()),
+          statWhite(dragon, armure.dragon.toString())
+        ])
       ]));
 }
 
@@ -57,17 +65,17 @@ Widget armorSlotCasque(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCasque(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCasque(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCasque(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
@@ -78,17 +86,17 @@ Widget armorSlotPlastron(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauPlastron(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauPlastron(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauPlastron(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
@@ -99,17 +107,17 @@ Widget armorSlotBras(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauBras(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauBras(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauBras(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
@@ -120,17 +128,17 @@ Widget armorSlotCeinture(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCeinture(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCeinture(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauCeinture(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
@@ -141,17 +149,17 @@ Widget armorSlotJambiere(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauJambiere(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauJambiere(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: getPrimary(),
+            color: primary,
             child: joyauJambiere(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
@@ -168,17 +176,17 @@ Widget TalisJoyau(
       if (s.charm.slots.isNotEmpty)
         if (s.charm.slots[0] != 0)
           Card(
-              color: getPrimary(),
+              color: primary,
               child: joyauTalisman(s.charm.slots[0], 0, s, onUpdated)),
       if (s.charm.slots.length >= 2)
         if (s.charm.slots[1] != 0)
           Card(
-              color: getPrimary(),
+              color: primary,
               child: joyauTalisman(s.charm.slots[1], 1, s, onUpdated)),
       if (s.charm.slots.length == 3)
         if (s.charm.slots[2] != 0)
           Card(
-              color: getPrimary(),
+              color: primary,
               child: joyauTalisman(s.charm.slots[2], 2, s, onUpdated)),
     ])
   ]);

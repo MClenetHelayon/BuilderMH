@@ -36,26 +36,21 @@ class _LoadScreen extends State<LoadScreen> {
     await Future.delayed(
         const Duration(milliseconds: 90)); // Attendre 2 secondes
 
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => App(),
-    ));
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => App()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: getSecondary(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(logo,
-                height: 200, width: 200), // Remplacez par votre image
-            const SizedBox(height: 20),
-            LinearProgressIndicator(value: _progress), // Barre de chargement
-          ],
-        ),
-      ),
-    );
+        body: Container(
+            color: secondary,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Image.asset(logo,
+                  height: 200, width: 200), // Remplacez par votre image
+              const SizedBox(height: 20),
+              LinearProgressIndicator(value: _progress) // Barre de chargement
+            ])));
   }
 }

@@ -9,7 +9,7 @@ Widget getCardArmorPopup(Armure armor, BuildContext context) {
       margin: const EdgeInsets.only(top: 5, left: 10, right: 10),
       child: TextButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(getFourth())),
+              backgroundColor: MaterialStateProperty.all<Color>(fourth)),
           onPressed: () {
             Navigator.of(context).pop(armor);
           },

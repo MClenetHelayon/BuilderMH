@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Talisman.dart';
 
-import '../manager/mh/skill/calculManager.dart' as aff;
+import '../manager/logic/calculStat.dart' as aff;
 import 'armor/Bras.dart';
 import 'armor/Casque.dart';
 import 'armor/Ceinture.dart';
@@ -14,9 +14,9 @@ import 'JoyauCalam.dart';
 import 'Talent.dart';
 
 class Stuff {
+  static bool scroll = true;
   static String local = 'fr';
   static List<Talent> lSkill = [];
-  late Map<Talent, int> _talents = {};
   static List<Joyaux> ljowel = [];
   late Casque helmet;
   late Plastron torso;
@@ -28,9 +28,14 @@ class Stuff {
   late JoyauxCalam joyauxCalam;
   late Florelet florelet;
   late Kinsect kinsect;
+  late Map<Talent, int> _talents = {};
   num affinite = 0;
   int nbSavoirFaire = 0;
-  double critBoost = 1.25, critElem = 1, sharpRaw = 0.5, sharpElem = 0.25;
+  double critBoost = 1.25,
+      critElem = 1,
+      affBuilup = 1,
+      sharpRaw = 0.5,
+      sharpElem = 0.25;
 
   Stuff(this.helmet, this.torso, this.gant, this.boucle, this.pied, this.charm,
       this.weapon, this.joyauxCalam, this.florelet, this.kinsect);
@@ -94,7 +99,7 @@ class Stuff {
           return a.key.id.compareTo(b.key.id);
         }),
     );
-    nbSavoirFaire = getTalentById(125);
+    nbSavoirFaire = getTalentValueById(125);
     affinite = aff.affinite(this);
   }
 
@@ -137,12 +142,21 @@ class Stuff {
     }
   }
 
-  int getTalentById(int keyId) {
+  int getTalentValueById(int keyId) {
     for (var entry in _talents.entries) {
       if (entry.key.id == keyId) {
         return entry.value;
       }
     }
     return 0;
+  }
+
+  Talent getTalentById(int keyId) {
+    for (var entry in _talents.entries) {
+      if (entry.key.id == keyId) {
+        return entry.key;
+      }
+    }
+    return Talent.getBase();
   }
 }

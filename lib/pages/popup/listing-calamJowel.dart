@@ -147,7 +147,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          getFourth())),
+                                          fourth)),
                               onPressed: () {
                                 Navigator.of(context).pop(calamJowel);
                               },
@@ -164,7 +164,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                 backgroundColor: MaterialStateProperty.all<
                                         Color>(
-                                    const Color.fromARGB(255, 255, 255, 255)),
+                                    fourth),
                               ),
                               onPressed: () {
                                 Navigator.of(context).pop(calamJowel);
