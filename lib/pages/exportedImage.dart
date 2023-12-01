@@ -1,34 +1,19 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorScroll.dart';
+import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart' as img;
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
-import 'package:builder_mhrs/manager/logic/calculSharp.dart';
-import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
-import 'package:builder_mhrs/manager/logic/calculStat.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
+import 'package:builder_mhrs/manager/mh/armor/florManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
-import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/cbTypeFiole.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getDeviation.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getMod.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRechargement.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getRecul.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/fusarb/getTirSpe.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/glTypeCanon.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getBoostKinsect.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeAttaque.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinsect.dart';
-import 'package:builder_mhrs/manager/text/localization/arme/saTypeFiole.dart';
-import 'package:builder_mhrs/manager/text/tranchant.dart';
+import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/object/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
-import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Screen.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
@@ -44,9 +29,6 @@ import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/CornedeChasse.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/LameDouble.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/Lancecanon.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/MorphoHache.dart';
-import 'package:builder_mhrs/object/weapon/tranchant/VoltoHache.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -66,36 +48,7 @@ Widget buildCard(Screen screen) {
             width:
                 s.weapon is Fusarbalete ? screen.width / 6 : screen.width / 5,
             height: screen.height,
-            child: Column(children: [
-              if (s.weapon.niveau == "maitre") calamJowel(s, screen.context),
-              for (var skill in s.getAllTalents().entries)
-                Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: skill.key.actif ? fifth : Colors.blueGrey,
-                          width: 2),
-                      borderRadius: BorderRadius.circular(5),
-                      color: fourth,
-                    ),
-                    margin: const EdgeInsets.only(
-                        bottom: 1, top: 1, left: 5, right: 5),
-                    child: Column(children: [
-                      switchColorBlack(
-                          skill.key.name, skill.key.levelMax, skill.value),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                                child: SkillNumLogo(
-                                    skill.value, skill.key.levelMax)),
-                            Container(
-                                child: switchColorBlack(
-                                    "${AppLocalizations.of(screen.context)!.niv} ${skill.value}",
-                                    skill.key.levelMax,
-                                    skill.value))
-                          ])
-                    ]))
-            ])),
+            child: recapTalentImg(s, screen.context)),
         Expanded(
             child: Column(children: [
           if (s.weapon is Fusarbalete)
@@ -103,11 +56,11 @@ Widget buildCard(Screen screen) {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                  gDef(s, screen.context),
+                  gDef(s, screen.context, true),
                   verticalDivider(),
-                  gOff(s, screen.context),
+                  gOff(s, screen.context, true),
                   verticalDivider(),
-                  gSpeArme(s.weapon, screen.context),
+                  gSpeArme(s, screen.context, true),
                 ])),
           Weapon(screen),
           Armor(1, s.helmet, screen),
@@ -129,17 +82,20 @@ Widget buildCard(Screen screen) {
                     child: Column(children: [
                   gScroll(screen.context),
                   const Divider(color: Colors.black),
-                  gSpeArme(s.weapon, screen.context),
-                  gDef(s, screen.context),
-                  const Divider(color: Colors.black),
-                  gOff(s, screen.context),
-                  const Divider(color: Colors.black),
-                  if (s.weapon.idElement != 0) gElem(s, screen.context),
-                  if (s.weapon is Tranchant) gSharp(s, screen.context),
+                  gSpeArme(s, screen.context, true),
+                  gDef(s, screen.context, true),
+                  gOff(s, screen.context, true),
+                  if (s.weapon.idElement != 0) gElem(s, screen.context, true),
+                  if (s.weapon is Tranchant) gSharp(s, screen.context, true),
                   if (s.weapon is Arc) gArc(s, screen.context),
-                  if (s.weapon is CorneDeChasse) gCorne(s, screen.context),
+                  if (s.weapon is CorneDeChasse)
+                    simplyMusic(
+                        s.weapon as CorneDeChasse, screen.context, true),
+                  if (s.weapon is CorneDeChasse ||
+                      (s.weapon is Insectoglaive && s.kinsect.id != 9999))
+                    const Divider(color: Colors.black),
                   if (s.weapon is Insectoglaive && s.kinsect.id != 9999)
-                    gKinsect(s, screen.context),
+                    gKinsectImg(s, screen.context),
                 ])),
               ])),
         if (s.weapon is Fusarbalete)
@@ -148,45 +104,39 @@ Widget buildCard(Screen screen) {
               width: screen.width / 3.25,
               height: screen.height,
               child: Column(children: [
-                Card(
-                    child: Column(children: [
-                  gFusar(s, screen.context),
-                ])),
+                Card(child: Column(children: [gFusar(s, screen.context)]))
               ])),
       ]));
 }
 
 Widget Weapon(Screen screen) {
   Stuff s = screen.stuff;
+  Arme a = s.weapon;
   List<Joyaux> j = Arme.listJoyaux;
   return Card(
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(color: secondary, child: icon(0, false, s)),
+          Card(color: secondary, child: afficheIconArmorImg(s, 0, false)),
         ]),
         Expanded(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-              margin: const EdgeInsets.only(top: 5),
-              child: boldOrange(s.weapon.name)),
-          exportArmeStat(s.weapon),
+              margin: const EdgeInsets.only(top: 5), child: boldOrange(a.name)),
+          exportArmeStat(a),
+          if (a.niveau == "maitre" && Arme.augments) listAugmentImg(a)
         ])),
         Row(children: [
-          if (s.weapon.niveau == "maitre")
-            exportCalam(s.weapon.slotCalamite, screen),
+          if (a.niveau == "maitre") exportCalam(a.slotCalamite, screen),
           Container(
               margin: const EdgeInsets.only(right: 5),
               child: Column(children: [
                 const SizedBox(height: 4),
-                if (s.weapon.slots.isEmpty) Container(),
-                if (s.weapon.slots.isNotEmpty)
-                  exportJowel(s.weapon.slots[0], j, 0, screen),
-                if (s.weapon.slots.length >= 2)
-                  exportJowel(s.weapon.slots[1], j, 1, screen),
-                if (s.weapon.slots.length == 3)
-                  exportJowel(s.weapon.slots[2], j, 2, screen),
+                if (a.slots.isEmpty) Container(),
+                if (a.slots.isNotEmpty) exportJowel(a.slots[0], j, 0, screen),
+                if (a.slots.length >= 2) exportJowel(a.slots[1], j, 1, screen),
+                if (a.slots.length == 3) exportJowel(a.slots[2], j, 2, screen),
               ]))
         ])
       ]));
@@ -216,7 +166,7 @@ Widget Armor(int i, Armure a, Screen screen) {
       color: const Color.fromRGBO(255, 255, 255, 1),
       child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
         Column(children: [
-          Card(color: secondary, child: icon(i, true, s)),
+          Card(color: secondary, child: afficheIconArmorImg(s, i, true)),
         ]),
         Expanded(
             child:
@@ -237,36 +187,14 @@ Widget Armor(int i, Armure a, Screen screen) {
       ]));
 }
 
-Widget calamJowel(Stuff s, BuildContext context) {
-  return Card(
-      child: Container(
-          padding: const EdgeInsets.all(5),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("${AppLocalizations.of(context)!.calamJowel} : "),
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-              s.joyauxCalam.slot != 0
-                  ? Row(children: [
-                      Text(
-                        s.joyauxCalam.talentName,
-                      ),
-                      const SizedBox(width: 5),
-                      Image.asset(slotCalam(s.weapon.slotCalamite),
-                          height: 22, width: 22),
-                    ])
-                  : Text(AppLocalizations.of(context)!.none),
-            ])
-          ])));
-}
-
 Widget Charm(Screen screen) {
   Stuff s = screen.stuff;
   return Card(
       color: fourth,
       child: Row(children: [
-        Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Card(color: secondary, child: icon(7, true, s))]),
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Card(color: secondary, child: afficheIconArmorImg(s, 7, true))
+        ]),
         Expanded(
             child: Row(children: [
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -298,73 +226,28 @@ Widget Charm(Screen screen) {
 
 Widget Flor(Screen screen) {
   Stuff s = screen.stuff;
+  Florelet f = s.florelet;
   return Card(
       color: fourth,
       child: Row(children: [
         Flexible(
-            flex: 1,
+            flex: 0,
             child: Column(children: [
-              Card(color: secondary, child: icon(6, true, s)),
+              Card(color: secondary, child: afficheIconArmorImg(s, 6, true)),
             ])),
         Flexible(
             flex: 3,
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Flexible(flex: 1, child: boldOrange(s.florelet.name)),
+              Flexible(flex: 1, child: boldOrange(f.name)),
               Flexible(flex: 2, child: Container()),
               Flexible(
                   flex: 0,
-                  child: Row(children: [
-                    Column(children: [
-                      Container(
-                        child: printValueImg("images/elementaire/Vie.png",
-                            s.florelet.uVie.toString()),
-                      ),
-                      Container(
-                        child: printValueImg("images/elementaire/Vie.png",
-                            s.florelet.gVie.toString()),
-                      ),
-                    ]),
-                    Column(children: [
-                      Container(
-                        child: printValueImg("images/elementaire/Stam.png",
-                            s.florelet.uStam.toString()),
-                      ),
-                      Container(
-                        child: printValueImg("images/elementaire/Stam.png",
-                            s.florelet.gStam.toString()),
-                      ),
-                    ]),
-                    Column(children: [
-                      Container(
-                        child: printValueImg("images/elementaire/Attaque.webp",
-                            s.florelet.uAtt.toString()),
-                      ),
-                      Container(
-                        child: printValueImg("images/elementaire/Attaque.webp",
-                            s.florelet.gAtt.toString()),
-                      ),
-                    ]),
-                    Column(children: [
-                      Container(
-                        child: printValueImg("images/elementaire/Defense.png",
-                            s.florelet.uDef.toString()),
-                      ),
-                      Container(
-                        child: printValueImg("images/elementaire/Defense.png",
-                            s.florelet.gDef.toString()),
-                      )
-                    ])
+                  child: Column(children: [
+                    rowFlor(f.uVie, f.uStam, f.uAtt, f.uDef, true),
+                    rowFlor(f.gVie, f.gStam, f.gAtt, f.gDef, true)
                   ]))
             ]))
       ]));
-}
-
-Widget icon(int i, bool isArmor, Stuff s) {
-  return IconButton(
-      onPressed: () {},
-      iconSize: 40,
-      icon: Image.asset(isArmor ? img.armure(i) : img.arme(s.weapon.categorie),
-          fit: BoxFit.fill));
 }
 
 Widget exportTalent(List<Talent> t) {
@@ -470,221 +353,6 @@ Container printValueImg(String img, String t) {
   );
 }
 
-Widget gDef(Stuff s, BuildContext context) {
-  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
-  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
-    fire = defFeu(s);
-    water = defEau(s);
-    thunder = defFoudre(s);
-    ice = defGlace(s);
-    drag = defDragon(s);
-  }
-  return Column(
-    children: [
-      title(AppLocalizations.of(context)!.def),
-      Container(
-          margin: const EdgeInsets.all(5),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply(vie, s.florelet.uVie + 150),
-                  gDefSimply(stam, s.florelet.uStam + 150),
-                  gDefSimply(def, defense(s)),
-                ]),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [gDefSimply(feu, fire), gDefSimply(eau, water)]),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  gDefSimply(foudre, thunder),
-                  gDefSimply(glace, ice),
-                  gDefSimply(dragon, drag),
-                ])
-              ]))
-    ],
-  );
-}
-
-Container gDefSimply(String img, int value) {
-  return Container(
-      margin: const EdgeInsets.only(right: 5),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 18, width: 18),
-        const SizedBox(width: 3),
-        Text(value.toString()),
-      ]));
-}
-
-Widget gOff(Stuff s, BuildContext context) {
-  return Column(children: [
-    title(AppLocalizations.of(context)!.att),
-    Container(
-        margin: const EdgeInsets.all(5),
-        child: Column(children: [
-          Text(
-              "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}"),
-          Text("${AppLocalizations.of(context)!.efr} : ${efr(s)}"),
-          Text("${AppLocalizations.of(context)!.trr} : ${row(s).toString()}"),
-          switchColorBlack(
-              "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
-              100,
-              s.affinite),
-          Text(
-              "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}")
-        ]))
-  ]);
-}
-
-Widget gElem(Stuff s, BuildContext context) {
-  return Column(children: [
-    title(AppLocalizations.of(context)!.e),
-    Container(
-        margin: const EdgeInsets.all(5),
-        child: Column(children: [
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            black(
-                "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.efe : AppLocalizations.of(context)!.efa} : ${efe(s)}"),
-            const SizedBox(width: 3),
-            Image.asset(img.element(s.weapon.idElement), height: 16, width: 16),
-          ]),
-          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            black(
-                "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.tre : AppLocalizations.of(context)!.tra} : ${elem(s)}"),
-            const SizedBox(width: 3),
-            Image.asset(img.element(s.weapon.idElement), height: 16, width: 16),
-          ]),
-          if (s.weapon.idElement <= 5)
-            Center(
-                child: black(
-                    "${AppLocalizations.of(context)!.elemCritMultip} : x${critElem(s)}")),
-          if (s.weapon.idElement >= 6)
-            Center(
-                child: black(
-                    "${AppLocalizations.of(context)!.accAffli} : ~${affBuildup(s)}")),
-        ])),
-    const Divider(color: Colors.black),
-  ]);
-}
-
-Widget gSharp(Stuff s, BuildContext context) {
-  Tranchant sharp = s.weapon as Tranchant;
-  return Column(children: [
-    title(AppLocalizations.of(context)!.sharp),
-    Container(
-        margin: const EdgeInsets.all(5),
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Container(
-              color: secondary,
-              child: IntrinsicWidth(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    superColoring(3, sharp),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 1 ? 12 : 6, 5,
-                          sharp.sharpBoost[0]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 2 ? 12 : 6, 5,
-                          sharp.sharpBoost[1]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 3 ? 12 : 6, 5,
-                          sharp.sharpBoost[2]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 4 ? 12 : 6, 5,
-                          sharp.sharpBoost[3]),
-                    if (sharp.sharpBoost.isNotEmpty)
-                      containerSimplyStat(s.nbSavoirFaire >= 5 ? 12 : 6, 5,
-                          sharp.sharpBoost[4]),
-                  ],
-                ),
-              )),
-          black(listTranchant(s)),
-          Text(
-              "${AppLocalizations.of(context)!.sharpRaw} : x${getBoostRaw(s)}"),
-          Text(
-              "${AppLocalizations.of(context)!.sharpElem} : x${getBoostElem(s)}"),
-        ])),
-    if (s.weapon is CorneDeChasse ||
-        (s.weapon is Insectoglaive && s.kinsect.id != 9999))
-      const Divider(color: Colors.black),
-  ]);
-}
-
-gKinsect(Stuff s, BuildContext context) {
-  Kinsect k = s.kinsect;
-  Insectoglaive i = s.weapon as Insectoglaive;
-  return Container(
-      margin: const EdgeInsets.only(bottom: 5),
-      child: Column(children: [
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Card(
-              color: secondary,
-              child: IconButton(
-                  onPressed: () {},
-                  iconSize: 20,
-                  icon: Image.asset(
-                    'images/arme/kinsect.png',
-                    fit: BoxFit.fill,
-                  ))),
-          title(AppLocalizations.of(context)!.insect),
-        ]),
-        Text(k.name),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          statBlack(
-            kAtt,
-            k.niveauKinsect[i.niveauKinsect][0].toString(),
-          ),
-          statBlack(
-            kVit,
-            k.niveauKinsect[i.niveauKinsect][1].toString(),
-          ),
-          statBlack(
-            kHeal,
-            k.niveauKinsect[i.niveauKinsect][2].toString(),
-          ),
-        ]),
-        Text(getTypeAttack(k.typeAttaque, context)),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(getTypeKinsect(k.typeKinsect[0], context)),
-          if (k.typeKinsect.length > 1)
-            Text(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
-                (k.typeKinsect.length > 2
-                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
-                    : "")),
-        ]),
-        Text(getBoostKinsect(k.bonusKinsect, context))
-      ]));
-}
-
-Widget printBoostKinsect(String img, String stat) {
-  return Container(
-      margin: const EdgeInsets.only(bottom: 10.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 20, width: 20),
-        const SizedBox(width: 3),
-        Text(stat),
-      ]));
-}
-
-gCorne(Stuff s, BuildContext context) {
-  CorneDeChasse horn = s.weapon as CorneDeChasse;
-  return Column(children: [
-    title(AppLocalizations.of(context)!.music),
-    printMusic(musique(0), horn.musique[0].name),
-    printMusic(musique(1), horn.musique[1].name),
-    printMusic(musique(2), horn.musique[2].name),
-  ]);
-}
-
-Widget printMusic(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 40, width: 40),
-    const SizedBox(width: 3),
-    Text(stat),
-  ]);
-}
-
 gArc(Stuff s, BuildContext context) {
   Arc bow = s.weapon as Arc;
   return Column(children: [
@@ -712,60 +380,18 @@ gFusar(Stuff s, BuildContext context) {
   ]);
 }
 
-gSpeArme(Arme w, BuildContext context) {
-  String vretour = "";
-  if (w is Lancecanon) {
-    vretour =
-        "${AppLocalizations.of(context)!.canon} : ${getTypeCanon(w.typeCanon, context)} ${w.niveauCanon}";
-  }
-  if (w is Insectoglaive) {
-    vretour =
-        "${AppLocalizations.of(context)!.kinsectLvl} : ${w.niveauKinsect}";
-  }
-  if (w is MorphoHache) {
-    vretour = w.valueFiole != 0
-        ? "${getSaFiole(w.typeFiole, context)}} ${w.valueFiole}"
-        : getSaFiole(w.typeFiole, context);
-  }
-  if (w is VoltoHache) {
-    vretour = getCbFiole(w.typeFiole, context);
-  }
-  if (vretour != "") {
-    return Column(children: [
-      title(AppLocalizations.of(context)!.specArme),
-      Text(vretour),
-      const Divider(color: Colors.black)
-    ]);
-  } else if (w is Fusarbalete) {
-    return Column(children: [
-      title(AppLocalizations.of(context)!.specArme),
-      Text(
-          "${AppLocalizations.of(context)!.mod} : ${getMod(w.mod, w, context)}"),
-      Text(getTirSpe(w, context)),
-      Text(w.sensDeviation != 0
-          ? '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
-          : '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)}'),
-      Text(
-          '${AppLocalizations.of(context)!.recul} ${getRecul(w.recul, context)}'),
-      Text(
-          '${AppLocalizations.of(context)!.recharge} ${getRechargement(w.rechargement, context)}'),
-      const Divider(color: Colors.black)
-    ]);
-  } else {
-    return Container();
-  }
-}
-
 gScroll(BuildContext context) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    boldOrange(AppLocalizations.of(context)!.scroll),
-    const SizedBox(width: 3),
-    Container(
-        height: 15,
-        width: 15,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),
-            border: Border.all(width: 1, color: sixth),
-            color: Stuff.scroll ? scrollO : scrollB))
-  ]);
+  return Container(
+      margin: const EdgeInsets.only(top: 5),
+      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        boldOrange(AppLocalizations.of(context)!.scroll),
+        const SizedBox(width: 3),
+        Container(
+            height: 15,
+            width: 15,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(width: 1, color: sixth),
+                color: Stuff.scroll ? scrollO : scrollB))
+      ]));
 }

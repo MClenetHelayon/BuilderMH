@@ -25,7 +25,7 @@ import 'manager/exported/windowsManager.dart';
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Homepage();
+    return const Homepage();
   }
 }
 
@@ -48,23 +48,29 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     Widget container;
+    //la creation de l'objet screen n'est utile que pour debug l'image facilement
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);
     final s = stuffProvider.stuff!;
     final screen = Screen(1100, 750, s, context);
+    //permet de definir la page en cours
     switch (currentPage) {
+      //page principal, le builder
       case DrawerSections.equipement:
         container =
-            expImg.buildCard(screen);
-            //BuilderPage();
+            //expImg.buildCard(screen);
+            const BuilderPage();
         break;
+      //page parametres, sert surtout pour chnager de langues
       case DrawerSections.parametres:
         container = SettingsPage(onLanguageChanged: (Locale newLocale) {
           Provider.of<AppState>(context, listen: false)
               .changeLanguage(newLocale);
         });
         break;
+      //page gestion des Talents / des boosts actif ou non
       case DrawerSections.boost:
         container = const BoostPage();
+      //page info ... inutile pour l'instant je la converse qu'au cas ou elle servirai
       case DrawerSections.info:
         container = const InfoPage();
         break;
@@ -73,6 +79,7 @@ class _HomepageState extends State<Homepage> {
     }
     return Scaffold(
         appBar: AppBar(backgroundColor: fifth, actions: [
+          //sert a créer le 2e drawer
           Builder(
               builder: (context) => IconButton(
                   iconSize: 80,
@@ -85,7 +92,9 @@ class _HomepageState extends State<Homepage> {
         drawer: Drawer(
             child: SingleChildScrollView(
                 child: Column(children: [
+          //facilite l'insertion de l'image
           const HeaderDrawer(),
+          //liste tout les items du menu
           DrawerList(),
         ]))),
         endDrawer: const Drawer(
@@ -178,7 +187,8 @@ class _HomepageState extends State<Homepage> {
                 Expanded(child: Icon(icon, size: 20, color: Colors.black)),
                 Expanded(
                     child: Text(title,
-                        style: TextStyle(color: secondary, fontSize: 16))),
+                        style:
+                            const TextStyle(color: secondary, fontSize: 16))),
               ])),
         ));
   }

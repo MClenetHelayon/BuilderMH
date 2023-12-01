@@ -1,10 +1,10 @@
-import 'package:builder_mhrs/manager/img/simplyArmor.dart';
-import 'package:builder_mhrs/manager/img/simplyDeco.dart';
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyMusic.dart';
-import 'package:builder_mhrs/manager/img/simplyRampage.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
-import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
+import 'package:builder_mhrs/manager/img/armor.dart';
+import 'package:builder_mhrs/manager/img/deco.dart';
+import 'package:builder_mhrs/manager/img/element.dart';
+import 'package:builder_mhrs/manager/img/music.dart';
+import 'package:builder_mhrs/manager/img/rampage.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
+import 'package:builder_mhrs/manager/img/weapon.dart';
 
 String element(int id) {
   String vretour = basic;

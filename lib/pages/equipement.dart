@@ -1,8 +1,9 @@
+import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/mh/armor/armorManager.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/mh/armor/florManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/logic/calculSharp.dart';
+import 'package:builder_mhrs/manager/logic/sharp.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/popupManager.dart' as pop;
@@ -52,18 +53,7 @@ class _BuilderPageState extends State<BuilderPage> {
       Florelet.getBase(),
       Kinsect.getBase());
 
-  bool openGStat = true,
-      openWeapon = true,
-      openHelmet = true,
-      openChest = true,
-      openGant = true,
-      openBoucle = true,
-      openLeg = true,
-      openPetalas = true,
-      openCharm = true,
-      openKinsect = true,
-      openSkill = false,
-      reload = false;
+  bool reload = false;
   String txtAugment = "";
   @override
   void initState() {
@@ -92,30 +82,26 @@ class _BuilderPageState extends State<BuilderPage> {
     s = stuffProvider.stuff!;
     s.getListTalents();
     return Scaffold(
-      backgroundColor: secondary,
-      body: Column(children: [
-        Expanded(
-            child: SingleChildScrollView(
+        backgroundColor: secondary,
+        body: Column(children: [
+          Expanded(
+              child: SingleChildScrollView(
+                  child: Column(children: [
+            Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Weapon(context),
-                if (s.weapon is Insectoglaive) Insect(context),
-                Helmet(context),
-                Torso(context),
-                Gant(context),
-                Boucle(context),
-                Pied(context),
-                Charm(context),
-                Flor(context),
-              ],
-            ),
-          )
-        ])))
-      ]),
-    );
+                  Weapon(context),
+                  if (s.weapon is Insectoglaive) Insect(context),
+                  Helmet(context),
+                  Torso(context),
+                  Gant(context),
+                  Boucle(context),
+                  Pied(context),
+                  Charm(context),
+                  Flor(context),
+                ]))
+          ])))
+        ]));
   }
 
   Widget Weapon(BuildContext context) {
@@ -156,58 +142,56 @@ class _BuilderPageState extends State<BuilderPage> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              icon(0, false),
-                              if (openWeapon)
-                                white(
-                                    "${AppLocalizations.of(context)!.rarete}${s.weapon.rarete}")
+                              afficheIconArmor(s, 0, false),
+                              white(
+                                  "${AppLocalizations.of(context)!.rarete}${s.weapon.rarete}")
                             ])),
                     valueWeapon(s.weapon, context)
                   ])
                 ]),
-                if (openWeapon)
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Column(children: [
-                      if (s.weapon.niveau == "maitre")
-                        Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              white(AppLocalizations.of(context)!.trans),
-                              Card(
-                                  child: TextButton(
-                                      style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all<Color>(
-                                                  primary)),
-                                      onPressed: () async {
-                                        await pop.transcendance(
-                                            context, s.weapon);
-                                        setState(() {
-                                          txtAugment = txtListAugment(s.weapon);
-                                        });
-                                      },
-                                      child: white(txtAugment)))
-                            ]),
-                      if (s.weapon.niveau == "maitre")
-                        Container(
-                            margin: const EdgeInsets.all(10.0),
-                            child: s.weapon.slotCalamite != 0
-                                ? Column(children: [
-                                    white(AppLocalizations.of(context)!
-                                        .calamJowel),
-                                    CalamJowel(s.weapon.slotCalamite,
-                                        s.weapon.categorie, context)
-                                  ])
-                                : Container()),
-                      joyau(s.weapon, s, _reloadMainPage, context),
-                      if (s.weapon is Fusarbalete)
-                        comboModFusar(s.weapon as Fusarbalete, context,
-                            (int? newValue) {
-                          setState(() {
-                            (s.weapon as Fusarbalete).mod = newValue!;
-                          });
-                        })
-                    ])
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Column(children: [
+                    if (s.weapon.niveau == "maitre")
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            white(AppLocalizations.of(context)!.trans),
+                            Card(
+                                child: TextButton(
+                                    style: ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStateProperty.all<Color>(
+                                                primary)),
+                                    onPressed: () async {
+                                      await pop.transcendance(
+                                          context, s.weapon);
+                                      setState(() {
+                                        txtAugment = txtListAugment(s.weapon);
+                                      });
+                                    },
+                                    child: white(txtAugment)))
+                          ]),
+                    if (s.weapon.niveau == "maitre")
+                      Container(
+                          margin: const EdgeInsets.all(10.0),
+                          child: s.weapon.slotCalamite != 0
+                              ? Column(children: [
+                                  white(
+                                      AppLocalizations.of(context)!.calamJowel),
+                                  CalamJowel(s.weapon.slotCalamite,
+                                      s.weapon.categorie, context)
+                                ])
+                              : Container()),
+                    joyau(s.weapon, s, _reloadMainPage, context),
+                    if (s.weapon is Fusarbalete)
+                      comboModFusar(s.weapon as Fusarbalete, context,
+                          (int? newValue) {
+                        setState(() {
+                          (s.weapon as Fusarbalete).mod = newValue!;
+                        });
+                      })
                   ])
+                ])
               ]))
         ]));
   }
@@ -231,25 +215,8 @@ class _BuilderPageState extends State<BuilderPage> {
               1: FlexColumnWidth()
             }, children: [
               TableRow(children: [
-                Container(
-                    margin: const EdgeInsets.only(right: 10.0, top: 5.0),
-                    height: 40,
-                    width: 40,
-                    child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            openKinsect = !openKinsect;
-                          });
-                        },
-                        icon: Image.asset('images/arme/kinsect.png',
-                            height: 100, width: 100))),
+                afficheImgKinsect(),
                 StatKinsect(s)
-              ]),
-              TableRow(children: [
-                Container(),
-                Container(
-                    child: Column(
-                        children: [Row(children: []), Row(children: [])]))
               ])
             ])));
   }
@@ -272,12 +239,12 @@ class _BuilderPageState extends State<BuilderPage> {
               1: FlexColumnWidth(),
             }, children: [
               TableRow(children: [
-                icon(6, true),
+                afficheIconArmor(s, 6, true),
                 Container(
                     margin: const EdgeInsets.all(10.0),
                     child: Column(children: [
                       boldOrange(s.florelet.name),
-                      if (openPetalas) flor(s.florelet, context)
+                      flor(s.florelet, context)
                     ]))
               ])
             ])));
@@ -306,7 +273,7 @@ class _BuilderPageState extends State<BuilderPage> {
                 1: FlexColumnWidth(),
               }, children: [
                 TableRow(children: [
-                  icon(7, true),
+                  afficheIconArmor(s, 7, true),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     Container(
                         margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -314,19 +281,18 @@ class _BuilderPageState extends State<BuilderPage> {
                   ])
                 ])
               ]),
-              if (openCharm)
-                Column(children: [
-                  Container(
-                      margin: const EdgeInsets.only(bottom: 10.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TalisTalent(s.charm, context),
-                          ])),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    TalisJoyau(s.charm, s, _reloadMainPage, context),
-                  ])
+              Column(children: [
+                Container(
+                    margin: const EdgeInsets.only(bottom: 10.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TalisTalent(s.charm, context),
+                        ])),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  TalisJoyau(s.charm, s, _reloadMainPage, context),
                 ])
+              ])
             ])));
   }
 
@@ -357,7 +323,7 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Helmet(BuildContext context) {
-    return simplyArmor(context, s.helmet, openHelmet,
+    return simplyArmor(context, s.helmet,
         armorSlotCasque(s.helmet, s, _reloadMainPage, context), () async {
       var value = await pop.armor(context, 0);
       if (value == null || value as Casque == s.helmet) return;
@@ -369,7 +335,7 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Torso(BuildContext context) {
-    return simplyArmor(context, s.torso, openChest,
+    return simplyArmor(context, s.torso,
         armorSlotPlastron(s.torso, s, _reloadMainPage, context), () async {
       var value = await pop.armor(context, 1);
       if (value == null || value as Plastron == s.torso) return;
@@ -381,8 +347,9 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Gant(BuildContext context) {
-    return simplyArmor(context, s.gant, openGant,
-        armorSlotBras(s.gant, s, _reloadMainPage, context), () async {
+    return simplyArmor(
+        context, s.gant, armorSlotBras(s.gant, s, _reloadMainPage, context),
+        () async {
       var value = await pop.armor(context, 2);
       if (value == null || value as Bras == s.gant) return;
       setState(() {
@@ -393,7 +360,7 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Boucle(BuildContext context) {
-    return simplyArmor(context, s.boucle, openBoucle,
+    return simplyArmor(context, s.boucle,
         armorSlotCeinture(s.boucle, s, _reloadMainPage, context), () async {
       var value = await pop.armor(context, 3);
       if (value == null || value as Ceinture == s.boucle) return;
@@ -405,8 +372,9 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   Widget Pied(BuildContext context) {
-    return simplyArmor(context, s.pied, openLeg,
-        armorSlotJambiere(s.pied, s, _reloadMainPage, context), () async {
+    return simplyArmor(
+        context, s.pied, armorSlotJambiere(s.pied, s, _reloadMainPage, context),
+        () async {
       var value = await pop.armor(context, 4);
       if (value == null || value as Jambiere == s.pied) return;
       setState(() {
@@ -416,8 +384,8 @@ class _BuilderPageState extends State<BuilderPage> {
     });
   }
 
-  Card simplyArmor(BuildContext context, Armure a, bool open, Widget slot,
-      void Function() reload) {
+  Card simplyArmor(
+      BuildContext context, Armure a, Widget slot, void Function() reload) {
     return Card(
         child: TextButton(
             style: ButtonStyle(
@@ -431,74 +399,22 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   Column(children: [
-                    icon(convertIconInt(a), true),
-                    if (open)
-                      white(
-                          "${AppLocalizations.of(context)!.rarete}${a.rarete}"),
+                    afficheIconArmor(s, convertIconInt(a), true),
+                    white("${AppLocalizations.of(context)!.rarete}${a.rarete}"),
                   ]),
                   armorTopInfo(a)
                 ])
               ]),
-              if (open) armorTalent(a, context),
-              if (open)
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [armorSlot(a, context, slot)])
+              armorTalent(a, context),
+              Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [armorSlot(a, context, slot)])
             ])));
-  }
-
-  Widget icon(int i, bool isArmor) {
-    return IconButton(
-        onPressed: () {
-          changeOpen(i);
-        },
-        iconSize: 60,
-        icon: Container(
-            margin: const EdgeInsets.only(right: 10.0),
-            child: Image.asset(isArmor ? armure(i) : arme(s.weapon.categorie),
-                fit: BoxFit.fill)));
   }
 
   void _reloadMainPage() {
     setState(() {
       reload = true;
     });
-  }
-
-  void changeOpen(int i) async {
-    switch (i) {
-      case 0:
-        setState(() {
-          openWeapon = !openWeapon;
-        });
-      case 1:
-        setState(() {
-          openHelmet = !openHelmet;
-        });
-      case 2:
-        setState(() {
-          openChest = !openChest;
-        });
-      case 3:
-        setState(() {
-          openGant = !openGant;
-        });
-      case 4:
-        setState(() {
-          openBoucle = !openBoucle;
-        });
-      case 5:
-        setState(() {
-          openLeg = !openLeg;
-        });
-      case 6:
-        setState(() {
-          openPetalas = !openPetalas;
-        });
-      case 7:
-        setState(() {
-          openCharm = !openCharm;
-        });
-    }
   }
 }

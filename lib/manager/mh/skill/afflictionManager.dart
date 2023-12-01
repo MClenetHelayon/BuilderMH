@@ -102,3 +102,21 @@ double getBuildupTeo(int i, double actual, bool actif) {
   }
   return vretour;
 }
+
+double getVolEndurance(int i, double actual, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    switch (i) {
+      case 1:
+        vretour = actual * 0.20;
+        break;
+      case 2:
+        vretour = actual * 0.30;
+        break;
+      case 3:
+        vretour = actual * 0.40;
+        break;
+    }
+  }
+  return vretour;
+}

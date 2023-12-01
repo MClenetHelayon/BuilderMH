@@ -15,7 +15,7 @@ import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
-import 'package:builder_mhrs/manager/logic/calculWeapon.dart';
+import 'package:builder_mhrs/manager/logic/weapon.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';

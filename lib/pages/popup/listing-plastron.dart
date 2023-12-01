@@ -6,7 +6,7 @@ import 'package:builder_mhrs/manager/widget/accordeonManager.dart';
 import 'package:builder_mhrs/manager/widget/cardListManager.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
-import 'package:builder_mhrs/manager/logic/calculArmor.dart';
+import 'package:builder_mhrs/manager/logic/armor.dart';
 import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';

@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/img/simplyAugment.dart';
-import 'package:builder_mhrs/manager/logic/calculSlotAugment.dart';
+import 'package:builder_mhrs/manager/img/augment.dart';
+import 'package:builder_mhrs/manager/logic/slotAugment.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/AugmentManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/augment/slotAManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';

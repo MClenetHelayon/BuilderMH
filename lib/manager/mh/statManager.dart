@@ -1,11 +1,11 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/img/afficheImg.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
-import 'package:builder_mhrs/manager/img/simplyElement.dart';
-import 'package:builder_mhrs/manager/img/simplyKinsect.dart';
-import 'package:builder_mhrs/manager/img/simplyRaw.dart';
-import 'package:builder_mhrs/manager/img/simplyWeapon.dart';
+import 'package:builder_mhrs/manager/img/element.dart';
+import 'package:builder_mhrs/manager/img/kinsect.dart';
+import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/mh/skill/affiniteManager.dart';
-import 'package:builder_mhrs/manager/logic/calculStat.dart';
+import 'package:builder_mhrs/manager/logic/stat.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
@@ -20,6 +20,7 @@ import 'package:builder_mhrs/manager/text/localization/arme/kinsect/getTypeKinse
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
+import 'package:builder_mhrs/manager/widget/similyCard.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/weapon/Arc.dart';
@@ -37,107 +38,122 @@ Widget g(Stuff s, BuildContext context) {
       color: primary,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        gSpeArme(s.weapon, context),
-        gSimplyCard(0, s, context),
-        const Divider(color: Colors.black),
-        gSimplyCard(1, s, context),
-        if (s.weapon.idElement != 0) const Divider(color: Colors.black),
-        if (s.weapon.idElement != 0) gSimplyCard(2, s, context),
+        gSpeArme(s, context, false),
+        Container(color: primary, child: gDef(s, context, false)),
+        Container(color: primary, child: gOff(s, context, false)),
+        if (s.weapon.idElement != 0)
+          Container(color: primary, child: gElem(s, context, false)),
         if (s.weapon is Tranchant) const Divider(color: Colors.black),
-        if (s.weapon is Tranchant) gSimplyCard(3, s, context),
+        if (s.weapon is Tranchant)
+          Container(color: primary, child: gSharp(s, context, false)),
       ]));
 }
 
-Widget gSharp(Stuff s, BuildContext context) {
+Widget gSharp(Stuff s, BuildContext context, bool img) {
   return Column(children: [
     title(AppLocalizations.of(context)!.sharp),
-    sharpG(s, context),
+    sharpG(s, context, img),
   ]);
 }
 
-Widget gElem(Stuff s, BuildContext context) {
+Widget gElem(Stuff s, BuildContext context, bool img) {
+  String t1, t2, t3;
+  t1 =
+      "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.efe : AppLocalizations.of(context)!.efa} : ${efe(s)}";
+  t2 =
+      "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.tre : AppLocalizations.of(context)!.tra} : ${elem(s)}";
+  t3 = s.weapon.idElement <= 5
+      ? "${AppLocalizations.of(context)!.elemCritMultip} : x${critElem(s)}"
+      : "${AppLocalizations.of(context)!.accAffli} : ~${affBuildup(s)}";
   return Column(children: [
+    const Divider(color: Colors.black),
     title(AppLocalizations.of(context)!.e),
     Container(
         margin: const EdgeInsets.all(5),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Column(children: [
-            Row(children: [
-              white(
-                  "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.efe : AppLocalizations.of(context)!.efa} : ${efe(s)}"),
-              const SizedBox(width: 3),
-              Image.asset(element(s.weapon.idElement), height: 16, width: 16),
-            ]),
-            Row(children: [
-              white(
-                  "${s.weapon.idElement <= 5 ? AppLocalizations.of(context)!.tre : AppLocalizations.of(context)!.tra} : ${elem(s)}"),
-              const SizedBox(width: 3),
-              Image.asset(element(s.weapon.idElement), height: 16, width: 16),
-            ]),
-            if (s.weapon.idElement <= 5)
-              Center(
-                  child: white(
-                      "${AppLocalizations.of(context)!.elemCritMultip} : x${critElem(s)}")),
-            if (s.weapon.idElement >= 6)
-              Center(
-                  child: white(
-                      "${AppLocalizations.of(context)!.accAffli} : ~${affBuildup(s)}")),
-          ])
+        child: Column(children: [
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            img ? black(t1) : white(t1),
+            const SizedBox(width: 3),
+            Image.asset(element(s.weapon.idElement), height: 16, width: 16),
+          ]),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            img ? black(t2) : white(t2),
+            const SizedBox(width: 3),
+            Image.asset(element(s.weapon.idElement), height: 16, width: 16),
+          ]),
+          Center(child: img ? black(t3) : white(t3))
         ]))
   ]);
 }
 
-Widget gOff(Stuff s, BuildContext context) {
+Widget gOff(Stuff s, BuildContext context, bool img) {
+  String txtEfr = "${AppLocalizations.of(context)!.efr} : ${efr(s)}",
+      txtEfe = "${AppLocalizations.of(context)!.trr} : ${row(s).toString()}",
+      txtPetalAtt =
+          "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}",
+      txtAff = "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
+      txtCritMultip =
+          "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}";
   return Column(children: [
+    const Divider(color: Colors.black),
     title(AppLocalizations.of(context)!.att),
     Container(
         margin: const EdgeInsets.all(5),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Column(children: [
-            white("${AppLocalizations.of(context)!.efr} : ${efr(s)}"),
-            white(
-                "${AppLocalizations.of(context)!.trr} : ${row(s).toString()}"),
-            white(
-                "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}"),
-            switchColorWhite(
-                "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
-                100,
-                s.affinite),
-            white(
-                "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}"),
+            img ? black(txtEfr) : white(txtEfr),
+            img ? black(txtEfe) : white(txtEfe),
+            img ? black(txtPetalAtt) : white(txtPetalAtt),
+            img
+                ? switchColorBlack(txtAff, 100, s.affinite)
+                : switchColorWhite(txtAff, 100, s.affinite),
+            img ? black(txtCritMultip) : white(txtCritMultip),
           ])
         ]))
   ]);
 }
 
-Widget gDef(Stuff s, BuildContext context) {
-  int fire = 0, water = 0, thunder = 0, ice = 0, drag = 0;
-  if (s.getTalentValueById(40) == 0 && !(Stuff.scroll)) {
-    fire = defFeu(s);
-    water = defEau(s);
-    thunder = defFoudre(s);
-    ice = defGlace(s);
-    drag = defDragon(s);
+Widget gDef(Stuff s, BuildContext context, bool img) {
+  int fire = defFeu(s),
+      water = defEau(s),
+      thunder = defFoudre(s),
+      ice = defGlace(s),
+      drag = defDragon(s);
+  if (s.getTalentValueById(40) != 0 && Stuff.scroll) {
+    fire = 0;
+    water = 0;
+    thunder = 0;
+    ice = 0;
+    drag = 0;
   }
   return Column(children: [
     title(AppLocalizations.of(context)!.def),
     Container(
-        color: primary,
+        margin: const EdgeInsets.all(5),
+        color: img ? fourth : primary,
         child:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(vie, s.florelet.uVie + 150),
-            statDefSimply(stam, s.florelet.uStam + 150),
-            statDefSimply(def, defense(s)),
+            img
+                ? statDefSimplyImg(vie, s.florelet.uVie + 150)
+                : statDefSimply(vie, s.florelet.uVie + 150),
+            img
+                ? statDefSimplyImg(stam, s.florelet.uStam + 150)
+                : statDefSimply(stam, s.florelet.uStam + 150),
+            img
+                ? statDefSimplyImg(def, defense(s))
+                : statDefSimply(def, defense(s))
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(feu, fire),
-            statDefSimply(eau, water),
-            statDefSimply(foudre, thunder),
+            img ? statDefSimplyImg(feu, fire) : statDefSimply(feu, fire),
+            img ? statDefSimplyImg(eau, water) : statDefSimply(eau, water),
+            img
+                ? statDefSimplyImg(foudre, thunder)
+                : statDefSimply(foudre, thunder)
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            statDefSimply(glace, ice),
-            statDefSimply(dragon, drag),
+            img ? statDefSimplyImg(glace, ice) : statDefSimply(glace, ice),
+            img ? statDefSimplyImg(dragon, drag) : statDefSimply(dragon, drag)
           ])
         ]))
   ]);
@@ -159,6 +175,29 @@ Widget calamJowel(Stuff s, BuildContext context) {
                         height: 22, width: 22),
                   ])
                 : white(AppLocalizations.of(context)!.none),
+          ])));
+}
+
+Widget calamJowelImg(Stuff s, BuildContext context) {
+  return Card(
+      color: primary,
+      child: Container(
+          padding: const EdgeInsets.all(5),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            title("${AppLocalizations.of(context)!.calamJowel} : "),
+            Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+              s.joyauxCalam.slot != 0
+                  ? Row(children: [
+                      white(
+                        s.joyauxCalam.talentName,
+                      ),
+                      const SizedBox(width: 5),
+                      Image.asset(slotCalam(s.weapon.slotCalamite),
+                          height: 22, width: 22),
+                    ])
+                  : white(AppLocalizations.of(context)!.none),
+            ])
           ])));
 }
 
@@ -192,23 +231,30 @@ Widget recapTalent(Stuff s, BuildContext context) {
           ])));
 }
 
-Widget gSimplyCard(int i, Stuff s, BuildContext context) {
-  Widget function = Container();
-  switch (i) {
-    case 0:
-      function = gDef(s, context);
-      break;
-    case 1:
-      function = gOff(s, context);
-      break;
-    case 2:
-      function = gElem(s, context);
-      break;
-    case 3:
-      function = gSharp(s, context);
-      break;
-  }
-  return Container(color: primary, child: function);
+Widget recapTalentImg(Stuff s, BuildContext context) {
+  return Column(children: [
+    if (s.weapon.niveau == "maitre") calamJowelImg(s, context),
+    for (var skill in s.getAllTalents().entries)
+      Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+                color: skill.key.actif ? fifth : Colors.blueGrey, width: 2),
+            borderRadius: BorderRadius.circular(5),
+            color: fourth,
+          ),
+          margin: const EdgeInsets.only(bottom: 1, top: 1, left: 5, right: 5),
+          child: Column(children: [
+            switchColorBlack(skill.key.name, skill.key.levelMax, skill.value),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+              Container(child: SkillNumLogo(skill.value, skill.key.levelMax)),
+              Container(
+                  child: switchColorBlack(
+                      "${AppLocalizations.of(context)!.niv} ${skill.value}",
+                      skill.key.levelMax,
+                      skill.value))
+            ])
+          ]))
+  ]);
 }
 
 Widget statOff(Arme weapon, BuildContext context) {
@@ -217,32 +263,11 @@ Widget statOff(Arme weapon, BuildContext context) {
     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Image.asset(affi, height: 16, width: 16),
       const SizedBox(width: 5),
-      Text("${weapon.affinite.toString()}%", style: TextStyle(color: fourth))
+      white("${weapon.affinite.toString()}%")
     ]),
     isDualBlade(weapon, context),
     statWhite(def, weapon.defense.toString())
   ]);
-}
-
-List<int> allIntSharp(Stuff s) {
-  Tranchant tranch = s.weapon as Tranchant;
-  int rouge = tranch.rouge,
-      orange = tranch.orange,
-      jaune = tranch.jaune,
-      vert = tranch.vert,
-      bleu = tranch.bleu,
-      blanc = tranch.blanc,
-      violet = tranch.violet;
-  if (tranch.sharpBoost.isNotEmpty) {
-    rouge += sharp(s, 1);
-    orange += sharp(s, 2);
-    jaune += sharp(s, 3);
-    vert += sharp(s, 4);
-    bleu += sharp(s, 5);
-    blanc += sharp(s, 6);
-    violet += sharp(s, 7);
-  }
-  return [rouge, orange, jaune, vert, bleu, blanc, violet];
 }
 
 Widget SkillNumLogo(int level, int levelMax) {
@@ -263,12 +288,7 @@ gKinsect(Stuff s, BuildContext context) {
       color: primary,
       child: Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Card(
-              color: secondary,
-              child: IconButton(
-                  onPressed: () {},
-                  iconSize: 20,
-                  icon: Image.asset(ksct, fit: BoxFit.fill))),
+          afficheImgKinsect(),
           Container(
               margin: const EdgeInsets.only(bottom: 3),
               child: Column(children: [
@@ -276,52 +296,72 @@ gKinsect(Stuff s, BuildContext context) {
                 title(k.name)
               ]))
         ]),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString()),
-          statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString()),
-          statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())
-        ]),
+        statKinsect(k, i, false),
         white(getTypeAttack(k.typeAttaque, context)),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          white(getTypeKinsect(k.typeKinsect[0], context)),
-          if (k.typeKinsect.length > 1)
-            white(getTypeKinsectSecondaire(k.typeKinsect[1], context) +
-                (k.typeKinsect.length > 2
-                    ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
-                    : ""))
-        ]),
+        boostKinsect(k, context, false),
         white(getBoostKinsect(k.bonusKinsect, context))
       ]));
 }
 
-Widget printBoostKinsect(String img, String stat) {
+gKinsectImg(Stuff s, BuildContext context) {
+  Kinsect k = s.kinsect;
+  Insectoglaive i = s.weapon as Insectoglaive;
   return Container(
-      margin: const EdgeInsets.only(bottom: 10.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Image.asset(img, height: 20, width: 20),
-        const SizedBox(width: 3),
-        Text(stat)
-      ]));
-}
-
-gCorne(Stuff s, BuildContext context) {
-  CorneDeChasse horn = s.weapon as CorneDeChasse;
-  return Card(
-      margin: const EdgeInsets.all(5),
-      color: primary,
+      margin: const EdgeInsets.only(bottom: 5),
       child: Column(children: [
-        title(AppLocalizations.of(context)!.music),
-        printMusic(musique(0), horn.musique[0].name),
-        printMusic(musique(1), horn.musique[1].name),
-        printMusic(musique(2), horn.musique[2].name)
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          afficheImgKinsect(),
+          title(AppLocalizations.of(context)!.insect)
+        ]),
+        Text(k.name),
+        statKinsect(k, i, true),
+        Text(getTypeAttack(k.typeAttaque, context)),
+        boostKinsect(k, context, true),
+        Text(getBoostKinsect(k.bonusKinsect, context))
       ]));
 }
 
-Widget printMusic(String img, String stat) {
-  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    Image.asset(img, height: 40, width: 40),
-    const SizedBox(width: 3),
-    white(stat)
+Widget statKinsect(Kinsect k, Insectoglaive i, bool img) {
+  if (img) {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      similyCardKinsectValue(
+          statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString())),
+      similyCardKinsectValue(
+          statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString())),
+      similyCardKinsectValue(
+          statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString()))
+    ]);
+  } else {
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      statWhite(kAtt, k.niveauKinsect[i.niveauKinsect][0].toString()),
+      statWhite(kVit, k.niveauKinsect[i.niveauKinsect][1].toString()),
+      statWhite(kHeal, k.niveauKinsect[i.niveauKinsect][2].toString())
+    ]);
+  }
+}
+
+Widget boostKinsect(Kinsect k, BuildContext context, bool img) {
+  String type = k.typeKinsect.length > 1
+      ? getTypeKinsectSecondaire(k.typeKinsect[1], context) +
+          (k.typeKinsect.length > 2
+              ? " / ${getTypeKinsectSecondaire(k.typeKinsect[2], context)}"
+              : "")
+      : "";
+
+  return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+    img
+        ? black(getTypeKinsect(k.typeKinsect[0], context))
+        : white(getTypeKinsect(k.typeKinsect[0], context)),
+    if (k.typeKinsect.length > 1) img ? black(type) : white(type)
+  ]);
+}
+
+Widget simplyMusic(CorneDeChasse horn, BuildContext context, bool forImg) {
+  return Column(children: [
+    title(AppLocalizations.of(context)!.music),
+    pMusic(musique(0), horn.musique[0].name, forImg),
+    pMusic(musique(1), horn.musique[1].name, forImg),
+    pMusic(musique(2), horn.musique[2].name, forImg)
   ]);
 }
 
@@ -358,32 +398,38 @@ gArc(Stuff s, BuildContext context) {
       ]));
 }
 
-gSpeArme(Arme w, BuildContext context) {
+gSpeArme(Stuff s, BuildContext context, bool img) {
+  Arme w = s.weapon;
   if (w is Lancecanon ||
       w is MorphoHache ||
       w is VoltoHache ||
       w is Insectoglaive) {
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
-      if (w is Lancecanon) lancecanon(w, context),
-      if (w is MorphoHache) morpho(w, context),
-      if (w is VoltoHache) volto(w, context),
-      if (w is Insectoglaive) insecto(w, context),
+      if (w is Lancecanon) lancecanon(w, context, img),
+      if (w is MorphoHache) morpho(s, context, img),
+      if (w is VoltoHache) volto(w, context, img),
+      if (w is Insectoglaive) insecto(w, context, img),
       const Divider(color: Colors.black)
     ]);
   } else if (w is Fusarbalete) {
+    String mod =
+            "${AppLocalizations.of(context)!.mod} : ${getMod(w.mod, w, context)}",
+        tirSpe = getTirSpe(w, context),
+        devia = w.sensDeviation != 0
+            ? '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
+            : '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)}',
+        recul =
+            '${AppLocalizations.of(context)!.recul} ${getRecul(w.recul, context)}',
+        rechargement =
+            '${AppLocalizations.of(context)!.recharge} ${getRechargement(w.rechargement, context)}';
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
-      white(
-          "${AppLocalizations.of(context)!.mod} : ${getMod(w.mod, w, context)}"),
-      white(getTirSpe(w, context)),
-      white(w.sensDeviation != 0
-          ? '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)} ${getValueDeviation(w.puissanceDeviation, context)}'
-          : '${AppLocalizations.of(context)!.devia} : ${getDeviation(w.sensDeviation, context)}'),
-      white(
-          '${AppLocalizations.of(context)!.recul} ${getRecul(w.recul, context)}'),
-      white(
-          '${AppLocalizations.of(context)!.recharge} ${getRechargement(w.rechargement, context)}'),
+      img ? black(mod) : white(mod),
+      img ? black(tirSpe) : white(tirSpe),
+      img ? black(devia) : white(devia),
+      img ? black(recul) : white(recul),
+      img ? black(rechargement) : white(rechargement),
       const Divider(color: Colors.black)
     ]);
   } else {

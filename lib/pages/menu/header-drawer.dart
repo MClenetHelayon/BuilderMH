@@ -1,5 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/img/simplyGeneral.dart';
+import 'package:builder_mhrs/manager/img/general.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
