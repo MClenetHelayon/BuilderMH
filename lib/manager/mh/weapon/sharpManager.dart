@@ -87,7 +87,9 @@ Widget superColoring(int i, Tranchant sharp) {
 Widget coloring(int sharp, int divide, int i) {
   return Container(
     height: 15,
-    width: sharp.toDouble() / divide,
+    width: sharp.toDouble() < 100
+        ? sharp.toDouble() / divide
+        : sharp.toDouble() / (divide * 2),
     color: couleur(i),
   );
 }

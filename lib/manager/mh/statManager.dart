@@ -45,14 +45,14 @@ Widget g(Stuff s, BuildContext context) {
           Container(color: primary, child: gElem(s, context, false)),
         if (s.weapon is Tranchant) const Divider(color: Colors.black),
         if (s.weapon is Tranchant)
-          Container(color: primary, child: gSharp(s, context)),
+          Container(color: primary, child: gSharp(s, context, false)),
       ]));
 }
 
-Widget gSharp(Stuff s, BuildContext context) {
+Widget gSharp(Stuff s, BuildContext context, bool img) {
   return Column(children: [
     title(AppLocalizations.of(context)!.sharp),
-    sharpG(s, context, false),
+    sharpG(s, context, img),
   ]);
 }
 

@@ -86,7 +86,7 @@ Widget buildCard(Screen screen) {
                   gDef(s, screen.context, true),
                   gOff(s, screen.context, true),
                   if (s.weapon.idElement != 0) gElem(s, screen.context, true),
-                  if (s.weapon is Tranchant) gSharp(s, screen.context),
+                  if (s.weapon is Tranchant) gSharp(s, screen.context, true),
                   if (s.weapon is Arc) gArc(s, screen.context),
                   if (s.weapon is CorneDeChasse)
                     simplyMusic(
@@ -104,10 +104,7 @@ Widget buildCard(Screen screen) {
               width: screen.width / 3.25,
               height: screen.height,
               child: Column(children: [
-                Card(
-                    child: Column(children: [
-                  gFusar(s, screen.context),
-                ])),
+                Card(child: Column(children: [gFusar(s, screen.context)]))
               ])),
       ]));
 }
@@ -357,13 +354,6 @@ Container printValueImg(String img, String t) {
     margin: const EdgeInsets.only(bottom: 3, right: 3),
     child: statWhite(img, t),
   );
-}
-
-Widget gSharp(Stuff s, BuildContext context) {
-  return Column(children: [
-    title(AppLocalizations.of(context)!.sharp),
-    sharpG(s, context, true),
-  ]);
 }
 
 gArc(Stuff s, BuildContext context) {
