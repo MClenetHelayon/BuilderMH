@@ -6,9 +6,9 @@ import 'package:builder_mhrs/manager/img/imgManager.dart' as img;
 import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/mh/armor/florManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/bowManager.dart';
-import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
@@ -111,6 +111,7 @@ Widget buildCard(Screen screen) {
 
 Widget Weapon(Screen screen) {
   Stuff s = screen.stuff;
+  Arme a = s.weapon;
   List<Joyaux> j = Arme.listJoyaux;
   return Card(
       color: const Color.fromRGBO(255, 255, 255, 1),
@@ -122,24 +123,20 @@ Widget Weapon(Screen screen) {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-              margin: const EdgeInsets.only(top: 5),
-              child: boldOrange(s.weapon.name)),
-          exportArmeStat(s.weapon),
+              margin: const EdgeInsets.only(top: 5), child: boldOrange(a.name)),
+          exportArmeStat(a),
+          if (a.niveau == "maitre" && Arme.augments) listAugmentImg(a)
         ])),
         Row(children: [
-          if (s.weapon.niveau == "maitre")
-            exportCalam(s.weapon.slotCalamite, screen),
+          if (a.niveau == "maitre") exportCalam(a.slotCalamite, screen),
           Container(
               margin: const EdgeInsets.only(right: 5),
               child: Column(children: [
                 const SizedBox(height: 4),
-                if (s.weapon.slots.isEmpty) Container(),
-                if (s.weapon.slots.isNotEmpty)
-                  exportJowel(s.weapon.slots[0], j, 0, screen),
-                if (s.weapon.slots.length >= 2)
-                  exportJowel(s.weapon.slots[1], j, 1, screen),
-                if (s.weapon.slots.length == 3)
-                  exportJowel(s.weapon.slots[2], j, 2, screen),
+                if (a.slots.isEmpty) Container(),
+                if (a.slots.isNotEmpty) exportJowel(a.slots[0], j, 0, screen),
+                if (a.slots.length >= 2) exportJowel(a.slots[1], j, 1, screen),
+                if (a.slots.length == 3) exportJowel(a.slots[2], j, 2, screen),
               ]))
         ])
       ]));
