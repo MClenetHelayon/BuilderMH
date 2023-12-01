@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
+//retourne le nom de la fiole de la morpho hache en fonction de son id
 String getSaFiole(int id, BuildContext context) {
   String vretour = '';
   switch (id) {

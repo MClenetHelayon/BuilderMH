@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/img/kinsect.dart';
+import 'package:builder_mhrs/manager/logic/morphoHache.dart';
 import 'package:builder_mhrs/manager/mh/joyauManager.dart';
 import 'package:builder_mhrs/manager/mh/weapon/sharpManager.dart';
 import 'package:builder_mhrs/manager/mh/statManager.dart';
@@ -84,13 +85,14 @@ Widget corne(CorneDeChasse horn, BuildContext context) {
       ]));
 }
 
-Widget morpho(MorphoHache morpho, BuildContext context, bool img) {
+Widget morpho(Stuff s, BuildContext context, bool img) {
+  MorphoHache morpho = s.weapon as MorphoHache;
   return morpho.valueFiole != 0
       ? img
           ? black(
-              "${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+              "${getSaFiole(morpho.typeFiole, context)} ${valueFiole(s, context)}")
           : white(
-              "${getSaFiole(morpho.typeFiole, context)} ${morpho.valueFiole}")
+              "${getSaFiole(morpho.typeFiole, context)} ${valueFiole(s, context)}")
       : img
           ? black(getSaFiole(morpho.typeFiole, context))
           : white(getSaFiole(morpho.typeFiole, context));

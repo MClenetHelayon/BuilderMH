@@ -60,7 +60,7 @@ Widget buildCard(Screen screen) {
                   verticalDivider(),
                   gOff(s, screen.context, true),
                   verticalDivider(),
-                  gSpeArme(s.weapon, screen.context, true),
+                  gSpeArme(s, screen.context, true),
                 ])),
           Weapon(screen),
           Armor(1, s.helmet, screen),
@@ -82,7 +82,7 @@ Widget buildCard(Screen screen) {
                     child: Column(children: [
                   gScroll(screen.context),
                   const Divider(color: Colors.black),
-                  gSpeArme(s.weapon, screen.context, true),
+                  gSpeArme(s, screen.context, true),
                   gDef(s, screen.context, true),
                   gOff(s, screen.context, true),
                   if (s.weapon.idElement != 0) gElem(s, screen.context, true),

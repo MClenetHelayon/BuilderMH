@@ -38,7 +38,7 @@ Widget g(Stuff s, BuildContext context) {
       color: primary,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        gSpeArme(s.weapon, context, false),
+        gSpeArme(s, context, false),
         Container(color: primary, child: gDef(s, context, false)),
         Container(color: primary, child: gOff(s, context, false)),
         if (s.weapon.idElement != 0)
@@ -398,7 +398,8 @@ gArc(Stuff s, BuildContext context) {
       ]));
 }
 
-gSpeArme(Arme w, BuildContext context, bool img) {
+gSpeArme(Stuff s, BuildContext context, bool img) {
+  Arme w = s.weapon;
   if (w is Lancecanon ||
       w is MorphoHache ||
       w is VoltoHache ||
@@ -406,7 +407,7 @@ gSpeArme(Arme w, BuildContext context, bool img) {
     return Column(children: [
       title(AppLocalizations.of(context)!.specArme),
       if (w is Lancecanon) lancecanon(w, context, img),
-      if (w is MorphoHache) morpho(w, context, img),
+      if (w is MorphoHache) morpho(s, context, img),
       if (w is VoltoHache) volto(w, context, img),
       if (w is Insectoglaive) insecto(w, context, img),
       const Divider(color: Colors.black)

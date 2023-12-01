@@ -369,7 +369,7 @@ double elem(Stuff s) {
           s.weapon);
     }
     switch (s.weapon.idElement) {
-      case 1:
+      case 1: //feu
         if (s.getTalentValueById(113) != 0) {
           vretour += ele.getBoostElement(
               s.getTalentValueById(113), vretour, s.getTalentById(113).actif);
@@ -379,7 +379,7 @@ double elem(Stuff s) {
               s.getTalentValueById(21), vretour, s.getTalentById(21).actif);
         }
         break;
-      case 2:
+      case 2: //eau
         if (s.getTalentValueById(79) != 0) {
           vretour += ele.getBoostElement(
               s.getTalentValueById(79), vretour, s.getTalentById(79).actif);
@@ -389,7 +389,7 @@ double elem(Stuff s) {
               s.getTalentValueById(20), vretour, s.getTalentById(20).actif);
         }
         break;
-      case 3:
+      case 3: //foudre
         if (s.getTalentValueById(60) != 0) {
           vretour += ele.getBoostElement(
               s.getTalentValueById(60), vretour, s.getTalentById(60).actif);
@@ -399,7 +399,7 @@ double elem(Stuff s) {
               s.getTalentValueById(6), vretour, s.getTalentById(6).actif);
         }
         break;
-      case 4:
+      case 4: //glace
         if (s.getTalentValueById(24) != 0) {
           vretour += ele.getBoostElement(
               s.getTalentValueById(24), vretour, s.getTalentById(24).actif);
@@ -409,7 +409,7 @@ double elem(Stuff s) {
               s.getTalentValueById(20), vretour, s.getTalentById(20).actif);
         }
         break;
-      case 5:
+      case 5: //dragon
         if (s.getTalentValueById(110) != 0) {
           vretour += ele.getBoostElement(
               s.getTalentValueById(110), vretour, s.getTalentById(110).actif);
@@ -434,25 +434,25 @@ double elem(Stuff s) {
           s.getTalentValueById(128), s.getTalentById(128).actif);
     }
     switch (s.weapon.idElement) {
-      case 6:
+      case 6: //poison
         if (s.getTalentValueById(96) != 0) {
           vretour += affli.getBoostAffliction(
               s.getTalentValueById(96), s.getTalentById(96).actif);
         }
         break;
-      case 7:
+      case 7: //paralysie
         if (s.getTalentValueById(99) != 0) {
           vretour += affli.getBoostAffliction(
               s.getTalentValueById(99), s.getTalentById(99).actif);
         }
         break;
-      case 8:
+      case 8: //sommeil
         if (s.getTalentValueById(75) != 0) {
           vretour += affli.getBoostAffliction(
               s.getTalentValueById(75), s.getTalentById(75).actif);
         }
         break;
-      case 9:
+      case 9: //explosion
         if (s.getTalentValueById(48) != 0) {
           vretour += affli.getBoostAffliction(
               s.getTalentValueById(48), s.getTalentById(48).actif);
