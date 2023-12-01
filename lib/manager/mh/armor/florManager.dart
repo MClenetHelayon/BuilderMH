@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/Florelet.dart';
@@ -15,16 +16,20 @@ Widget flor(Florelet florelet, BuildContext context) {
       ]));
 }
 
-Widget partFlor(int vie, int stam, int att, int def, String titre) {
+Widget partFlor(int vVie, int vStam, int vAtt, int vDef, String titre) {
   return Column(children: [
     Container(
         margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
         child: white(titre)),
-    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      statFlor("images/elementaire/Vie.png", vie),
-      statFlor("images/elementaire/Stam.png", stam),
-      statFlor("images/elementaire/Attaque.webp", att),
-      statFlor("images/elementaire/Defense.png", def),
-    ])
+   rowFlor(vVie, vStam, vAtt, vDef,false)
+  ]);
+}
+
+Widget rowFlor(int vVie, int vStam, int vAtt, int vDef,bool img) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    statFlor(vie, vVie,img),
+    statFlor(stam, vStam,img),
+    statFlor(attaque, vAtt,img),
+    statFlor(def, vDef,img),
   ]);
 }

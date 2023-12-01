@@ -83,8 +83,15 @@ Container statDefSimplyImg(String img, int value) {
       child: statBlack(img, value.toString()));
 }
 
-Container statFlor(String img, int stat) {
+Container statFlor(String img, int stat, bool isImg) {
   return Container(
+    padding: isImg ? const EdgeInsets.all(3) : const EdgeInsets.all(0),
+    decoration: isImg
+        ? BoxDecoration(
+            color: secondary,
+            borderRadius: BorderRadius.circular(5),
+          )
+        : const BoxDecoration(),
     margin: const EdgeInsets.only(left: 10.0),
     child: statWhite(img, stat.toString()),
   );
