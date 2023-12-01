@@ -16,6 +16,24 @@ Widget checkboxArme(String img, bool check, Function(bool) onTapAction) {
                   color: check ? fifth : Colors.transparent))));
 }
 
+Widget checkboxDeco(String img, bool check, Function(bool) onTapAction) {
+  return Card(
+      color: third,
+      child: GestureDetector(
+          onTap: () => onTapAction(!check),
+          child: Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                  border: Border.all(color: fifth, width: 1),
+                  image: DecorationImage(image: AssetImage(img)),
+                  borderRadius: BorderRadius.circular(5),
+                  color: check ? fifth : Colors.transparent,
+                  boxShadow: const [
+                    BoxShadow(color: secondary, spreadRadius: 3, blurRadius: 2)
+                  ]))));
+}
+
 Widget checkboxRank(String txt, bool check, Function onTapAction) {
   return Card(
       color: third,
