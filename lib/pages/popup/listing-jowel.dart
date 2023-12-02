@@ -4,6 +4,7 @@ import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/deco.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
+import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -22,35 +23,56 @@ class ListViewScreen extends StatefulWidget {
 }
 
 class _ListViewScreenState extends State<ListViewScreen> {
-  List<Joyaux> ljowel = [];
-  bool show4 = false;
-  bool show3 = false;
-  bool show2 = false;
-  bool show1 = false;
+  List<Joyaux> ljowel = [], lFilteredDeco = [];
+  bool show4 = false,
+      show3 = false,
+      show2 = false,
+      show1 = false,
+      activeShow4 = false,
+      activeShow3 = false,
+      activeShow2 = false,
+      activeShow1 = false;
+  TextEditingController tc = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    changeShow();
     loadJowel();
   }
 
-  Future<String> loadJowelData() async {
-    return await rootBundle.loadString('database/mhrs/jowel.json');
-  }
-
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
-  }
-
   Future<void> loadJowel() async {
-    String jsonText = await loadJowelData();
+    String jsonText = await rootBundle.loadString('database/mhrs/jowel.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
-    String skillJsonText = await loadSkillData();
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       ljowel = jsonResponse
           .map((jowel) => Joyaux.fromJson(jowel, skillList, Stuff.local))
           .toList();
+      lFilteredDeco = getFilteredJowel(widget.slot);
+    });
+  }
+
+  void changeShow() {
+    setState(() {
+      if (widget.slot == 4) {
+        show4 = true;
+        activeShow4 = true;
+      }
+      if (widget.slot >= 3) {
+        show3 = true;
+        activeShow3 = true;
+      }
+      if (widget.slot >= 2) {
+        show2 = true;
+        activeShow2 = true;
+      }
+      if (widget.slot >= 1) {
+        show1 = true;
+        activeShow1 = true;
+      }
     });
   }
 
@@ -61,60 +83,48 @@ class _ListViewScreenState extends State<ListViewScreen> {
     }
     if (show4 && slot == 4) {
       filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 4).toList());
-      show4 = true;
     }
     if (show3 && slot >= 3) {
       filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 3).toList());
-      show3 = true;
     }
     if (show2 && slot >= 2) {
       filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 2).toList());
-      show2 = true;
     }
     if (show1 && slot >= 1) {
       filteredJowel.addAll(ljowel.where((jowel) => jowel.slot == 1).toList());
-      show1 = true;
     }
     return filteredJowel;
+  }
+
+  void searchFilter(String keyword) {
+    getFilteredJowel(widget.slot);
+    List<Joyaux> filteredJowel = [];
+    if (keyword.isEmpty || keyword == '') {
+      filteredJowel = lFilteredDeco;
+    } else {
+      filteredJowel = lFilteredDeco
+          .where((deco) =>
+              deco.name.toLowerCase().contains(keyword.toLowerCase()) ||
+              deco.level == 0)
+          .toList();
+    }
+    setState(() {
+      lFilteredDeco = filteredJowel;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.black,
+        color: secondary,
         child: Column(children: [
-          Card(
-
-            color: primary,
-              margin: const EdgeInsets.all(5),
-              child:
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                checkboxDeco(slot4, show4, (bool check) {
-                  setState(() {
-                    show4 = check;
-                  });
-                }),
-                checkboxDeco(slot3, show3, (bool check) {
-                  setState(() {
-                    show3 = check;
-                  });
-                }),
-                checkboxDeco(slot2, show2, (bool check) {
-                  setState(() {
-                    show2 = check;
-                  });
-                }),
-                checkboxDeco(slot1, show1, (bool check) {
-                  setState(() {
-                    show1 = check;
-                  });
-                })
-              ])),
+          BlockFilter(),
+          getSearchBar(tc, context, searchFilter),
           Expanded(
               child: ListView.builder(
-                  itemCount: getFilteredJowel(widget.slot).length,
+                  itemCount: lFilteredDeco.length,
                   itemBuilder: (context, index) {
-                    Joyaux jowel = getFilteredJowel(widget.slot)[index];
+                    Joyaux jowel = lFilteredDeco[index];
                     if (index == 0) {
                       return Card(
                           margin: const EdgeInsets.only(
@@ -122,7 +132,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                           child: TextButton(
                               style: ButtonStyle(
                                 backgroundColor:
-                                    MaterialStateProperty.all<Color>(fourth),
+                                    MaterialStateProperty.all<Color>(fourth)
                               ),
                               onPressed: () {
                                 Navigator.of(context).pop(jowel);
@@ -169,7 +179,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Column(children: [
-                                             Text(AppLocalizations.of(context)!.talent),
+                                            Text(AppLocalizations.of(context)!
+                                                .talent),
                                             Text(
                                                 '${jowel.nameSkill} +${jowel.level}')
                                           ])
@@ -177,6 +188,38 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                   ]))));
                     }
                   }))
+        ]));
+  }
+
+  Widget BlockFilter() {
+    return Card(
+        color: third,
+        margin: const EdgeInsets.all(5),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          checkboxDeco(slot4, show4, activeShow4, (bool check) {
+            setState(() {
+              show4 = check;
+              lFilteredDeco = getFilteredJowel(widget.slot);
+            });
+          }),
+          checkboxDeco(slot3, show3, activeShow3, (bool check) {
+            setState(() {
+              show3 = check;
+              lFilteredDeco = getFilteredJowel(widget.slot);
+            });
+          }),
+          checkboxDeco(slot2, show2, activeShow2, (bool check) {
+            setState(() {
+              show2 = check;
+              lFilteredDeco = getFilteredJowel(widget.slot);
+            });
+          }),
+          checkboxDeco(slot1, show1, activeShow1, (bool check) {
+            setState(() {
+              show1 = check;
+              lFilteredDeco = getFilteredJowel(widget.slot);
+            });
+          })
         ]));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:flutter/material.dart';
 
 Widget checkboxArme(String img, bool check, Function(bool) onTapAction) {
@@ -16,21 +17,25 @@ Widget checkboxArme(String img, bool check, Function(bool) onTapAction) {
                   color: check ? fifth : Colors.transparent))));
 }
 
-Widget checkboxDeco(String img, bool check, Function(bool) onTapAction) {
+Widget checkboxDeco(
+    String img, bool check, bool actif, Function(bool) onTapAction) {
   return Card(
       color: third,
       child: GestureDetector(
-          onTap: () => onTapAction(!check),
+          onTap: () => actif ? onTapAction(!check) : null,
           child: Container(
               width: 30,
               height: 30,
               decoration: BoxDecoration(
-                  border: Border.all(color: fifth, width: 1),
+                  border: Border.all(color: actif ? fifth : third, width: 1),
                   image: DecorationImage(image: AssetImage(img)),
                   borderRadius: BorderRadius.circular(5),
                   color: check ? fifth : Colors.transparent,
-                  boxShadow: const [
-                    BoxShadow(color: secondary, spreadRadius: 3, blurRadius: 2)
+                  boxShadow: [
+                    BoxShadow(
+                        color: actif ? secondary : third,
+                        spreadRadius: 3,
+                        blurRadius: 2)
                   ]))));
 }
 
@@ -46,9 +51,7 @@ Widget checkboxRank(String txt, bool check, Function onTapAction) {
                   border: Border.all(color: fifth, width: 1),
                   borderRadius: BorderRadius.circular(5),
                   color: check ? fifth : Colors.transparent),
-              child: Center(
-                  child: Text(txt,
-                      style: const TextStyle(fontWeight: FontWeight.bold))))));
+              child: Center(child: boldBlack(txt)))));
 }
 
 Widget checkboxAugment(String txt, bool check, Function onTapAction) {
