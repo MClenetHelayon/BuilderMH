@@ -20,6 +20,14 @@ Widget doubleElemWhite(String image, int value, String image2, int value2) {
   ]);
 }
 
+Widget stat(String img, String stat) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    Image.asset(img, height: 18, width: 18),
+    const SizedBox(width: 3),
+    Text(stat),
+  ]);
+}
+
 Widget statBlack(String img, String stat) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Image.asset(img, height: 18, width: 18),
@@ -88,9 +96,7 @@ Container statFlor(String img, int stat, bool isImg) {
     padding: isImg ? const EdgeInsets.all(3) : const EdgeInsets.all(0),
     decoration: isImg
         ? BoxDecoration(
-            color: secondary,
-            borderRadius: BorderRadius.circular(5),
-          )
+            color: secondary, borderRadius: BorderRadius.circular(5))
         : const BoxDecoration(),
     margin: const EdgeInsets.only(left: 10.0),
     child: statWhite(img, stat.toString()),

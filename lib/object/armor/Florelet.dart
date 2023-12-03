@@ -14,17 +14,18 @@ class Florelet {
       required this.uStam,
       required this.uAtt,
       required this.uDef});
+
   static getBase() {
     return Florelet(
-        name: "un Florelet",
-        gVie: 10,
-        gStam: 10,
-        gAtt: 10,
-        gDef: 10,
-        uVie: 10,
-        uStam: 10,
-        uAtt: 10,
-        uDef: 10);
+        name: "------------------",
+        gVie: 0,
+        gStam: 0,
+        gAtt: 0,
+        gDef: 0,
+        uVie: 0,
+        uStam: 0,
+        uAtt: 0,
+        uDef: 0);
   }
 
   factory Florelet.fromJson(
@@ -32,12 +33,10 @@ class Florelet {
     String localizedNames = "";
 
     petalas['name'].forEach((key, value) {
-      if (value is String && key == currentLanguage) {
-        localizedNames = value;
-      }
+      if (value is String && key == currentLanguage) localizedNames = value;
     });
     return Florelet(
-      name:localizedNames,
+      name: localizedNames,
       gVie: petalas['gVie'],
       gStam: petalas['gStam'],
       gAtt: petalas['gAtt'],

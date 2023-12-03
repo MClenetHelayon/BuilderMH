@@ -10,7 +10,7 @@ import 'package:builder_mhrs/manager/popupManager.dart' as pop;
 import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/util/convertIconInInt.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';

@@ -12,7 +12,7 @@ import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/text/util/divider.dart';
 import 'package:builder_mhrs/manager/mh/weapon/ammoManager.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/Screen.dart';
 import 'package:builder_mhrs/object/Stuff.dart';

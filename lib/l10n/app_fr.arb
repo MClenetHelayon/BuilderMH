@@ -36,6 +36,8 @@
   "waist": "Ceinture",
   "legs": "Jambes",
   "petalas": "Florelet",
+  "pBoostG" : "Boost Général",
+  "pBoostS" : "Boost par Spectroiseau",
   "insect": "Kinsecte",
   "tali": "Talisman",
   "trans": "Transcendances",

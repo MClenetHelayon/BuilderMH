@@ -1,7 +1,7 @@
 // ignore_for_file: library_prefixes
 
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
