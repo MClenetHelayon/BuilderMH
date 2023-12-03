@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/img/deco.dart';
 import 'package:builder_mhrs/manager/img/imgManager.dart';
+import 'package:builder_mhrs/manager/widget/boxShadow.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCheckbox.dart';
 import 'package:builder_mhrs/manager/widget/filter/getSearchBar.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
@@ -131,9 +132,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               top: 5, left: 10, right: 10),
                           child: TextButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(fourth)
-                              ),
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(fourth)),
                               onPressed: () {
                                 Navigator.of(context).pop(jowel);
                               },
@@ -152,10 +152,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                 Navigator.of(context).pop(jowel);
                               },
                               child: ListTile(
-                                  title: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [Text(jowel.name)]),
+                                  title: Center(child: Text(jowel.name)),
                                   leading: Container(
                                       height: 22,
                                       width: 22,
@@ -164,28 +161,15 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                           borderRadius:
                                               BorderRadius.circular(8),
                                           color: secondary,
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: secondary,
-                                                spreadRadius: 3,
-                                                blurRadius: 2)
-                                          ],
+                                          boxShadow: shadowDecoRamp(),
                                           image: DecorationImage(
                                               image: AssetImage(
                                                   slot(jowel.slot))))),
-                                  subtitle: Column(children: [
-                                    Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Column(children: [
-                                            Text(AppLocalizations.of(context)!
-                                                .talent),
-                                            Text(
-                                                '${jowel.nameSkill} +${jowel.level}')
-                                          ])
-                                        ])
-                                  ]))));
+                                  subtitle: Center(
+                                      child: Column(children: [
+                                    Text(AppLocalizations.of(context)!.talent),
+                                    Text('${jowel.nameSkill} +${jowel.level}')
+                                  ])))));
                     }
                   }))
         ]));
