@@ -214,10 +214,7 @@ class _BuilderPageState extends State<BuilderPage> {
               0: FixedColumnWidth(50),
               1: FlexColumnWidth()
             }, children: [
-              TableRow(children: [
-                afficheImgKinsect(),
-                StatKinsect(s)
-              ])
+              TableRow(children: [afficheImgKinsect(), StatKinsect(s)])
             ])));
   }
 
@@ -260,7 +257,7 @@ class _BuilderPageState extends State<BuilderPage> {
               backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: () async {
-              var value = await pop.charm(context);
+              var value = await pop.charm(context, s);
               if (value == null || value == s.charm) return;
               setState(() {
                 s.charm = value;
@@ -274,11 +271,12 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   afficheIconArmor(s, 7, true),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Container(
-                        margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                        child: boldOrange(AppLocalizations.of(context)!.tali))
-                  ])
+                  Center(
+                      child: Container(
+                          margin:
+                              const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child:
+                              boldOrange(AppLocalizations.of(context)!.tali)))
                 ])
               ]),
               Column(children: [

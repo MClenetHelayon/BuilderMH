@@ -102,12 +102,12 @@ Future<Florelet?> flor(BuildContext context) {
       });
 }
 
-Future<Talisman?> charm(BuildContext context) {
+Future<Talisman?> charm(BuildContext context, Stuff s) {
   return showDialog<Talisman>(
       context: context,
       builder: (context) {
         return somePopup(context, AppLocalizations.of(context)!.tali,
-            const ListCharm.ListViewScreen());
+            ListCharm.ListViewScreen(s.charm));
       });
 }
 
