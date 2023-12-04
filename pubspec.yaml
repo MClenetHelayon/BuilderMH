@@ -94,6 +94,7 @@ flutter:
     - images/joyau/
     - images/drapeau/
     - images/transcendance/
+    - images/consommable/
     - database/
     - database/mhrs/
     - database/mhrs/armor/

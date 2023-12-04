@@ -16,6 +16,8 @@ class BoostPage extends StatefulWidget {
 }
 
 class _BoostPageState extends State<BoostPage> {
+  bool skillOpen = true;
+  bool consoOpen = false;
   @override
   void initState() {
     super.initState();
@@ -25,83 +27,122 @@ class _BoostPageState extends State<BoostPage> {
   Widget build(BuildContext context) {
     final stuffProvider = Provider.of<StuffProvider>(context, listen: false);
     Stuff s = stuffProvider.stuff!;
+
     return Scaffold(
         backgroundColor: secondary,
         body: Column(children: [
-          Card(
-              margin: const EdgeInsets.all(5),
-              color: primary,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                        margin: const EdgeInsets.all(5),
-                        child: boldOrange(AppLocalizations.of(context)!.boost)),
-                    Container(
-                        height: 30,
-                        padding: const EdgeInsets.all(5),
-                        margin: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: third),
-                        child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                Stuff.scroll = !Stuff.scroll;
-                              });
-                            },
-                            child: Row(children: [
-                              boldBlack(AppLocalizations.of(context)!.scroll),
-                              const SizedBox(width: 3),
-                              Container(
-                                  height: 15,
-                                  width: 15,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      border:
-                                          Border.all(width: 1, color: sixth),
-                                      color: Stuff.scroll ? scrollO : scrollB))
-                            ])))
-                  ])),
-          Card(
-              color: primary,
-              child: Expanded(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(s.getAllTalents().entries.length,
-                          (index) {
-                        Talent t =
-                            s.getAllTalents().entries.elementAt(index).key;
-                        return Card(
-                            color: third,
+          GestureDetector(
+              onTap: () {
+                setState(() {
+                  skillOpen = !skillOpen;
+                });
+              },
+              child: Card(
+                  margin: const EdgeInsets.all(5),
+                  color: primary,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            margin: const EdgeInsets.all(5),
+                            child: boldOrange(
+                                AppLocalizations.of(context)!.boost)),
+                        Container(
+                            height: 30,
+                            padding: const EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                color: third),
                             child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    t.invertActif();
+                                    Stuff.scroll = !Stuff.scroll;
                                   });
                                 },
-                                child: Container(
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        color: third),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              margin: const EdgeInsets.all(5),
-                                              child: black(t.name)),
-                                          Card(
-                                              color: fifth,
-                                              margin: const EdgeInsets.all(5),
-                                              child: Container(
-                                                  padding:
-                                                      const EdgeInsets.all(5),
-                                                  child: boldBlack(
-                                                      t.actif ? "On" : "Off")))
-                                        ]))));
-                      }))))
+                                child: Row(children: [
+                                  boldBlack(
+                                      AppLocalizations.of(context)!.scroll),
+                                  const SizedBox(width: 3),
+                                  Container(
+                                      height: 15,
+                                      width: 15,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          border: Border.all(
+                                              width: 1, color: sixth),
+                                          color:
+                                              Stuff.scroll ? scrollO : scrollB))
+                                ])))
+                      ]))),
+          GestureDetector(
+              onTap: () {
+                setState(() {
+                  consoOpen = !consoOpen;
+                });
+              },
+              child: Card(
+                  margin: const EdgeInsets.all(5),
+                  color: primary,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                            margin: const EdgeInsets.only(
+                                left: 5, top: 10, bottom: 10),
+                            child:
+                                boldOrange(AppLocalizations.of(context)!.conso))
+                      ]))),
+          if (skillOpen)
+            Card(
+                color: primary,
+                child: Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(
+                            s.getAllTalents().entries.length, (index) {
+                          Talent t =
+                              s.getAllTalents().entries.elementAt(index).key;
+                          return Card(
+                              color: third,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      t.invertActif();
+                                    });
+                                  },
+                                  child: Container(
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(5),
+                                          color: third),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                                margin: const EdgeInsets.all(5),
+                                                child: black(t.name)),
+                                            Card(
+                                                color: fifth,
+                                                margin: const EdgeInsets.all(5),
+                                                child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    child: boldBlack(t.actif
+                                                        ? "On"
+                                                        : "Off")))
+                                          ]))));
+                        })))),
+          if (consoOpen)
+            Card(
+                color: primary,
+                child: Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [])))
         ]));
   }
 }
