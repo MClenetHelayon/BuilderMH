@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 
