@@ -1,7 +1,7 @@
 import 'package:builder_mhrs/manager/img/raw.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -21,15 +21,24 @@ Widget partFlor(int vVie, int vStam, int vAtt, int vDef, String titre) {
     Container(
         margin: const EdgeInsets.only(bottom: 10.0, top: 10.0),
         child: white(titre)),
-   rowFlor(vVie, vStam, vAtt, vDef,false)
+    rowFlor(vVie, vStam, vAtt, vDef, false)
   ]);
 }
 
-Widget rowFlor(int vVie, int vStam, int vAtt, int vDef,bool img) {
+Widget rowFlor(int vVie, int vStam, int vAtt, int vDef, bool img) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-    statFlor(vie, vVie,img),
-    statFlor(stam, vStam,img),
-    statFlor(attaque, vAtt,img),
-    statFlor(def, vDef,img),
+    statFlor(vie, vVie, img),
+    statFlor(stam, vStam, img),
+    statFlor(attaque, vAtt, img),
+    statFlor(def, vDef, img),
+  ]);
+}
+
+Widget rowFlorListing(int vVie, int vStam, int vAtt, int vDef) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+    stat(vie, vVie.toString()),
+    stat(stam, vStam.toString()),
+    stat(attaque, vAtt.toString()),
+    stat(def, vDef.toString()),
   ]);
 }

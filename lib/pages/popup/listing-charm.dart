@@ -1,13 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/widget/cardListManager.dart';
+import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ListViewScreen extends StatefulWidget {
-  const ListViewScreen({
+  final Talisman t;
+  const ListViewScreen(
+    this.t, {
     Key? key,
   }) : super(key: key);
 
@@ -32,12 +39,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
     loadSkill();
   }
 
-  Future<String> loadSkillData() async {
-    return await rootBundle.loadString('database/mhrs/skill.json');
-  }
-
   Future<void> loadSkill() async {
-    String skillJsonText = await loadSkillData();
+    Talisman t = widget.t;
+    String skillJsonText =
+        await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
     setState(() {
       lskill.add(Talent.getBase());
@@ -46,107 +51,132 @@ class _ListViewScreenState extends State<ListViewScreen> {
           lskill.add(Talent.getJson(skill, Stuff.local));
         }
       }
+      if (t.slots.isNotEmpty) {
+        slot1 = t.slots[0];
+        if (t.slots[1] != 0) {
+          slot1Active = true;
+          slot2 = t.slots[1];
+        }
+        if (t.slots[2] != 0) {
+          slot3 = t.slots[2];
+          slot2Active = true;
+        }
+      }
+
+      if (t.talents.isNotEmpty) {
+        for (int i = 0; i < lskill.length; i++) {
+          if (lskill[i].id == t.talents[0].id) {
+            talentIndex1 = i;
+            talentLevel1 = t.talents[0].level;
+          }
+          if (t.talents.length == 2) {
+            talent2Active = true;
+            if (lskill[i].id == t.talents[1].id) {
+              talentIndex2 = i;
+              talentLevel2 = t.talents[1].level;
+            }
+          }
+        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.black,
-        child: Column(
-          children: [
-            Card(
-                color: const Color.fromARGB(255, 218, 218, 218),
-                child: Column(children: [
-                  Text("Talent 1"),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        if (lskill.length > 0) TalentDropdown1(),
-                        if (lskill.length > 0) LevelDropdown1(),
-                      ])
-                ])),
-            if (talent2Active)
-              Card(
-                  color: const Color.fromARGB(255, 218, 218, 218),
-                  child: Column(children: [
-                    Text("Talent 2"),
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          if (lskill.length > 0) TalentDropdown2(),
-                          if (lskill.length > 0) LevelDropdown2(),
-                        ])
-                  ])),
-            Card(
-                color: const Color.fromARGB(255, 218, 218, 218),
-                child: Column(children: [
-                  Text("Emplacements"),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SlotDropdown1(),
-                        if (slot1Active) SlotDropdown2(),
-                        if (slot1Active && slot2Active) SlotDropdown3(),
-                      ])
-                ])),
-            TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 255, 255, 255)),
-                ),
-                onPressed: () {
-                  Talent t1 = Talent.getBase();
-                  Talent t2 = Talent.getBase();
-                  List<Talent> list = [];
-                  if (talentIndex1 != 0) {
-                    t1 = Talent(
-                        name: lskill[talentIndex1].name,
-                        id: lskill[talentIndex1].id,
-                        level: talentLevel1,
-                        levelMax: lskill[talentIndex1].levelMax,
-                        talisman: true,
-                        actif: true);
-                    list.add(t1);
-                  }
-                  if (talent2Active) {
-                    if (talentIndex2 != 0) {
-                      t2 = Talent(
-                          name: lskill[talentIndex2].name,
-                          id: lskill[talentIndex2].id,
-                          level: talentLevel2,
-                          levelMax: lskill[talentIndex2].levelMax,
-                          talisman: true,
-                          actif: true);
-                      list.add(t2);
-                    }
-                  }
-                  Talisman t = Talisman(list, [slot1, slot2, slot3]);
-                  Navigator.of(context).pop(t);
-                },
-                child: Text("Valider"))
-          ],
-        ));
-  }
-
-  Widget TalentDropdown1() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-            value: talentIndex1,
-            onChanged: (newValue) {
+        color: secondary,
+        child: Column(children: [
+          getCardCharmTalent(1, lskill, talentIndex1, talentLevel1, 0, context,
+              (newValue) {
+            setState(() {
+              talentIndex1 = newValue!;
+              if (talentIndex1 != 0) {
+                talentLevel1 = lskill[(talentIndex1)].levelMax;
+                talent2Active = true;
+              } else {
+                talentLevel1 = 0;
+                talent2Active = false;
+              }
+            });
+          }, (newValue) {
+            setState(() {
+              talentLevel1 = newValue!;
+            });
+          }),
+          if (talent2Active)
+            getCardCharmTalent(
+                2, lskill, talentIndex2, talentLevel2, talentIndex1, context,
+                (newValue) {
               setState(() {
-                talentIndex1 = newValue!;
-                if (talentIndex1 != 0) {
-                  talentLevel1 = lskill[(talentIndex1)].levelMax;
-                  talent2Active = true;
+                talentIndex2 = newValue!;
+                if (talentIndex2 != -1) {
+                  talentLevel2 = lskill[(talentIndex2)].levelMax;
                 } else {
-                  talentLevel1 = 0;
-                  talent2Active = false;
+                  talentLevel2 = 0;
                 }
               });
-            },
-            items: getDropdownItems1()));
+            }, (newValue) {
+              setState(() {
+                talentLevel2 = newValue!;
+              });
+            }),
+          Card(
+              color: fourth,
+              child: Column(children: [
+                boldBlack(AppLocalizations.of(context)!.slots),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      comboCharmSlotLvl(slot1, 4, (newValue) {
+                        setState(() {
+                          slot1 = newValue!;
+                          if (slot1 != 0) {
+                            slot1Active = true;
+                          } else {
+                            slot1Active = false;
+                            slot2 = 0;
+                            slot3 = 0;
+                          }
+                        });
+                      }),
+                      if (slot1Active)
+                        comboCharmSlotLvl(slot2, slot1, (newValue) {
+                          setState(() {
+                            slot2 = newValue!;
+                            if (slot2 != 0) {
+                              slot2Active = true;
+                            } else {
+                              slot2Active = false;
+                              slot3 = 0;
+                            }
+                          });
+                        }),
+                      if (slot1Active && slot2Active)
+                        comboCharmSlotLvl(slot3, slot2, (newValue) {
+                          setState(() {
+                            slot3 = newValue!;
+                          });
+                        })
+                    ])
+              ])),
+          TextButton(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(fourth)),
+              onPressed: () {
+                List<Talent> list = [];
+                if (talentIndex1 != 0) {
+                  list.add(
+                      Talent.getTalent(lskill[talentIndex1], talentLevel1));
+                }
+                if (talentIndex2 != 0 && talent2Active) {
+                  list.add(
+                      Talent.getTalent(lskill[talentIndex2], talentLevel2));
+                }
+                Talisman t = Talisman(list, [slot1, slot2, slot3]);
+                Navigator.of(context).pop(t);
+              },
+              child: boldOrange(AppLocalizations.of(context)!.valider)),
+        ]));
   }
 
   Widget LevelDropdown1() {
@@ -163,24 +193,6 @@ class _ListViewScreenState extends State<ListViewScreen> {
         ));
   }
 
-  Widget TalentDropdown2() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-            value: talentIndex2,
-            onChanged: (newValue) {
-              setState(() {
-                talentIndex2 = newValue!;
-                if (talentIndex2 != -1) {
-                  talentLevel2 = lskill[(talentIndex2)].levelMax;
-                } else {
-                  talentLevel2 = 0;
-                }
-              });
-            },
-            items: getDropdownItems2()));
-  }
-
   Widget LevelDropdown2() {
     return Container(
         margin: const EdgeInsets.all(5.0),
@@ -195,85 +207,6 @@ class _ListViewScreenState extends State<ListViewScreen> {
         ));
   }
 
-  Widget SlotDropdown1() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-          value: slot1,
-          onChanged: (newValue) {
-            setState(() {
-              slot1 = newValue!;
-              if (slot1 != 0) {
-                slot1Active = true;
-              } else {
-                slot1Active = false;
-                slot2 = 0;
-                slot3 = 0;
-              }
-            });
-          },
-          items: getDropdownSlot1(),
-        ));
-  }
-
-  Widget SlotDropdown2() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-          value: slot2,
-          onChanged: (newValue) {
-            setState(() {
-              slot2 = newValue!;
-              if (slot2 != 0) {
-                slot2Active = true;
-              } else {
-                slot2Active = false;
-                slot3 = 0;
-              }
-            });
-          },
-          items: getDropdownSlot2(),
-        ));
-  }
-
-  Widget SlotDropdown3() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-          value: slot3,
-          onChanged: (newValue) {
-            setState(() {
-              slot3 = newValue!;
-            });
-          },
-          items: getDropdownSlot3(),
-        ));
-  }
-
-  List<DropdownMenuItem<int>> getDropdownItems1() {
-    List<DropdownMenuItem<int>> items = [];
-    for (int i = 0; i <= (lskill.length - 1); i++) {
-      items.add(DropdownMenuItem(
-        value: i,
-        child: Text(lskill[i].name),
-      ));
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem<int>> getDropdownItems2() {
-    List<DropdownMenuItem<int>> items = [];
-    for (int i = 0; i <= (lskill.length - 1); i++) {
-      if (lskill[i].id != talentIndex1 || lskill[i].id == -1) {
-        items.add(DropdownMenuItem(
-          value: i,
-          child: Text(lskill[i].name),
-        ));
-      }
-    }
-    return items;
-  }
-
   List<DropdownMenuItem<int>> getDropdownLevel1() {
     List<DropdownMenuItem<int>> items = [];
     if (talentIndex1 != -1) {
@@ -284,7 +217,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
         ));
       }
     } else {
-      items.add(DropdownMenuItem(
+      items.add(const DropdownMenuItem(
         value: 0,
         child: Text('0'),
       ));
@@ -309,48 +242,6 @@ class _ListViewScreenState extends State<ListViewScreen> {
       ));
     }
 
-    return items;
-  }
-
-  List<DropdownMenuItem<int>> getDropdownSlot1() {
-    List<DropdownMenuItem<int>> items = [];
-    int j = 4;
-    for (int i = 0; i <= j; i++) {
-      items.add(DropdownMenuItem(
-        value: i,
-        child: Text('$i'),
-      ));
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem<int>> getDropdownSlot2() {
-    List<DropdownMenuItem<int>> items = [];
-    int j = 4;
-    if (slot1 != 0) {
-      j = slot1;
-    }
-    for (int i = 0; i <= j; i++) {
-      items.add(DropdownMenuItem(
-        value: i,
-        child: Text('$i'),
-      ));
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem<int>> getDropdownSlot3() {
-    List<DropdownMenuItem<int>> items = [];
-    int j = 4;
-    if (slot2 != 0) {
-      j = slot2;
-    }
-    for (int i = 0; i <= j; i++) {
-      items.add(DropdownMenuItem(
-        value: i,
-        child: Text('$i'),
-      ));
-    }
     return items;
   }
 }

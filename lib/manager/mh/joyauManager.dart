@@ -4,12 +4,12 @@ import 'package:builder_mhrs/manager/popupManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:builder_mhrs/object/armor/Bras.dart';
 import 'package:builder_mhrs/object/armor/Casque.dart';
 import 'package:builder_mhrs/object/armor/Ceinture.dart';
 import 'package:builder_mhrs/object/armor/Jambe.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 

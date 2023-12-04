@@ -65,4 +65,14 @@ class Talent {
   void invertActif() {
     actif = !actif;
   }
+
+  static Talent getTalent(Talent skill, int talentLevel) {
+    return Talent(
+        name: skill.name,
+        id: skill.id,
+        level: talentLevel,
+        levelMax: skill.levelMax,
+        talisman: true,
+        actif: true);
+  }
 }

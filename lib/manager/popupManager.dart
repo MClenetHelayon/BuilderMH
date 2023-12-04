@@ -1,14 +1,14 @@
 // ignore_for_file: library_prefixes
 
 import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:builder_mhrs/object/Transcendance.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -102,12 +102,12 @@ Future<Florelet?> flor(BuildContext context) {
       });
 }
 
-Future<Talisman?> charm(BuildContext context) {
+Future<Talisman?> charm(BuildContext context, Stuff s) {
   return showDialog<Talisman>(
       context: context,
       builder: (context) {
         return somePopup(context, AppLocalizations.of(context)!.tali,
-            const ListCharm.ListViewScreen());
+            ListCharm.ListViewScreen(s.charm));
       });
 }
 

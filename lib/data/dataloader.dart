@@ -1,15 +1,15 @@
 import 'dart:convert';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:builder_mhrs/object/armor/Bras.dart';
 import 'package:builder_mhrs/object/armor/Casque.dart';
 import 'package:builder_mhrs/object/armor/Ceinture.dart';
 import 'package:builder_mhrs/object/armor/Jambe.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/GrandeEpee.dart';
 import 'package:builder_mhrs/provider/app_state.dart';

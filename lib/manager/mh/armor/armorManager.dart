@@ -7,7 +7,7 @@ import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/widget/printStatSimply.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

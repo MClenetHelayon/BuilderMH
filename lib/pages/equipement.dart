@@ -10,18 +10,18 @@ import 'package:builder_mhrs/manager/popupManager.dart' as pop;
 import 'package:builder_mhrs/manager/text/slotAugment.dart';
 import 'package:builder_mhrs/manager/util/convertIconInInt.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
-import 'package:builder_mhrs/object/Florelet.dart';
+import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
-import 'package:builder_mhrs/object/Talisman.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:builder_mhrs/object/armor/Bras.dart';
 import 'package:builder_mhrs/object/armor/Casque.dart';
 import 'package:builder_mhrs/object/armor/Ceinture.dart';
 import 'package:builder_mhrs/object/armor/Jambe.dart';
 import 'package:builder_mhrs/object/armor/Plastron.dart';
+import 'package:builder_mhrs/object/armor/Talisman.dart';
 import 'package:builder_mhrs/object/weapon/Arme.dart';
 import 'package:builder_mhrs/object/weapon/tranchant/Insectoglaive.dart';
 import 'package:builder_mhrs/provider/app_state.dart';
@@ -214,10 +214,7 @@ class _BuilderPageState extends State<BuilderPage> {
               0: FixedColumnWidth(50),
               1: FlexColumnWidth()
             }, children: [
-              TableRow(children: [
-                afficheImgKinsect(),
-                StatKinsect(s)
-              ])
+              TableRow(children: [afficheImgKinsect(), StatKinsect(s)])
             ])));
   }
 
@@ -260,7 +257,7 @@ class _BuilderPageState extends State<BuilderPage> {
               backgroundColor: MaterialStateProperty.all<Color>(primary),
             ),
             onPressed: () async {
-              var value = await pop.charm(context);
+              var value = await pop.charm(context, s);
               if (value == null || value == s.charm) return;
               setState(() {
                 s.charm = value;
@@ -274,11 +271,12 @@ class _BuilderPageState extends State<BuilderPage> {
               }, children: [
                 TableRow(children: [
                   afficheIconArmor(s, 7, true),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Container(
-                        margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-                        child: boldOrange(AppLocalizations.of(context)!.tali))
-                  ])
+                  Center(
+                      child: Container(
+                          margin:
+                              const EdgeInsets.only(top: 10.0, bottom: 10.0),
+                          child:
+                              boldOrange(AppLocalizations.of(context)!.tali)))
                 ])
               ]),
               Column(children: [
