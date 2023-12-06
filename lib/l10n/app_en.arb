@@ -237,5 +237,15 @@
   "tSharp": "Sharpness Boost",
   "tShelling": "Shelling Level Boost",
   "tActive": "Enabled",
-  "tDesactive": "Disabled"
+  "tDesactive": "Disabled",
+  "consoCharmAtt": "Powercharm",
+  "consoCharmDef": "Armorcharm",
+  "consoGriffeAtt": "Powertalon",
+  "consoGriffeDef": "Armortalon",
+  "consoPopoAtt": "Mega Demondrug",
+  "consoPopoDef": "Mega Armorskin",
+  "consoGraineAtt": "Might Seed",
+  "consoGraineDef": "Adamant Seed",
+  "consoPoudreAtt": "Demon Powder",
+  "consoPoudreDef": "Hardshell Powder"
 }
