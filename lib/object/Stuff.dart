@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/object/Consommable.dart';
 import 'package:builder_mhrs/object/armor/Florelet.dart';
 import 'package:builder_mhrs/object/Joyau.dart';
 import 'package:builder_mhrs/object/JoyauCalam.dart';
@@ -17,6 +18,7 @@ class Stuff {
   static String local = 'fr';
   static List<Talent> lSkill = [];
   static List<Joyaux> ljowel = [];
+  static Consommable consommable = Consommable.getBase();
   late Casque helmet;
   late Plastron torso;
   late Bras gant;
