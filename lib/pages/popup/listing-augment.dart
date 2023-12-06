@@ -62,7 +62,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                       width: 120,
                       child: Center(
                           child: boldBlack(
-                              '${AppLocalizations.of(context)!.slot} ${t.slotTotal}'))))
+                              '${AppLocalizations.of(context)!.slot}: ${t.slotTotal}'))))
             ])
           ]),
           recapG(),
