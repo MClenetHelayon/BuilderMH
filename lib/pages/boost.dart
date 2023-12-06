@@ -174,86 +174,96 @@ class _BoostPageState extends State<BoostPage> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoGriffeAtt,
-                            c.griffeA,
-                            griffeA, () {
-                          setState(() {
-                            c.griffeA = !c.griffeA;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoGriffeDef,
-                            c.griffeD,
-                            griffeD, () {
-                          setState(() {
-                            c.griffeD = !c.griffeD;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoCharmAtt,
-                            c.charmA,
-                            charmA, () {
-                          setState(() {
-                            c.charmA = !c.charmA;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoCharmDef,
-                            c.charmD,
-                            charmD, () {
-                          setState(() {
-                            c.charmD = !c.charmD;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoPopoAtt,
-                            c.popoA,
-                            popoA, () {
-                          setState(() {
-                            c.popoA = !c.popoA;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoPopoDef,
-                            c.popoD,
-                            popoD, () {
-                          setState(() {
-                            c.popoD = !c.popoD;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoGraineAtt,
-                            c.graineA,
-                            graineA, () {
-                          setState(() {
-                            c.graineA = !c.graineA;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoGraineDef,
-                            c.graineD,
-                            graineD, () {
-                          setState(() {
-                            c.graineD = !c.graineD;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoPoudreAtt,
-                            c.poudreA,
-                            poudreA, () {
-                          setState(() {
-                            c.poudreA = !c.poudreA;
-                          });
-                        }),
-                        getCardConsommable(
-                            AppLocalizations.of(context)!.consoPoudreDef,
-                            c.poudreD,
-                            poudreD, () {
-                          setState(() {
-                            c.poudreD = !c.poudreD;
-                          });
-                        })
+                        if (attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoGriffeAtt,
+                              c.griffeA,
+                              griffeA, () {
+                            setState(() {
+                              c.griffeA = !c.griffeA;
+                            });
+                          }),
+                        if (!attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoGriffeDef,
+                              c.griffeD,
+                              griffeD, () {
+                            setState(() {
+                              c.griffeD = !c.griffeD;
+                            });
+                          }),
+                        if (attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoCharmAtt,
+                              c.charmA,
+                              charmA, () {
+                            setState(() {
+                              c.charmA = !c.charmA;
+                            });
+                          }),
+                        if (!attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoCharmDef,
+                              c.charmD,
+                              charmD, () {
+                            setState(() {
+                              c.charmD = !c.charmD;
+                            });
+                          }),
+                        if (attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoPopoAtt,
+                              c.popoA,
+                              popoA, () {
+                            setState(() {
+                              c.popoA = !c.popoA;
+                            });
+                          }),
+                        if (!attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoPopoDef,
+                              c.popoD,
+                              popoD, () {
+                            setState(() {
+                              c.popoD = !c.popoD;
+                            });
+                          }),
+                        if (attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoGraineAtt,
+                              c.graineA,
+                              graineA, () {
+                            setState(() {
+                              c.graineA = !c.graineA;
+                            });
+                          }),
+                        if (!attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoGraineDef,
+                              c.graineD,
+                              graineD, () {
+                            setState(() {
+                              c.graineD = !c.graineD;
+                            });
+                          }),
+                        if (attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoPoudreAtt,
+                              c.poudreA,
+                              poudreA, () {
+                            setState(() {
+                              c.poudreA = !c.poudreA;
+                            });
+                          }),
+                        if (!attackOrDef)
+                          getCardConsommable(
+                              AppLocalizations.of(context)!.consoPoudreDef,
+                              c.poudreD,
+                              poudreD, () {
+                            setState(() {
+                              c.poudreD = !c.poudreD;
+                            });
+                          })
                       ]))
           ])))
         ]));
