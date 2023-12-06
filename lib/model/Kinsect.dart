@@ -18,8 +18,7 @@ class Kinsect {
     List<int> lType = List<int>.from(ListTypeKinsect);
     var ListNiveau = json['niveauKinsect'] as List<dynamic>;
     List<List<int>> lNiveau = List<List<int>>.from(
-      ListNiveau.map((niveau) => List<int>.from(niveau)),
-    );
+        ListNiveau.map((niveau) => List<int>.from(niveau)));
     String localizedNames = "";
 
     json['name'].forEach((key, value) {
@@ -28,26 +27,24 @@ class Kinsect {
       }
     });
     return Kinsect(
-      id: json['id'],
-      name: localizedNames,
-      rarete: json['rarete'],
-      niveau: json['niveau'],
-      typeAttaque: json['typeAttaque'],
-      bonusKinsect: json['bonusKinsect'],
-      typeKinsect: lType,
-      niveauKinsect: lNiveau,
-    );
+        id: json['id'],
+        name: localizedNames,
+        rarete: json['rarete'],
+        niveau: json['niveau'],
+        typeAttaque: json['typeAttaque'],
+        bonusKinsect: json['bonusKinsect'],
+        typeKinsect: lType,
+        niveauKinsect: lNiveau);
   }
   static Kinsect getBase() {
     return Kinsect(
-      id: 9999,
-      name: "-------------",
-      rarete: 0,
-      niveau: "novice",
-      typeAttaque: 0,
-      bonusKinsect: 0,
-      typeKinsect: [],
-      niveauKinsect: [],
-    );
+        id: 9999,
+        name: "-------------",
+        rarete: 0,
+        niveau: "novice",
+        typeAttaque: 0,
+        bonusKinsect: 0,
+        typeKinsect: [],
+        niveauKinsect: []);
   }
 }

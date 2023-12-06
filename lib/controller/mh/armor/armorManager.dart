@@ -35,12 +35,10 @@ Row armorTalent(Armure armure, BuildContext context) {
   return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
     Container(
         margin: const EdgeInsets.only(top: 10.0, bottom: 3),
-        child: Column(
-          children: [
-            white(AppLocalizations.of(context)!.talent),
-            talentIfHere(armure),
-          ],
-        ))
+        child: Column(children: [
+          white(AppLocalizations.of(context)!.talent),
+          talentIfHere(armure),
+        ]))
   ]);
 }
 
@@ -107,18 +105,15 @@ Widget armorSlotBras(
     if (armure.slots.isNotEmpty)
       if (armure.slots[0] != 0)
         Card(
-            color: primary,
-            child: joyauBras(armure.slots[0], 0, s, onUpdated)),
+            color: primary, child: joyauBras(armure.slots[0], 0, s, onUpdated)),
     if (armure.slots.length >= 2)
       if (armure.slots[1] != 0)
         Card(
-            color: primary,
-            child: joyauBras(armure.slots[1], 1, s, onUpdated)),
+            color: primary, child: joyauBras(armure.slots[1], 1, s, onUpdated)),
     if (armure.slots.length == 3)
       if (armure.slots[2] != 0)
         Card(
-            color: primary,
-            child: joyauBras(armure.slots[2], 2, s, onUpdated)),
+            color: primary, child: joyauBras(armure.slots[2], 2, s, onUpdated)),
   ]);
 }
 

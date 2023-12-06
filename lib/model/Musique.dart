@@ -2,10 +2,7 @@ class Musique {
   final int id;
   final String name;
 
-  Musique({
-    required this.id,
-    required this.name,
-  });
+  Musique({required this.id, required this.name});
 
   factory Musique.fromJson(Map<String, dynamic> json, String currentLanguage) {
     String localizedNames = "";
@@ -16,9 +13,6 @@ class Musique {
       }
     });
 
-    return Musique(
-      id: json['id'],
-      name: localizedNames,
-    );
+    return Musique(id: json['id'], name: localizedNames);
   }
 }

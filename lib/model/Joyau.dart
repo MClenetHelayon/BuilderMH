@@ -4,18 +4,17 @@ import 'package:json_annotation/json_annotation.dart';
 class Joyaux {
   final String name, nameSkill;
   final int id;
-  int level;
-  int slot;
+  int level, slot;
 
-  Joyaux({
-    required this.nameSkill,
-    required this.name,
-    required this.id,
-    required this.level,
-    required this.slot,
-  });
+  Joyaux(
+      {required this.nameSkill,
+      required this.name,
+      required this.id,
+      required this.level,
+      required this.slot});
 
-  factory Joyaux.fromJson(Map<String, dynamic> json, List<dynamic> skillList, String currentLanguage) {
+  factory Joyaux.fromJson(Map<String, dynamic> json, List<dynamic> skillList,
+      String currentLanguage) {
     if (json['talentId'] != null) {
       final skill =
           skillList.firstWhere((skill) => skill['id'] == json['talentId']);
@@ -52,5 +51,3 @@ class Joyaux {
     );
   }
 }
-
-

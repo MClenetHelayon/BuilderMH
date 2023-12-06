@@ -41,39 +41,9 @@ class Stuff {
   Stuff(this.helmet, this.torso, this.gant, this.boucle, this.pied, this.charm,
       this.weapon, this.joyauxCalam, this.florelet, this.kinsect);
 
-  getCasque() => helmet;
-  getPlastron() => torso;
-  getBras() => gant;
-  getCeinture() => boucle;
-  getJambiere() => pied;
-  getCharm() => charm;
-  getWeapon() => weapon;
-  getJoyauCalam() => joyauxCalam;
-  getFlorelet() => florelet;
-  getKinsect() => kinsect;
-  getNbSavoirFaire() => nbSavoirFaire;
-  getAffinite() => affinite;
-  getCritBoost() => critBoost;
-  getSharpRaw() => sharpRaw;
-  getSharpElem() => sharpElem;
   getAllTalents() => _talents;
-
-  setCasque(Casque value) => helmet = value;
-  setPlastron(Plastron value) => torso = value;
-  setBras(Bras value) => gant = value;
-  setCeinture(Ceinture value) => boucle = value;
-  setJambiere(Jambiere value) => pied = value;
-  setCharm(Talisman value) => charm = value;
-  setWeapon(Arme value) => weapon = value;
-  setJoyauCalam(JoyauxCalam value) => joyauxCalam = value;
-  setFlorelet(Florelet value) => florelet = value;
-  setKinsect(Kinsect value) => kinsect = value;
-  setNbSavoirFaire(int value) => nbSavoirFaire = value;
-  setAffinite(num value) => affinite = value;
-  setCritBoost(double value) => critBoost = value;
   setSharpRaw(double value) => sharpRaw = value;
   setSharpElem(double value) => sharpElem = value;
-  setLocal(String value) => local = value;
 
   void getListTalents() {
     _talents = {};
