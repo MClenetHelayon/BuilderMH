@@ -2,6 +2,7 @@ import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/slot.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
+import 'package:builder_mhrs/object/Consommable.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +18,7 @@ Widget getCardArmorPopup(Armure armor, BuildContext context) {
             Navigator.of(context).pop(armor);
           },
           child: ListTile(
-              title: Center(
-                  child: boldBlack(armor.name)),
+              title: Center(child: boldBlack(armor.name)),
               subtitle: Column(children: [
                 Column(children: [
                   Text(AppLocalizations.of(context)!.joyau),
@@ -35,18 +35,50 @@ Widget getCardArmorPopup(Armure armor, BuildContext context) {
                 ])
               ]))));
 }
-  Widget getCardCharmTalent(int i,List<Talent> lskill,int talentIndex,int talentLevel,int otherTalent,BuildContext context, Function(int?) onChanged1, Function(int?) onChanged2) {
-    return  Card(
-              color: fourth,
-              child: Column(children: [
-                boldBlack("${AppLocalizations.of(context)!.talent} $i"),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      if (lskill.isNotEmpty)
-                        comboCharmSkill(lskill, talentIndex, true, otherTalent,onChanged1),
-                      if (lskill.isNotEmpty)
-                        comboCharmSkillLvl(talentIndex, talentLevel,onChanged2)
-                    ])
-              ]));
-  }
+
+Widget getCardCharmTalent(
+    int i,
+    List<Talent> lskill,
+    int talentIndex,
+    int talentLevel,
+    int otherTalent,
+    BuildContext context,
+    Function(int?) onChanged1,
+    Function(int?) onChanged2) {
+  return Card(
+      color: fourth,
+      child: Column(children: [
+        boldBlack("${AppLocalizations.of(context)!.talent} $i"),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          if (lskill.isNotEmpty)
+            comboCharmSkill(lskill, talentIndex, true, otherTalent, onChanged1),
+          if (lskill.isNotEmpty)
+            comboCharmSkillLvl(talentIndex, talentLevel, onChanged2)
+        ])
+      ]));
+}
+
+Widget getCardConsommable(String name, Consommable c, void Function()? onTap) {
+  return Card(
+      color: third,
+      child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5), color: third),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                        margin: const EdgeInsets.all(5), child: black(name)),
+                    Card(
+                        color: fifth,
+                        margin: const EdgeInsets.all(5),
+                        child: Container(
+                          padding: const EdgeInsets.all(5),
+                          /*child: boldBlack(
+                                                      t.actif ? "On" : "Off")*/
+                        ))
+                  ]))));
+}
