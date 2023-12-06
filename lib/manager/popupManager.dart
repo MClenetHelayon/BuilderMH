@@ -129,11 +129,7 @@ Widget somePopup(BuildContext context, String txt, Widget popup) {
         Text(txt,
             style: const TextStyle(fontWeight: FontWeight.bold, color: fourth)),
         const Spacer(),
-        CloseButton(
-            color: fifth,
-            onPressed: () {
-              close(context);
-            })
+        CloseButton(color: fifth, onPressed: () => close(context))
       ]),
       backgroundColor: primary,
       content: SizedBox(

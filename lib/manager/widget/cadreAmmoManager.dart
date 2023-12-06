@@ -7,7 +7,7 @@ Widget cadreAmmoValueImg(double w, Widget value) {
       decoration: BoxDecoration(
           border: Border.all(
         color: Colors.black, // Couleur de la bordure
-        width: 1.0, // Épaisseur de la bordure
+        width: 1.0 // Épaisseur de la bordure
       )),
       child: value);
 }

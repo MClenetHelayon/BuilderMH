@@ -1,5 +1,6 @@
 import 'package:builder_mhrs/loadscreen.dart';
 import 'package:builder_mhrs/manager/color/colorManager.dart';
+import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/provider/app_state.dart';
 import 'package:flutter/material.dart';
@@ -26,9 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<void> _reloadAppWrapper() async {
     Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoadScreen()),
-    );
+        context, MaterialPageRoute(builder: (context) => LoadScreen()));
   }
 
   final List<Map<String, dynamic>> _languageOptions = [
@@ -41,9 +40,8 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
         backgroundColor: primary,
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)!.param),
-          backgroundColor: secondary,
-        ),
+            title: Text(AppLocalizations.of(context)!.param),
+            backgroundColor: secondary),
         body: Padding(
             padding: const EdgeInsets.all(16.0),
             child:
@@ -70,8 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Image.asset('images/drapeau/${option['code']}.jpg',
                                 width: 50, height: 50),
                             const SizedBox(width: 8),
-                            Text(option['name'],
-                                style: const TextStyle(color: fourth))
+                            white(option['name'])
                           ]));
                     }).toList(),
                     decoration: const InputDecoration(

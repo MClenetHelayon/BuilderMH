@@ -21,6 +21,7 @@ class BoostPage extends StatefulWidget {
 
 class _BoostPageState extends State<BoostPage> {
   bool skillOpen = true, consoOpen = false, attackOrDef = true;
+
   @override
   void initState() {
     super.initState();
@@ -35,11 +36,7 @@ class _BoostPageState extends State<BoostPage> {
         backgroundColor: secondary,
         body: Column(children: [
           GestureDetector(
-              onTap: () {
-                setState(() {
-                  skillOpen = !skillOpen;
-                });
-              },
+              onTap: () => setState(() => skillOpen = !skillOpen),
               child: Card(
                   margin: const EdgeInsets.all(5),
                   color: primary,
@@ -80,11 +77,7 @@ class _BoostPageState extends State<BoostPage> {
                                 ])))
                       ]))),
           GestureDetector(
-              onTap: () {
-                setState(() {
-                  consoOpen = !consoOpen;
-                });
-              },
+              onTap: () => setState(() => consoOpen = !consoOpen),
               child: Card(
                   margin: const EdgeInsets.all(5),
                   color: primary,
@@ -104,11 +97,8 @@ class _BoostPageState extends State<BoostPage> {
                                 borderRadius: BorderRadius.circular(5),
                                 color: third),
                             child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    attackOrDef = !attackOrDef;
-                                  });
-                                },
+                                onTap: () =>
+                                    setState(() => attackOrDef = !attackOrDef),
                                 child: Row(children: [
                                   boldBlack(attackOrDef
                                       ? AppLocalizations.of(context)!.att
@@ -141,11 +131,7 @@ class _BoostPageState extends State<BoostPage> {
                         return Card(
                             color: third,
                             child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    t.actif = !t.actif;
-                                  });
-                                },
+                                onTap: () => setState(() => t.actif = !t.actif),
                                 child: Container(
                                     height: 40,
                                     decoration: BoxDecoration(
@@ -178,92 +164,62 @@ class _BoostPageState extends State<BoostPage> {
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoGriffeAtt,
                               c.griffeA,
-                              griffeA, () {
-                            setState(() {
-                              c.griffeA = !c.griffeA;
-                            });
-                          }),
+                              griffeA,
+                              () => setState(() => c.griffeA = !c.griffeA)),
                         if (!attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoGriffeDef,
                               c.griffeD,
-                              griffeD, () {
-                            setState(() {
-                              c.griffeD = !c.griffeD;
-                            });
-                          }),
+                              griffeD,
+                              () => setState(() => c.griffeD = !c.griffeD)),
                         if (attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoCharmAtt,
                               c.charmA,
-                              charmA, () {
-                            setState(() {
-                              c.charmA = !c.charmA;
-                            });
-                          }),
+                              charmA,
+                              () => setState(() => c.charmA = !c.charmA)),
                         if (!attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoCharmDef,
                               c.charmD,
-                              charmD, () {
-                            setState(() {
-                              c.charmD = !c.charmD;
-                            });
-                          }),
+                              charmD,
+                              () => setState(() => c.charmD = !c.charmD)),
                         if (attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoPopoAtt,
                               c.popoA,
-                              popoA, () {
-                            setState(() {
-                              c.popoA = !c.popoA;
-                            });
-                          }),
+                              popoA,
+                              () => setState(() => c.popoA = !c.popoA)),
                         if (!attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoPopoDef,
                               c.popoD,
-                              popoD, () {
-                            setState(() {
-                              c.popoD = !c.popoD;
-                            });
-                          }),
+                              popoD,
+                              () => setState(() => c.popoD = !c.popoD)),
                         if (attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoGraineAtt,
                               c.graineA,
-                              graineA, () {
-                            setState(() {
-                              c.graineA = !c.graineA;
-                            });
-                          }),
+                              graineA,
+                              () => setState(() => c.graineA = !c.graineA)),
                         if (!attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoGraineDef,
                               c.graineD,
-                              graineD, () {
-                            setState(() {
-                              c.graineD = !c.graineD;
-                            });
-                          }),
+                              graineD,
+                              () => setState(() => c.graineD = !c.graineD)),
                         if (attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoPoudreAtt,
                               c.poudreA,
-                              poudreA, () {
-                            setState(() {
-                              c.poudreA = !c.poudreA;
-                            });
-                          }),
+                              poudreA,
+                              () => setState(() => c.poudreA = !c.poudreA)),
                         if (!attackOrDef)
                           getCardConsommable(
                               AppLocalizations.of(context)!.consoPoudreDef,
                               c.poudreD,
-                              poudreD, () {
-                            setState(() {
-                              c.poudreD = !c.poudreD;
-                            });
-                          })
+                              poudreD,
+                              () => setState(() => c.poudreD = !c.poudreD))
                       ]))
           ])))
         ]));

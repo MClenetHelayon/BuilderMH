@@ -13,6 +13,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ListViewScreen extends StatefulWidget {
   final Talisman t;
+
   const ListViewScreen(
     this.t, {
     Key? key,
@@ -86,40 +87,41 @@ class _ListViewScreenState extends State<ListViewScreen> {
     return Card(
         color: secondary,
         child: Column(children: [
-          getCardCharmTalent(1, lskill, talentIndex1, talentLevel1, 0, context,
-              (newValue) {
-            setState(() {
-              talentIndex1 = newValue!;
-              if (talentIndex1 != 0) {
-                talentLevel1 = lskill[(talentIndex1)].levelMax;
-                talent2Active = true;
-              } else {
-                talentLevel1 = 0;
-                talent2Active = false;
-              }
-            });
-          }, (newValue) {
-            setState(() {
-              talentLevel1 = newValue!;
-            });
-          }),
+          getCardCharmTalent(
+              1,
+              lskill,
+              talentIndex1,
+              talentLevel1,
+              0,
+              context,
+              (newValue) => setState(() {
+                    talentIndex1 = newValue!;
+                    if (talentIndex1 != 0) {
+                      talentLevel1 = lskill[(talentIndex1)].levelMax;
+                      talent2Active = true;
+                    } else {
+                      talentLevel1 = 0;
+                      talent2Active = false;
+                    }
+                  }),
+              (newValue) => setState(() => talentLevel1 = newValue!)),
           if (talent2Active)
             getCardCharmTalent(
-                2, lskill, talentIndex2, talentLevel2, talentIndex1, context,
-                (newValue) {
-              setState(() {
-                talentIndex2 = newValue!;
-                if (talentIndex2 != -1) {
-                  talentLevel2 = lskill[(talentIndex2)].levelMax;
-                } else {
-                  talentLevel2 = 0;
-                }
-              });
-            }, (newValue) {
-              setState(() {
-                talentLevel2 = newValue!;
-              });
-            }),
+                2,
+                lskill,
+                talentIndex2,
+                talentLevel2,
+                talentIndex1,
+                context,
+                (newValue) => setState(() {
+                      talentIndex2 = newValue!;
+                      if (talentIndex2 != -1) {
+                        talentLevel2 = lskill[(talentIndex2)].levelMax;
+                      } else {
+                        talentLevel2 = 0;
+                      }
+                    }),
+                (newValue) => setState(() => talentLevel2 = newValue!)),
           Card(
               color: fourth,
               child: Column(children: [
@@ -127,36 +129,35 @@ class _ListViewScreenState extends State<ListViewScreen> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      comboCharmSlotLvl(slot1, 4, (newValue) {
-                        setState(() {
-                          slot1 = newValue!;
-                          if (slot1 != 0) {
-                            slot1Active = true;
-                          } else {
-                            slot1Active = false;
-                            slot2 = 0;
-                            slot3 = 0;
-                          }
-                        });
-                      }),
+                      comboCharmSlotLvl(
+                          slot1,
+                          4,
+                          (newValue) => setState(() {
+                                slot1 = newValue!;
+                                if (slot1 != 0) {
+                                  slot1Active = true;
+                                } else {
+                                  slot1Active = false;
+                                  slot2 = 0;
+                                  slot3 = 0;
+                                }
+                              })),
                       if (slot1Active)
-                        comboCharmSlotLvl(slot2, slot1, (newValue) {
-                          setState(() {
-                            slot2 = newValue!;
-                            if (slot2 != 0) {
-                              slot2Active = true;
-                            } else {
-                              slot2Active = false;
-                              slot3 = 0;
-                            }
-                          });
-                        }),
+                        comboCharmSlotLvl(
+                            slot2,
+                            slot1,
+                            (newValue) => setState(() {
+                                  slot2 = newValue!;
+                                  if (slot2 != 0) {
+                                    slot2Active = true;
+                                  } else {
+                                    slot2Active = false;
+                                    slot3 = 0;
+                                  }
+                                })),
                       if (slot1Active && slot2Active)
-                        comboCharmSlotLvl(slot3, slot2, (newValue) {
-                          setState(() {
-                            slot3 = newValue!;
-                          });
-                        })
+                        comboCharmSlotLvl(slot3, slot2,
+                            (newValue) => setState(() => slot3 = newValue!))
                     ])
               ])),
           TextButton(
@@ -177,71 +178,5 @@ class _ListViewScreenState extends State<ListViewScreen> {
               },
               child: boldOrange(AppLocalizations.of(context)!.valider)),
         ]));
-  }
-
-  Widget LevelDropdown1() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-          value: talentLevel1,
-          onChanged: (newValue) {
-            setState(() {
-              talentLevel1 = newValue!;
-            });
-          },
-          items: getDropdownLevel1(),
-        ));
-  }
-
-  Widget LevelDropdown2() {
-    return Container(
-        margin: const EdgeInsets.all(5.0),
-        child: DropdownButton<int>(
-          value: talentLevel2,
-          onChanged: (newValue) {
-            setState(() {
-              talentLevel2 = newValue!;
-            });
-          },
-          items: getDropdownLevel2(),
-        ));
-  }
-
-  List<DropdownMenuItem<int>> getDropdownLevel1() {
-    List<DropdownMenuItem<int>> items = [];
-    if (talentIndex1 != -1) {
-      for (int i = 1; i <= talentLevel1; i++) {
-        items.add(DropdownMenuItem(
-          value: i,
-          child: Text('$i'),
-        ));
-      }
-    } else {
-      items.add(const DropdownMenuItem(
-        value: 0,
-        child: Text('0'),
-      ));
-    }
-
-    return items;
-  }
-
-  List<DropdownMenuItem<int>> getDropdownLevel2() {
-    List<DropdownMenuItem<int>> items = [];
-    if (talentIndex2 != -1) {
-      for (int i = 1; i <= talentLevel2; i++) {
-        items.add(DropdownMenuItem(
-          value: i,
-          child: Text('$i'),
-        ));
-      }
-    } else {
-      items.add(const DropdownMenuItem(
-        value: 0,
-        child: Text('0'),
-      ));
-    }
-
-    return items;
   }
 }

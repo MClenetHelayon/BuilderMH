@@ -16,6 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ListViewScreen extends StatefulWidget {
   final Arme w;
+
   const ListViewScreen(
     this.w, {
     Key? key,
@@ -42,28 +43,23 @@ class _ListViewScreenState extends State<ListViewScreen> {
         color: secondary,
         child: Column(children: [
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            Column(children: [
-              checkboxAugment(
-                  Arme.augments
-                      ? AppLocalizations.of(context)!.tActive
-                      : AppLocalizations.of(context)!.tDesactive,
-                  Arme.augments, () {
-                setState(() {
-                  Arme.augments = !Arme.augments;
-                  t.reset();
-                });
-              })
-            ]),
-            Column(children: [
-              Card(
-                  color: third,
-                  child: SizedBox(
-                      height: 30,
-                      width: 120,
-                      child: Center(
-                          child: boldBlack(
-                              '${AppLocalizations.of(context)!.slot}: ${t.slotTotal}'))))
-            ])
+            checkboxAugment(
+                Arme.augments
+                    ? AppLocalizations.of(context)!.tActive
+                    : AppLocalizations.of(context)!.tDesactive,
+                Arme.augments,
+                () => setState(() {
+                      Arme.augments = !Arme.augments;
+                      t.reset();
+                    })),
+            Card(
+                color: third,
+                child: SizedBox(
+                    height: 30,
+                    width: 120,
+                    child: Center(
+                        child: boldBlack(
+                            '${AppLocalizations.of(context)!.slot}: ${t.slotTotal}'))))
           ]),
           recapG(),
           if (Arme.augments) setAugment()
@@ -129,9 +125,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                             statBlack(elem, value.toString()),
                             t.bElem[index],
                             value,
-                            t.slotTotal, () {
-                          autoSelect(index, t.bElem, value);
-                        });
+                            t.slotTotal,
+                            () => autoSelect(index, t.bElem, value));
                       })),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -141,9 +136,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                             statBlack(elem, value.toString()),
                             t.bElem[index + 4],
                             value,
-                            t.slotTotal, () {
-                          autoSelect(index + 4, t.bElem, value);
-                        });
+                            t.slotTotal,
+                            () => autoSelect(index + 4, t.bElem, value));
                       }))
                 ])),
           if (w.idElement != 0 && w.idElement >= 6)
@@ -173,9 +167,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               statBlack(ramp, value.toString()),
                               t.bRamp[index],
                               value,
-                              t.slotTotal, () {
-                            autoSelect(index, t.bRamp, value);
-                          });
+                              t.slotTotal,
+                              () => autoSelect(index, t.bRamp, value));
                         }
                       }))
                 ]))
@@ -221,10 +214,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
                     value = getSlotSharp(index);
                     break;
                 }
-                return checkboxModAugment(statBlack(img, value.toString()),
-                    b[index], value, t.slotTotal, () {
-                  autoSelect(index, b, value);
-                });
+                return checkboxModAugment(
+                    statBlack(img, value.toString()),
+                    b[index],
+                    value,
+                    t.slotTotal,
+                    () => autoSelect(index, b, value));
               }))
         ]));
   }

@@ -52,9 +52,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               (flor) => flor.name.toLowerCase().contains(keyword.toLowerCase()))
           .toList();
     }
-    setState(() {
-      lFilteredPetalas = filteredFlor;
-    });
+    setState(() => lFilteredPetalas = filteredFlor);
   }
 
   @override
@@ -75,9 +73,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                             style: ButtonStyle(
                                 backgroundColor:
                                     MaterialStateProperty.all<Color>(fourth)),
-                            onPressed: () {
-                              Navigator.of(context).pop(p);
-                            },
+                            onPressed: () => Navigator.of(context).pop(p),
                             child: ListTile(
                                 title: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

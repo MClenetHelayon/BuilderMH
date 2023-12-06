@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/object/Kinsect.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 
 class ListViewScreen extends StatefulWidget {
   final int level;
+
   const ListViewScreen(
     this.level, {
     Key? key,
@@ -25,12 +27,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
     loadKinsectJowel();
   }
 
-  Future<String> loadKinsectData() async {
-    return await rootBundle.loadString('database/mhrs/weapon/kinsect.json');
-  }
-
   Future<void> loadKinsectJowel() async {
-    String jsonText = await loadKinsectData();
+    String jsonText =
+        await rootBundle.loadString('database/mhrs/weapon/kinsect.json');
     List<dynamic> jsonResponse = json.decode(jsonText);
     setState(() {
       lkinsect.add(Kinsect.getBase());
@@ -43,9 +42,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      child: Column(
-        children: [
+        color: secondary,
+        child: Column(children: [
           Expanded(
               child: ListView.builder(
                   itemCount: lkinsect.length,
@@ -53,83 +51,61 @@ class _ListViewScreenState extends State<ListViewScreen> {
                     Kinsect kinsect = lkinsect[index];
                     if (index == 0) {
                       return Card(
-                        margin:
-                            const EdgeInsets.only(top: 5, left: 10, right: 10),
-                        child: TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromARGB(255, 255, 255, 255)),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop(kinsect);
-                          },
-                          child: ListTile(
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  kinsect.name,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
+                          margin: const EdgeInsets.only(
+                              top: 5, left: 10, right: 10),
+                          child: TextButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(fourth),
+                              ),
+                              onPressed: () =>
+                                  Navigator.of(context).pop(kinsect),
+                              child: ListTile(
+                                  title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [Text(kinsect.name)]))));
                     } else {
                       return Card(
                           margin: const EdgeInsets.only(
                               top: 5, left: 10, right: 10),
                           child: TextButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color.fromARGB(255, 255, 255, 255)),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).pop(kinsect);
-                            },
-                            child: ListTile(
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    kinsect.name,
-                                  ),
-                                ],
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(fourth),
                               ),
-                              subtitle: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Attaque : ${kinsect.niveauKinsect[widget.level][0]}",
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Vitesse : ${kinsect.niveauKinsect[widget.level][1]}",
-                                      )
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Guérison : ${kinsect.niveauKinsect[widget.level][2]}",
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ));
+                              onPressed: () =>
+                                  Navigator.of(context).pop(kinsect),
+                              child: ListTile(
+                                  title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [Text(kinsect.name)]),
+                                  subtitle: Column(children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              "Attaque : ${kinsect.niveauKinsect[widget.level][0]}")
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              "Vitesse : ${kinsect.niveauKinsect[widget.level][1]}")
+                                        ]),
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                              "Guérison : ${kinsect.niveauKinsect[widget.level][2]}")
+                                        ])
+                                  ]))));
                     }
                   }))
-        ],
-      ),
-    );
+        ]));
   }
 }

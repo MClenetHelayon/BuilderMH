@@ -329,9 +329,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               weapons.niveau == "none")
           .toList();
     }
-    setState(() {
-      lFilteredWeapons = filteredWeapons;
-    });
+    setState(() => lFilteredWeapons = filteredWeapons);
   }
 
   @override
@@ -355,13 +353,10 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               top: 5, left: 10, right: 10),
                           child: TextButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        fourth),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop(weapon);
-                              },
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(fourth)),
+                              onPressed: () =>
+                                  Navigator.of(context).pop(weapon),
                               child: ListTile(
                                   minLeadingWidth: 30,
                                   horizontalTitleGap: 5,
@@ -525,7 +520,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                                               children: [
                                                 Column(children: [
                                                   Text(
-                                                      "${AppLocalizations.of(context)!.barrage} : ${getTypeBarrage(weapon.barrage, context)} "),
+                                                      "${AppLocalizations.of(context)!.barrage} : ${getTypeBarrage(weapon.barrage, context)} ")
                                                 ])
                                               ]),
                                           Row(
@@ -560,13 +555,11 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               height: 35,
                               child: TextButton(
                                 style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          fourth),
-                                ),
-                                onPressed: () {
-                                  Navigator.of(context).pop(weapon);
-                                },
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            fourth)),
+                                onPressed: () =>
+                                    Navigator.of(context).pop(weapon),
                                 child: Center(child: black(weapon.name)),
                               )));
                     }
@@ -587,39 +580,26 @@ class _ListViewScreenState extends State<ListViewScreen> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(AppLocalizations.of(context)!.affNeg),
             const SizedBox(width: 10),
-            checkboxRank("✓", affNeg, () {
-              setState(() {
-                affNeg = !affNeg;
-              });
-            })
+            checkboxRank("✓", affNeg, () => setState(() => affNeg = !affNeg))
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(AppLocalizations.of(context)!.catElem),
             const SizedBox(width: 10),
-            filterComboElem(cbxElem, context, (String? newValue) {
-              setState(() {
-                cbxElem = newValue!;
-              });
-            })
+            filterComboElem(cbxElem, context,
+                (String? newValue) => setState(() => cbxElem = newValue!))
           ]),
           if (!arcCheck && !lbgCheck && !hbgCheck)
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(AppLocalizations.of(context)!.sharp),
               const SizedBox(width: 10),
-              filterComboSharp(cbxSharp, context, (String? newValue) {
-                setState(() {
-                  cbxSharp = newValue!;
-                });
-              })
+              filterComboSharp(cbxSharp, context,
+                  (String? newValue) => setState(() => cbxSharp = newValue!))
             ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(AppLocalizations.of(context)!.calam),
             const SizedBox(width: 10),
-            filterComboCalam(cbxCalam, context, (String? newValue) {
-              setState(() {
-                cbxCalam = newValue!;
-              });
-            })
+            filterComboCalam(cbxCalam, context,
+                (String? newValue) => setState(() => cbxCalam = newValue!))
           ]),
         ])));
   }
@@ -633,20 +613,22 @@ class _ListViewScreenState extends State<ListViewScreen> {
             margin: const EdgeInsets.only(bottom: 5),
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                checkboxRank("RC", rcCheck, () {
-                  setState(() {
-                    resetRankChoice();
-                    rcCheck = !rcCheck;
-                    getFilteredWeapons();
-                  });
-                }),
-                checkboxRank("RM", rmCheck, () {
-                  setState(() {
-                    resetRankChoice();
-                    rmCheck = !rmCheck;
-                    getFilteredWeapons();
-                  });
-                })
+                checkboxRank(
+                    "RC",
+                    rcCheck,
+                    () => setState(() {
+                          resetRankChoice();
+                          rcCheck = !rcCheck;
+                          getFilteredWeapons();
+                        })),
+                checkboxRank(
+                    "RM",
+                    rmCheck,
+                    () => setState(() {
+                          resetRankChoice();
+                          rmCheck = !rmCheck;
+                          getFilteredWeapons();
+                        }))
               ]),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -735,14 +717,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
 
   //fonction permettant l'actualisation des données lorsque l'on change de séléction d'arme
   Function(bool) updateCheckbox(bool currentCheck, Function(bool) callback) {
-    return (bool newCheck) {
-      setState(() {
-        resetWeaponChoice(); //reinitialiser
-        tc.text = ""; //vider le champ de recherche
-        callback(newCheck); //mettre a jour les checkbox
-        getFilteredWeapons(); //réactualiser les donnée générale
-      });
-    };
+    return (bool newCheck) => setState(() {
+          resetWeaponChoice(); //reinitialiser
+          tc.text = ""; //vider le champ de recherche
+          callback(newCheck); //mettre a jour les checkbox
+          getFilteredWeapons(); //réactualiser les donnée générale
+        });
   }
 
   //fonction qui a pour but de reinitialisé toutes les checkbox lié au rang de chasseur

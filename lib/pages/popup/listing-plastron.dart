@@ -91,9 +91,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               armor.categorie == "none")
           .toList();
     }
-    setState(() {
-      filteredChestplates = fChest;
-    });
+    setState(() => filteredChestplates = fChest);
   }
 
   @override
@@ -129,12 +127,12 @@ class _ListViewScreenState extends State<ListViewScreen> {
         header: Text(AppLocalizations.of(context)!.moreFilters,
             style: const TextStyle(fontWeight: FontWeight.bold)),
         content: Column(children: [
-          filterComboSkill(lskill, selectedSkill, context, (int? newValue) {
-            setState(() {
-              selectedSkill =
-                  lskill.firstWhere((skill) => skill.id == newValue!);
-            });
-          })
+          filterComboSkill(
+              lskill,
+              selectedSkill,
+              context,
+              (int? newValue) => setState(() => selectedSkill =
+                  lskill.firstWhere((skill) => skill.id == newValue!)))
         ])));
   }
 
@@ -142,20 +140,22 @@ class _ListViewScreenState extends State<ListViewScreen> {
     return Card(
         color: third,
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          checkboxRank("RC", rcCheck, () {
-            setState(() {
-              resetRankChoice();
-              rcCheck = !rcCheck;
-              getFilteredChestplates();
-            });
-          }),
-          checkboxRank("RM", rmCheck, () {
-            setState(() {
-              resetRankChoice();
-              rmCheck = !rmCheck;
-              getFilteredChestplates();
-            });
-          })
+          checkboxRank(
+              "RC",
+              rcCheck,
+              () => setState(() {
+                    resetRankChoice();
+                    rcCheck = !rcCheck;
+                    getFilteredChestplates();
+                  })),
+          checkboxRank(
+              "RM",
+              rmCheck,
+              () => setState(() {
+                    resetRankChoice();
+                    rmCheck = !rmCheck;
+                    getFilteredChestplates();
+                  }))
         ]));
   }
 

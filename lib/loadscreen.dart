@@ -28,9 +28,8 @@ class _LoadScreen extends State<LoadScreen> {
     }
     for (int i = 0; i <= 100; i++) {
       await Future.delayed(const Duration(milliseconds: 10));
-      setState(() {
-        _progress = i / 100; // Mise à jour du pourcentage de progression
-      });
+      setState(() =>
+          _progress = i / 100); // Mise à jour du pourcentage de progression
     }
 
     await Future.delayed(

@@ -60,9 +60,7 @@ class _BuilderPageState extends State<BuilderPage> {
   void initState() {
     super.initState();
     loadJowel();
-    setState(() {
-      txtAugment = txtListAugment(s.weapon);
-    });
+    setState(() => txtAugment = txtListAugment(s.weapon));
   }
 
   Future<void> loadJowel() async {
@@ -72,11 +70,9 @@ class _BuilderPageState extends State<BuilderPage> {
     String skillJsonText =
         await rootBundle.loadString('database/mhrs/skill.json');
     List<dynamic> skillList = json.decode(skillJsonText);
-    setState(() {
-      Stuff.ljowel = jsonResponseJoyau
-          .map((jowel) => Joyaux.fromJson(jowel, skillList, Stuff.local))
-          .toList();
-    });
+    setState(() => Stuff.ljowel = jsonResponseJoyau
+        .map((jowel) => Joyaux.fromJson(jowel, skillList, Stuff.local))
+        .toList());
   }
 
   @override
@@ -170,9 +166,8 @@ class _BuilderPageState extends State<BuilderPage> {
                                     onPressed: () async {
                                       await pop.transcendance(
                                           context, s.weapon);
-                                      setState(() {
-                                        txtAugment = txtListAugment(s.weapon);
-                                      });
+                                      setState(() => txtAugment =
+                                          txtListAugment(s.weapon));
                                     },
                                     child: white(txtAugment)))
                           ]),
@@ -189,12 +184,11 @@ class _BuilderPageState extends State<BuilderPage> {
                               : Container()),
                     joyau(s.weapon, s, _reloadMainPage, context),
                     if (s.weapon is Fusarbalete)
-                      comboModFusar(s.weapon as Fusarbalete, context,
-                          (int? newValue) {
-                        setState(() {
-                          (s.weapon as Fusarbalete).mod = newValue!;
-                        });
-                      })
+                      comboModFusar(
+                          s.weapon as Fusarbalete,
+                          context,
+                          (int? newValue) => setState(
+                              () => (s.weapon as Fusarbalete).mod = newValue!))
                   ])
                 ])
               ]))
@@ -211,9 +205,7 @@ class _BuilderPageState extends State<BuilderPage> {
               var value = await pop.kinsect(
                   context, (s.weapon as Insectoglaive).niveauKinsect);
               if (value == null || value == s.kinsect) return;
-              setState(() {
-                s.kinsect = value;
-              });
+              setState(() => s.kinsect = value);
             },
             child: Table(columnWidths: const <int, TableColumnWidth>{
               0: FixedColumnWidth(50),
@@ -232,9 +224,7 @@ class _BuilderPageState extends State<BuilderPage> {
             onPressed: () async {
               var value = await pop.flor(context);
               if (value == null || value == s.florelet) return;
-              setState(() {
-                s.florelet = value;
-              });
+              setState(() => s.florelet = value);
             },
             child: Table(columnWidths: const <int, TableColumnWidth>{
               0: FixedColumnWidth(60),
@@ -312,9 +302,7 @@ class _BuilderPageState extends State<BuilderPage> {
             onPressed: () async {
               var value = await pop.calamJoyau(context, slot, categ);
               if (value == null || value == s.joyauxCalam) return;
-              setState(() {
-                s.joyauxCalam = value;
-              });
+              setState(() => s.joyauxCalam = value);
             },
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Image.asset(slotCalam(slot), height: 22, width: 22),
@@ -392,8 +380,7 @@ class _BuilderPageState extends State<BuilderPage> {
     return Card(
         child: TextButton(
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(primary),
-            ),
+                backgroundColor: MaterialStateProperty.all<Color>(primary)),
             onPressed: reload,
             child: Column(children: [
               Table(columnWidths: const <int, TableColumnWidth>{
@@ -403,7 +390,7 @@ class _BuilderPageState extends State<BuilderPage> {
                 TableRow(children: [
                   Column(children: [
                     afficheIconArmor(s, convertIconInt(a), true),
-                    white("${AppLocalizations.of(context)!.rarete}${a.rarete}"),
+                    white("${AppLocalizations.of(context)!.rarete}${a.rarete}")
                   ]),
                   armorTopInfo(a)
                 ])
@@ -416,8 +403,6 @@ class _BuilderPageState extends State<BuilderPage> {
   }
 
   void _reloadMainPage() {
-    setState(() {
-      reload = true;
-    });
+    setState(() => reload = true);
   }
 }

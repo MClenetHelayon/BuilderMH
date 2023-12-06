@@ -14,6 +14,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ListViewScreen extends StatefulWidget {
   final int slot;
+
   const ListViewScreen(
     this.slot, {
     Key? key,
@@ -109,9 +110,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               deco.level == 0)
           .toList();
     }
-    setState(() {
-      lFilteredDeco = filteredJowel;
-    });
+    setState(() => lFilteredDeco = filteredJowel);
   }
 
   @override
@@ -134,9 +133,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(fourth)),
-                              onPressed: () {
-                                Navigator.of(context).pop(jowel);
-                              },
+                              onPressed: () => Navigator.of(context).pop(jowel),
                               child: ListTile(
                                   title: Center(child: Text(jowel.name)))));
                     } else {
@@ -145,12 +142,9 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               top: 5, left: 10, right: 10),
                           child: TextButton(
                               style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(fourth),
-                              ),
-                              onPressed: () {
-                                Navigator.of(context).pop(jowel);
-                              },
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(fourth)),
+                              onPressed: () => Navigator.of(context).pop(jowel),
                               child: ListTile(
                                   title: Center(child: Text(jowel.name)),
                                   leading: Container(
@@ -180,30 +174,38 @@ class _ListViewScreenState extends State<ListViewScreen> {
         color: third,
         margin: const EdgeInsets.all(5),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          checkboxDeco(slot4, show4, activeShow4, (bool check) {
-            setState(() {
-              show4 = check;
-              lFilteredDeco = getFilteredJowel(widget.slot);
-            });
-          }),
-          checkboxDeco(slot3, show3, activeShow3, (bool check) {
-            setState(() {
-              show3 = check;
-              lFilteredDeco = getFilteredJowel(widget.slot);
-            });
-          }),
-          checkboxDeco(slot2, show2, activeShow2, (bool check) {
-            setState(() {
-              show2 = check;
-              lFilteredDeco = getFilteredJowel(widget.slot);
-            });
-          }),
-          checkboxDeco(slot1, show1, activeShow1, (bool check) {
-            setState(() {
-              show1 = check;
-              lFilteredDeco = getFilteredJowel(widget.slot);
-            });
-          })
+          checkboxDeco(
+              slot4,
+              show4,
+              activeShow4,
+              (bool check) => setState(() {
+                    show4 = check;
+                    lFilteredDeco = getFilteredJowel(widget.slot);
+                  })),
+          checkboxDeco(
+              slot3,
+              show3,
+              activeShow3,
+              (bool check) => setState(() {
+                    show3 = check;
+                    lFilteredDeco = getFilteredJowel(widget.slot);
+                  })),
+          checkboxDeco(
+              slot2,
+              show2,
+              activeShow2,
+              (bool check) => setState(() {
+                    show2 = check;
+                    lFilteredDeco = getFilteredJowel(widget.slot);
+                  })),
+          checkboxDeco(
+              slot1,
+              show1,
+              activeShow1,
+              (bool check) => setState(() {
+                    show1 = check;
+                    lFilteredDeco = getFilteredJowel(widget.slot);
+                  }))
         ]));
   }
 }

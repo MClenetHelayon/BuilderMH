@@ -62,10 +62,10 @@ class _HomepageState extends State<Homepage> {
         break;
       //page parametres, sert surtout pour chnager de langues
       case DrawerSections.parametres:
-        container = SettingsPage(onLanguageChanged: (Locale newLocale) {
-          Provider.of<AppState>(context, listen: false)
-              .changeLanguage(newLocale);
-        });
+        container = SettingsPage(
+            onLanguageChanged: (Locale newLocale) =>
+                Provider.of<AppState>(context, listen: false)
+                    .changeLanguage(newLocale));
         break;
       //page gestion des Talents / des boosts actif ou non
       case DrawerSections.boost:
@@ -84,9 +84,7 @@ class _HomepageState extends State<Homepage> {
               builder: (context) => IconButton(
                   iconSize: 80,
                   icon: white((AppLocalizations.of(context)!.stat)),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  }))
+                  onPressed: () => Scaffold.of(context).openEndDrawer()))
         ]),
         body: container,
         drawer: Drawer(

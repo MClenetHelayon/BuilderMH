@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class ListViewScreen extends StatefulWidget {
   final int slot;
   final String categ;
+
   const ListViewScreen(
     this.slot,
     this.categ, {
@@ -134,9 +135,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
               deco.slot == 0)
           .toList();
     }
-    setState(() {
-      lFilteredCalam = filteredCalamJowel;
-    });
+    setState(() => lFilteredCalam = filteredCalamJowel);
   }
 
   @override
@@ -159,9 +158,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(fourth)),
-                              onPressed: () {
-                                Navigator.of(context).pop(calamJowel);
-                              },
+                              onPressed: () =>
+                                  Navigator.of(context).pop(calamJowel),
                               child: ListTile(
                                   title:
                                       Center(child: Text(calamJowel.name)))));
@@ -173,9 +171,8 @@ class _ListViewScreenState extends State<ListViewScreen> {
                               style: ButtonStyle(
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(fourth)),
-                              onPressed: () {
-                                Navigator.of(context).pop(calamJowel);
-                              },
+                              onPressed: () =>
+                                  Navigator.of(context).pop(calamJowel),
                               child: ListTile(
                                   title: Center(
                                       child: Text(
@@ -207,24 +204,30 @@ class _ListViewScreenState extends State<ListViewScreen> {
         color: third,
         margin: const EdgeInsets.all(5),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          checkboxDeco(ramp3, slot3, activeShow3, (bool check) {
-            setState(() {
-              slot3 = check;
-              getFilteredCalamJowels();
-            });
-          }),
-          checkboxDeco(ramp2, slot2, activeShow2, (bool check) {
-            setState(() {
-              slot2 = check;
-              getFilteredCalamJowels();
-            });
-          }),
-          checkboxDeco(ramp1, slot1, activeShow1, (bool check) {
-            setState(() {
-              slot1 = check;
-              getFilteredCalamJowels();
-            });
-          })
+          checkboxDeco(
+              ramp3,
+              slot3,
+              activeShow3,
+              (bool check) => setState(() {
+                    slot3 = check;
+                    getFilteredCalamJowels();
+                  })),
+          checkboxDeco(
+              ramp2,
+              slot2,
+              activeShow2,
+              (bool check) => setState(() {
+                    slot2 = check;
+                    getFilteredCalamJowels();
+                  })),
+          checkboxDeco(
+              ramp1,
+              slot1,
+              activeShow1,
+              (bool check) => setState(() {
+                    slot1 = check;
+                    getFilteredCalamJowels();
+                  }))
         ]));
   }
 }
