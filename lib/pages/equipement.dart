@@ -55,10 +55,14 @@ class _BuilderPageState extends State<BuilderPage> {
 
   bool reload = false;
   String txtAugment = "";
+
   @override
   void initState() {
     super.initState();
     loadJowel();
+    setState(() {
+      txtAugment = txtListAugment(s.weapon);
+    });
   }
 
   Future<void> loadJowel() async {
@@ -157,6 +161,7 @@ class _BuilderPageState extends State<BuilderPage> {
                           children: [
                             white(AppLocalizations.of(context)!.trans),
                             Card(
+                                color: primary,
                                 child: TextButton(
                                     style: ButtonStyle(
                                         backgroundColor:
