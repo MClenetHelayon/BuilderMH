@@ -52,6 +52,7 @@ class _ListViewScreenState extends State<ListViewScreen> {
           lskill.add(Talent.getJson(skill, Stuff.local));
         }
       }
+      lskill.sort((a, b) => a.name.compareTo(b.name));
       if (t.slots.isNotEmpty) {
         slot1 = t.slots[0];
         if (t.slots[1] != 0) {
