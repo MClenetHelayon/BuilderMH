@@ -89,8 +89,6 @@ Widget gElem(Stuff s, BuildContext context, bool img) {
 Widget gOff(Stuff s, BuildContext context, bool img) {
   String txtEfr = "${AppLocalizations.of(context)!.efr} : ${efr(s)}",
       txtEfe = "${AppLocalizations.of(context)!.trr} : ${row(s).toString()}",
-      txtPetalAtt =
-          "${AppLocalizations.of(context)!.petalAtt} : ${s.florelet.uAtt.toString()}",
       txtAff = "${AppLocalizations.of(context)!.aff} : ${affinite(s)}%",
       txtCritMultip =
           "${AppLocalizations.of(context)!.critMultip} : ${getBerserk(s.getTalentValueById(22), s).toString()}";
@@ -103,7 +101,6 @@ Widget gOff(Stuff s, BuildContext context, bool img) {
           Column(children: [
             img ? black(txtEfr) : white(txtEfr),
             img ? black(txtEfe) : white(txtEfe),
-            img ? black(txtPetalAtt) : white(txtPetalAtt),
             img
                 ? switchColorBlack(txtAff, 100, s.affinite)
                 : switchColorWhite(txtAff, 100, s.affinite),
