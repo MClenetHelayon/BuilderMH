@@ -1,5 +1,5 @@
-import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/img/general.dart';
+import 'package:builder_mhrs/controller/color/colorManager.dart';
+import 'package:builder_mhrs/controller/img/general.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
