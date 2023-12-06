@@ -80,6 +80,21 @@ num affinite(Stuff s) {
 int row(Stuff s) {
   double vretour = (s.weapon.attaque).toDouble() + (s.florelet.gAtt).toDouble(),
       base = vretour;
+  if (Stuff.consommable.griffeA) {
+    vretour += 9;
+  }
+  if (Stuff.consommable.charmA) {
+    vretour += 6;
+  }
+  if (Stuff.consommable.popoA) {
+    vretour += 7;
+  }
+  if (Stuff.consommable.poudreA) {
+    vretour += 10;
+  }
+  if (Stuff.consommable.graineA) {
+    vretour += 10;
+  }
   if (Arme.augments) {
     vretour += (Arme.transcendance.att).toDouble();
   }
@@ -184,6 +199,21 @@ int defense(Stuff s) {
           s.weapon.defense +
           s.florelet.gDef)
       .toDouble();
+  if (Stuff.consommable.charmD) {
+    vretour += 12;
+  }
+  if (Stuff.consommable.griffeD) {
+    vretour += 18;
+  }
+  if (Stuff.consommable.popoD) {
+    vretour += 25;
+  }
+  if (Stuff.consommable.poudreD) {
+    vretour += 20;
+  }
+  if (Stuff.consommable.graineD) {
+    vretour += 20;
+  }
   if (s.getTalentValueById(17) != 0) {
     vretour += def.getBastionDef(s.getTalentValueById(17), vretour);
   }
