@@ -436,3 +436,13 @@ double getBuildUpBoost(int i, double actual, bool actif) {
   }
   return vretour;
 }
+
+double getWallRunner(int i, bool actif) {
+  double vretour = 0;
+  if (actif) {
+    if (i == 3) {
+      vretour = 20;
+    }
+  }
+  return vretour;
+}

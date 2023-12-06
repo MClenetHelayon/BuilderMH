@@ -78,8 +78,7 @@ num affinite(Stuff s) {
 }
 
 int row(Stuff s) {
-  double vretour = (s.weapon.attaque).toDouble() + (s.florelet.gAtt).toDouble(),
-      base = vretour;
+  double vretour = (s.weapon.attaque).toDouble() + (s.florelet.gAtt).toDouble();
   if (Stuff.consommable.griffeA) {
     vretour += 9;
   }
@@ -98,67 +97,36 @@ int row(Stuff s) {
   if (Arme.augments) {
     vretour += (Arme.transcendance.att).toDouble();
   }
-  if (s.getTalentValueById(78) != 0) {
-    vretour += att.getMachine(s.getTalentValueById(78), base);
+  if (s.getTalentValueById(65) != 0) {
+    vretour +=
+        att.getWallRunner(s.getTalentValueById(65), s.getTalentById(65).actif);
   }
   if (s.getTalentValueById(16) != 0) {
     vretour += att.getBatto(s.getTalentValueById(16));
   }
   if (s.getTalentValueById(39) != 0) {
     vretour += att.getContreAttaque(
-        s.getTalentValueById(39), s.getTalentById(94).actif);
+        s.getTalentValueById(39), s.getTalentById(39).actif);
   }
   if (s.getTalentValueById(143) != 0) {
     vretour +=
-        att.getVengeance(s.getTalentValueById(143), s.getTalentById(94).actif);
+        att.getVengeance(s.getTalentValueById(143), s.getTalentById(143).actif);
   }
   if (s.getTalentValueById(142) != 0) {
     vretour += att.getVendetta(
-        s.getTalentValueById(142), s.getTalentById(94).actif, s.weapon);
+        s.getTalentValueById(142), s.getTalentById(142).actif, s.weapon);
   }
   if (s.getTalentValueById(107) != 0) {
     vretour +=
-        att.getPeakPerf(s.getTalentValueById(107), s.getTalentById(94).actif);
+        att.getPeakPerf(s.getTalentValueById(107), s.getTalentById(107).actif);
   }
   if (s.getTalentValueById(132) != 0) {
     vretour +=
-        att.getTemerite(s.getTalentValueById(132), s.getTalentById(94).actif);
+        att.getTemerite(s.getTalentValueById(132), s.getTalentById(132).actif);
   }
   if (s.getTalentValueById(55) != 0) {
     vretour += att.getEspritIndomptable(
-        s.getTalentValueById(55), s.getTalentById(94).actif);
-  }
-  if (s.getTalentValueById(62) != 0) {
-    vretour += att.getGardOff(
-        s.getTalentValueById(62), base, s.getTalentById(94).actif);
-  }
-  if (s.getTalentValueById(46) > 3) {
-    vretour += att.getDragonHeart(
-        s.getTalentValueById(46), base, s.getTalentById(94).actif);
-  }
-  if (s.getTalentValueById(68) > 1) {
-    vretour += att.getHeroisme(
-        s.getTalentValueById(68), base, s.getTalentById(94).actif);
-  }
-  if (s.getTalentValueById(89) != 0 && s.sharpRaw < 1.2 && s.sharpRaw > 0.8) {
-    vretour += att.getMatraquage(s.getTalentValueById(89), base);
-  }
-
-  if (s.getTalentValueById(70) != 0) {
-    vretour +=
-        att.getIncursion(s.getTalentValueById(70), s.getTalentById(70).actif);
-  }
-  if (s.getTalentValueById(111) != 0) {
-    vretour += att.getAdrenaline(
-        s.getTalentValueById(111), s.getTalentById(111).actif);
-  }
-  if (s.getTalentValueById(140) != 0) {
-    vretour +=
-        att.getUnion(s.getTalentValueById(140), s.getTalentById(140).actif);
-  }
-  if (s.getTalentValueById(14) != 0) {
-    vretour += att.getFurtif(
-        s.getTalentValueById(14), vretour, s.getTalentById(14).actif);
+        s.getTalentValueById(55), s.getTalentById(55).actif);
   }
   if (s.getTalentValueById(57) != 0) {
     vretour += att.getEveilDeSang(
@@ -176,16 +144,51 @@ int row(Stuff s) {
     vretour += att.getMailOfHellFire(
         s.getTalentValueById(41), s.getTalentById(41).actif);
   }
+  if (s.getTalentValueById(70) != 0) {
+    vretour +=
+        att.getIncursion(s.getTalentValueById(70), s.getTalentById(70).actif);
+  }
+  if (s.getTalentValueById(111) != 0) {
+    vretour += att.getAdrenaline(
+        s.getTalentValueById(111), s.getTalentById(111).actif);
+  }
+  if (s.getTalentValueById(140) != 0) {
+    vretour +=
+        att.getUnion(s.getTalentValueById(140), s.getTalentById(140).actif);
+  }
+  if (s.getTalentValueById(62) != 0) {
+    vretour += att.getGardOff(
+        s.getTalentValueById(62), vretour, s.getTalentById(62).actif);
+  }
+  if (s.getTalentValueById(46) > 3) {
+    vretour += att.getDragonHeart(
+        s.getTalentValueById(46), vretour, s.getTalentById(46).actif);
+  }
+  if (s.getTalentValueById(68) > 1) {
+    vretour += att.getHeroisme(
+        s.getTalentValueById(68), vretour, s.getTalentById(68).actif);
+  }
+  if (s.getTalentValueById(89) != 0 && s.sharpRaw < 1.2 && s.sharpRaw > 0.8) {
+    vretour += att.getMatraquage(s.getTalentValueById(89), vretour);
+  }
+
+  if (s.getTalentValueById(14) != 0) {
+    vretour += att.getFurtif(
+        s.getTalentValueById(14), vretour, s.getTalentById(14).actif);
+  }
+  if (s.getTalentValueById(78) != 0) {
+    vretour += att.getMachine(s.getTalentValueById(78), vretour);
+  }
   if (s.weapon.idElement >= 6) {
     if (s.getTalentValueById(26) != 0) {
       vretour += att.getBuildUpBoost(
-          s.getTalentValueById(26), base, s.getTalentById(26).actif);
+          s.getTalentValueById(26), vretour, s.getTalentById(26).actif);
     }
   }
 
   if (s.getTalentValueById(74) != 0) {
     vretour +=
-        att.getJV(s.getTalentValueById(74), base, s.getTalentById(74).actif);
+        att.getJV(s.getTalentValueById(74), vretour, s.getTalentById(74).actif);
   }
   return vretour.round();
 }
