@@ -1,7 +1,9 @@
 import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/color/colorScroll.dart';
 import 'package:builder_mhrs/manager/color/colorStat.dart';
+import 'package:builder_mhrs/manager/img/consommable.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
+import 'package:builder_mhrs/manager/widget/cardListManager.dart';
 import 'package:builder_mhrs/object/Consommable.dart';
 import 'package:builder_mhrs/object/Stuff.dart';
 import 'package:builder_mhrs/object/Talent.dart';
@@ -171,10 +173,87 @@ class _BoostPageState extends State<BoostPage> {
                   color: primary,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [ 
-                       /* getCardConsommable(
-                          
-                        )*/
+                      children: [
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoGriffeAtt,
+                            c.griffeA,
+                            griffeA, () {
+                          setState(() {
+                            c.griffeA = !c.griffeA;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoGriffeDef,
+                            c.griffeD,
+                            griffeD, () {
+                          setState(() {
+                            c.griffeD = !c.griffeD;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoCharmAtt,
+                            c.charmA,
+                            charmA, () {
+                          setState(() {
+                            c.charmA = !c.charmA;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoCharmDef,
+                            c.charmD,
+                            charmD, () {
+                          setState(() {
+                            c.charmD = !c.charmD;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoPopoAtt,
+                            c.popoA,
+                            popoA, () {
+                          setState(() {
+                            c.popoA = !c.popoA;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoPopoDef,
+                            c.popoD,
+                            popoD, () {
+                          setState(() {
+                            c.popoD = !c.popoD;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoGraineAtt,
+                            c.graineA,
+                            graineA, () {
+                          setState(() {
+                            c.graineA = !c.graineA;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoGraineDef,
+                            c.graineD,
+                            graineD, () {
+                          setState(() {
+                            c.graineD = !c.graineD;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoPoudreAtt,
+                            c.poudreA,
+                            poudreA, () {
+                          setState(() {
+                            c.poudreA = !c.poudreA;
+                          });
+                        }),
+                        getCardConsommable(
+                            AppLocalizations.of(context)!.consoPoudreDef,
+                            c.poudreD,
+                            poudreD, () {
+                          setState(() {
+                            c.poudreD = !c.poudreD;
+                          });
+                        })
                       ]))
           ])))
         ]));

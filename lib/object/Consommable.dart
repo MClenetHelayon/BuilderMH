@@ -1,5 +1,14 @@
 class Consommable {
-  bool griffeA, griffeD, charmA, charmD, graineA, graineD, popoA, popoD;
+  bool griffeA,
+      griffeD,
+      charmA,
+      charmD,
+      graineA,
+      graineD,
+      popoA,
+      popoD,
+      poudreA,
+      poudreD;
 
   Consommable(
       {required this.griffeA,
@@ -9,7 +18,9 @@ class Consommable {
       required this.graineA,
       required this.graineD,
       required this.popoA,
-      required this.popoD});
+      required this.popoD,
+      required this.poudreA,
+      required this.poudreD});
 
   static getBase() {
     return Consommable(
@@ -20,6 +31,8 @@ class Consommable {
         graineA: false,
         graineD: false,
         popoA: false,
-        popoD: false);
+        popoD: false,
+        poudreA: false,
+        poudreD: false);
   }
 }

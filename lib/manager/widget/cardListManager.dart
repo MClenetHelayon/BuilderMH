@@ -2,7 +2,6 @@ import 'package:builder_mhrs/manager/color/colorManager.dart';
 import 'package:builder_mhrs/manager/text/color.dart';
 import 'package:builder_mhrs/manager/text/slot.dart';
 import 'package:builder_mhrs/manager/widget/filter/getCombobox.dart';
-import 'package:builder_mhrs/object/Consommable.dart';
 import 'package:builder_mhrs/object/Talent.dart';
 import 'package:builder_mhrs/object/armor/Armure.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +57,8 @@ Widget getCardCharmTalent(
       ]));
 }
 
-Widget getCardConsommable(String name, Consommable c, void Function()? onTap) {
+Widget getCardConsommable(
+    String name, bool b, String img, void Function()? onTap) {
   return Card(
       color: third,
       child: GestureDetector(
@@ -76,9 +76,12 @@ Widget getCardConsommable(String name, Consommable c, void Function()? onTap) {
                         color: fifth,
                         margin: const EdgeInsets.all(5),
                         child: Container(
-                          padding: const EdgeInsets.all(5),
-                          /*child: boldBlack(
-                                                      t.actif ? "On" : "Off")*/
-                        ))
+                            height: 40,
+                            width: 30,
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                image: DecorationImage(image: AssetImage(img)),
+                                color: b ? fifth : third)))
                   ]))));
 }
