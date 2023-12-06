@@ -1,3 +1,4 @@
+import 'package:builder_mhrs/controller/color/colorManager.dart';
 import 'package:builder_mhrs/controller/img/imgManager.dart';
 import 'package:builder_mhrs/controller/img/kinsect.dart';
 import 'package:builder_mhrs/controller/logic/morphoHache.dart';
@@ -58,13 +59,19 @@ Widget joyau(
           child: Column(children: [
             if (s.weapon.slots.isNotEmpty)
               if (s.weapon.slots[0] != 0)
-                Card(child: joyauArme(s.weapon.slots[0], 0, s, onUpdated)),
+                Card(
+                    color: primary,
+                    child: joyauArme(s.weapon.slots[0], 0, s, onUpdated)),
             if (s.weapon.slots.length >= 2)
               if (s.weapon.slots[1] != 0)
-                Card(child: joyauArme(s.weapon.slots[1], 1, s, onUpdated)),
+                Card(
+                    color: primary,
+                    child: joyauArme(s.weapon.slots[1], 1, s, onUpdated)),
             if (s.weapon.slots.length == 3)
               if (s.weapon.slots[2] != 0)
-                Card(child: joyauArme(s.weapon.slots[2], 2, s, onUpdated)),
+                Card(
+                    color: primary,
+                    child: joyauArme(s.weapon.slots[2], 2, s, onUpdated)),
           ]))
     ])
   ]);
