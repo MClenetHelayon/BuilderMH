@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:builder_mhrs/util/name-image.dart';
+import 'package:builder_mhrs/manager/text/util/name-image.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart';
 
