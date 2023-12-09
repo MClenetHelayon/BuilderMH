@@ -1,5 +1,5 @@
-import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/img/general.dart';
+import 'package:builder_mhrs/controller/color/colorManager.dart';
+import 'package:builder_mhrs/controller/img/general.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,9 +28,8 @@ class _LoadScreen extends State<LoadScreen> {
     }
     for (int i = 0; i <= 100; i++) {
       await Future.delayed(const Duration(milliseconds: 10));
-      setState(() {
-        _progress = i / 100; // Mise à jour du pourcentage de progression
-      });
+      setState(() =>
+          _progress = i / 100); // Mise à jour du pourcentage de progression
     }
 
     await Future.delayed(

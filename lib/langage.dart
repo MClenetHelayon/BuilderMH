@@ -17,7 +17,7 @@ class Language extends StatelessWidget {
           locale: appState.currentLocale, // Utilisez la locale de l'AppState
           home: LoadScreen()
         );
-      },
+      }
     );
   }
 }

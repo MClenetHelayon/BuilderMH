@@ -1,14 +1,13 @@
-import 'package:builder_mhrs/manager/color/colorManager.dart';
-import 'package:builder_mhrs/manager/text/color.dart';
-import 'package:builder_mhrs/object/Screen.dart';
-import 'package:builder_mhrs/object/weapon/Arme.dart';
-import 'package:builder_mhrs/pages/boost.dart';
-import 'package:builder_mhrs/pages/equipement.dart';
-import 'package:builder_mhrs/pages/exportedImage.dart' as expImg;
-import 'package:builder_mhrs/pages/info.dart';
-import 'package:builder_mhrs/pages/menu/header-drawer.dart';
-import 'package:builder_mhrs/pages/menu/stat-drawer.dart';
-import 'package:builder_mhrs/pages/setting.dart';
+import 'package:builder_mhrs/controller/color/colorManager.dart';
+import 'package:builder_mhrs/controller/text/color.dart';
+import 'package:builder_mhrs/model/Screen.dart';
+import 'package:builder_mhrs/model/weapon/Arme.dart';
+import 'package:builder_mhrs/vue/page/boost.dart';
+import 'package:builder_mhrs/vue/page/equipement.dart';
+import 'package:builder_mhrs/vue/page/exportedImage.dart' as expImg;
+import 'package:builder_mhrs/vue/menu/header-drawer.dart';
+import 'package:builder_mhrs/vue/menu/stat-drawer.dart';
+import 'package:builder_mhrs/vue/page/setting.dart';
 import 'package:builder_mhrs/provider/app_state.dart';
 import 'package:builder_mhrs/provider/stuff_state.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +18,8 @@ import 'package:provider/provider.dart';
 
 import 'package:screenshot/screenshot.dart';
 
-import 'manager/exported/androidManager.dart';
-import 'manager/exported/windowsManager.dart';
+import 'controller/exported/androidManager.dart';
+import 'controller/exported/windowsManager.dart';
 
 class App extends StatelessWidget {
   @override
@@ -62,17 +61,14 @@ class _HomepageState extends State<Homepage> {
         break;
       //page parametres, sert surtout pour chnager de langues
       case DrawerSections.parametres:
-        container = SettingsPage(onLanguageChanged: (Locale newLocale) {
-          Provider.of<AppState>(context, listen: false)
-              .changeLanguage(newLocale);
-        });
+        container = SettingsPage(
+            onLanguageChanged: (Locale newLocale) =>
+                Provider.of<AppState>(context, listen: false)
+                    .changeLanguage(newLocale));
         break;
       //page gestion des Talents / des boosts actif ou non
       case DrawerSections.boost:
         container = const BoostPage();
-      //page info ... inutile pour l'instant je la converse qu'au cas ou elle servirai
-      case DrawerSections.info:
-        container = const InfoPage();
         break;
       default:
         container = const BuilderPage();
@@ -84,9 +80,7 @@ class _HomepageState extends State<Homepage> {
               builder: (context) => IconButton(
                   iconSize: 80,
                   icon: white((AppLocalizations.of(context)!.stat)),
-                  onPressed: () {
-                    Scaffold.of(context).openEndDrawer();
-                  }))
+                  onPressed: () => Scaffold.of(context).openEndDrawer()))
         ]),
         body: container,
         drawer: Drawer(
@@ -154,8 +148,6 @@ class _HomepageState extends State<Homepage> {
           const Divider(color: Colors.black),
           MenuItem(3, AppLocalizations.of(context)!.param, Icons.settings,
               currentPage == DrawerSections.parametres ? true : false),
-          MenuItem(4, AppLocalizations.of(context)!.info, Icons.help,
-              currentPage == DrawerSections.info ? true : false),
         ]));
   }
 
@@ -174,9 +166,6 @@ class _HomepageState extends State<Homepage> {
                   currentPage = DrawerSections.boost;
                 case 3:
                   currentPage = DrawerSections.parametres;
-                  break;
-                case 4:
-                  currentPage = DrawerSections.info;
                   break;
               }
             });
@@ -199,5 +188,4 @@ enum DrawerSections {
   exporter,
   boost,
   parametres,
-  info,
 }
