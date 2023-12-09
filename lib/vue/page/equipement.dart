@@ -8,7 +8,7 @@ import 'package:builder_mhrs/controller/text/color.dart';
 import 'package:builder_mhrs/controller/mh/weapon/weaponManager.dart';
 import 'package:builder_mhrs/controller/popupManager.dart' as pop;
 import 'package:builder_mhrs/controller/text/slotAugment.dart';
-import 'package:builder_mhrs/controller/util/convertIconInInt.dart';
+import 'package:builder_mhrs/controller/converter/convertIconInInt.dart';
 import 'package:builder_mhrs/controller/widget/filter/getCombobox.dart';
 import 'package:builder_mhrs/model/armor/Florelet.dart';
 import 'package:builder_mhrs/model/Joyau.dart';

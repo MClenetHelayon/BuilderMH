@@ -5,7 +5,6 @@ import 'package:builder_mhrs/model/weapon/Arme.dart';
 import 'package:builder_mhrs/vue/page/boost.dart';
 import 'package:builder_mhrs/vue/page/equipement.dart';
 import 'package:builder_mhrs/vue/page/exportedImage.dart' as expImg;
-import 'package:builder_mhrs/vue/page/info.dart';
 import 'package:builder_mhrs/vue/menu/header-drawer.dart';
 import 'package:builder_mhrs/vue/menu/stat-drawer.dart';
 import 'package:builder_mhrs/vue/page/setting.dart';
@@ -70,9 +69,6 @@ class _HomepageState extends State<Homepage> {
       //page gestion des Talents / des boosts actif ou non
       case DrawerSections.boost:
         container = const BoostPage();
-      //page info ... inutile pour l'instant je la converse qu'au cas ou elle servirai
-      case DrawerSections.info:
-        container = const InfoPage();
         break;
       default:
         container = const BuilderPage();
@@ -152,8 +148,6 @@ class _HomepageState extends State<Homepage> {
           const Divider(color: Colors.black),
           MenuItem(3, AppLocalizations.of(context)!.param, Icons.settings,
               currentPage == DrawerSections.parametres ? true : false),
-          MenuItem(4, AppLocalizations.of(context)!.info, Icons.help,
-              currentPage == DrawerSections.info ? true : false),
         ]));
   }
 
@@ -172,9 +166,6 @@ class _HomepageState extends State<Homepage> {
                   currentPage = DrawerSections.boost;
                 case 3:
                   currentPage = DrawerSections.parametres;
-                  break;
-                case 4:
-                  currentPage = DrawerSections.info;
                   break;
               }
             });
@@ -197,5 +188,4 @@ enum DrawerSections {
   exporter,
   boost,
   parametres,
-  info,
 }
